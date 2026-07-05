@@ -23,6 +23,7 @@ export function ProjectsSection() {
 function ProjectCard({ project }: { project: Project }) {
   const t = useTranslations("projects");
   const base = `items.${project.key}`;
+  const period = t(`${base}.period`);
 
   return (
     <article className="grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-2">
@@ -44,6 +45,9 @@ function ProjectCard({ project }: { project: Project }) {
         <p className="mt-1 text-sm font-medium text-primary">
           {t(`${base}.subtitle`)}
         </p>
+        {period && (
+          <p className="mt-1 text-xs text-muted-foreground">{period}</p>
+        )}
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
           {t(`${base}.description`)}
         </p>

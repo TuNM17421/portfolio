@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Nguyen Manh Tu — Software & AI Engineer",
-    "description": "Portfolio of Nguyen Manh Tu — Backend & AI Engineer with 2+ years building REST APIs, RAG systems and AI platforms."
+    "description": "Portfolio of Nguyen Manh Tu — Backend & AI Engineer with 2+ years building REST APIs, RAG systems and real-time AI platforms."
   },
   "nav": {
     "about": "About",
@@ -17,34 +17,38 @@
     "greeting": "Hi, I'm",
     "name": "Nguyen Manh Tu",
     "role": "Software Engineer · AI Engineer",
-    "summary": "Backend Engineer with 2+ years building REST APIs, batch jobs and asynchronous services using Java, Spring Boot, PostgreSQL, AWS SQS and Docker. Recently focused on AI application engineering: semantic search, RAG systems, CV/JD matching and AI interview platforms with FastAPI, Qdrant, OpenAI and LiveKit.",
+    "summary": "Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
-    "location": "Vietnam"
+    "location": "Hanoi, Vietnam"
   },
   "experience": {
     "title": "Experience & Education",
     "workHeading": "Work Experience",
     "educationHeading": "Education",
+    "languagesHeading": "Languages",
     "fpt": {
-      "role": "Software Engineer / Backend Developer",
+      "role": "Software Engineer",
       "company": "FPT Software",
       "period": "May 2024 — Mar 2026",
-      "summary": "Developed and maintained backend APIs for recruitment & HR systems using Java, Spring Boot and PostgreSQL — a 20% increase in system efficiency.",
+      "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Implemented batch jobs and asynchronous processing flows using AWS SQS and backend scheduling.",
-        "Used Docker and LocalStack to support local development and testing of cloud-integrated services.",
-        "Reviewed code, supported teammates and led a 4–5 member backend sub-team as sub team lead.",
-        "Coordinated task assignments, tracked progress and ran technical reviews — a 30% boost in team productivity during the lead's absence.",
-        "Built REST APIs ensuring seamless service integration and data flow."
+        "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL — improving system efficiency by 20%.",
+        "Cloud Infrastructure: Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack to optimize local development and testing.",
+        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews — boosting team productivity by 30% during the lead's absence."
       ]
     },
     "education": {
       "degree": "Bachelor's Degree, Information Technology",
       "school": "FPT University",
-      "period": "2019 — 2024",
-      "gpa": "GPA: 7.62 / 10"
-    }
+      "location": "Hoa Lac, Hanoi",
+      "period": "2019 — 2024"
+    },
+    "languages": [
+      "Vietnamese — Native",
+      "English — Independent",
+      "Korean — Independent"
+    ]
   },
   "projects": {
     "title": "Featured Projects",
@@ -55,16 +59,19 @@
       "vcareer": {
         "title": "VCareer",
         "subtitle": "AI Career Development Platform",
-        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026."
+        "period": "May 2026 — Present",
+        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a Three.js 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js 16 full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026."
       },
       "scholarai": {
         "title": "ScholarAI",
         "subtitle": "AI-Augmented Research Workspace",
-        "description": "AI-powered engine to discover and read academic papers: hybrid semantic search (dense + BM25 via Qdrant RRF), citation-aware chat-with-paper (streaming RAG over SSE), an in-app PDF reader with highlights/notes, and project-based writing. RAG quality measured with LangSmith (retrieval hit rate, citation accuracy, faithfulness)."
+        "period": "Apr 2026 — Jun 2026",
+        "description": "AI-powered engine to discover and read academic papers: hybrid semantic search (dense + BM25), hierarchical chunking, citation-aware chat-with-paper (streaming RAG), and hallucination guardrails (cosine thresholds, scope-enforcing prompts). RAG quality measured with LangSmith (hit rate, citation accuracy, faithfulness)."
       },
       "finplanning": {
         "title": "Financial Planning System",
         "subtitle": "Expense management & tracking system",
+        "period": "",
         "description": "Expense management system helping enterprises make financial data and internal processes transparent. Java Spring Boot backend with RESTful APIs for expense management and reporting, a React + Tailwind frontend, and Redis for caching and query performance."
       }
     }

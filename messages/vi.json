@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Nguyễn Mạnh Tú — Software & AI Engineer",
-    "description": "Portfolio của Nguyễn Mạnh Tú — Backend & AI Engineer với 2+ năm kinh nghiệm xây dựng REST API, hệ thống RAG và nền tảng AI."
+    "description": "Portfolio của Nguyễn Mạnh Tú — Backend & AI Engineer với 2+ năm kinh nghiệm xây dựng REST API, hệ thống RAG và nền tảng AI thời gian thực."
   },
   "nav": {
     "about": "Giới thiệu",
@@ -17,34 +17,38 @@
     "greeting": "Xin chào, tôi là",
     "name": "Nguyễn Mạnh Tú",
     "role": "Software Engineer · AI Engineer",
-    "summary": "Backend Engineer với hơn 2 năm kinh nghiệm xây dựng REST API, batch job và dịch vụ bất đồng bộ bằng Java, Spring Boot, PostgreSQL, AWS SQS và Docker. Gần đây tập trung vào kỹ thuật ứng dụng AI: semantic search, hệ thống RAG, matching CV/JD và nền tảng phỏng vấn AI với FastAPI, Qdrant, OpenAI và LiveKit.",
+    "summary": "Backend Software Engineer với hơn 2 năm kinh nghiệm Java/Spring Boot và AWS, hiện chuyên sâu về AI Engineering — xây dựng hệ thống RAG, semantic search và nền tảng AI thời gian thực với FastAPI, Qdrant và OpenAI.",
     "ctaProjects": "Xem dự án",
     "ctaContact": "Liên hệ",
-    "location": "Việt Nam"
+    "location": "Hà Nội, Việt Nam"
   },
   "experience": {
     "title": "Kinh nghiệm & Học vấn",
     "workHeading": "Kinh nghiệm làm việc",
     "educationHeading": "Học vấn",
+    "languagesHeading": "Ngôn ngữ",
     "fpt": {
-      "role": "Software Engineer / Backend Developer",
+      "role": "Software Engineer",
       "company": "FPT Software",
       "period": "05/2024 — 03/2026",
-      "summary": "Phát triển và duy trì backend API cho hệ thống tuyển dụng & nhân sự bằng Java, Spring Boot, PostgreSQL — tăng 20% hiệu suất hệ thống.",
+      "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Xây dựng batch job và luồng xử lý bất đồng bộ với AWS SQS và cơ chế scheduling backend.",
-        "Sử dụng Docker và LocalStack để phát triển, kiểm thử các dịch vụ tích hợp cloud ở môi trường local.",
-        "Review code, hỗ trợ đồng đội và dẫn dắt sub-team backend 4–5 người với vai trò sub team lead.",
-        "Điều phối phân công, theo dõi tiến độ và review kỹ thuật — tăng 30% năng suất nhóm khi team lead vắng mặt.",
-        "Phát triển REST API đảm bảo tích hợp dịch vụ và luồng dữ liệu liền mạch."
+        "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL — tăng 20% hiệu suất hệ thống.",
+        "Cloud Infrastructure: Xây dựng batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack để tối ưu phát triển, kiểm thử local.",
+        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code — tăng 30% năng suất nhóm khi team lead vắng mặt."
       ]
     },
     "education": {
       "degree": "Cử nhân Công nghệ Thông tin",
       "school": "Đại học FPT",
-      "period": "2019 — 2024",
-      "gpa": "GPA: 7.62 / 10"
-    }
+      "location": "Hòa Lạc, Hà Nội",
+      "period": "2019 — 2024"
+    },
+    "languages": [
+      "Tiếng Việt — Bản ngữ",
+      "Tiếng Anh — Trung cấp",
+      "Tiếng Hàn — Trung cấp"
+    ]
   },
   "projects": {
     "title": "Dự án nổi bật",
@@ -55,16 +59,19 @@
       "vcareer": {
         "title": "VCareer",
         "subtitle": "Nền tảng phát triển sự nghiệp bằng AI",
-        "description": "Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js full-stack với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026."
+        "period": "05/2026 — Hiện tại",
+        "description": "Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead bằng Three.js, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js 16 full-stack với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026."
       },
       "scholarai": {
         "title": "ScholarAI",
         "subtitle": "Không gian nghiên cứu học thuật tăng cường bởi AI",
-        "description": "Hệ thống khám phá và đọc tài liệu nghiên cứu bằng AI: hybrid semantic search (dense + BM25 với Qdrant RRF), chat-with-paper có trích dẫn (RAG streaming qua SSE), PDF reader tích hợp highlight/note, và soạn paper theo project. Đánh giá chất lượng RAG bằng LangSmith (retrieval hit rate, citation accuracy, faithfulness)."
+        "period": "04/2026 — 06/2026",
+        "description": "Hệ thống khám phá và đọc tài liệu nghiên cứu bằng AI: hybrid semantic search (dense + BM25), chunking phân cấp, chat-with-paper có trích dẫn (RAG streaming), và guardrail chống hallucination (ngưỡng cosine, prompt giới hạn phạm vi). Đánh giá chất lượng RAG bằng LangSmith (hit rate, citation accuracy, faithfulness)."
       },
       "finplanning": {
         "title": "Financial Planning System",
         "subtitle": "Hệ thống quản lý & theo dõi chi tiêu",
+        "period": "",
         "description": "Hệ thống quản lý chi tiêu giúp doanh nghiệp minh bạch hóa dữ liệu tài chính và quy trình nội bộ. Backend Java Spring Boot với RESTful API cho quản lý chi tiêu và báo cáo, frontend React + Tailwind, dùng Redis để cache và tối ưu truy vấn."
       }
     }

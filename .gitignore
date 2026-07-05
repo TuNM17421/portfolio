@@ -32,6 +32,9 @@ yarn-error.log*
 # private source material (CV, originals) — reference only, not for the repo/deploy
 /docs
 
+# local tooling artifacts (browser screenshots, tmp)
+/.claude/chrome-devtools
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
