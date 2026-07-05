@@ -1,68 +1,106 @@
 {
   "meta": {
-    "title": "Nguyen Van A — Portfolio",
-    "description": "Personal portfolio of Nguyen Van A, Software Engineer."
+    "title": "Nguyen Manh Tu — Software & AI Engineer",
+    "description": "Portfolio of Nguyen Manh Tu — Backend & AI Engineer with 2+ years building REST APIs, RAG systems and AI platforms."
   },
   "nav": {
     "about": "About",
+    "experience": "Experience",
     "projects": "Projects",
     "skills": "Skills",
+    "awards": "Awards",
     "contact": "Contact",
-    "toggleLanguage": "Tiếng Việt"
+    "toggleLanguage": "VI"
   },
   "hero": {
+    "badge": "Open to new opportunities",
     "greeting": "Hi, I'm",
-    "name": "Nguyen Van A",
-    "role": "Software Engineer",
-    "intro": "I build modern web products with a focus on user experience and performance. Passionate about turning ideas into real products.",
+    "name": "Nguyen Manh Tu",
+    "role": "Software Engineer · AI Engineer",
+    "summary": "Backend Engineer with 2+ years building REST APIs, batch jobs and asynchronous services using Java, Spring Boot, PostgreSQL, AWS SQS and Docker. Recently focused on AI application engineering: semantic search, RAG systems, CV/JD matching and AI interview platforms with FastAPI, Qdrant, OpenAI and LiveKit.",
     "ctaProjects": "View projects",
-    "ctaContact": "Get in touch"
+    "ctaContact": "Get in touch",
+    "location": "Vietnam"
+  },
+  "experience": {
+    "title": "Experience & Education",
+    "workHeading": "Work Experience",
+    "educationHeading": "Education",
+    "fpt": {
+      "role": "Software Engineer / Backend Developer",
+      "company": "FPT Software",
+      "period": "May 2024 — Mar 2026",
+      "summary": "Developed and maintained backend APIs for recruitment & HR systems using Java, Spring Boot and PostgreSQL — a 20% increase in system efficiency.",
+      "bullets": [
+        "Implemented batch jobs and asynchronous processing flows using AWS SQS and backend scheduling.",
+        "Used Docker and LocalStack to support local development and testing of cloud-integrated services.",
+        "Reviewed code, supported teammates and led a 4–5 member backend sub-team as sub team lead.",
+        "Coordinated task assignments, tracked progress and ran technical reviews — a 30% boost in team productivity during the lead's absence.",
+        "Built REST APIs ensuring seamless service integration and data flow."
+      ]
+    },
+    "education": {
+      "degree": "Bachelor's Degree, Information Technology",
+      "school": "FPT University",
+      "period": "2019 — 2024",
+      "gpa": "GPA: 7.62 / 10"
+    }
   },
   "projects": {
     "title": "Featured Projects",
-    "subtitle": "A selection of products I've worked on recently.",
-    "viewProject": "View details",
+    "subtitle": "Products I've built — from AI platforms to enterprise backend systems.",
+    "featured": "Featured",
+    "viewCode": "Source",
     "items": {
-      "one": {
-        "title": "E-commerce Platform",
-        "description": "Full-stack shopping app with cart, checkout and admin dashboard.",
-        "tags": "Next.js, PostgreSQL, Stripe"
+      "vcareer": {
+        "title": "VCareer",
+        "subtitle": "AI Career Development Platform",
+        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026."
       },
-      "two": {
-        "title": "Task Management App",
-        "description": "Real-time task manager with drag-and-drop and team collaboration.",
-        "tags": "React, WebSocket, Node.js"
+      "scholarai": {
+        "title": "ScholarAI",
+        "subtitle": "AI-Augmented Research Workspace",
+        "description": "AI-powered engine to discover and read academic papers: hybrid semantic search (dense + BM25 via Qdrant RRF), citation-aware chat-with-paper (streaming RAG over SSE), an in-app PDF reader with highlights/notes, and project-based writing. RAG quality measured with LangSmith (retrieval hit rate, citation accuracy, faithfulness)."
       },
-      "three": {
-        "title": "Analytics Dashboard",
-        "description": "Data visualization dashboard with custom charts and reports.",
-        "tags": "TypeScript, D3.js, FastAPI"
+      "finplanning": {
+        "title": "Financial Planning System",
+        "subtitle": "Expense management & tracking system",
+        "description": "Expense management system helping enterprises make financial data and internal processes transparent. Java Spring Boot backend with RESTful APIs for expense management and reporting, a React + Tailwind frontend, and Redis for caching and query performance."
       }
     }
   },
   "skills": {
-    "title": "Skills & Experience",
-    "skillsHeading": "Technologies",
-    "experienceHeading": "Work Experience",
-    "experience": {
-      "one": {
-        "role": "Senior Frontend Engineer",
-        "company": "ABC Company",
-        "period": "2023 — Present",
-        "description": "Led frontend development for a SaaS product serving 100k+ users."
-      },
-      "two": {
-        "role": "Fullstack Developer",
-        "company": "XYZ Startup",
-        "period": "2021 — 2023",
-        "description": "Built and shipped multiple core features across backend and frontend."
+    "title": "Skills",
+    "subtitle": "Technologies and tools I work with day to day.",
+    "groups": {
+      "backend": "Backend",
+      "ai": "AI / ML",
+      "frontend": "Frontend",
+      "tools": "DevOps & Tools"
+    }
+  },
+  "awards": {
+    "title": "Awards",
+    "subtitle": "A memorable milestone on the product-building journey.",
+    "hackathon": {
+      "place": "🥈 1st Runner-up — Track 4: Transform with Codex",
+      "name": "Codex Community Hackathon 2026",
+      "prize": "$10,000 prize from OpenAI",
+      "date": "June 2026",
+      "description": "Won 1st Runner-up with Team VCareer at Codex Community Hackathon 2026, organized by MOR Software and Codex Community Vietnam, sponsored by OpenAI. Built a complete AI career development platform in just 24 hours.",
+      "stats": {
+        "builders": "150 builders",
+        "ideas": "60 AI ideas",
+        "hours": "24-hour sprint"
       }
     }
   },
   "contact": {
     "title": "Contact",
     "subtitle": "Have a project or opportunity? Say hello.",
-    "email": "Send email",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
     "form": {
       "name": "Full name",
       "namePlaceholder": "Your name",

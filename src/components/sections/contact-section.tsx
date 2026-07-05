@@ -3,6 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useState, type FormEvent } from "react";
 import { contactSchema } from "@/lib/contact-schema";
+import { SOCIALS } from "@/data/socials";
+import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/icons";
 
 type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -53,6 +55,18 @@ export function ContactSection() {
         <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
         <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
 
+        <div className="mt-6 flex flex-wrap gap-3">
+          <ContactLink href={`mailto:${SOCIALS.email}`} label={t("emailLabel")}>
+            <MailIcon className="h-4 w-4" />
+          </ContactLink>
+          <ContactLink href={SOCIALS.github} label={t("githubLabel")}>
+            <GithubIcon className="h-4 w-4" />
+          </ContactLink>
+          <ContactLink href={SOCIALS.linkedin} label={t("linkedinLabel")}>
+            <LinkedinIcon className="h-4 w-4" />
+          </ContactLink>
+        </div>
+
         <form onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
           <Field label={t("form.name")} error={errors.name}>
             <input
@@ -94,6 +108,28 @@ export function ContactSection() {
         </form>
       </div>
     </section>
+  );
+}
+
+function ContactLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+    >
+      {children}
+      {label}
+    </a>
   );
 }
 
