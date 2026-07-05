@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Nguyễn Văn A — Portfolio",
+    "description": "Portfolio cá nhân của Nguyễn Văn A, Kỹ sư phần mềm."
+  },
+  "nav": {
+    "about": "Giới thiệu",
+    "projects": "Dự án",
+    "skills": "Kỹ năng",
+    "contact": "Liên hệ",
+    "toggleLanguage": "English"
+  },
+  "hero": {
+    "greeting": "Xin chào, tôi là",
+    "name": "Nguyễn Văn A",
+    "role": "Kỹ sư phần mềm",
+    "intro": "Tôi xây dựng các sản phẩm web hiện đại, tập trung vào trải nghiệm người dùng và hiệu năng. Đam mê biến ý tưởng thành sản phẩm thực tế.",
+    "ctaProjects": "Xem dự án",
+    "ctaContact": "Liên hệ với tôi"
+  },
+  "projects": {
+    "title": "Dự án nổi bật",
+    "subtitle": "Một số sản phẩm tôi đã thực hiện gần đây.",
+    "viewProject": "Xem chi tiết",
+    "items": {
+      "one": {
+        "title": "Nền tảng thương mại điện tử",
+        "description": "Ứng dụng bán hàng full-stack với giỏ hàng, thanh toán và quản trị.",
+        "tags": "Next.js, PostgreSQL, Stripe"
+      },
+      "two": {
+        "title": "Ứng dụng quản lý công việc",
+        "description": "Công cụ quản lý task theo thời gian thực với kéo-thả và cộng tác.",
+        "tags": "React, WebSocket, Node.js"
+      },
+      "three": {
+        "title": "Bảng điều khiển phân tích",
+        "description": "Dashboard trực quan hóa dữ liệu với biểu đồ và báo cáo tùy chỉnh.",
+        "tags": "TypeScript, D3.js, FastAPI"
+      }
+    }
+  },
+  "skills": {
+    "title": "Kỹ năng & Kinh nghiệm",
+    "skillsHeading": "Công nghệ",
+    "experienceHeading": "Kinh nghiệm làm việc",
+    "experience": {
+      "one": {
+        "role": "Senior Frontend Engineer",
+        "company": "Công ty ABC",
+        "period": "2023 — Hiện tại",
+        "description": "Dẫn dắt phát triển giao diện cho sản phẩm SaaS phục vụ hơn 100k người dùng."
+      },
+      "two": {
+        "role": "Fullstack Developer",
+        "company": "Startup XYZ",
+        "period": "2021 — 2023",
+        "description": "Xây dựng và vận hành nhiều tính năng cốt lõi từ backend đến frontend."
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Bạn có dự án hay cơ hội hợp tác? Hãy gửi lời chào cho tôi.",
+    "email": "Gửi email",
+    "form": {
+      "name": "Họ tên",
+      "namePlaceholder": "Tên của bạn",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "message": "Nội dung",
+      "messagePlaceholder": "Lời nhắn của bạn...",
+      "submit": "Gửi tin nhắn",
+      "success": "Cảm ơn bạn! Tin nhắn đã được gửi.",
+      "errorName": "Vui lòng nhập họ tên.",
+      "errorEmail": "Email không hợp lệ.",
+      "errorMessage": "Nội dung cần ít nhất 10 ký tự."
+    }
+  },
+  "footer": {
+    "rights": "Bảo lưu mọi quyền.",
+    "builtWith": "Xây dựng với Next.js & Tailwind CSS."
+  }
+}

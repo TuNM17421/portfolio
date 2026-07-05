@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Nguyen Van A — Portfolio",
+    "description": "Personal portfolio of Nguyen Van A, Software Engineer."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "toggleLanguage": "Tiếng Việt"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Nguyen Van A",
+    "role": "Software Engineer",
+    "intro": "I build modern web products with a focus on user experience and performance. Passionate about turning ideas into real products.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "A selection of products I've worked on recently.",
+    "viewProject": "View details",
+    "items": {
+      "one": {
+        "title": "E-commerce Platform",
+        "description": "Full-stack shopping app with cart, checkout and admin dashboard.",
+        "tags": "Next.js, PostgreSQL, Stripe"
+      },
+      "two": {
+        "title": "Task Management App",
+        "description": "Real-time task manager with drag-and-drop and team collaboration.",
+        "tags": "React, WebSocket, Node.js"
+      },
+      "three": {
+        "title": "Analytics Dashboard",
+        "description": "Data visualization dashboard with custom charts and reports.",
+        "tags": "TypeScript, D3.js, FastAPI"
+      }
+    }
+  },
+  "skills": {
+    "title": "Skills & Experience",
+    "skillsHeading": "Technologies",
+    "experienceHeading": "Work Experience",
+    "experience": {
+      "one": {
+        "role": "Senior Frontend Engineer",
+        "company": "ABC Company",
+        "period": "2023 — Present",
+        "description": "Led frontend development for a SaaS product serving 100k+ users."
+      },
+      "two": {
+        "role": "Fullstack Developer",
+        "company": "XYZ Startup",
+        "period": "2021 — 2023",
+        "description": "Built and shipped multiple core features across backend and frontend."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a project or opportunity? Say hello.",
+    "email": "Send email",
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Your message...",
+      "submit": "Send message",
+      "success": "Thank you! Your message has been sent.",
+      "errorName": "Please enter your name.",
+      "errorEmail": "Invalid email address.",
+      "errorMessage": "Message must be at least 10 characters."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js & Tailwind CSS."
+  }
+}
