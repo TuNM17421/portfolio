@@ -29,6 +29,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# private source material (CV, originals) — reference only, not for the repo/deploy
+/docs
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
