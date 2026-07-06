@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nguyen Manh Tu — Software & AI Engineer</title>
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --bg: #08080b;
+    --bg-soft: #0e0e13;
+    --surface: #131319;
+    --surface-2: #1a1a22;
+    --text: #f4f4f6;
+    --text-dim: #a1a1ad;
+    --text-faint: #6b6b78;
+    --border: #24242e;
+    --border-soft: #1c1c25;
+    --accent: #7c6cff;
+    --accent-2: #22d3ee;
+    --accent-glow: rgba(124, 108, 255, 0.35);
+    --ring: rgba(124, 108, 255, 0.5);
+    --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+    --grad: linear-gradient(120deg, #7c6cff 0%, #22d3ee 100%);
+    --grad-text: linear-gradient(120deg, #a99bff 0%, #5eead4 100%);
+    --maxw: 1120px;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  :root[data-theme="light"] {
+    --bg: #fafafb;
+    --bg-soft: #f2f2f5;
+    --surface: #ffffff;
+    --surface-2: #f6f6f9;
+    --text: #0d0d12;
+    --text-dim: #55555f;
+    --text-faint: #8a8a95;
+    --border: #e6e6ec;
+    --border-soft: #eeeef2;
+    --accent: #6d5cf5;
+    --accent-2: #0891b2;
+    --accent-glow: rgba(109, 92, 245, 0.22);
+    --ring: rgba(109, 92, 245, 0.4);
+    --shadow: 0 20px 50px -24px rgba(30, 20, 80, 0.25);
+    --grad: linear-gradient(120deg, #6d5cf5 0%, #0891b2 100%);
+    --grad-text: linear-gradient(120deg, #6d5cf5 0%, #0891b2 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-glow); color: var(--text); }
+
+  /* ============ BACKGROUND FX ============ */
+  .bg-fx {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(600px 400px at 78% -5%, var(--accent-glow), transparent 70%),
+      radial-gradient(500px 380px at 0% 40%, rgba(34, 211, 238, 0.12), transparent 70%);
+  }
+  .bg-fx::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    opacity: 0.5;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ============ HEADER ============ */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled { border-bottom-color: var(--border); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { font-family: var(--mono); font-weight: 700; font-size: 15px; letter-spacing: -0.02em; display: flex; align-items: center; gap: 9px; }
+  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 12px var(--accent-glow); }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a {
+    font-size: 13.5px; color: var(--text-dim); padding: 8px 13px; border-radius: 8px;
+    font-weight: 500; transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+  .nav-tools { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-dim); cursor: pointer;
+    display: grid; place-items: center; transition: all 0.2s; font-family: var(--mono); font-size: 12px; font-weight: 600;
+  }
+  .icon-btn:hover { color: var(--text); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  /* ============ HERO ============ */
+  .hero { padding: 84px 0 70px; }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr 0.9fr; gap: 56px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
+    font-size: 12.5px; color: var(--text-dim); background: var(--surface);
+    border: 1px solid var(--border); padding: 6px 13px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .badge .pulse { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; position: relative; }
+  .badge .pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; background: #22c55e; opacity: 0.4; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(2.4); opacity: 0; } }
+
+  .greeting { font-family: var(--mono); color: var(--accent-2); font-size: 15px; margin-bottom: 12px; }
+  h1.name {
+    font-size: clamp(42px, 7vw, 74px); line-height: 1.02; letter-spacing: -0.035em;
+    font-weight: 800; margin-bottom: 18px;
+  }
+  h1.name .grad { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .role {
+    font-size: clamp(18px, 2.6vw, 23px); font-weight: 600; color: var(--text);
+    margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .role .sep { color: var(--accent); }
+  .summary { color: var(--text-dim); font-size: 16.5px; max-width: 560px; margin-bottom: 30px; }
+
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 12px;
+    font-weight: 600; font-size: 14.5px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 10px 30px -10px var(--accent-glow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px var(--accent-glow); }
+  .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+  .stat .num { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; }
+  .stat .num .grad { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .lbl { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Avatar */
+  .avatar-wrap { position: relative; display: grid; place-items: center; }
+  .avatar-frame {
+    position: relative; width: min(340px, 82%); aspect-ratio: 1; border-radius: 26px;
+    padding: 3px; background: var(--grad); box-shadow: var(--shadow);
+  }
+  .avatar-frame::before {
+    content: ""; position: absolute; inset: -14px; border-radius: 34px; z-index: -1;
+    background: var(--grad); filter: blur(38px); opacity: 0.4;
+  }
+  .avatar-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; display: block; }
+  .float-card {
+    position: absolute; background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 14px;
+    padding: 11px 15px; box-shadow: var(--shadow); font-size: 13px;
+  }
+  .float-card .k { font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .float-card .v { font-weight: 700; display: flex; align-items: center; gap: 7px; }
+  .fc-1 { top: 8%; left: -6%; animation: floaty 5s ease-in-out infinite; }
+  .fc-2 { bottom: 10%; right: -8%; animation: floaty 5s ease-in-out infinite 1.4s; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+  @media (max-width: 860px) { .fc-1 { left: 2%; } .fc-2 { right: 2%; } }
+
+  /* ============ SECTION SHELL ============ */
+  section.block { padding: 74px 0; }
+  .sec-head { margin-bottom: 46px; }
+  .sec-eyebrow {
+    font-family: var(--mono); font-size: 13px; color: var(--accent-2); letter-spacing: 0.04em;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .sec-eyebrow::before { content: ""; width: 26px; height: 1.5px; background: var(--grad); }
+  h2.sec-title { font-size: clamp(28px, 4.4vw, 40px); font-weight: 800; letter-spacing: -0.03em; }
+  .sec-sub { color: var(--text-dim); font-size: 16px; margin-top: 10px; max-width: 620px; }
+
+  /* ============ EXPERIENCE / TIMELINE ============ */
+  .exp-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; }
+  @media (max-width: 860px) { .exp-grid { grid-template-columns: 1fr; } }
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), transparent); }
+  .tl-item { position: relative; margin-bottom: 8px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -25px; top: 7px; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg); border: 2.5px solid var(--accent); box-shadow: 0 0 0 4px var(--accent-glow);
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: var(--shadow); }
+  .role-line { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: baseline; }
+  .role-title { font-size: 19px; font-weight: 700; }
+  .role-company { color: var(--accent-2); font-weight: 600; font-size: 14.5px; }
+  .role-period { font-family: var(--mono); font-size: 12.5px; color: var(--text-faint); white-space: nowrap; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 16px; }
+  .chip {
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); background: var(--surface-2);
+    border: 1px solid var(--border); padding: 4px 10px; border-radius: 7px;
+  }
+  .bullets { list-style: none; display: grid; gap: 10px; }
+  .bullets li { position: relative; padding-left: 22px; color: var(--text-dim); font-size: 14.5px; }
+  .bullets li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+  .bullets b { color: var(--text); font-weight: 600; }
+
+  .side-card { margin-bottom: 20px; }
+  .side-card h4 { font-size: 12px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-faint); margin-bottom: 14px; }
+  .edu-degree { font-weight: 700; font-size: 16px; }
+  .edu-school { color: var(--accent-2); font-size: 14px; font-weight: 600; margin-top: 2px; }
+  .edu-meta { font-family: var(--mono); font-size: 12px; color: var(--text-faint); margin-top: 6px; }
+  .lang-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border-soft); font-size: 14px; }
+  .lang-row:last-child { border-bottom: none; }
+  .lang-level { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); }
+
+  /* ============ PROJECTS ============ */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 760px) { .proj-grid { grid-template-columns: 1fr; } }
+  .proj-card { grid-column: span 1; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .proj-card.wide { grid-column: span 2; }
+  @media (max-width: 760px) { .proj-card.wide { grid-column: span 1; } }
+  .proj-card::after {
+    content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+    background: radial-gradient(400px at var(--mx,50%) var(--my,0%), var(--accent-glow), transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .proj-card:hover::after { opacity: 0.5; }
+  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; }
+  .proj-title { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
+  .proj-sub { color: var(--accent-2); font-size: 13.5px; font-weight: 600; font-family: var(--mono); }
+  .proj-featured { font-family: var(--mono); font-size: 10.5px; color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent); padding: 3px 9px; border-radius: 999px; letter-spacing: 0.05em; }
+  .proj-period { font-family: var(--mono); font-size: 12px; color: var(--text-faint); margin: 10px 0; }
+  .proj-desc { color: var(--text-dim); font-size: 14.5px; flex: 1; }
+  .proj-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; gap: 12px; flex-wrap: wrap; }
+  .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+  .src-link { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; white-space: nowrap; }
+  .src-link:hover { color: var(--accent-2); }
+
+  /* ============ SKILLS ============ */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skill-cat h4 { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+  .skill-cat h4 .idx { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 13px; color: var(--text-dim); background: var(--surface-2); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 8px; transition: all 0.2s; cursor: default;
+  }
+  .skill-tag:hover { color: var(--text); border-color: var(--accent); transform: translateY(-2px); }
+
+  /* ============ AWARDS ============ */
+  .award-card { position: relative; overflow: hidden; padding: 40px; text-align: center; }
+  .award-card::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(500px 200px at 50% 0%, var(--accent-glow), transparent 70%);
+  }
+  .award-inner { position: relative; z-index: 1; }
+  .award-medal { font-size: 46px; margin-bottom: 12px; }
+  .award-place { font-size: clamp(20px, 3.6vw, 27px); font-weight: 800; letter-spacing: -0.02em; }
+  .award-name { color: var(--accent-2); font-weight: 600; margin-top: 6px; font-size: 15px; }
+  .award-prize { display: inline-block; margin-top: 14px; font-family: var(--mono); font-size: 13px; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); padding: 6px 16px; border-radius: 999px; }
+  .award-desc { color: var(--text-dim); font-size: 15px; max-width: 620px; margin: 22px auto 0; }
+  .award-stats { display: flex; justify-content: center; gap: 44px; margin-top: 30px; flex-wrap: wrap; }
+  .award-stats .num { font-size: 26px; font-weight: 800; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .award-stats .lbl { font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ============ CONTACT ============ */
+  .contact-card { text-align: center; padding: 52px 40px; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--border); font-weight: 600; font-size: 14.5px; transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .contact-link svg { width: 18px; height: 18px; }
+
+  /* ============ FOOTER ============ */
+  footer { border-top: 1px solid var(--border); padding: 30px 0; }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--text-faint); }
+  .foot-row .mono { font-family: var(--mono); }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  svg.i { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="dot"></span> tunm.dev</a>
+    <nav class="nav-links">
+      <a href="#experience" data-t="nav.experience">Experience</a>
+      <a href="#projects" data-t="nav.projects">Projects</a>
+      <a href="#skills" data-t="nav.skills">Skills</a>
+      <a href="#awards" data-t="nav.awards">Awards</a>
+      <a href="#contact" data-t="nav.contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" id="langBtn" title="Switch language">VI</button>
+      <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
+        <svg class="i" id="themeIcon" viewBox="0 0 24 24"></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="badge"><span class="pulse"></span><span data-t="hero.badge">Open to new opportunities</span></span>
+        <div class="greeting" data-t="hero.greeting">Hi, I'm</div>
+        <h1 class="name"><span class="grad">Nguyen<br>Manh Tu</span></h1>
+        <div class="role">
+          <span>Software Engineer</span><span class="sep">·</span><span>AI Engineer</span>
+        </div>
+        <p class="summary" data-t="hero.summary">Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.</p>
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary"><span data-t="hero.ctaProjects">View projects</span>
+            <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#contact" class="btn btn-ghost" data-t="hero.ctaContact">Get in touch</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num"><span class="grad">2+</span></div><div class="lbl" data-t="stat.years">Years experience</div></div>
+          <div class="stat"><div class="num"><span class="grad">3</span></div><div class="lbl" data-t="stat.projects">Featured projects</div></div>
+          <div class="stat"><div class="num"><span class="grad">🥈</span></div><div class="lbl" data-t="stat.award">Hackathon 2026</div></div>
+        </div>
+      </div>
+      <div class="avatar-wrap">
+        <div class="avatar-frame">
+          <img src="public/avatar.jpg" alt="Nguyen Manh Tu" />
+          <div class="float-card fc-1"><div class="k" data-t="fc.role">Role</div><div class="v">AI Engineer</div></div>
+          <div class="float-card fc-2"><div class="k" data-t="fc.location">Location</div><div class="v"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-t="hero.location">Hanoi, Vietnam</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block wrap" id="experience">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">01 — <span data-t="exp.eyebrow">Career</span></div>
+      <h2 class="sec-title" data-t="exp.title">Experience &amp; Education</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="reveal">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="card">
+              <div class="role-line">
+                <div>
+                  <span class="role-title">Software Engineer</span> ·
+                  <span class="role-company">FPT Software</span>
+                </div>
+                <span class="role-period" data-t="fpt.period">May 2024 — Mar 2026</span>
+              </div>
+              <div class="chip-row" id="fptChips"></div>
+              <ul class="bullets" id="fptBullets"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card side-card">
+          <h4 data-t="exp.eduHeading">Education</h4>
+          <div class="edu-degree" data-t="edu.degree">Bachelor's Degree, Information Technology</div>
+          <div class="edu-school" data-t="edu.school">FPT University</div>
+          <div class="edu-meta"><span data-t="edu.location">Hoa Lac, Hanoi</span> · 2019 — 2024</div>
+        </div>
+        <div class="card side-card">
+          <h4 data-t="exp.langHeading">Languages</h4>
+          <div id="langList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="block wrap" id="projects">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">02 — <span data-t="proj.eyebrow">Work</span></div>
+      <h2 class="sec-title" data-t="proj.title">Featured Projects</h2>
+      <p class="sec-sub" data-t="proj.subtitle">Products I've built — from AI platforms to enterprise backend systems.</p>
+    </div>
+    <div class="proj-grid" id="projGrid"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="block wrap" id="skills">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">03 — <span data-t="skills.eyebrow">Toolbox</span></div>
+      <h2 class="sec-title" data-t="skills.title">Skills</h2>
+      <p class="sec-sub" data-t="skills.subtitle">Technologies and tools I work with day to day.</p>
+    </div>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="block wrap" id="awards">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">04 — <span data-t="awards.eyebrow">Recognition</span></div>
+      <h2 class="sec-title" data-t="awards.title">Awards</h2>
+    </div>
+    <div class="card award-card reveal">
+      <div class="award-inner">
+        <div class="award-medal">🥈</div>
+        <div class="award-place" data-t="award.place">1st Runner-up — Track 4: Transform with Codex</div>
+        <div class="award-name">Codex Community Hackathon 2026</div>
+        <div class="award-prize" data-t="award.prize">$10,000 prize from OpenAI</div>
+        <p class="award-desc" data-t="award.desc">Won 1st Runner-up with Team VCareer at Codex Community Hackathon 2026, organized by MOR Software and Codex Community Vietnam, sponsored by OpenAI. Built a complete AI career development platform in just 24 hours.</p>
+        <div class="award-stats">
+          <div><div class="num">150</div><div class="lbl" data-t="award.builders">Builders</div></div>
+          <div><div class="num">60</div><div class="lbl" data-t="award.ideas">AI ideas</div></div>
+          <div><div class="num">24h</div><div class="lbl" data-t="award.hours">Sprint</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block wrap" id="contact">
+    <div class="card contact-card reveal">
+      <div class="sec-eyebrow" style="justify-content:center">05 — <span data-t="contact.eyebrow">Say hello</span></div>
+      <h2 class="sec-title" data-t="contact.title">Let's build something</h2>
+      <p class="sec-sub" style="margin:12px auto 0" data-t="contact.subtitle">Have a project or opportunity? Say hello.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:tunm17421@gmail.com">
+          <svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Email</a>
+        <a class="contact-link" href="https://github.com/TuNM17421" target="_blank" rel="noopener">
+          <svg class="i" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0019.5 5.5 5.07 5.07 0 0019 2s-1.32-.42-4.5 1.5a12.2 12.2 0 00-6 0C5.32 1.58 4 2 4 2a5.07 5.07 0 00-.5 3.5A5.44 5.44 0 002 9c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 008.5 18.6V22"/></svg> GitHub</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/tunm17421" target="_blank" rel="noopener">
+          <svg class="i" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v6h-4v-6a2 2 0 00-4 0v6h-4v-6a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Nguyen Manh Tu. <span data-t="footer.rights">All rights reserved.</span></span>
+    <span class="mono" data-t="footer.builtWith">Redesigned concept · Built with care</span>
+  </div>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const DATA = {
+  fptChips: ["Java","Spring Boot","PostgreSQL","AWS","Docker","GraphQL","Testing"],
+  projects: [
+    { key:"vcareer", featured:true, wide:true, sub:"AI Career Development Platform",
+      github:"https://github.com/TuNM17421/VCareer",
+      tech:["Next.js 16","React 19","TypeScript","Drizzle ORM","Neon PostgreSQL","LiveKit","OpenAI Realtime","Gemini Live","Zod"] },
+    { key:"scholarai", featured:false, wide:false, sub:"AI-Augmented Research Workspace",
+      github:"https://github.com/TuNM17421/ScholarAI",
+      tech:["Next.js","FastAPI","PostgreSQL","Qdrant","OpenAI","LangSmith","RAG"] },
+    { key:"finplanning", featured:false, wide:false, sub:"Expense management & tracking",
+      github:"https://github.com/tuannqhe151337/fn-planning-backend",
+      tech:["Java","Spring Boot","React","SQL Server","Redis"] },
+  ],
+  skills: [
+    { key:"backend", name:"Backend", items:["Java","Spring Boot","REST APIs","PostgreSQL","SQL Server","Redis","AWS SQS","Batch Processing","Maven / Gradle"] },
+    { key:"ai", name:"AI / ML", items:["RAG","Semantic Search","OpenAI","Qdrant","LangSmith","LiveKit","Prompt Engineering","LLM"] },
+    { key:"frontend", name:"Frontend", items:["TypeScript","JavaScript","React","Next.js","Tailwind CSS","shadcn/ui"] },
+    { key:"tools", name:"DevOps & Tools", items:["Docker","LocalStack","Cloudflare R2","FastAPI","Drizzle ORM","Git","Render","Vercel"] },
+  ],
+};
+
+/* ============ I18N ============ */
+const I18N = {
+  en: {
+    "nav.experience":"Experience","nav.projects":"Projects","nav.skills":"Skills","nav.awards":"Awards","nav.contact":"Contact",
+    "hero.badge":"Open to new opportunities","hero.greeting":"Hi, I'm",
+    "hero.summary":"Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.",
+    "hero.ctaProjects":"View projects","hero.ctaContact":"Get in touch","hero.location":"Hanoi, Vietnam",
+    "stat.years":"Years experience","stat.projects":"Featured projects","stat.award":"Hackathon 2026",
+    "fc.role":"Role","fc.location":"Location",
+    "exp.eyebrow":"Career","exp.title":"Experience & Education","exp.eduHeading":"Education","exp.langHeading":"Languages",
+    "fpt.period":"May 2024 — Mar 2026",
+    "fpt.b0":"<b>Backend Development:</b> Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL — improving system efficiency by 20%.",
+    "fpt.b1":"<b>Cloud Infrastructure:</b> Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack to optimize local development and testing.",
+    "fpt.b2":"<b>Leadership:</b> Led a 4–5 member backend sub-team, coordinating tasks and running code reviews — boosting team productivity by 30% during the lead's absence.",
+    "edu.degree":"Bachelor's Degree, Information Technology","edu.school":"FPT University","edu.location":"Hoa Lac, Hanoi",
+    "lang.vi":"Vietnamese","lang.vi.l":"Native","lang.en":"English","lang.en.l":"Independent","lang.ko":"Korean","lang.ko.l":"Independent",
+    "proj.eyebrow":"Work","proj.title":"Featured Projects","proj.subtitle":"Products I've built — from AI platforms to enterprise backend systems.","proj.featured":"Featured","proj.source":"Source",
+    "proj.vcareer.period":"May 2026 — Present","proj.vcareer.sub":"AI Career Development Platform",
+    "proj.vcareer.desc":"End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a Three.js 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on Next.js 16 with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026.",
+    "proj.scholarai.period":"Apr 2026 — Jun 2026","proj.scholarai.sub":"AI-Augmented Research Workspace",
+    "proj.scholarai.desc":"AI engine to discover and read academic papers: hybrid semantic search (dense + BM25), hierarchical chunking, citation-aware chat-with-paper (streaming RAG), and hallucination guardrails. RAG quality measured with LangSmith.",
+    "proj.finplanning.period":"","proj.finplanning.sub":"Expense management & tracking",
+    "proj.finplanning.desc":"Expense management system helping enterprises make financial data and internal processes transparent. Java Spring Boot backend with RESTful APIs, a React + Tailwind frontend, and Redis for caching and query performance.",
+    "skills.eyebrow":"Toolbox","skills.title":"Skills","skills.subtitle":"Technologies and tools I work with day to day.",
+    "skills.backend":"Backend","skills.ai":"AI / ML","skills.frontend":"Frontend","skills.tools":"DevOps & Tools",
+    "awards.eyebrow":"Recognition","awards.title":"Awards",
+    "award.place":"1st Runner-up — Track 4: Transform with Codex","award.prize":"$10,000 prize from OpenAI",
+    "award.desc":"Won 1st Runner-up with Team VCareer at Codex Community Hackathon 2026, organized by MOR Software and Codex Community Vietnam, sponsored by OpenAI. Built a complete AI career development platform in just 24 hours.",
+    "award.builders":"Builders","award.ideas":"AI ideas","award.hours":"Sprint",
+    "contact.eyebrow":"Say hello","contact.title":"Let's build something","contact.subtitle":"Have a project or opportunity? Say hello.",
+    "footer.rights":"All rights reserved.","footer.builtWith":"Redesigned concept · Built with care",
+  },
+  vi: {
+    "nav.experience":"Kinh nghiệm","nav.projects":"Dự án","nav.skills":"Kỹ năng","nav.awards":"Giải thưởng","nav.contact":"Liên hệ",
+    "hero.badge":"Sẵn sàng cho cơ hội mới","hero.greeting":"Xin chào, tôi là",
+    "hero.summary":"Backend Software Engineer với hơn 2 năm kinh nghiệm Java/Spring Boot và AWS, hiện chuyên sâu về AI Engineering — xây dựng hệ thống RAG, semantic search và nền tảng AI thời gian thực với FastAPI, Qdrant và OpenAI.",
+    "hero.ctaProjects":"Xem dự án","hero.ctaContact":"Liên hệ","hero.location":"Hà Nội, Việt Nam",
+    "stat.years":"Năm kinh nghiệm","stat.projects":"Dự án nổi bật","stat.award":"Hackathon 2026",
+    "fc.role":"Vai trò","fc.location":"Địa điểm",
+    "exp.eyebrow":"Sự nghiệp","exp.title":"Kinh nghiệm & Học vấn","exp.eduHeading":"Học vấn","exp.langHeading":"Ngôn ngữ",
+    "fpt.period":"05/2024 — 03/2026",
+    "fpt.b0":"<b>Backend Development:</b> Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL — tăng 20% hiệu suất hệ thống.",
+    "fpt.b1":"<b>Cloud Infrastructure:</b> Xây dựng batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack để tối ưu phát triển, kiểm thử local.",
+    "fpt.b2":"<b>Leadership:</b> Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code — tăng 30% năng suất nhóm khi team lead vắng mặt.",
+    "edu.degree":"Cử nhân Công nghệ Thông tin","edu.school":"Đại học FPT","edu.location":"Hòa Lạc, Hà Nội",
+    "lang.vi":"Tiếng Việt","lang.vi.l":"Bản ngữ","lang.en":"Tiếng Anh","lang.en.l":"Trung cấp","lang.ko":"Tiếng Hàn","lang.ko.l":"Trung cấp",
+    "proj.eyebrow":"Sản phẩm","proj.title":"Dự án nổi bật","proj.subtitle":"Những sản phẩm tôi đã xây dựng — từ nền tảng AI đến hệ thống backend doanh nghiệp.","proj.featured":"Nổi bật","proj.source":"Mã nguồn",
+    "proj.vcareer.period":"05/2026 — Hiện tại","proj.vcareer.sub":"Nền tảng phát triển sự nghiệp bằng AI",
+    "proj.vcareer.desc":"Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead bằng Three.js, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js 16 với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026.",
+    "proj.scholarai.period":"04/2026 — 06/2026","proj.scholarai.sub":"Không gian nghiên cứu học thuật tăng cường bởi AI",
+    "proj.scholarai.desc":"Hệ thống khám phá và đọc tài liệu nghiên cứu bằng AI: hybrid semantic search (dense + BM25), chunking phân cấp, chat-with-paper có trích dẫn (RAG streaming), và guardrail chống hallucination. Đánh giá chất lượng RAG bằng LangSmith.",
+    "proj.finplanning.period":"","proj.finplanning.sub":"Hệ thống quản lý & theo dõi chi tiêu",
+    "proj.finplanning.desc":"Hệ thống quản lý chi tiêu giúp doanh nghiệp minh bạch hóa dữ liệu tài chính và quy trình nội bộ. Backend Java Spring Boot với RESTful API, frontend React + Tailwind, dùng Redis để cache và tối ưu truy vấn.",
+    "skills.eyebrow":"Công cụ","skills.title":"Kỹ năng","skills.subtitle":"Công nghệ và công cụ tôi làm việc hằng ngày.",
+    "skills.backend":"Backend","skills.ai":"AI / ML","skills.frontend":"Frontend","skills.tools":"DevOps & Công cụ",
+    "awards.eyebrow":"Ghi nhận","awards.title":"Giải thưởng",
+    "award.place":"Á quân — Track 4: Transform with Codex","award.prize":"Giải thưởng $10,000 từ OpenAI",
+    "award.desc":"Cùng team VCareer giành giải Á quân tại Codex Community Hackathon 2026 do MOR Software và Codex Community Vietnam tổ chức, tài trợ bởi OpenAI. Xây dựng nền tảng AI phát triển sự nghiệp hoàn chỉnh chỉ trong 24 giờ.",
+    "award.builders":"Builders","award.ideas":"Ý tưởng AI","award.hours":"Tranh tài",
+    "contact.eyebrow":"Chào nhé","contact.title":"Cùng xây điều gì đó","contact.subtitle":"Bạn có dự án hoặc cơ hội hợp tác? Hãy gửi lời chào cho tôi.",
+    "footer.rights":"Bảo lưu mọi quyền.","footer.builtWith":"Concept thiết kế lại · Chăm chút từng chi tiết",
+  }
+};
+
+let lang = "en";
+const t = (k) => (I18N[lang][k] ?? I18N.en[k] ?? k);
+
+/* ============ RENDER ============ */
+function renderChips() {
+  document.getElementById("fptChips").innerHTML = DATA.fptChips.map(c=>`<span class="chip">${c}</span>`).join("");
+  document.getElementById("fptBullets").innerHTML = [0,1,2].map(i=>`<li>${t("fpt.b"+i)}</li>`).join("");
+  document.getElementById("langList").innerHTML = ["vi","en","ko"].map(l=>
+    `<div class="lang-row"><span>${t("lang."+l)}</span><span class="lang-level">${t("lang."+l+".l")}</span></div>`).join("");
+}
+function renderProjects() {
+  document.getElementById("projGrid").innerHTML = DATA.projects.map(p=>{
+    const period = t("proj."+p.key+".period");
+    return `<div class="card proj-card${p.wide?" wide":""}" onmousemove="cardGlow(event,this)">
+      <div class="proj-top">
+        <div><div class="proj-title">${p.key==="finplanning"?"Financial Planning":p.key==="vcareer"?"VCareer":"ScholarAI"}</div>
+          <div class="proj-sub">${t("proj."+p.key+".sub")}</div></div>
+        ${p.featured?`<span class="proj-featured">★ ${t("proj.featured")}</span>`:""}
+      </div>
+      ${period?`<div class="proj-period">${period}</div>`:`<div class="proj-period" style="height:4px"></div>`}
+      <p class="proj-desc">${t("proj."+p.key+".desc")}</p>
+      <div class="proj-foot">
+        <div class="proj-tech">${p.tech.slice(0,p.wide?9:6).map(x=>`<span class="chip">${x}</span>`).join("")}</div>
+        <a class="src-link" href="${p.github}" target="_blank" rel="noopener">
+          <svg class="i" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0019.5 5.5 5.07 5.07 0 0019 2s-1.32-.42-4.5 1.5a12.2 12.2 0 00-6 0C5.32 1.58 4 2 4 2a5.07 5.07 0 00-.5 3.5A5.44 5.44 0 002 9c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 008.5 18.6V22"/></svg>
+          ${t("proj.source")}</a>
+      </div>
+    </div>`;
+  }).join("");
+}
+function renderSkills() {
+  document.getElementById("skillsGrid").innerHTML = DATA.skills.map((s,i)=>
+    `<div class="card skill-cat"><h4><span class="idx">0${i+1}</span> ${t("skills."+s.key)}</h4>
+      <div class="skill-tags">${s.items.map(x=>`<span class="skill-tag">${x}</span>`).join("")}</div></div>`).join("");
+}
+function applyText() {
+  document.querySelectorAll("[data-t]").forEach(el=>{ el.innerHTML = t(el.getAttribute("data-t")); });
+}
+function renderAll(){ applyText(); renderChips(); renderProjects(); renderSkills(); }
+
+function cardGlow(e, el){
+  const r = el.getBoundingClientRect();
+  el.style.setProperty("--mx", (e.clientX-r.left)+"px");
+  el.style.setProperty("--my", (e.clientY-r.top)+"px");
+}
+
+/* ============ THEME ============ */
+const SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+const MOON = '<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>';
+function setTheme(mode){
+  document.documentElement.setAttribute("data-theme", mode);
+  document.getElementById("themeIcon").innerHTML = mode==="dark"?SUN:MOON;
+}
+document.getElementById("themeBtn").addEventListener("click", ()=>{
+  const cur = document.documentElement.getAttribute("data-theme");
+  setTheme(cur==="dark"?"light":"dark");
+});
+setTheme("dark");
+
+/* ============ LANG ============ */
+document.getElementById("langBtn").addEventListener("click", ()=>{
+  lang = lang==="en"?"vi":"en";
+  document.getElementById("langBtn").textContent = lang==="en"?"VI":"EN";
+  document.documentElement.setAttribute("lang", lang);
+  renderAll();
+});
+
+/* ============ SCROLL ============ */
+const hdr = document.getElementById("hdr");
+addEventListener("scroll", ()=>{ hdr.classList.toggle("scrolled", scrollY>10); });
+const io = new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+renderAll();
+</script>
+</body>
+</html>

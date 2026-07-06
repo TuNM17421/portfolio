@@ -10,7 +10,8 @@
     "skills": "Skills",
     "awards": "Awards",
     "contact": "Contact",
-    "toggleLanguage": "VI"
+    "toggleLanguage": "VI",
+    "toggleTheme": "Toggle theme"
   },
   "hero": {
     "badge": "Open to new opportunities",
@@ -20,9 +21,16 @@
     "summary": "Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
-    "location": "Hanoi, Vietnam"
+    "location": "Hanoi, Vietnam",
+    "focus": "AI Engineer",
+    "roleLabel": "Role",
+    "locationLabel": "Location",
+    "statYears": "Years experience",
+    "statProjects": "Featured projects",
+    "statAward": "Hackathon 2026"
   },
   "experience": {
+    "eyebrow": "Career",
     "title": "Experience & Education",
     "workHeading": "Work Experience",
     "educationHeading": "Education",
@@ -38,6 +46,17 @@
         "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews — boosting team productivity by 30% during the lead's absence."
       ]
     },
+    "course": {
+      "name": "Practical AI Talent Program — Foundation",
+      "provider": "VinUniversity × Vingroup",
+      "period": "Apr 2026 — Jul 2026",
+      "stack": "AI Thinking · AI Ethics · SFIA · AI Assistants · Problem-Solving",
+      "bullets": [
+        "Intensive 12-week, hands-on AI program run by Vingroup and delivered with VinUniversity, built on the SFIA global skills framework.",
+        "Trained in AI thinking, AI ethics, practical AI skills and solving real problems with AI assistants under VinUni faculty.",
+        "Certificate co-issued by VinUniversity and Vingroup on graduation."
+      ]
+    },
     "education": {
       "degree": "Bachelor's Degree, Information Technology",
       "school": "FPT University",
@@ -51,6 +70,7 @@
     ]
   },
   "projects": {
+    "eyebrow": "Work",
     "title": "Featured Projects",
     "subtitle": "Products I've built — from AI platforms to enterprise backend systems.",
     "featured": "Featured",
@@ -77,6 +97,7 @@
     }
   },
   "skills": {
+    "eyebrow": "Toolbox",
     "title": "Skills",
     "subtitle": "Technologies and tools I work with day to day.",
     "groups": {
@@ -87,6 +108,7 @@
     }
   },
   "awards": {
+    "eyebrow": "Recognition",
     "title": "Awards",
     "subtitle": "A memorable milestone on the product-building journey.",
     "hackathon": {
@@ -100,9 +122,21 @@
         "ideas": "60 AI ideas",
         "hours": "24-hour sprint"
       }
+    },
+    "gallery": {
+      "heading": "Moments",
+      "vinuniNote": "Team VCareer was also spotlighted as a featured project at VinUniversity's graduation ceremony.",
+      "captions": {
+        "vinuniCeremony": "Honored as a featured project at VinUniversity's graduation ceremony",
+        "vinuniFaculty": "With the faculty at VinUniversity",
+        "hackathonTeam": "Team VCareer with the organizers",
+        "codex": "Presenting at Codex Community Hackathon 2026",
+        "stakeholder": "Congratulated by the organizers"
+      }
     }
   },
   "contact": {
+    "eyebrow": "Say hello",
     "title": "Contact",
     "subtitle": "Have a project or opportunity? Say hello.",
     "emailLabel": "Email",

@@ -50,12 +50,20 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="border-t border-border bg-muted/30">
-      <div className="mx-auto max-w-2xl px-4 py-20">
-        <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
-        <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
+    <section id="contact" className="mx-auto max-w-3xl px-6 py-[74px]">
+      <div className="reveal rounded-2xl border border-border bg-card p-8 sm:p-12">
+        <div className="flex items-center justify-center gap-2.5 font-mono text-sm text-accent-2">
+          <span className="h-px w-6 bg-brand" />
+          05 — {t("eyebrow")}
+        </div>
+        <h2 className="mt-3.5 text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
+          {t("title")}
+        </h2>
+        <p className="mx-auto mt-2.5 max-w-md text-center text-muted-foreground">
+          {t("subtitle")}
+        </p>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
           <ContactLink href={`mailto:${SOCIALS.email}`} label={t("emailLabel")}>
             <MailIcon className="h-4 w-4" />
           </ContactLink>
@@ -67,12 +75,12 @@ export function ContactSection() {
           </ContactLink>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
+        <form onSubmit={handleSubmit} className="mt-9 space-y-5" noValidate>
           <Field label={t("form.name")} error={errors.name}>
             <input
               name="name"
               placeholder={t("form.namePlaceholder")}
-              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none focus:border-primary"
+              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
           </Field>
           <Field label={t("form.email")} error={errors.email}>
@@ -80,7 +88,7 @@ export function ContactSection() {
               name="email"
               type="email"
               placeholder={t("form.emailPlaceholder")}
-              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none focus:border-primary"
+              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
           </Field>
           <Field label={t("form.message")} error={errors.message}>
@@ -88,20 +96,20 @@ export function ContactSection() {
               name="message"
               rows={4}
               placeholder={t("form.messagePlaceholder")}
-              className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none focus:border-primary"
+              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
           </Field>
 
           <button
             type="submit"
             disabled={submitting}
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+            className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5 disabled:opacity-50 sm:w-auto"
           >
             {t("form.submit")}
           </button>
 
           {sent && (
-            <p className="text-sm font-medium text-primary">
+            <p className="text-sm font-medium text-accent-2">
               {t("form.success")}
             </p>
           )}
@@ -125,7 +133,7 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+      className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface-2 px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 hover:border-primary"
     >
       {children}
       {label}

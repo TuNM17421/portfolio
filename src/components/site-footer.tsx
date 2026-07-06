@@ -6,11 +6,11 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-1 px-4 py-8 text-center text-sm text-muted-foreground">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-sm text-faint sm:flex-row">
         <p>
-          © {year} — {t("rights")}
+          © {year} Nguyen Manh Tu. {t("rights")}
         </p>
-        <p>{t("builtWith")}</p>
+        <p className="font-mono">{t("builtWith")}</p>
       </div>
     </footer>
   );

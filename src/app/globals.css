@@ -1,52 +1,90 @@
 @import "tailwindcss";
 
-/* Semantic design tokens — reference these, never raw color values. */
+/* ============================================================
+   Semantic design tokens — reference these, never raw colors.
+   Dark is the default theme; light is opt-in via [data-theme].
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --border: #e4e4e7;
-  --card: #ffffff;
-  --card-foreground: #0a0a0a;
-  --primary: #4f46e5;
+  --background: #08080b;
+  --background-soft: #0e0e13;
+  --surface: #131319;
+  --surface-2: #1a1a22;
+  --foreground: #f4f4f6;
+  --muted: #101017;
+  --muted-foreground: #a1a1ad;
+  --faint: #6b6b78;
+  --border: #24242e;
+  --border-soft: #1c1c25;
+  --card: #131319;
+  --card-foreground: #f4f4f6;
+  --primary: #7c6cff;
   --primary-foreground: #ffffff;
-  --accent: #eef2ff;
-  --accent-foreground: #4f46e5;
-  --destructive: #dc2626;
+  --accent: #16162a;
+  --accent-foreground: #c9c2ff;
+  --accent-2: #22d3ee;
+  --destructive: #f87171;
+  --ring: rgba(124, 108, 255, 0.5);
+  --glow: rgba(124, 108, 255, 0.35);
+  --grad-from: #a99bff;
+  --grad-to: #5eead4;
+  --grad-solid-from: #7c6cff;
+  --grad-solid-to: #22d3ee;
+  --scrim: rgba(0, 0, 0, 0.82);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0b;
-    --foreground: #fafafa;
-    --muted: #18181b;
-    --muted-foreground: #a1a1aa;
-    --border: #27272a;
-    --card: #111113;
-    --card-foreground: #fafafa;
-    --primary: #818cf8;
-    --primary-foreground: #0a0a0b;
-    --accent: #1e1b4b;
-    --accent-foreground: #c7d2fe;
-    --destructive: #f87171;
-  }
+:root[data-theme="light"] {
+  --background: #fafafb;
+  --background-soft: #f2f2f5;
+  --surface: #ffffff;
+  --surface-2: #f6f6f9;
+  --foreground: #0d0d12;
+  --muted: #f2f2f5;
+  --muted-foreground: #55555f;
+  --faint: #8a8a95;
+  --border: #e6e6ec;
+  --border-soft: #eeeef2;
+  --card: #ffffff;
+  --card-foreground: #0d0d12;
+  --primary: #6d5cf5;
+  --primary-foreground: #ffffff;
+  --accent: #eef0ff;
+  --accent-foreground: #4b3fd6;
+  --accent-2: #0891b2;
+  --destructive: #dc2626;
+  --ring: rgba(109, 92, 245, 0.4);
+  --glow: rgba(109, 92, 245, 0.22);
+  --grad-from: #6d5cf5;
+  --grad-to: #0891b2;
+  --grad-solid-from: #6d5cf5;
+  --grad-solid-to: #0891b2;
+  --scrim: rgba(0, 0, 0, 0.7);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-faint: var(--faint);
   --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-2: var(--accent-2);
   --color-destructive: var(--destructive);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --color-ring: var(--ring);
+  --color-online: #22c55e;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code",
+    "Cascadia Code", monospace;
 }
 
 body {
@@ -58,4 +96,129 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--glow);
+  color: var(--foreground);
+}
+
+/* ============================================================
+   Token-driven utilities (keep raw colors out of components)
+   ============================================================ */
+.text-gradient {
+  background-image: linear-gradient(120deg, var(--grad-from), var(--grad-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bg-brand {
+  background-image: linear-gradient(
+    120deg,
+    var(--grad-solid-from),
+    var(--grad-solid-to)
+  );
+}
+.glow-brand {
+  box-shadow: 0 12px 34px -12px var(--glow);
+}
+.scrim {
+  background-image: linear-gradient(to top, var(--scrim), transparent);
+}
+.ring-brand:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Fixed ambient background: brand glows + faint blueprint grid */
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 420px at 82% -5%, var(--glow), transparent 70%),
+    radial-gradient(520px 400px at 0% 38%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 70%);
+}
+.bg-fx::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 60% at 50% 0%,
+    #000 30%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 78% 60% at 50% 0%,
+    #000 30%,
+    transparent 75%
+  );
+  opacity: 0.5;
+}
+
+/* Scroll-reveal (progressive enhancement; visible if JS/observer absent) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Small animated accents */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  background: var(--color-online);
+  opacity: 0.4;
+  animation: pulse-ring 1.8s infinite;
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+.floaty-delayed {
+  animation: floaty 5s ease-in-out infinite 1.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .floaty,
+  .floaty-delayed,
+  .pulse-ring::after {
+    animation: none;
+  }
 }

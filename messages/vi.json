@@ -10,7 +10,8 @@
     "skills": "Kỹ năng",
     "awards": "Giải thưởng",
     "contact": "Liên hệ",
-    "toggleLanguage": "EN"
+    "toggleLanguage": "EN",
+    "toggleTheme": "Đổi giao diện"
   },
   "hero": {
     "badge": "Sẵn sàng cho cơ hội mới",
@@ -20,9 +21,16 @@
     "summary": "Backend Software Engineer với hơn 2 năm kinh nghiệm Java/Spring Boot và AWS, hiện chuyên sâu về AI Engineering — xây dựng hệ thống RAG, semantic search và nền tảng AI thời gian thực với FastAPI, Qdrant và OpenAI.",
     "ctaProjects": "Xem dự án",
     "ctaContact": "Liên hệ",
-    "location": "Hà Nội, Việt Nam"
+    "location": "Hà Nội, Việt Nam",
+    "focus": "Kỹ sư AI",
+    "roleLabel": "Vai trò",
+    "locationLabel": "Địa điểm",
+    "statYears": "Năm kinh nghiệm",
+    "statProjects": "Dự án nổi bật",
+    "statAward": "Hackathon 2026"
   },
   "experience": {
+    "eyebrow": "Sự nghiệp",
     "title": "Kinh nghiệm & Học vấn",
     "workHeading": "Kinh nghiệm làm việc",
     "educationHeading": "Học vấn",
@@ -38,6 +46,17 @@
         "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code — tăng 30% năng suất nhóm khi team lead vắng mặt."
       ]
     },
+    "course": {
+      "name": "Chương trình Nhân tài AI Thực chiến — Khóa Cơ bản",
+      "provider": "VinUniversity × Vingroup",
+      "period": "04/2026 — 07/2026",
+      "stack": "Tư duy AI · Đạo đức AI · SFIA · Trợ lý AI · Giải quyết vấn đề",
+      "bullets": [
+        "Chương trình AI thực chiến tinh gọn 12 tuần của Tập đoàn Vingroup, phối hợp cùng VinUniversity, xây dựng theo khung năng lực toàn cầu SFIA.",
+        "Rèn luyện tư duy AI, đạo đức AI, kỹ năng AI thực chiến và giải quyết vấn đề bằng trợ lý AI dưới sự hướng dẫn của giảng viên VinUni.",
+        "Chứng chỉ do VinUniversity và Tập đoàn Vingroup đồng cấp khi tốt nghiệp."
+      ]
+    },
     "education": {
       "degree": "Cử nhân Công nghệ Thông tin",
       "school": "Đại học FPT",
@@ -51,6 +70,7 @@
     ]
   },
   "projects": {
+    "eyebrow": "Sản phẩm",
     "title": "Dự án nổi bật",
     "subtitle": "Những sản phẩm tôi đã xây dựng — từ nền tảng AI đến hệ thống backend doanh nghiệp.",
     "featured": "Nổi bật",
@@ -77,6 +97,7 @@
     }
   },
   "skills": {
+    "eyebrow": "Bộ công cụ",
     "title": "Kỹ năng",
     "subtitle": "Công nghệ và công cụ tôi làm việc hằng ngày.",
     "groups": {
@@ -87,6 +108,7 @@
     }
   },
   "awards": {
+    "eyebrow": "Ghi nhận",
     "title": "Giải thưởng",
     "subtitle": "Dấu mốc đáng nhớ trên hành trình xây dựng sản phẩm.",
     "hackathon": {
@@ -100,9 +122,21 @@
         "ideas": "60 ý tưởng AI",
         "hours": "24 giờ tranh tài"
       }
+    },
+    "gallery": {
+      "heading": "Khoảnh khắc",
+      "vinuniNote": "Team VCareer còn được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity.",
+      "captions": {
+        "vinuniCeremony": "Được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity",
+        "vinuniFaculty": "Chụp ảnh cùng giảng viên tại VinUniversity",
+        "hackathonTeam": "Team VCareer cùng ban tổ chức",
+        "codex": "Thuyết trình tại Codex Community Hackathon 2026",
+        "stakeholder": "Ban tổ chức chúc mừng nhóm"
+      }
     }
   },
   "contact": {
+    "eyebrow": "Chào nhé",
     "title": "Liên hệ",
     "subtitle": "Bạn có dự án hoặc cơ hội hợp tác? Hãy gửi lời chào cho tôi.",
     "emailLabel": "Email",

@@ -1,100 +1,128 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { SectionHead } from "@/components/section-head";
+
+// Timeline entries (work + training), newest last so the gradient rail
+// reads top-to-bottom chronologically. Copy lives in messages/*.json.
+const TIMELINE = ["fpt", "course"] as const;
 
 export function ExperienceSection() {
   const t = useTranslations("experience");
-  const bullets = t.raw("fpt.bullets") as string[];
   const languages = t.raw("languages") as string[];
 
   return (
-    <section id="experience" className="border-t border-border bg-muted/30">
-      <div className="mx-auto max-w-5xl px-4 py-20">
-        <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
+    <section id="experience" className="mx-auto max-w-6xl px-6 py-[74px]">
+      <SectionHead index="01" eyebrow={t("eyebrow")} title={t("title")} />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-5">
-          {/* Work */}
-          <div className="lg:col-span-3">
-            <h3 className="text-lg font-semibold text-muted-foreground">
-              {t("workHeading")}
-            </h3>
-            <div className="mt-5 rounded-xl border border-border bg-card p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <p className="text-lg font-semibold">{t("fpt.role")}</p>
-                <span className="text-sm text-muted-foreground">
-                  {t("fpt.period")}
-                </span>
-              </div>
-              <p className="mt-0.5 font-medium text-primary">
-                {t("fpt.company")}
+      <div className="mt-11 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
+        {/* Work + training timeline */}
+        <div className="reveal">
+          <div className="relative pl-7">
+            <span className="absolute bottom-2 left-[5px] top-2 w-0.5 bg-gradient-to-b from-primary via-primary/40 to-transparent" />
+            <div className="space-y-5">
+              {TIMELINE.map((key) => (
+                <TimelineItem key={key} base={key} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Education + Languages */}
+        <div className="reveal space-y-5">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="relative aspect-square">
+              <Image
+                src="/avatar.jpg"
+                alt={t("education.school")}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
+              />
+            </div>
+            <div className="p-6">
+              <h4 className="font-mono text-xs uppercase tracking-wider text-faint">
+                {t("educationHeading")}
+              </h4>
+              <p className="mt-3 font-bold">{t("education.degree")}</p>
+              <p className="mt-0.5 text-sm font-semibold text-accent-2">
+                {t("education.school")}
               </p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                {t("fpt.stack")}
+              <p className="mt-1.5 font-mono text-xs text-faint">
+                {t("education.location")} · {t("education.period")}
               </p>
-              <ul className="mt-4 space-y-2.5">
-                {bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                  >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
-          {/* Education + Languages */}
-          <div className="space-y-6 lg:col-span-2">
-            <h3 className="text-lg font-semibold text-muted-foreground">
-              {t("educationHeading")}
-            </h3>
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              <div className="relative aspect-[5/3]">
-                <Image
-                  src="/avatar-graduation.jpg"
-                  alt={t("education.school")}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                  <p className="text-lg font-semibold">
-                    {t("education.school")}
-                  </p>
-                  <span className="text-sm text-muted-foreground">
-                    {t("education.period")}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {t("education.degree")}
-                </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {t("education.location")}
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                {t("languagesHeading")}
-              </h4>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {languages.map((lang) => (
-                  <span
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-faint">
+              {t("languagesHeading")}
+            </h4>
+            <div className="mt-2">
+              {languages.map((lang) => {
+                const [name, level] = lang.split(" — ");
+                return (
+                  <div
                     key={lang}
-                    className="rounded-lg border border-border bg-background px-3 py-1.5 text-sm font-medium"
+                    className="flex items-center justify-between border-b border-border-soft py-2.5 text-sm last:border-none"
                   >
-                    {lang}
-                  </span>
-                ))}
-              </div>
+                    <span>{name}</span>
+                    <span className="font-mono text-[11px] text-faint">
+                      {level}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function TimelineItem({ base }: { base: string }) {
+  const t = useTranslations("experience");
+  const stack = t(`${base}.stack`).split(" · ");
+  const bullets = t.raw(`${base}.bullets`) as string[];
+  const titleKey = base === "fpt" ? "role" : "name";
+  const orgKey = base === "fpt" ? "company" : "provider";
+
+  return (
+    <div className="relative">
+      <span className="absolute -left-7 top-[26px] h-3 w-3 rounded-full border-[2.5px] border-primary bg-background shadow-[0_0_0_4px_var(--glow)]" />
+      <div className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <p className="text-lg font-bold">
+            {t(`${base}.${titleKey}`)} ·{" "}
+            <span className="text-accent-2">{t(`${base}.${orgKey}`)}</span>
+          </p>
+          <span className="font-mono text-xs text-faint">
+            {t(`${base}.period`)}
+          </span>
+        </div>
+
+        <div className="mt-3.5 flex flex-wrap gap-1.5">
+          {stack.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <ul className="mt-4 space-y-2.5">
+          {bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="relative pl-[22px] text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:text-primary before:content-['▹']"
+            >
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

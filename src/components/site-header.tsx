@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "./locale-switcher";
+import { ThemeToggle } from "./theme-toggle";
 
 const NAV_ITEMS = [
-  { key: "about", href: "#about" },
   { key: "experience", href: "#experience" },
   { key: "projects", href: "#projects" },
   { key: "skills", href: "#skills" },
@@ -15,23 +15,32 @@ export function SiteHeader() {
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
-        <Link href="/" className="text-lg font-bold tracking-tight">
-          Tú<span className="text-primary">.</span>
+    <header className="sticky top-0 z-50 border-b border-transparent bg-background/70 backdrop-blur-xl transition-colors">
+      <div className="mx-auto flex h-[68px] max-w-6xl items-center justify-between px-6">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-mono text-[15px] font-bold tracking-tight"
+        >
+          <span className="h-2.5 w-2.5 rounded-full bg-brand glow-brand" />
+          tunm.dev
         </Link>
-        <nav className="hidden items-center gap-6 md:flex">
+
+        <nav className="hidden items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.key}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
             >
               {t(item.key)}
             </a>
           ))}
         </nav>
-        <LocaleSwitcher />
+
+        <div className="flex items-center gap-2">
+          <LocaleSwitcher />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

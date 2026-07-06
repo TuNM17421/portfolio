@@ -1,17 +1,22 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { PROJECTS, type Project } from "@/data/projects";
+import { SectionHead } from "@/components/section-head";
 import { GithubIcon } from "@/components/icons";
 
 export function ProjectsSection() {
   const t = useTranslations("projects");
 
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-4 py-20">
-      <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
-      <p className="mt-2 max-w-2xl text-muted-foreground">{t("subtitle")}</p>
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-[74px]">
+      <SectionHead
+        index="02"
+        eyebrow={t("eyebrow")}
+        title={t("title")}
+        subtitle={t("subtitle")}
+      />
 
-      <div className="mt-10 space-y-8">
+      <div className="reveal mt-11 grid gap-5 sm:grid-cols-2">
         {PROJECTS.map((project) => (
           <ProjectCard key={project.key} project={project} />
         ))}
@@ -24,54 +29,67 @@ function ProjectCard({ project }: { project: Project }) {
   const t = useTranslations("projects");
   const base = `items.${project.key}`;
   const period = t(`${base}.period`);
+  const wide = Boolean(project.featured);
 
   return (
-    <article className="grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-2">
+    <article
+      className={`group relative flex overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/50 ${
+        wide ? "flex-col sm:col-span-2 md:flex-row" : "flex-col"
+      }`}
+    >
       <ProjectImage
         src={project.image}
         alt={t(`${base}.title`)}
         title={t(`${base}.title`)}
+        wide={wide}
       />
 
-      <div className="flex flex-col p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-3">
-          <h3 className="text-xl font-bold">{t(`${base}.title`)}</h3>
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h3 className="text-xl font-bold tracking-tight">
+              {t(`${base}.title`)}
+            </h3>
+            <p className="font-mono text-[13px] font-semibold text-accent-2">
+              {t(`${base}.subtitle`)}
+            </p>
+          </div>
           {project.featured && (
-            <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">
-              {t("featured")}
+            <span className="shrink-0 rounded-full border border-primary bg-accent px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-foreground">
+              ★ {t("featured")}
             </span>
           )}
         </div>
-        <p className="mt-1 text-sm font-medium text-primary">
-          {t(`${base}.subtitle`)}
-        </p>
+
         {period && (
-          <p className="mt-1 text-xs text-muted-foreground">{period}</p>
+          <p className="mt-2.5 font-mono text-xs text-faint">{period}</p>
         )}
+
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
           {t(`${base}.description`)}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-foreground"
-            >
-              {tech}
-            </span>
-          ))}
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.slice(0, wide ? 9 : 6).map((tech) => (
+              <span
+                key={tech}
+                className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap font-mono text-xs text-muted-foreground transition-colors hover:text-accent-2"
+          >
+            <GithubIcon className="h-4 w-4" />
+            {t("viewCode")}
+          </a>
         </div>
-
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-flex w-fit items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-semibold transition-colors hover:bg-muted"
-        >
-          <GithubIcon className="h-4 w-4" />
-          {t("viewCode")}
-        </a>
       </div>
     </article>
   );
@@ -81,15 +99,23 @@ function ProjectImage({
   src,
   alt,
   title,
+  wide,
 }: {
   src: string | null;
   alt: string;
   title: string;
+  wide: boolean;
 }) {
+  const shape = wide
+    ? "aspect-video md:aspect-auto md:w-[44%] md:min-h-full"
+    : "aspect-video";
+
   if (!src) {
     return (
-      <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-primary/20 to-accent md:aspect-auto">
-        <span className="text-4xl font-bold tracking-tight text-primary/70">
+      <div
+        className={`grid place-items-center bg-gradient-to-br from-accent to-surface-2 ${shape}`}
+      >
+        <span className="px-4 text-center text-2xl font-extrabold tracking-tight text-gradient">
           {title}
         </span>
       </div>
@@ -97,13 +123,13 @@ function ProjectImage({
   }
 
   return (
-    <div className="relative aspect-video md:aspect-auto md:min-h-full">
+    <div className={`relative overflow-hidden ${shape}`}>
       <Image
         src={src}
         alt={alt}
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover"
+        sizes={wide ? "(max-width: 768px) 100vw, 44vw" : "(max-width: 768px) 100vw, 50vw"}
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
     </div>
   );
