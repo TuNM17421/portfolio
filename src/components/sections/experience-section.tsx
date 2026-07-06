@@ -11,7 +11,7 @@ export function ExperienceSection() {
   const languages = t.raw("languages") as string[];
 
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-[74px]">
+    <section id="experience" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <SectionHead index="01" eyebrow={t("eyebrow")} title={t("title")} />
 
       <div className="mt-11 grid gap-10 lg:grid-cols-[1.6fr_1fr]">

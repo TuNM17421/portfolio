@@ -21,7 +21,7 @@ export function SkillsSection() {
   const t = useTranslations("skills");
 
   return (
-    <section id="skills" className="mx-auto max-w-6xl px-6 py-[74px]">
+    <section id="skills" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <SectionHead
         index="03"
         eyebrow={t("eyebrow")}

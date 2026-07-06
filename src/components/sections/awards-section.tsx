@@ -19,7 +19,7 @@ export function AwardsSection() {
   const t = useTranslations("awards");
 
   return (
-    <section id="awards" className="mx-auto max-w-6xl px-6 py-[74px]">
+    <section id="awards" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <SectionHead index="04" eyebrow={t("eyebrow")} title={t("title")} />
 
       <article className="reveal mt-11 grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-2">

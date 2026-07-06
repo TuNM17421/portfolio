@@ -76,6 +76,12 @@
     "title": "Dự án nổi bật",
     "subtitle": "Những sản phẩm tôi đã xây dựng — từ nền tảng AI đến hệ thống backend doanh nghiệp.",
     "featured": "Nổi bật",
+    "gallery": {
+      "open": "Xem ảnh chụp màn hình",
+      "prev": "Ảnh trước",
+      "next": "Ảnh sau",
+      "close": "Đóng thư viện"
+    },
     "items": {
       "vcareer": {
         "title": "VCareer",

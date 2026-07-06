@@ -1,14 +1,14 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { PROJECTS, type Project } from "@/data/projects";
 import { SectionHead } from "@/components/section-head";
 import { StarIcon } from "@/components/icons";
+import { ProjectGallery } from "@/components/project-gallery";
 
 export function ProjectsSection() {
   const t = useTranslations("projects");
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-[74px]">
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <SectionHead
         index="02"
         eyebrow={t("eyebrow")}
@@ -33,12 +33,12 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article
-      className={`group relative flex overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/50 ${
+      className={`group relative flex overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:glow-brand ${
         wide ? "flex-col sm:col-span-2 md:flex-row" : "flex-col"
       }`}
     >
-      <ProjectImage
-        src={project.image}
+      <ProjectGallery
+        images={project.images}
         alt={t(`${base}.title`)}
         title={t(`${base}.title`)}
         wide={wide}
@@ -82,45 +82,5 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
     </article>
-  );
-}
-
-function ProjectImage({
-  src,
-  alt,
-  title,
-  wide,
-}: {
-  src: string | null;
-  alt: string;
-  title: string;
-  wide: boolean;
-}) {
-  const shape = wide
-    ? "aspect-video md:aspect-auto md:w-[44%] md:min-h-full"
-    : "aspect-video";
-
-  if (!src) {
-    return (
-      <div
-        className={`grid place-items-center bg-gradient-to-br from-accent to-surface-2 ${shape}`}
-      >
-        <span className="px-4 text-center text-2xl font-extrabold tracking-tight text-gradient">
-          {title}
-        </span>
-      </div>
-    );
-  }
-
-  return (
-    <div className={`relative overflow-hidden ${shape}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={wide ? "(max-width: 768px) 100vw, 44vw" : "(max-width: 768px) 100vw, 50vw"}
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
   );
 }

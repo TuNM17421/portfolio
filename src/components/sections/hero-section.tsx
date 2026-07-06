@@ -100,13 +100,13 @@ export function HeroSection() {
             className="h-full w-full rounded-[calc(1.5rem-3px)] object-cover object-center"
           />
           <FloatCard
-            className="floaty -left-[6%] top-[8%]"
+            className="floaty -left-2 -top-3 sm:-left-[12%] sm:-top-[5%]"
             label={t("roleLabel")}
           >
             {t("focus")}
           </FloatCard>
           <FloatCard
-            className="floaty-delayed -right-[8%] bottom-[10%]"
+            className="floaty-delayed -right-2 -bottom-3.5 sm:-right-[12%] sm:-bottom-[calc(5%_+_2px)]"
             label={t("locationLabel")}
             icon={<PinIcon className="h-3.5 w-3.5" />}
           >

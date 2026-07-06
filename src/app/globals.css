@@ -136,6 +136,9 @@ button:focus-visible {
 .scrim {
   background-image: linear-gradient(to top, var(--scrim), transparent);
 }
+.bg-scrim {
+  background: var(--scrim);
+}
 .ring-brand:focus {
   outline: none;
   box-shadow: 0 0 0 3px var(--ring);

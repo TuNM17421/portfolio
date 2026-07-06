@@ -76,6 +76,12 @@
     "title": "Featured Projects",
     "subtitle": "Products I've built — from AI platforms to enterprise backend systems.",
     "featured": "Featured",
+    "gallery": {
+      "open": "View screenshots",
+      "prev": "Previous image",
+      "next": "Next image",
+      "close": "Close gallery"
+    },
     "items": {
       "vcareer": {
         "title": "VCareer",

@@ -2,7 +2,9 @@
 // under `projects.items.<key>` so they can be translated.
 export type Project = {
   key: string;
-  image: string | null;
+  // First entry is the card cover; the rest populate the lightbox gallery.
+  // Empty array renders the gradient placeholder.
+  images: string[];
   tech: string[];
   featured?: boolean;
 };
@@ -10,7 +12,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     key: "vcareer",
-    image: "/projects/vcareer.jpg",
+    images: ["/projects/vcareer/cover.jpg"],
     featured: true,
     tech: [
       "Next.js 16",
@@ -29,7 +31,15 @@ export const PROJECTS: Project[] = [
   },
   {
     key: "scholarai",
-    image: "/projects/scholarai.png",
+    images: [
+      "/projects/scholarai/landing.png",
+      "/projects/scholarai/project.png",
+      "/projects/scholarai/semantic-search.png",
+      "/projects/scholarai/chat.png",
+      "/projects/scholarai/notes.png",
+      "/projects/scholarai/benchmark-1.png",
+      "/projects/scholarai/benchmark-2.png",
+    ],
     tech: [
       "Next.js",
       "FastAPI",
@@ -43,7 +53,7 @@ export const PROJECTS: Project[] = [
   },
   {
     key: "finplanning",
-    image: null,
+    images: [],
     tech: ["Java", "Spring Boot", "React", "SQL Server", "Redis"],
   },
 ];
