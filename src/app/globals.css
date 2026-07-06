@@ -96,11 +96,22 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky 68px header. */
+  scroll-padding-top: 5.5rem;
 }
 
 ::selection {
   background: var(--glow);
   color: var(--foreground);
+}
+
+/* Consistent branded focus ring for links/buttons that opt out of a custom one.
+   Form inputs use .ring-brand and are intentionally excluded. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 /* ============================================================
@@ -194,6 +205,20 @@ html {
   opacity: 0.4;
   animation: pulse-ring 1.8s infinite;
 }
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-menu-in {
+  animation: menu-in 0.18s ease-out;
+}
+
 @keyframes floaty {
   0%,
   100% {
@@ -218,7 +243,8 @@ html {
   }
   .floaty,
   .floaty-delayed,
-  .pulse-ring::after {
+  .pulse-ring::after,
+  .animate-menu-in {
     animation: none;
   }
 }

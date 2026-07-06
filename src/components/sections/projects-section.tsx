@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { PROJECTS, type Project } from "@/data/projects";
 import { SectionHead } from "@/components/section-head";
-import { GithubIcon } from "@/components/icons";
+import { StarIcon } from "@/components/icons";
 
 export function ProjectsSection() {
   const t = useTranslations("projects");
@@ -55,8 +55,9 @@ function ProjectCard({ project }: { project: Project }) {
             </p>
           </div>
           {project.featured && (
-            <span className="shrink-0 rounded-full border border-primary bg-accent px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-foreground">
-              ★ {t("featured")}
+            <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary bg-accent px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-foreground">
+              <StarIcon className="h-2.5 w-2.5" />
+              {t("featured")}
             </span>
           )}
         </div>
@@ -69,26 +70,15 @@ function ProjectCard({ project }: { project: Project }) {
           {t(`${base}.description`)}
         </p>
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.slice(0, wide ? 9 : 6).map((tech) => (
-              <span
-                key={tech}
-                className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 whitespace-nowrap font-mono text-xs text-muted-foreground transition-colors hover:text-accent-2"
-          >
-            <GithubIcon className="h-4 w-4" />
-            {t("viewCode")}
-          </a>
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {project.tech.slice(0, wide ? 9 : 6).map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </article>

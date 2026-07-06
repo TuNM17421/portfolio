@@ -3,7 +3,6 @@
 export type Project = {
   key: string;
   image: string | null;
-  github: string;
   tech: string[];
   featured?: boolean;
 };
@@ -12,7 +11,6 @@ export const PROJECTS: Project[] = [
   {
     key: "vcareer",
     image: "/projects/vcareer.jpg",
-    github: "https://github.com/TuNM17421/VCareer",
     featured: true,
     tech: [
       "Next.js 16",
@@ -32,7 +30,6 @@ export const PROJECTS: Project[] = [
   {
     key: "scholarai",
     image: "/projects/scholarai.png",
-    github: "https://github.com/TuNM17421/ScholarAI",
     tech: [
       "Next.js",
       "FastAPI",
@@ -47,7 +44,6 @@ export const PROJECTS: Project[] = [
   {
     key: "finplanning",
     image: null,
-    github: "https://github.com/tuannqhe151337/fn-planning-backend",
     tech: ["Java", "Spring Boot", "React", "SQL Server", "Redis"],
   },
 ];

@@ -11,7 +11,9 @@
     "awards": "Awards",
     "contact": "Contact",
     "toggleLanguage": "VI",
-    "toggleTheme": "Toggle theme"
+    "toggleTheme": "Toggle theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "badge": "Open to new opportunities",
@@ -74,7 +76,6 @@
     "title": "Featured Projects",
     "subtitle": "Products I've built — from AI platforms to enterprise backend systems.",
     "featured": "Featured",
-    "viewCode": "Source",
     "items": {
       "vcareer": {
         "title": "VCareer",
@@ -153,7 +154,9 @@
       "success": "Thank you! Your message has been sent.",
       "errorName": "Please enter your name.",
       "errorEmail": "Invalid email address.",
-      "errorMessage": "Message must be at least 10 characters."
+      "errorMessage": "Message must be at least 10 characters.",
+      "errorSubmit": "Something went wrong. Please try again or email me directly.",
+      "sending": "Sending…"
     }
   },
   "footer": {

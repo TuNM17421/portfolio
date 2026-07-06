@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SectionHead } from "@/components/section-head";
+import { GraduationCapIcon } from "@/components/icons";
 
 const STAT_KEYS = ["builders", "ideas", "hours"] as const;
 
@@ -57,8 +58,9 @@ export function AwardsSection() {
             ))}
           </div>
 
-          <p className="mt-6 rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm font-medium">
-            🎓 {t("gallery.vinuniNote")}
+          <p className="mt-6 flex items-center gap-2.5 rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm font-medium">
+            <GraduationCapIcon className="h-4 w-4 shrink-0 text-primary" />
+            {t("gallery.vinuniNote")}
           </p>
         </div>
       </article>

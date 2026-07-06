@@ -11,7 +11,9 @@
     "awards": "Giải thưởng",
     "contact": "Liên hệ",
     "toggleLanguage": "EN",
-    "toggleTheme": "Đổi giao diện"
+    "toggleTheme": "Đổi giao diện",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu"
   },
   "hero": {
     "badge": "Sẵn sàng cho cơ hội mới",
@@ -74,7 +76,6 @@
     "title": "Dự án nổi bật",
     "subtitle": "Những sản phẩm tôi đã xây dựng — từ nền tảng AI đến hệ thống backend doanh nghiệp.",
     "featured": "Nổi bật",
-    "viewCode": "Mã nguồn",
     "items": {
       "vcareer": {
         "title": "VCareer",
@@ -153,7 +154,9 @@
       "success": "Cảm ơn bạn! Tin nhắn đã được gửi.",
       "errorName": "Vui lòng nhập họ tên.",
       "errorEmail": "Email không hợp lệ.",
-      "errorMessage": "Nội dung cần ít nhất 10 ký tự."
+      "errorMessage": "Nội dung cần ít nhất 10 ký tự.",
+      "errorSubmit": "Đã có lỗi xảy ra. Vui lòng thử lại hoặc email trực tiếp cho mình.",
+      "sending": "Đang gửi…"
     }
   },
   "footer": {

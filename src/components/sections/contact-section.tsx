@@ -1,22 +1,28 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { contactSchema } from "@/lib/contact-schema";
 import { SOCIALS } from "@/data/socials";
 import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/icons";
 
-type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
+type FieldName = "name" | "email" | "message";
+type FieldErrors = Partial<Record<FieldName, string>>;
+
+const FIELD_ORDER: FieldName[] = ["name", "email", "message"];
 
 export function ContactSection() {
   const t = useTranslations("contact");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    // Capture the form node now — currentTarget is null after the first await.
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const values = {
       name: String(form.get("name") ?? ""),
       email: String(form.get("email") ?? ""),
@@ -26,24 +32,35 @@ export function ContactSection() {
     const parsed = contactSchema.safeParse(values);
     if (!parsed.success) {
       const flat = parsed.error.flatten().fieldErrors;
-      setErrors({
+      const nextErrors: FieldErrors = {
         name: flat.name ? t("form.errorName") : undefined,
         email: flat.email ? t("form.errorEmail") : undefined,
         message: flat.message ? t("form.errorMessage") : undefined,
-      });
+      };
+      setErrors(nextErrors);
+      setSubmitError(null);
+      // Move focus to the first invalid field (WCAG focus-management).
+      const firstInvalid = FIELD_ORDER.find((k) => nextErrors[k]);
+      if (firstInvalid) {
+        formEl.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+      }
       return;
     }
 
     setErrors({});
+    setSubmitError(null);
     setSubmitting(true);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       setSent(true);
-      event.currentTarget.reset();
+      formEl.reset();
+    } catch {
+      setSubmitError(t("form.errorSubmit"));
     } finally {
       setSubmitting(false);
     }
@@ -76,25 +93,37 @@ export function ContactSection() {
         </div>
 
         <form onSubmit={handleSubmit} className="mt-9 space-y-5" noValidate>
-          <Field label={t("form.name")} error={errors.name}>
+          <Field name="name" label={t("form.name")} error={errors.name}>
             <input
               name="name"
+              autoComplete="name"
+              aria-required="true"
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               placeholder={t("form.namePlaceholder")}
               className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
           </Field>
-          <Field label={t("form.email")} error={errors.email}>
+          <Field name="email" label={t("form.email")} error={errors.email}>
             <input
               name="email"
               type="email"
+              autoComplete="email"
+              inputMode="email"
+              aria-required="true"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               placeholder={t("form.emailPlaceholder")}
               className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
           </Field>
-          <Field label={t("form.message")} error={errors.message}>
+          <Field name="message" label={t("form.message")} error={errors.message}>
             <textarea
               name="message"
               rows={4}
+              aria-required="true"
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "message-error" : undefined}
               placeholder={t("form.messagePlaceholder")}
               className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
             />
@@ -105,12 +134,17 @@ export function ContactSection() {
             disabled={submitting}
             className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5 disabled:opacity-50 sm:w-auto"
           >
-            {t("form.submit")}
+            {submitting ? t("form.sending") : t("form.submit")}
           </button>
 
           {sent && (
-            <p className="text-sm font-medium text-accent-2">
+            <p role="status" className="text-sm font-medium text-accent-2">
               {t("form.success")}
+            </p>
+          )}
+          {submitError && (
+            <p role="alert" className="text-sm font-medium text-destructive">
+              {submitError}
             </p>
           )}
         </form>
@@ -126,7 +160,7 @@ function ContactLink({
 }: {
   href: string;
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <a
@@ -142,20 +176,31 @@ function ContactLink({
 }
 
 function Field({
+  name,
   label,
   error,
   children,
 }: {
+  name: FieldName;
   label: string;
   error?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-medium">{label}</span>
+      <span className="mb-1.5 block text-sm font-medium">
+        {label}
+        <span className="text-destructive"> *</span>
+      </span>
       {children}
       {error && (
-        <span className="mt-1 block text-sm text-destructive">{error}</span>
+        <span
+          id={`${name}-error`}
+          role="alert"
+          className="mt-1 block text-sm text-destructive"
+        >
+          {error}
+        </span>
       )}
     </label>
   );
