@@ -87,19 +87,52 @@
         "title": "VCareer",
         "subtitle": "Nền tảng phát triển sự nghiệp bằng AI",
         "period": "05/2026 — Hiện tại",
-        "description": "Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead bằng Three.js, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js 16 full-stack với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026."
+        "description": "Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead bằng Three.js, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js 16 full-stack với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026.",
+        "shots": {
+          "landing": "Trang chủ",
+          "cvBuilder": "Trình tạo CV",
+          "match": "So khớp CV với việc làm",
+          "interviewDemo": "Phỏng vấn AI thời gian thực",
+          "interviewReview": "Đánh giá & nhận xét phỏng vấn",
+          "dashboard": "Bảng điều khiển người dùng"
+        }
       },
       "scholarai": {
         "title": "ScholarAI",
         "subtitle": "Không gian nghiên cứu học thuật tăng cường bởi AI",
         "period": "04/2026 — 06/2026",
-        "description": "Hệ thống khám phá và đọc tài liệu nghiên cứu bằng AI: hybrid semantic search (dense + BM25), chunking phân cấp, chat-with-paper có trích dẫn (RAG streaming), và guardrail chống hallucination (ngưỡng cosine, prompt giới hạn phạm vi). Đánh giá chất lượng RAG bằng LangSmith (hit rate, citation accuracy, faithfulness)."
+        "description": "Hệ thống khám phá và đọc tài liệu nghiên cứu bằng AI: hybrid semantic search (dense + BM25), chunking phân cấp, chat-with-paper có trích dẫn (RAG streaming), và guardrail chống hallucination (ngưỡng cosine, prompt giới hạn phạm vi). Đánh giá chất lượng RAG bằng LangSmith (hit rate, citation accuracy, faithfulness).",
+        "shots": {
+          "landing": "Trang chủ",
+          "project": "Không gian dự án",
+          "semanticSearch": "Tìm kiếm ngữ nghĩa",
+          "chat": "Trò chuyện với bài báo (có trích dẫn)",
+          "notes": "Ghi chú bài báo",
+          "benchmark1": "Kết quả benchmark RAG (1)",
+          "benchmark2": "Kết quả benchmark RAG (2)"
+        }
       },
       "finplanning": {
         "title": "Financial Planning System",
         "subtitle": "Hệ thống quản lý & theo dõi chi tiêu",
         "period": "",
-        "description": "Hệ thống quản lý chi tiêu giúp doanh nghiệp minh bạch hóa dữ liệu tài chính và quy trình nội bộ. Backend Java Spring Boot với RESTful API cho quản lý chi tiêu và báo cáo, frontend React + Tailwind, dùng Redis để cache và tối ưu truy vấn."
+        "description": "Hệ thống quản lý chi tiêu giúp doanh nghiệp minh bạch hóa dữ liệu tài chính và quy trình nội bộ. Backend Java Spring Boot với RESTful API cho quản lý chi tiêu và báo cáo, frontend React + Tailwind, dùng Redis để cache và tối ưu truy vấn.",
+        "shots": {
+          "dashboard": "Bảng điều khiển",
+          "login": "Đăng nhập",
+          "projectMgmt": "Quản lý dự án",
+          "termMgmt": "Quản lý kỳ",
+          "createTerm": "Tạo kỳ lập kế hoạch",
+          "expenses": "Danh sách chi phí",
+          "importExcel": "Nhập chi phí từ Excel",
+          "financialReport": "Báo cáo tài chính",
+          "annualReport": "Báo cáo năm",
+          "departmentMgmt": "Quản lý phòng ban",
+          "currencyMgmt": "Quản lý tiền tệ",
+          "exchangeRate": "Quản lý tỷ giá",
+          "userMgmt": "Quản lý người dùng",
+          "userProfile": "Hồ sơ người dùng"
+        }
       }
     }
   },
@@ -138,7 +171,8 @@
         "vinuniFaculty": "Chụp ảnh cùng giảng viên tại VinUniversity",
         "hackathonTeam": "Team VCareer cùng ban tổ chức",
         "codex": "Thuyết trình tại Codex Community Hackathon 2026",
-        "stakeholder": "Ban tổ chức chúc mừng nhóm"
+        "stakeholder": "Ban tổ chức chúc mừng nhóm",
+      "teamDetail": "Đội ngũ tại VinUniversity"
       }
     }
   },

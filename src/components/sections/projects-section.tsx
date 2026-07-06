@@ -38,7 +38,10 @@ function ProjectCard({ project }: { project: Project }) {
       }`}
     >
       <ProjectGallery
-        images={project.images}
+        images={project.images.map((img) => ({
+          src: img.src,
+          caption: t(`${base}.shots.${img.shot}`),
+        }))}
         alt={t(`${base}.title`)}
         title={t(`${base}.title`)}
         wide={wide}

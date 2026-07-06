@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
@@ -8,6 +9,7 @@ import {
   ChevronRightIcon,
   CloseIcon,
 } from "@/components/icons";
+import type { GalleryImage } from "@/components/project-gallery";
 
 // Fullscreen image viewer. Own index state so callers only toggle open/closed.
 // A11y: role=dialog + aria-modal, Esc closes, arrows navigate, focus is trapped
@@ -18,7 +20,7 @@ export function ImageLightbox({
   alt,
   onClose,
 }: {
-  images: string[];
+  images: GalleryImage[];
   startIndex?: number;
   alt: string;
   onClose: () => void;
@@ -71,7 +73,11 @@ export function ImageLightbox({
     return () => document.removeEventListener("keydown", onKey);
   }, [go, onClose]);
 
-  return (
+  // Portal to <body> so the fixed overlay escapes the card's transform +
+  // overflow-hidden (which otherwise clips it and breaks positioning).
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div
       ref={dialogRef}
       role="dialog"
@@ -102,20 +108,25 @@ export function ImageLightbox({
         className="flex max-h-full w-full max-w-5xl flex-col items-center"
       >
         <Image
-          key={images[index]}
-          src={images[index]}
-          alt={`${alt} — ${index + 1}`}
+          key={images[index].src}
+          src={images[index].src}
+          alt={images[index].caption || `${alt} — ${index + 1}`}
           width={1600}
           height={1000}
           sizes="(max-width: 1024px) 100vw, 960px"
-          className="max-h-[80vh] w-auto rounded-lg object-contain"
+          className="max-h-[78vh] w-auto rounded-lg object-contain"
           priority
         />
-        {count > 1 && (
-          <figcaption className="mt-3 font-mono text-xs text-white/70">
-            {index + 1} / {count}
-          </figcaption>
-        )}
+        <figcaption className="mt-3 flex flex-col items-center gap-1 text-center">
+          <span className="text-sm font-medium text-white/90">
+            {images[index].caption}
+          </span>
+          {count > 1 && (
+            <span className="font-mono text-xs text-white/60">
+              {index + 1} / {count}
+            </span>
+          )}
+        </figcaption>
       </figure>
 
       {count > 1 && (
@@ -144,6 +155,7 @@ export function ImageLightbox({
           </button>
         </>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }

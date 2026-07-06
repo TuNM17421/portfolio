@@ -87,19 +87,52 @@
         "title": "VCareer",
         "subtitle": "AI Career Development Platform",
         "period": "May 2026 — Present",
-        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a Three.js 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js 16 full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026."
+        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a Three.js 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js 16 full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026.",
+        "shots": {
+          "landing": "Landing page",
+          "cvBuilder": "CV builder",
+          "match": "CV / job matching",
+          "interviewDemo": "Real-time AI interview",
+          "interviewReview": "Interview review & feedback",
+          "dashboard": "User dashboard"
+        }
       },
       "scholarai": {
         "title": "ScholarAI",
         "subtitle": "AI-Augmented Research Workspace",
         "period": "Apr 2026 — Jun 2026",
-        "description": "AI-powered engine to discover and read academic papers: hybrid semantic search (dense + BM25), hierarchical chunking, citation-aware chat-with-paper (streaming RAG), and hallucination guardrails (cosine thresholds, scope-enforcing prompts). RAG quality measured with LangSmith (hit rate, citation accuracy, faithfulness)."
+        "description": "AI-powered engine to discover and read academic papers: hybrid semantic search (dense + BM25), hierarchical chunking, citation-aware chat-with-paper (streaming RAG), and hallucination guardrails (cosine thresholds, scope-enforcing prompts). RAG quality measured with LangSmith (hit rate, citation accuracy, faithfulness).",
+        "shots": {
+          "landing": "Landing page",
+          "project": "Project workspace",
+          "semanticSearch": "Semantic paper search",
+          "chat": "Citation-aware chat with paper",
+          "notes": "Paper notes",
+          "benchmark1": "RAG benchmark results (1)",
+          "benchmark2": "RAG benchmark results (2)"
+        }
       },
       "finplanning": {
         "title": "Financial Planning System",
         "subtitle": "Expense management & tracking system",
         "period": "",
-        "description": "Expense management system helping enterprises make financial data and internal processes transparent. Java Spring Boot backend with RESTful APIs for expense management and reporting, a React + Tailwind frontend, and Redis for caching and query performance."
+        "description": "Expense management system helping enterprises make financial data and internal processes transparent. Java Spring Boot backend with RESTful APIs for expense management and reporting, a React + Tailwind frontend, and Redis for caching and query performance.",
+        "shots": {
+          "dashboard": "Dashboard",
+          "login": "Login",
+          "projectMgmt": "Project management",
+          "termMgmt": "Term management",
+          "createTerm": "Create planning term",
+          "expenses": "Expense list",
+          "importExcel": "Import expenses from Excel",
+          "financialReport": "Financial report",
+          "annualReport": "Annual report",
+          "departmentMgmt": "Department management",
+          "currencyMgmt": "Currency management",
+          "exchangeRate": "Exchange rate management",
+          "userMgmt": "User management",
+          "userProfile": "User profile"
+        }
       }
     }
   },
@@ -138,7 +171,8 @@
         "vinuniFaculty": "With the faculty at VinUniversity",
         "hackathonTeam": "Team VCareer with the organizers",
         "codex": "Presenting at Codex Community Hackathon 2026",
-        "stakeholder": "Congratulated by the organizers"
+        "stakeholder": "Congratulated by the organizers",
+      "teamDetail": "The team at VinUniversity"
       }
     }
   },

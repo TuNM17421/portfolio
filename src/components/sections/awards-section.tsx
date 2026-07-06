@@ -6,14 +6,19 @@ import { GraduationCapIcon } from "@/components/icons";
 const STAT_KEYS = ["builders", "ideas", "hours"] as const;
 
 // Gallery photos from the Codex Hackathon and the VinUni graduation ceremony.
-// The ceremony shot leads and spans two columns as the highlight.
-const GALLERY = [
-  { src: "/awards/vinuni-ceremony.jpg", caption: "vinuniCeremony", wide: true },
-  { src: "/awards/vinuni-faculty.jpg", caption: "vinuniFaculty", wide: false },
-  { src: "/awards/hackathon-team.jpg", caption: "hackathonTeam", wide: false },
-  { src: "/awards/codex-hackathon-1.jpg", caption: "codex", wide: false },
-  { src: "/awards/stakeholder-congrats-2.jpg", caption: "stakeholder", wide: false },
-] as const;
+// The ceremony shot is the highlight: it spans 2 cols and 2 rows, so the
+// faculty + team-detail shots stack in the right column and fill its height
+// (order matters — those two must follow the featured item to flow into it).
+type GalleryItem = { src: string; caption: string; featured?: boolean };
+
+const GALLERY: GalleryItem[] = [
+  { src: "/awards/vinuni-ceremony.jpg", caption: "vinuniCeremony", featured: true },
+  { src: "/awards/vinuni-faculty.jpg", caption: "vinuniFaculty" },
+  { src: "/awards/team-detail.jpg", caption: "teamDetail" },
+  { src: "/awards/hackathon-team.jpg", caption: "hackathonTeam" },
+  { src: "/awards/codex-hackathon-1.jpg", caption: "codex" },
+  { src: "/awards/stakeholder-congrats-2.jpg", caption: "stakeholder" },
+];
 
 export function AwardsSection() {
   const t = useTranslations("awards");
@@ -70,22 +75,26 @@ export function AwardsSection() {
           {t("gallery.heading")}
         </h3>
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {GALLERY.map(({ src, caption, wide }) => (
+          {GALLERY.map(({ src, caption, featured }) => (
             <figure
               key={src}
               className={`group relative overflow-hidden rounded-xl border border-border ${
-                wide ? "col-span-2" : ""
+                featured
+                  ? "col-span-2 aspect-video sm:aspect-auto sm:row-span-2"
+                  : "aspect-video"
               }`}
             >
-              <div className="relative aspect-video">
-                <Image
-                  src={src}
-                  alt={t(`gallery.captions.${caption}`)}
-                  fill
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
+              <Image
+                src={src}
+                alt={t(`gallery.captions.${caption}`)}
+                fill
+                sizes={
+                  featured
+                    ? "(max-width: 640px) 100vw, 44vw"
+                    : "(max-width: 640px) 50vw, 22vw"
+                }
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
               <figcaption className="scrim absolute inset-x-0 bottom-0 p-3 text-xs font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 {t(`gallery.captions.${caption}`)}
               </figcaption>

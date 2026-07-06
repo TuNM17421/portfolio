@@ -90,7 +90,7 @@ export function HeroSection() {
       </div>
 
       <div className="reveal relative mx-auto grid w-full place-items-center">
-        <div className="relative aspect-square w-[min(300px,76%)] rounded-3xl bg-brand p-[3px] glow-brand">
+        <div className="relative aspect-square w-[min(250px,66%)] rounded-3xl bg-brand p-[3px] glow-brand">
           <Image
             src="/avatar-graduation.jpg"
             alt={t("name")}

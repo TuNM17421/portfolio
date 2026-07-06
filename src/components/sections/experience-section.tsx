@@ -30,14 +30,16 @@ export function ExperienceSection() {
         {/* Education + Languages */}
         <div className="reveal space-y-5">
           <div className="overflow-hidden rounded-2xl border border-border bg-card">
-            <div className="relative aspect-square">
-              <Image
-                src="/avatar.jpg"
-                alt={t("education.school")}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-center"
-              />
+            <div className="flex justify-center px-6 pt-6">
+              <div className="relative aspect-square w-full max-w-[220px] overflow-hidden rounded-xl">
+                <Image
+                  src="/avatar.jpg"
+                  alt={t("education.school")}
+                  fill
+                  sizes="220px"
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
             <div className="p-6">
               <h4 className="font-mono text-xs uppercase tracking-wider text-faint">

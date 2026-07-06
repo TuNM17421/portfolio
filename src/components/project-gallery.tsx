@@ -9,13 +9,15 @@ import { ImageLightbox } from "@/components/image-lightbox";
 // Card cover for a project. With ≥1 image it's a button that opens the
 // lightbox (badge shows the count); with none it renders the gradient
 // placeholder used before galleries existed.
+export type GalleryImage = { src: string; caption: string };
+
 export function ProjectGallery({
   images,
   alt,
   title,
   wide,
 }: {
-  images: string[];
+  images: GalleryImage[];
   alt: string;
   title: string;
   wide: boolean;
@@ -49,14 +51,14 @@ export function ProjectGallery({
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t("gallery.open")}
-        className={`relative block overflow-hidden ${shape}`}
+        className={`relative block overflow-hidden bg-surface-2 ${shape}`}
       >
         <Image
-          src={images[0]}
+          src={images[0].src}
           alt={alt}
           fill
           sizes={sizes}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-contain transition-transform duration-500 group-hover:scale-105"
         />
         {images.length > 1 && (
           <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-2.5 py-1 font-mono text-[11px] font-medium backdrop-blur">
