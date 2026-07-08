@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SOCIALS } from "@/data/socials";
+import { Typewriter } from "@/components/typewriter";
+import { CountUp } from "@/components/count-up";
 import {
   ArrowRightIcon,
   GithubIcon,
@@ -18,6 +20,7 @@ const STATS = [
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const roles = t.raw("roles") as string[];
 
   return (
     <section
@@ -32,9 +35,11 @@ export function HeroSection() {
 
         <p className="mb-3 font-mono text-[15px] text-accent-2">{t("greeting")}</p>
         <h1 className="text-[clamp(2.6rem,7vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em]">
-          <span className="text-gradient">{t("name")}</span>
+          <span className="name-shimmer">{t("name")}</span>
         </h1>
-        <p className="mt-4 text-xl font-semibold sm:text-2xl">{t("role")}</p>
+        <p className="mt-4 text-xl font-semibold sm:text-2xl">
+          <Typewriter phrases={roles} />
+        </p>
         <p className="mt-3 flex items-center gap-1.5 text-sm text-muted-foreground">
           <PinIcon className="h-4 w-4" />
           {t("location")}
@@ -78,7 +83,7 @@ export function HeroSection() {
                 {"icon" in stat ? (
                   <MedalIcon className="h-8 w-8 text-primary" />
                 ) : (
-                  stat.value
+                  <CountUp value={stat.value} />
                 )}
               </dt>
               <dd className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-faint">
@@ -90,15 +95,19 @@ export function HeroSection() {
       </div>
 
       <div className="reveal relative mx-auto grid w-full place-items-center">
-        <div className="relative aspect-square w-[min(250px,66%)] rounded-3xl bg-brand p-[3px] glow-brand">
-          <Image
-            src="/avatar-graduation.jpg"
-            alt={t("name")}
-            width={300}
-            height={300}
-            priority
-            className="h-full w-full rounded-[calc(1.5rem-3px)] object-cover object-center"
-          />
+        <div className="relative aspect-square w-[min(300px,79%)] rounded-3xl bg-brand p-[3px] glow-brand">
+          {/* Frame is 1.2x, but the photo keeps its original display size via a
+              card-colored mat (image at ~83% ≈ the previous 250px). */}
+          <div className="grid h-full w-full place-items-center rounded-[calc(1.5rem-3px)] bg-card">
+            <Image
+              src="/avatar-graduation.jpg"
+              alt={t("name")}
+              width={300}
+              height={300}
+              priority
+              className="h-[83%] w-[83%] rounded-2xl object-cover object-center"
+            />
+          </div>
           <FloatCard
             className="floaty -left-2 -top-3 sm:-left-[12%] sm:-top-[5%]"
             label={t("roleLabel")}

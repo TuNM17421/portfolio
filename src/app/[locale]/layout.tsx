@@ -11,6 +11,7 @@ import { routing, isSupportedLocale } from "@/i18n/routing";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ThemeSync } from "@/components/theme-sync";
 import "../globals.css";
 
 // Inter drives --font-sans (see globals.css). display:swap => no invisible text / CLS.
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-screen bg-background text-foreground">
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        <ThemeSync />
         <div className="bg-fx" aria-hidden />
         <NextIntlClientProvider messages={messages}>
           <ScrollReveal />

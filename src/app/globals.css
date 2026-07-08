@@ -179,15 +179,62 @@ button:focus-visible {
   mask-size: contain;
 }
 
-/* Fixed ambient background: brand glows + faint blueprint grid */
+/* Fixed ambient background: a soft base vignette + drifting "aurora" glows +
+   grain + blueprint grid. The three glows sit on an oversized canvas (200%) and
+   slowly pan via `aurora`; the base vignette (last layer) stays put at 100%/
+   center so only the color blobs move. Light mode gets a dimmer glow override
+   so it doesn't turn muddy. Reduced-motion pins it. */
 .bg-fx {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(600px 420px at 82% -5%, var(--glow), transparent 70%),
-    radial-gradient(520px 400px at 0% 38%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 70%);
+    radial-gradient(760px 520px at 12% -8%, color-mix(in srgb, var(--primary) 34%, transparent), transparent 62%),
+    radial-gradient(720px 560px at 100% 8%, color-mix(in srgb, var(--accent-2) 30%, transparent), transparent 60%),
+    radial-gradient(680px 620px at 60% 112%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 64%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 7%, var(--background)), var(--background) 55%);
+  background-size:
+    200% 200%,
+    200% 200%,
+    200% 200%,
+    100% 100%;
+  background-position:
+    0% 0%,
+    100% 50%,
+    50% 100%,
+    50% 50%;
+  animation: aurora 20s ease-in-out infinite alternate;
+}
+:root[data-theme="light"] .bg-fx {
+  background:
+    radial-gradient(760px 520px at 12% -8%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 62%),
+    radial-gradient(720px 560px at 100% 8%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 60%),
+    radial-gradient(680px 620px at 60% 112%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 64%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 6%, var(--background)), var(--background) 55%);
+  background-size:
+    200% 200%,
+    200% 200%,
+    200% 200%,
+    100% 100%;
+  background-position:
+    0% 0%,
+    100% 50%,
+    50% 100%,
+    50% 50%;
+}
+/* Grain overlay: a tiny fractal-noise tile that adds texture and kills gradient
+   banding. Slightly stronger in light mode where banding is more visible. */
+.bg-fx::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  opacity: 0.06;
+}
+:root[data-theme="light"] .bg-fx::before {
+  opacity: 0.07;
 }
 .bg-fx::after {
   content: "";
@@ -208,6 +255,32 @@ button:focus-visible {
     transparent 75%
   );
   opacity: 0.5;
+}
+@keyframes aurora {
+  0% {
+    background-position:
+      0% 0%,
+      100% 50%,
+      50% 100%,
+      50% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position:
+      40% 25%,
+      60% 30%,
+      35% 80%,
+      50% 50%;
+    filter: hue-rotate(16deg);
+  }
+  100% {
+    background-position:
+      15% 45%,
+      85% 65%,
+      65% 90%,
+      50% 50%;
+    filter: hue-rotate(-10deg);
+  }
 }
 
 /* Scroll-reveal (progressive enhancement; visible if JS/observer absent) */
@@ -273,6 +346,48 @@ button:focus-visible {
   animation: floaty 5s ease-in-out infinite 1.4s;
 }
 
+/* Typewriter caret (see components/typewriter.tsx) */
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.type-caret {
+  margin-left: 1px;
+  font-weight: 400;
+  color: var(--accent-2);
+  animation: caret-blink 1s step-end infinite;
+}
+
+/* Gentle sheen sweeping across the gradient name */
+.name-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    var(--grad-from) 0%,
+    var(--grad-to) 32%,
+    var(--primary-foreground) 50%,
+    var(--grad-to) 68%,
+    var(--grad-from) 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: name-shimmer 7s ease-in-out infinite;
+}
+@keyframes name-shimmer {
+  0% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -30% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -282,7 +397,10 @@ button:focus-visible {
   .floaty,
   .floaty-delayed,
   .pulse-ring::after,
-  .animate-menu-in {
+  .animate-menu-in,
+  .bg-fx,
+  .name-shimmer,
+  .type-caret {
     animation: none;
   }
 }
