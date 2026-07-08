@@ -48,10 +48,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
+  // `data-theme` is intentionally NOT set on <html> here: it's applied by
+  // THEME_SCRIPT before paint and then left unmanaged by React, so the user's
+  // choice survives client-side navigations (e.g. switching locale). Setting it
+  // as a JSX prop would make React reset it to a fixed value on every nav.
   return (
     <html
       lang={locale}
-      data-theme="dark"
       className={inter.variable}
       suppressHydrationWarning
     >
