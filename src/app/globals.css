@@ -369,7 +369,7 @@ button:focus-visible {
     110deg,
     var(--grad-from) 0%,
     var(--grad-to) 32%,
-    var(--primary-foreground) 50%,
+    color-mix(in srgb, var(--primary-foreground) 74%, var(--grad-to)) 50%,
     var(--grad-to) 68%,
     var(--grad-from) 100%
   );
