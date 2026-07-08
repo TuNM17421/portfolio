@@ -20,6 +20,7 @@
     "greeting": "Xin chào, tôi là",
     "name": "Nguyễn Mạnh Tú",
     "role": "Software Engineer · AI Engineer",
+    "roles": ["Software Engineer", "AI Engineer", "Backend Engineer"],
     "summary": "Backend Software Engineer với hơn 2 năm kinh nghiệm Java/Spring Boot và AWS, hiện chuyên sâu về AI Engineering — xây dựng hệ thống RAG, semantic search và nền tảng AI thời gian thực với FastAPI, Qdrant và OpenAI.",
     "ctaProjects": "Xem dự án",
     "ctaContact": "Liên hệ",
@@ -169,7 +170,7 @@
       "captions": {
         "vinuniCeremony": "Được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity",
         "vinuniFaculty": "Chụp ảnh cùng giảng viên tại VinUniversity",
-        "hackathonTeam": "Team VCareer cùng ban tổ chức",
+        "aiInAction": "Cùng học viên tại Lễ bế giảng chương trình \"AI in Action\" của Vingroup",
         "codex": "Thuyết trình tại Codex Community Hackathon 2026",
         "stakeholder": "Ban tổ chức chúc mừng nhóm",
       "teamDetail": "Đội ngũ tại VinUniversity"

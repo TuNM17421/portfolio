@@ -15,7 +15,7 @@ const GALLERY: GalleryItem[] = [
   { src: "/awards/vinuni-ceremony.jpg", caption: "vinuniCeremony", featured: true },
   { src: "/awards/vinuni-faculty.jpg", caption: "vinuniFaculty" },
   { src: "/awards/team-detail.jpg", caption: "teamDetail" },
-  { src: "/awards/hackathon-team.jpg", caption: "hackathonTeam" },
+  { src: "/awards/ai-lab-coach-team.jpg", caption: "aiInAction" },
   { src: "/awards/codex-hackathon-1.jpg", caption: "codex" },
   { src: "/awards/stakeholder-congrats-2.jpg", caption: "stakeholder" },
 ];

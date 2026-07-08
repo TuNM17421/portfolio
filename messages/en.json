@@ -20,6 +20,7 @@
     "greeting": "Hi, I'm",
     "name": "Nguyen Manh Tu",
     "role": "Software Engineer · AI Engineer",
+    "roles": ["Software Engineer", "AI Engineer", "Backend Engineer"],
     "summary": "Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
@@ -169,7 +170,7 @@
       "captions": {
         "vinuniCeremony": "Honored as a featured project at VinUniversity's graduation ceremony",
         "vinuniFaculty": "With the faculty at VinUniversity",
-        "hackathonTeam": "Team VCareer with the organizers",
+        "aiInAction": "With the cohort at the closing ceremony of Vingroup's \"AI in Action\" talent program",
         "codex": "Presenting at Codex Community Hackathon 2026",
         "stakeholder": "Congratulated by the organizers",
       "teamDetail": "The team at VinUniversity"
