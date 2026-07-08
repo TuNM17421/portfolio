@@ -1,20 +1,28 @@
-import type { ComponentType } from "react";
+import type { ComponentType, CSSProperties } from "react";
 import { useTranslations } from "next-intl";
 import { SKILL_GROUPS } from "@/data/skills";
 import { SectionHead } from "@/components/section-head";
 import {
-  ServerIcon,
-  SparklesIcon,
-  CodeIcon,
-  WrenchIcon,
+  DatabaseIcon,
+  BrainCircuitIcon,
+  LayoutIcon,
+  TerminalIcon,
 } from "@/components/icons";
 
-// Icon lives in the view layer (data/skills.ts stays free of JSX).
+// Icon + accent hue live in the view layer (data/skills.ts stays free of JSX).
+// Each group gets a distinct accent that drives its tile gradient/ring/glow.
 const GROUP_ICON: Record<string, ComponentType<{ className?: string }>> = {
-  backend: ServerIcon,
-  ai: SparklesIcon,
-  frontend: CodeIcon,
-  tools: WrenchIcon,
+  backend: DatabaseIcon,
+  ai: BrainCircuitIcon,
+  frontend: LayoutIcon,
+  tools: TerminalIcon,
+};
+
+const GROUP_ACCENT: Record<string, string> = {
+  backend: "#34d399", // emerald
+  ai: "#a78bfa", // violet
+  frontend: "#22d3ee", // cyan
+  tools: "#fbbf24", // amber
 };
 
 export function SkillsSection() {
@@ -31,15 +39,19 @@ export function SkillsSection() {
 
       <div className="reveal mt-11 grid gap-4 sm:grid-cols-2">
         {SKILL_GROUPS.map((group, i) => {
-          const Icon = GROUP_ICON[group.key] ?? ServerIcon;
+          const Icon = GROUP_ICON[group.key] ?? DatabaseIcon;
+          const accent = GROUP_ACCENT[group.key] ?? "var(--primary)";
           return (
             <div
               key={group.key}
               className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:glow-brand"
             >
               <div className="flex items-center gap-3.5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white glow-brand transition-transform group-hover:scale-105">
-                  <Icon className="h-[22px] w-[22px]" />
+                <span
+                  className="cat-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl"
+                  style={{ "--cat": accent } as CSSProperties}
+                >
+                  <Icon className="h-6 w-6" />
                 </span>
                 <div>
                   <span className="font-mono text-xs text-faint">

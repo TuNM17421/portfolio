@@ -144,6 +144,30 @@ button:focus-visible {
   box-shadow: 0 0 0 3px var(--ring);
 }
 
+/* Per-category header tile for the Skills section. The accent hue is passed in
+   via the `--cat` custom property; color-mix derives the gradient, ring and
+   glow so a single class themes all four groups. */
+.cat-tile {
+  color: var(--cat);
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--cat) 24%, transparent),
+    color-mix(in srgb, var(--cat) 7%, transparent)
+  );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--cat) 32%, transparent),
+    0 6px 18px -10px color-mix(in srgb, var(--cat) 55%, transparent);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.group:hover .cat-tile {
+  transform: scale(1.06);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--cat) 48%, transparent),
+    0 12px 26px -8px color-mix(in srgb, var(--cat) 68%, transparent);
+}
+
 /* Monochrome skill mark tinted via mask; `background-color` is set inline
    per-skill (brand hex or currentColor) so one asset works in both themes. */
 .skill-icon {
