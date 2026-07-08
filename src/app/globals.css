@@ -144,6 +144,17 @@ button:focus-visible {
   box-shadow: 0 0 0 3px var(--ring);
 }
 
+/* Monochrome skill mark tinted via mask; `background-color` is set inline
+   per-skill (brand hex or currentColor) so one asset works in both themes. */
+.skill-icon {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 /* Fixed ambient background: brand glows + faint blueprint grid */
 .bg-fx {
   position: fixed;
