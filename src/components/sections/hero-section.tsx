@@ -96,18 +96,14 @@ export function HeroSection() {
 
       <div className="reveal relative mx-auto grid w-full place-items-center">
         <div className="relative aspect-square w-[min(300px,79%)] rounded-3xl bg-brand p-[3px] glow-brand">
-          {/* Frame is 1.2x, but the photo keeps its original display size via a
-              card-colored mat (image at ~83% ≈ the previous 250px). */}
-          <div className="grid h-full w-full place-items-center rounded-[calc(1.5rem-3px)] bg-card">
-            <Image
-              src="/avatar-graduation.jpg"
-              alt={t("name")}
-              width={300}
-              height={300}
-              priority
-              className="h-[83%] w-[83%] rounded-2xl object-cover object-center"
-            />
-          </div>
+          <Image
+            src="/avatar-graduation.jpg"
+            alt={t("name")}
+            width={300}
+            height={300}
+            priority
+            className="h-full w-full rounded-[calc(1.5rem-3px)] object-cover object-center"
+          />
           <FloatCard
             className="floaty -left-2 -top-3 sm:-left-[12%] sm:-top-[5%]"
             label={t("roleLabel")}
