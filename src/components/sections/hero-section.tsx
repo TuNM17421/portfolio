@@ -14,7 +14,7 @@ import {
 
 const STATS = [
   { value: "2+", label: "statYears" },
-  { value: "3", label: "statProjects" },
+  { value: "150+", label: "statPilot", static: true },
   { icon: true, label: "statAward" },
 ] as const;
 
@@ -24,10 +24,10 @@ export function HeroSection() {
   return (
     <section
       id="about"
-      className="mx-auto grid max-w-6xl items-center gap-14 px-6 py-20 sm:py-28 md:grid-cols-[1.35fr_0.9fr]"
+      className="mx-auto grid max-w-6xl items-center gap-6 px-6 py-12 sm:gap-14 sm:py-28 md:grid-cols-[1.35fr_0.9fr]"
     >
       <div className="reveal flex flex-col items-start">
-        <span className="mb-7 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
+        <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 font-mono text-xs text-muted-foreground sm:mb-7">
           <span className="pulse-ring relative h-2 w-2 rounded-full bg-online" />
           {t("badge")}
         </span>
@@ -42,11 +42,11 @@ export function HeroSection() {
           {t("location")}
         </p>
 
-        <p className="mt-6 max-w-xl text-[1.05rem] leading-relaxed text-muted-foreground">
+        <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-muted-foreground sm:mt-6">
           {t("summary")}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3.5">
+        <div className="mt-7 flex flex-wrap items-center gap-3.5 sm:mt-8">
           <Link
             href="/projects/vcareer"
             className="inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5"
@@ -73,12 +73,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        <dl className="mt-10 flex flex-wrap gap-x-9 gap-y-5">
+        <dl className="mt-8 flex flex-wrap gap-x-9 gap-y-5 sm:mt-10">
           {STATS.map((stat) => (
             <div key={stat.label}>
               <dt className="flex h-9 items-center text-3xl font-extrabold tracking-tight text-gradient">
                 {"icon" in stat ? (
                   <MedalIcon className="h-8 w-8 text-primary" />
+                ) : "static" in stat ? (
+                  stat.value
                 ) : (
                   <CountUp value={stat.value} />
                 )}
@@ -92,7 +94,7 @@ export function HeroSection() {
       </div>
 
       <div className="reveal relative mx-auto grid w-full place-items-center">
-        <div className="relative aspect-square w-[min(300px,79%)] rounded-3xl bg-brand p-[3px] glow-brand">
+        <div className="relative aspect-square w-[min(180px,60%)] rounded-3xl bg-brand p-[3px] glow-brand sm:w-[min(300px,79%)]">
           <Image
             src="/avatar-graduation.jpg"
             alt={t("name")}
@@ -102,13 +104,13 @@ export function HeroSection() {
             className="h-full w-full rounded-[calc(1.5rem-3px)] object-cover object-center"
           />
           <FloatCard
-            className="floaty -left-2 -top-3 sm:-left-[12%] sm:-top-[5%]"
+            className="floaty hidden sm:-left-[12%] sm:-top-[5%] sm:block"
             label={t("roleLabel")}
           >
             {t("focus")}
           </FloatCard>
           <FloatCard
-            className="floaty-delayed -right-2 -bottom-3.5 sm:-right-[12%] sm:-bottom-[calc(5%_+_2px)]"
+            className="floaty-delayed hidden sm:-right-[12%] sm:-bottom-[calc(5%_+_2px)] sm:block"
             label={t("locationLabel")}
             icon={<PinIcon className="h-3.5 w-3.5" />}
           >

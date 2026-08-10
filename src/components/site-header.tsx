@@ -5,10 +5,10 @@ import { ThemeToggle } from "./theme-toggle";
 import { MobileNav } from "./mobile-nav";
 
 const NAV_ITEMS = [
-  { key: "experience", href: "/#experience" },
   { key: "projects", href: "/#projects" },
-  { key: "skills", href: "/#skills" },
+  { key: "experience", href: "/#experience" },
   { key: "awards", href: "/#awards" },
+  { key: "skills", href: "/#skills" },
   { key: "contact", href: "/#contact" },
 ] as const;
 

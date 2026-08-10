@@ -28,7 +28,7 @@
     "roleLabel": "Vai trò",
     "locationLabel": "Địa điểm",
     "statYears": "Năm kinh nghiệm",
-    "statProjects": "Dự án nổi bật",
+    "statPilot": "Học viên pilot VCareer",
     "statAward": "Hackathon 2026"
   },
   "experience": {
@@ -37,6 +37,7 @@
     "workHeading": "Kinh nghiệm làm việc",
     "educationHeading": "Học vấn",
     "languagesHeading": "Ngôn ngữ",
+    "mobileDetails": "Tech stack + {count} kết quả khác",
     "fpt": {
       "role": "Software Engineer",
       "company": "FPT Software",
@@ -79,7 +80,9 @@
     "actions": {
       "caseStudy": "Đọc case study",
       "live": "Mở sản phẩm live",
-      "privateRepo": "Source private · thuộc sở hữu nhà trường"
+      "privateRepo": "Source private · thuộc sở hữu nhà trường",
+      "details": "Bằng chứng dự án",
+      "technology": "Tech stack ({count})"
     },
     "gallery": {
       "open": "Xem {count} ảnh chụp màn hình",
@@ -312,6 +315,7 @@
     },
     "gallery": {
       "heading": "Khoảnh khắc",
+      "open": "Xem 6 ảnh sự kiện",
       "vinuniNote": "Team VCareer còn được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity.",
       "captions": {
         "vinuniCeremony": "Được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity",

@@ -29,29 +29,29 @@ export function SkillsSection() {
   const t = useTranslations("skills");
 
   return (
-    <section id="skills" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+    <section id="skills" className="mx-auto max-w-6xl px-6 py-16 sm:py-28">
       <SectionHead
-        index="03"
+        index="04"
         eyebrow={t("eyebrow")}
         title={t("title")}
         subtitle={t("subtitle")}
       />
 
-      <div className="reveal mt-11 grid gap-4 sm:grid-cols-2">
+      <div className="reveal mt-9 grid gap-3 sm:mt-11 sm:grid-cols-2 sm:gap-4">
         {SKILL_GROUPS.map((group, i) => {
           const Icon = GROUP_ICON[group.key] ?? DatabaseIcon;
           const accent = GROUP_ACCENT[group.key] ?? "var(--primary)";
           return (
             <div
               key={group.key}
-              className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:glow-brand"
+              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:glow-brand sm:p-6"
             >
-              <div className="flex items-center gap-3.5">
+              <div className="flex items-center gap-3 sm:gap-3.5">
                 <span
-                  className="cat-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl"
+                  className="cat-tile grid h-10 w-10 shrink-0 place-items-center rounded-xl sm:h-12 sm:w-12"
                   style={{ "--cat": accent } as CSSProperties}
                 >
-                  <Icon className="h-6 w-6" />
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
                 <div>
                   <span className="font-mono text-xs text-faint">
@@ -63,15 +63,15 @@ export function SkillsSection() {
                 </div>
               </div>
 
-              <ul className="mt-5 flex flex-wrap gap-2">
+              <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 sm:mt-5 sm:flex sm:flex-wrap sm:gap-2">
                 {group.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-surface-2 px-2.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:bg-surface hover:text-foreground"
+                    className="flex min-h-8 min-w-0 items-center gap-2 text-[11px] font-medium leading-tight text-muted-foreground transition-colors hover:text-foreground sm:inline-flex sm:min-h-10 sm:rounded-lg sm:border sm:border-border sm:bg-surface-2 sm:px-2.5 sm:py-2 sm:text-xs sm:hover:border-primary sm:hover:bg-surface"
                   >
                     <span
                       aria-hidden
-                      className="skill-icon h-5 w-5 shrink-0"
+                      className="skill-icon h-4 w-4 shrink-0 sm:h-5 sm:w-5"
                       style={{
                         maskImage: `url(${skill.icon})`,
                         WebkitMaskImage: `url(${skill.icon})`,

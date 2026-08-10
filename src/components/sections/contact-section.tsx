@@ -88,8 +88,8 @@ export function ContactSection({
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
-      <div className="reveal rounded-2xl border border-border bg-card p-8 sm:p-12">
+    <section id="contact" className="mx-auto max-w-3xl px-6 py-16 sm:py-28">
+      <div className="reveal rounded-2xl border border-border bg-card p-6 sm:p-12">
         <div className="flex items-center justify-center gap-2.5 font-mono text-sm text-accent-2">
           <span className="h-px w-6 bg-brand" />
           05 — {t("eyebrow")}

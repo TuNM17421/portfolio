@@ -28,7 +28,7 @@
     "roleLabel": "Role",
     "locationLabel": "Location",
     "statYears": "Years experience",
-    "statProjects": "Featured projects",
+    "statPilot": "VCareer pilot learners",
     "statAward": "Hackathon 2026"
   },
   "experience": {
@@ -37,6 +37,7 @@
     "workHeading": "Work Experience",
     "educationHeading": "Education",
     "languagesHeading": "Languages",
+    "mobileDetails": "Tech stack + {count, plural, one {# more result} other {# more results}}",
     "fpt": {
       "role": "Software Engineer",
       "company": "FPT Software",
@@ -79,7 +80,9 @@
     "actions": {
       "caseStudy": "Read case study",
       "live": "Open live product",
-      "privateRepo": "Private source · school-owned"
+      "privateRepo": "Private source · school-owned",
+      "details": "Project evidence",
+      "technology": "Technology stack ({count})"
     },
     "gallery": {
       "open": "View {count, plural, one {# screenshot} other {# screenshots}}",
@@ -312,6 +315,7 @@
     },
     "gallery": {
       "heading": "Moments",
+      "open": "View 6 event photos",
       "vinuniNote": "Team VCareer was also spotlighted as a featured project at VinUniversity's graduation ceremony.",
       "captions": {
         "vinuniCeremony": "Honored as a featured project at VinUniversity's graduation ceremony",

@@ -18,10 +18,10 @@ export default async function HomePage({
   return (
     <>
       <HeroSection />
-      <ExperienceSection />
       <ProjectsSection />
-      <SkillsSection />
+      <ExperienceSection />
       <AwardsSection />
+      <SkillsSection />
       <ContactSection deliveryEnabled={isContactDeliveryConfigured()} />
     </>
   );

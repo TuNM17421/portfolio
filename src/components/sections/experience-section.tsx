@@ -11,10 +11,10 @@ export function ExperienceSection() {
   const languages = t.raw("languages") as string[];
 
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
-      <SectionHead index="01" eyebrow={t("eyebrow")} title={t("title")} />
+    <section id="experience" className="mx-auto max-w-6xl px-6 py-16 sm:py-28">
+      <SectionHead index="02" eyebrow={t("eyebrow")} title={t("title")} />
 
-      <div className="mt-11 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
+      <div className="mt-9 grid gap-6 sm:mt-11 sm:gap-10 lg:grid-cols-[1.6fr_1fr]">
         {/* Work + training timeline */}
         <div className="reveal">
           <div className="relative pl-7">
@@ -30,7 +30,7 @@ export function ExperienceSection() {
         {/* Education + Languages */}
         <div className="reveal space-y-5">
           <div className="overflow-hidden rounded-2xl border border-border bg-card">
-            <div className="flex justify-center px-6 pt-6">
+            <div className="hidden justify-center px-6 pt-6 sm:flex">
               <div className="relative aspect-square w-full max-w-[220px] overflow-hidden rounded-xl">
                 <Image
                   src="/avatar.jpg"
@@ -41,7 +41,7 @@ export function ExperienceSection() {
                 />
               </div>
             </div>
-            <div className="p-6">
+            <div className="p-5 sm:p-6">
               <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
                 {t("educationHeading")}
               </h3>
@@ -55,7 +55,7 @@ export function ExperienceSection() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="rounded-2xl border border-border bg-card p-5 sm:p-6">
             <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
               {t("languagesHeading")}
             </h3>
@@ -92,7 +92,7 @@ function TimelineItem({ base }: { base: string }) {
   return (
     <div className="relative">
       <span className="absolute -left-7 top-[26px] h-3 w-3 rounded-full border-[2.5px] border-primary bg-background shadow-[0_0_0_4px_var(--glow)]" />
-      <div className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+      <div className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/50 sm:p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h3 className="text-lg font-bold">
             {t(`${base}.${titleKey}`)} ·{" "}
@@ -103,28 +103,66 @@ function TimelineItem({ base }: { base: string }) {
           </span>
         </div>
 
-        <div className="mt-3.5 flex flex-wrap gap-1.5">
-          {stack.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
-            >
-              {tech}
-            </span>
-          ))}
+        <div className="sm:hidden">
+          <BulletList bullets={bullets.slice(0, 1)} />
+          <details className="group mt-3 border-t border-border pt-1">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 font-mono text-xs font-semibold text-accent-2">
+              <span>
+                {t("mobileDetails", { count: Math.max(0, bullets.length - 1) })}
+              </span>
+              <span
+                aria-hidden
+                className="text-base transition-transform group-open:rotate-45"
+              >
+                +
+              </span>
+            </summary>
+            <TechBadges stack={stack} className="mt-2" />
+            <BulletList bullets={bullets.slice(1)} className="mt-4" />
+          </details>
         </div>
 
-        <ul className="mt-4 space-y-2.5">
-          {bullets.map((bullet) => (
-            <li
-              key={bullet}
-              className="relative pl-[22px] text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:text-primary before:content-['▹']"
-            >
-              {bullet}
-            </li>
-          ))}
-        </ul>
+        <div className="hidden sm:block">
+          <TechBadges stack={stack} className="mt-3.5" />
+          <BulletList bullets={bullets} className="mt-4" />
+        </div>
       </div>
     </div>
+  );
+}
+
+function TechBadges({ stack, className }: { stack: string[]; className?: string }) {
+  return (
+    <div className={`flex flex-wrap gap-1.5 ${className ?? ""}`}>
+      {stack.map((tech) => (
+        <span
+          key={tech}
+          className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function BulletList({
+  bullets,
+  className,
+}: {
+  bullets: string[];
+  className?: string;
+}) {
+  return (
+    <ul className={`space-y-2.5 ${className ?? "mt-4"}`}>
+      {bullets.map((bullet) => (
+        <li
+          key={bullet}
+          className="relative pl-[22px] text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:text-primary before:content-['▹']"
+        >
+          {bullet}
+        </li>
+      ))}
+    </ul>
   );
 }

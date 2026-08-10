@@ -24,10 +24,10 @@ export function AwardsSection() {
   const t = useTranslations("awards");
 
   return (
-    <section id="awards" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
-      <SectionHead index="04" eyebrow={t("eyebrow")} title={t("title")} />
+    <section id="awards" className="mx-auto max-w-6xl px-6 py-16 sm:py-28">
+      <SectionHead index="03" eyebrow={t("eyebrow")} title={t("title")} />
 
-      <article className="reveal mt-11 grid overflow-hidden rounded-2xl border border-border bg-card lg:grid-cols-2">
+      <article className="reveal mt-9 grid overflow-hidden rounded-2xl border border-border bg-card sm:mt-11 lg:grid-cols-2">
         <div className="relative aspect-video lg:aspect-auto lg:min-h-full">
           <Image
             src="/awards/hackathon.jpg"
@@ -38,7 +38,7 @@ export function AwardsSection() {
           />
         </div>
 
-        <div className="flex flex-col justify-center p-6 sm:p-8">
+        <div className="flex flex-col justify-center p-5 sm:p-8">
           <span className="text-lg font-bold text-gradient">
             {t("hackathon.place")}
           </span>
@@ -52,7 +52,7 @@ export function AwardsSection() {
             {t("hackathon.description")}
           </p>
 
-          <div className="mt-6 grid grid-cols-3 gap-3">
+          <div className="mt-5 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
             {STAT_KEYS.map((key) => (
               <div
                 key={key}
@@ -70,38 +70,61 @@ export function AwardsSection() {
         </div>
       </article>
 
-      <div className="reveal mt-10">
-        <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
-          {t("gallery.heading")}
-        </h3>
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {GALLERY.map(({ src, caption, featured }) => (
-            <figure
-              key={src}
-              className={`group relative overflow-hidden rounded-xl border border-border ${
-                featured
-                  ? "col-span-2 aspect-video sm:aspect-auto sm:row-span-2"
-                  : "aspect-video"
-              }`}
+      <div className="reveal mt-8 sm:mt-10">
+        <details className="group sm:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 border-y border-border py-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent-2">
+            <span>{t("gallery.open")}</span>
+            <span
+              aria-hidden
+              className="text-base transition-transform group-open:rotate-45"
             >
-              <Image
-                src={src}
-                alt={t(`gallery.captions.${caption}`)}
-                fill
-                sizes={
-                  featured
-                    ? "(max-width: 640px) 100vw, 44vw"
-                    : "(max-width: 640px) 50vw, 22vw"
-                }
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <figcaption className="scrim absolute inset-x-0 bottom-0 p-3 text-xs font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                {t(`gallery.captions.${caption}`)}
-              </figcaption>
-            </figure>
-          ))}
+              +
+            </span>
+          </summary>
+          <GalleryGrid className="mt-4" />
+        </details>
+
+        <div className="hidden sm:block">
+          <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
+            {t("gallery.heading")}
+          </h3>
+          <GalleryGrid className="mt-4" />
         </div>
       </div>
     </section>
+  );
+}
+
+function GalleryGrid({ className }: { className?: string }) {
+  const t = useTranslations("awards");
+
+  return (
+    <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${className ?? ""}`}>
+      {GALLERY.map(({ src, caption, featured }) => (
+        <figure
+          key={src}
+          className={`group relative overflow-hidden rounded-xl border border-border ${
+            featured
+              ? "col-span-2 aspect-video sm:aspect-auto sm:row-span-2"
+              : "aspect-video"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={t(`gallery.captions.${caption}`)}
+            fill
+            sizes={
+              featured
+                ? "(max-width: 640px) 100vw, 44vw"
+                : "(max-width: 640px) 50vw, 22vw"
+            }
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <figcaption className="scrim absolute inset-x-0 bottom-0 p-3 text-xs font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            {t(`gallery.captions.${caption}`)}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }

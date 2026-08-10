@@ -26,8 +26,8 @@ export function ProjectGallery({
   const [open, setOpen] = useState(false);
 
   const shape = wide
-    ? "aspect-video md:aspect-auto md:w-[44%] md:min-h-full"
-    : "aspect-video";
+    ? "aspect-[2/1] sm:aspect-video md:aspect-auto md:w-[44%] md:min-h-full"
+    : "aspect-[16/7] sm:aspect-video";
 
   if (images.length === 0) {
     return (

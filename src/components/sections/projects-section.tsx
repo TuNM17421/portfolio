@@ -14,15 +14,15 @@ export function ProjectsSection() {
   const t = useTranslations("projects");
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-16 sm:py-28">
       <SectionHead
-        index="02"
+        index="01"
         eyebrow={t("eyebrow")}
         title={t("title")}
         subtitle={t("subtitle")}
       />
 
-      <div className="reveal mt-11 grid gap-5 sm:grid-cols-2">
+      <div className="reveal mt-9 grid gap-5 sm:mt-11 sm:grid-cols-2">
         {PROJECTS.map((project) => (
           <ProjectCard key={project.key} project={project} />
         ))}
@@ -53,7 +53,7 @@ function ProjectCard({ project }: { project: Project }) {
         wide={wide}
       />
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
             <h3 className="text-xl font-bold tracking-tight">
@@ -75,20 +75,58 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="mt-2.5 font-mono text-xs text-faint">{period}</p>
         )}
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-          {t(`${base}.description`)}
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-1.5">
-          {project.tech.slice(0, wide ? 9 : 6).map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        {wide ? (
+          <>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+              {t(`${base}.description`)}
+            </p>
+            <TechTags
+              technologies={project.tech.slice(0, 9)}
+              className="mt-5 hidden sm:flex"
+            />
+            <details className="group mt-3 border-t border-border sm:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 font-mono text-xs font-semibold text-accent-2">
+                <span>
+                  {t("actions.technology", { count: project.tech.length })}
+                </span>
+                <span
+                  aria-hidden
+                  className="text-base transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <TechTags technologies={project.tech} className="pb-2" />
+            </details>
+          </>
+        ) : (
+          <>
+            <div className="hidden flex-1 sm:block">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {t(`${base}.description`)}
+              </p>
+              <TechTags
+                technologies={project.tech.slice(0, 6)}
+                className="mt-5"
+              />
+            </div>
+            <details className="group mt-3 border-t border-border sm:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 font-mono text-xs font-semibold text-accent-2">
+                <span>{t("actions.details")}</span>
+                <span
+                  aria-hidden
+                  className="text-base transition-transform group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="pb-1 text-sm leading-relaxed text-muted-foreground">
+                {t(`${base}.description`)}
+              </p>
+              <TechTags technologies={project.tech} className="pb-2 pt-3" />
+            </details>
+          </>
+        )}
 
         {(project.caseStudyPath || project.liveUrl || project.repoVisibility) && (
           <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-5">
@@ -122,5 +160,26 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
     </article>
+  );
+}
+
+function TechTags({
+  technologies,
+  className,
+}: {
+  technologies: string[];
+  className?: string;
+}) {
+  return (
+    <div className={`flex flex-wrap gap-1.5 ${className ?? ""}`}>
+      {technologies.map((tech) => (
+        <span
+          key={tech}
+          className="rounded-md border border-border bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
   );
 }
