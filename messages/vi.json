@@ -21,7 +21,7 @@
     "name": "Nguyễn Mạnh Tú",
     "role": "Backend Software Engineer · AI Engineer",
     "summary": "Backend Software Engineer với hơn 2 năm kinh nghiệm Java/Spring Boot và AWS, hiện chuyên sâu về AI Engineering — xây dựng hệ thống RAG, semantic search và nền tảng AI thời gian thực với FastAPI, Qdrant và OpenAI.",
-    "ctaProjects": "Xem dự án",
+    "ctaProjects": "Xem case study VCareer",
     "ctaContact": "Liên hệ",
     "location": "Hà Nội, Việt Nam",
     "focus": "Kỹ sư AI",
@@ -76,6 +76,11 @@
     "title": "Dự án nổi bật",
     "subtitle": "Những sản phẩm tôi đã xây dựng — từ nền tảng AI đến hệ thống backend doanh nghiệp.",
     "featured": "Nổi bật",
+    "actions": {
+      "caseStudy": "Đọc case study",
+      "live": "Mở sản phẩm live",
+      "privateRepo": "Source private · thuộc sở hữu nhà trường"
+    },
     "gallery": {
       "open": "Xem ảnh chụp màn hình",
       "prev": "Ảnh trước",
@@ -86,8 +91,8 @@
       "vcareer": {
         "title": "VCareer",
         "subtitle": "Nền tảng phát triển sự nghiệp bằng AI",
-        "period": "05/2026 — Hiện tại",
-        "description": "Nền tảng AI end-to-end cho phát triển sự nghiệp: phỏng vấn AI thời gian thực (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), avatar 3D TalkingHead bằng Three.js, cải thiện CV, matching CV/JD và quản lý ứng tuyển. Kiến trúc Next.js 16 full-stack với Server Components, Server Actions, Zod và Drizzle ORM trên Neon PostgreSQL. Đạt giải Á quân Hackathon Codex 2026.",
+        "period": "Từ 05/2026 · team phát triển 6 tuần · đang chờ funding",
+        "description": "Nền tảng phát triển sự nghiệp bằng AI đã được 150+ học viên thật tại VinUni trải nghiệm. Tôi dựng nền tảng LiveKit/WebRTC cho phỏng vấn và phát triển chuyên sâu luồng phân tích CV, matching CV–JD cùng JD Builder. Sản phẩm đã live trước khi tham gia Track 4 và đoạt giải Nhì tại Codex Community Hackathon Hanoi.",
         "shots": {
           "landing": "Trang chủ",
           "cvBuilder": "Trình tạo CV",
@@ -136,6 +141,148 @@
       }
     }
   },
+  "vcareerCaseStudy": {
+    "meta": {
+      "title": "VCareer Case Study — Nguyen Manh Tu",
+      "description": "Case study về đóng góp của Nguyễn Mạnh Tú cho nền tảng LiveKit/WebRTC, phân tích CV, matching CV–JD và JD Builder của VCareer, đã được 150+ học viên VinUni trải nghiệm."
+    },
+    "back": "Quay lại portfolio",
+    "eyebrow": "Case study tiêu biểu · team phát triển 6 tuần",
+    "title": "VCareer",
+    "subtitle": "Nền tảng phát triển sự nghiệp bằng AI",
+    "summary": "Sản phẩm hỗ trợ chuẩn bị nghề nghiệp, kết nối việc tối ưu CV, tiêu chí tuyển dụng và phỏng vấn AI trực tiếp trong một pilot dành cho học viên VinUni. Sản phẩm vẫn đang live, còn việc phát triển tiếp đang tạm dừng để chờ funding từ nhà trường.",
+    "status": "Đang chờ funding từ nhà trường để phát triển tiếp",
+    "actions": {
+      "live": "Mở sản phẩm live",
+      "architecture": "Đọc báo cáo kiến trúc"
+    },
+    "facts": {
+      "pilot": {
+        "value": "150+",
+        "label": "học viên thật đã trải nghiệm",
+        "detail": "Pilot với học viên VinUni"
+      },
+      "confidence": {
+        "value": "Khảo sát",
+        "label": "phản hồi tự tin hơn",
+        "detail": "Kết quả định tính; không claim tăng tỉ lệ nhận việc"
+      },
+      "review": {
+        "value": "Chuyên gia",
+        "label": "đánh giá hệ thống chấm CV",
+        "detail": "Product Owner, phòng Hướng nghiệp VinUni"
+      }
+    },
+    "problem": {
+      "eyebrow": "01 · Bài toán sản phẩm",
+      "title": "Kết nối quá trình chuẩn bị với đúng công việc học viên hướng tới",
+      "body": "Việc chuẩn bị nghề nghiệp thường bị tách rời giữa review CV và luyện phỏng vấn. Team bắt đầu từ ý tưởng và các buổi phỏng vấn Product Owner của phòng Hướng nghiệp VinUni, sau đó xây dựng một luồng xuyên suốt từ CV, tiêu chí JD đến phỏng vấn AI trực tiếp."
+    },
+    "scope": {
+      "eyebrow": "02 · Đóng góp trực tiếp",
+      "title": "Phần tôi trực tiếp phụ trách",
+      "intro": "Phạm vi của tôi tập trung vào nền tảng realtime và lớp phân tích CV/JD, không phải toàn bộ thành phần trong kiến trúc sản phẩm.",
+      "items": {
+        "realtime": {
+          "title": "Nền tảng LiveKit + WebRTC",
+          "body": "Dựng luồng realtime cơ bản được sử dụng cho trải nghiệm phỏng vấn AI trực tiếp."
+        },
+        "matching": {
+          "title": "Phân tích CV và matching CV–JD",
+          "body": "Phát triển chuyên sâu luồng phân tích và so khớp để chuyển CV cùng tiêu chí tuyển dụng thành feedback về mức độ phù hợp có thể hành động."
+        },
+        "builder": {
+          "title": "JD Builder",
+          "body": "Xây dựng luồng tạo và cấu trúc hóa mô tả công việc để dùng cho các bước phân tích và matching phía sau."
+        }
+      }
+    },
+    "timeline": {
+      "eyebrow": "03 · Quá trình triển khai",
+      "title": "Từ discovery đến pilot với học viên thật",
+      "items": {
+        "discovery": {
+          "label": "Discovery",
+          "title": "Lên ý tưởng và phỏng vấn Product Owner",
+          "body": "Chu kỳ phát triển sáu tuần của team bắt đầu từ 05/2026 với việc định hình bài toán cùng phòng Hướng nghiệp VinUni."
+        },
+        "build": {
+          "label": "Build",
+          "title": "Sáu tuần từ ý tưởng đến sản phẩm",
+          "body": "Team bốn người phát triển sản phẩm từ giai đoạn discovery ban đầu đến phiên bản sẵn sàng cho pilot."
+        },
+        "hackathon": {
+          "label": "Ghi nhận",
+          "title": "Giải Nhì · Track 4: Transform with Codex",
+          "body": "VCareer tham gia sự kiện tại Hà Nội ngày 27/06/2026 với tư cách sản phẩm đã live, đúng yêu cầu của Track 4. VCareer không được build từ đầu trong hackathon và nhận $5,000 OpenAI API credits."
+        },
+        "pilot": {
+          "label": "Pilot",
+          "title": "150+ học viên thật đã trải nghiệm",
+          "body": "Survey ghi nhận phản hồi về cảm giác tự tin hơn. Hệ thống đánh giá và chấm điểm CV được Product Owner của phòng Hướng nghiệp VinUni review."
+        }
+      }
+    },
+    "architecture": {
+      "eyebrow": "04 · Bối cảnh kiến trúc",
+      "title": "Realtime trên trình duyệt, bằng chứng trong luồng sản phẩm",
+      "disclaimer": "Phần này mô tả hệ thống sản phẩm rộng hơn. Phạm vi tôi trực tiếp phụ trách được nêu ở trên.",
+      "items": {
+        "realtime": {
+          "label": "Luồng realtime",
+          "title": "WebRTC trực tiếp với quyền truy cập ngắn hạn",
+          "body": "Trình duyệt kết nối qua LiveKit cho luồng phỏng vấn trực tiếp; credential ngắn hạn giúp tránh đưa secret dài hạn xuống client. Three.js TalkingHead vẫn là một phần của trải nghiệm phỏng vấn."
+        },
+        "application": {
+          "label": "Lớp ứng dụng",
+          "title": "Next.js full-stack + managed data services",
+          "body": "Sản phẩm dùng Next.js 16, Drizzle ORM, Neon PostgreSQL và các dịch vụ AI managed cho luồng phỏng vấn, CV và matching."
+        },
+        "storage": {
+          "label": "Trạng thái lưu trữ",
+          "title": "Cloudflare R2 và Amazon S3 cùng tồn tại",
+          "body": "Hệ thống hiện vẫn giữ cả hai hướng object storage; đây không phải quá trình thay thế R2 bằng S3 đã hoàn tất."
+        },
+        "deployment": {
+          "label": "Trạng thái triển khai",
+          "title": "Đang live trên Vercel; AWS target đã được verify",
+          "body": "Production hiện chạy trên Vercel. Kiến trúc target tại AWS Singapore đã được dựng và kiểm tra, còn cutover user thật vẫn đang pending."
+        }
+      }
+    },
+    "evidence": {
+      "eyebrow": "05 · Bằng chứng sản phẩm",
+      "title": "Sáu màn hình từ sản phẩm live",
+      "description": "Ảnh chụp thể hiện landing flow, CV Builder, matching CV/job, phỏng vấn trực tiếp với TalkingHead, review phỏng vấn và dashboard học viên."
+    },
+    "delivery": {
+      "eyebrow": "06 · Trạng thái hiện tại",
+      "title": "Phần đã có và phần đang chờ funding",
+      "shipped": {
+        "title": "Trong sản phẩm hiện tại",
+        "items": {
+          "interview": "Luồng phỏng vấn AI trực tiếp với LiveKit/WebRTC và TalkingHead",
+          "cv": "Phân tích, cải thiện CV và matching CV–JD",
+          "jd": "JD Builder cho tiêu chí tuyển dụng có cấu trúc",
+          "feedback": "Review phỏng vấn và feedback cho học viên"
+        }
+      },
+      "roadmap": {
+        "title": "Đang chờ funding từ nhà trường",
+        "status": "Các hạng mục này là roadmap, chưa phải tính năng đã ship.",
+        "items": {
+          "mentor": "Đặt lịch gặp mentor để nhận lời khuyên nghề nghiệp",
+          "progress": "Theo dõi tiến độ học tập theo thời gian",
+          "jobs": "Mapping CV ứng viên với job do phòng Hướng nghiệp đăng để nhân sự theo dõi mức độ phù hợp và ứng viên khám phá công việc phù hợp"
+        }
+      }
+    },
+    "links": {
+      "eyebrow": "Trạng thái liên kết",
+      "repoTitle": "Source code ở chế độ private",
+      "repoBody": "Repository không thể chia sẻ do source code thuộc sở hữu theo hợp đồng với nhà trường. Sản phẩm live và báo cáo kiến trúc công khai có thể truy cập ở phía trên."
+    }
+  },
   "skills": {
     "eyebrow": "Bộ công cụ",
     "title": "Kỹ năng",
@@ -152,15 +299,15 @@
     "title": "Giải thưởng",
     "subtitle": "Dấu mốc đáng nhớ trên hành trình xây dựng sản phẩm.",
     "hackathon": {
-      "place": "🥈 Á quân — Track 4: Transform with Codex",
-      "name": "Codex Community Hackathon 2026",
-      "prize": "Giải thưởng $10,000 từ OpenAI",
-      "date": "Tháng 6, 2026",
-      "description": "Cùng team VCareer giành giải Á quân tại Codex Community Hackathon 2026 do MOR Software và Codex Community Vietnam tổ chức, tài trợ bởi OpenAI. Xây dựng nền tảng AI phát triển sự nghiệp hoàn chỉnh chỉ trong 24 giờ.",
+      "place": "Giải Nhì — Track 4: Transform with Codex",
+      "name": "Codex Community Hackathon — Hanoi",
+      "prize": "$5,000 OpenAI API credits",
+      "date": "27/06/2026",
+      "description": "VCareer tham gia Track 4 với tư cách sản phẩm đã live và đoạt giải Nhì. Track 4 dành cho sản phẩm live hoặc startup thể hiện sự chuyển đổi bằng Codex và/hoặc các mô hình OpenAI; VCareer không được build từ đầu trong thời gian diễn ra sự kiện.",
       "stats": {
-        "builders": "150 builders tham gia",
-        "ideas": "60 ý tưởng AI",
-        "hours": "24 giờ tranh tài"
+        "track": "Track 4 · sản phẩm live",
+        "result": "Giải Nhì",
+        "format": "Sự kiện trong 1 ngày"
       }
     },
     "gallery": {

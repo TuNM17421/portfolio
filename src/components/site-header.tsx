@@ -5,11 +5,11 @@ import { ThemeToggle } from "./theme-toggle";
 import { MobileNav } from "./mobile-nav";
 
 const NAV_ITEMS = [
-  { key: "experience", href: "#experience" },
-  { key: "projects", href: "#projects" },
-  { key: "skills", href: "#skills" },
-  { key: "awards", href: "#awards" },
-  { key: "contact", href: "#contact" },
+  { key: "experience", href: "/#experience" },
+  { key: "projects", href: "/#projects" },
+  { key: "skills", href: "/#skills" },
+  { key: "awards", href: "/#awards" },
+  { key: "contact", href: "/#contact" },
 ] as const;
 
 export function SiteHeader() {
@@ -28,13 +28,13 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.key}
               href={item.href}
               className="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
             >
               {t(item.key)}
-            </a>
+            </Link>
           ))}
         </nav>
 

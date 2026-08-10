@@ -13,35 +13,47 @@ export type Project = {
   images: ProjectImage[];
   tech: string[];
   featured?: boolean;
+  caseStudyPath?: "/projects/vcareer";
+  liveUrl?: string;
+  architectureUrl?: string;
+  repoVisibility?: "private";
 };
 
+export const VCAREER_PROJECT = {
+  key: "vcareer",
+  images: [
+    { src: "/projects/vcareer/landing_page.PNG", shot: "landing" },
+    { src: "/projects/vcareer/cv_builder.PNG", shot: "cvBuilder" },
+    { src: "/projects/vcareer/match_cv_with_job.PNG", shot: "match" },
+    { src: "/projects/vcareer/interview_demo.PNG", shot: "interviewDemo" },
+    { src: "/projects/vcareer/interview_review.PNG", shot: "interviewReview" },
+    { src: "/projects/vcareer/user_dashboard.PNG", shot: "dashboard" },
+  ],
+  featured: true,
+  caseStudyPath: "/projects/vcareer",
+  liveUrl: "https://topportfolio-sage.vercel.app/",
+  architectureUrl: "https://vcareea-architecture.lovable.app/",
+  repoVisibility: "private",
+  tech: [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Tailwind v4",
+    "Drizzle ORM",
+    "Neon PostgreSQL",
+    "Better Auth",
+    "LiveKit",
+    "OpenAI Realtime",
+    "Gemini Live",
+    "Three.js TalkingHead",
+    "Cloudflare R2",
+    "Amazon S3",
+    "Zod",
+  ],
+} satisfies Project;
+
 export const PROJECTS: Project[] = [
-  {
-    key: "vcareer",
-    images: [
-      { src: "/projects/vcareer/landing_page.PNG", shot: "landing" },
-      { src: "/projects/vcareer/cv_builder.PNG", shot: "cvBuilder" },
-      { src: "/projects/vcareer/match_cv_with_job.PNG", shot: "match" },
-      { src: "/projects/vcareer/interview_demo.PNG", shot: "interviewDemo" },
-      { src: "/projects/vcareer/interview_review.PNG", shot: "interviewReview" },
-      { src: "/projects/vcareer/user_dashboard.PNG", shot: "dashboard" },
-    ],
-    featured: true,
-    tech: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Tailwind v4",
-      "Drizzle ORM",
-      "Neon PostgreSQL",
-      "Better Auth",
-      "LiveKit",
-      "OpenAI Realtime",
-      "Gemini Live",
-      "Cloudflare R2",
-      "Zod",
-    ],
-  },
+  VCAREER_PROJECT,
   {
     key: "scholarai",
     images: [

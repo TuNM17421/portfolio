@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { SectionHead } from "@/components/section-head";
 import { GraduationCapIcon } from "@/components/icons";
 
-const STAT_KEYS = ["builders", "ideas", "hours"] as const;
+const STAT_KEYS = ["track", "result", "format"] as const;
 
 // Gallery photos from the Codex Hackathon and the VinUni graduation ceremony.
 // The ceremony shot is the highlight: it spans 2 cols and 2 rows, so the

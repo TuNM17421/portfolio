@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { SOCIALS } from "@/data/socials";
 import { CountUp } from "@/components/count-up";
 import {
@@ -46,13 +47,13 @@ export function HeroSection() {
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-3.5">
-          <a
-            href="#projects"
+          <Link
+            href="/projects/vcareer"
             className="inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5"
           >
             {t("ctaProjects")}
             <ArrowRightIcon className="h-4 w-4" />
-          </a>
+          </Link>
           <a
             href="#contact"
             className="rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 hover:border-primary"

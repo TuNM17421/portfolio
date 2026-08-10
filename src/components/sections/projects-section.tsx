@@ -1,7 +1,13 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { PROJECTS, type Project } from "@/data/projects";
 import { SectionHead } from "@/components/section-head";
-import { StarIcon } from "@/components/icons";
+import {
+  ArrowRightIcon,
+  CodeIcon,
+  ExternalLinkIcon,
+  StarIcon,
+} from "@/components/icons";
 import { ProjectGallery } from "@/components/project-gallery";
 
 export function ProjectsSection() {
@@ -83,6 +89,37 @@ function ProjectCard({ project }: { project: Project }) {
             </span>
           ))}
         </div>
+
+        {(project.caseStudyPath || project.liveUrl || project.repoVisibility) && (
+          <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-5">
+            {project.caseStudyPath && (
+              <Link
+                href={project.caseStudyPath}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5"
+              >
+                {t("actions.caseStudy")}
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-semibold transition-colors hover:border-primary"
+              >
+                {t("actions.live")}
+                <ExternalLinkIcon className="h-4 w-4" />
+              </a>
+            )}
+            {project.repoVisibility === "private" && (
+              <span className="inline-flex min-h-11 items-center gap-2 px-2 text-xs text-muted-foreground">
+                <CodeIcon className="h-4 w-4 shrink-0" />
+                {t("actions.privateRepo")}
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );

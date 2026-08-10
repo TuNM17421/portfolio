@@ -21,7 +21,7 @@
     "name": "Nguyen Manh Tu",
     "role": "Backend Software Engineer · AI Engineer",
     "summary": "Backend Software Engineer with 2+ years in Java/Spring Boot and AWS, now specializing in AI Engineering — building RAG systems, semantic search and real-time AI platforms with FastAPI, Qdrant and OpenAI.",
-    "ctaProjects": "View projects",
+    "ctaProjects": "View VCareer case study",
     "ctaContact": "Get in touch",
     "location": "Hanoi, Vietnam",
     "focus": "AI Engineer",
@@ -76,6 +76,11 @@
     "title": "Featured Projects",
     "subtitle": "Products I've built — from AI platforms to enterprise backend systems.",
     "featured": "Featured",
+    "actions": {
+      "caseStudy": "Read case study",
+      "live": "Open live product",
+      "privateRepo": "Private source · school-owned"
+    },
     "gallery": {
       "open": "View screenshots",
       "prev": "Previous image",
@@ -86,8 +91,8 @@
       "vcareer": {
         "title": "VCareer",
         "subtitle": "AI Career Development Platform",
-        "period": "May 2026 — Present",
-        "description": "End-to-end AI career platform: real-time AI interviews (WebRTC · LiveKit · OpenAI Realtime · Gemini Live), a Three.js 3D TalkingHead avatar, CV improvement, CV/JD matching and application tracking. Built on a Next.js 16 full-stack architecture with Server Components, Server Actions, Zod and Drizzle ORM over Neon PostgreSQL. 1st Runner-up at Codex Hackathon 2026.",
+        "period": "From May 2026 · six-week team build · pending funding",
+        "description": "AI career platform piloted with 150+ real VinUni learners. I set up the baseline LiveKit/WebRTC interview path and developed the CV analysis, CV-to-JD matching and JD Builder workflows. The product entered Track 4 as an already-live product and won 2nd Prize at Codex Community Hackathon Hanoi.",
         "shots": {
           "landing": "Landing page",
           "cvBuilder": "CV builder",
@@ -136,6 +141,148 @@
       }
     }
   },
+  "vcareerCaseStudy": {
+    "meta": {
+      "title": "VCareer Case Study — Nguyen Manh Tu",
+      "description": "How Nguyen Manh Tu contributed LiveKit/WebRTC foundations, CV analysis, CV-to-JD matching and JD Builder to VCareer, piloted by 150+ VinUni learners."
+    },
+    "back": "Back to portfolio",
+    "eyebrow": "Flagship case study · six-week team build",
+    "title": "VCareer",
+    "subtitle": "AI Career Development Platform",
+    "summary": "A career-practice product connecting CV preparation, job criteria and live AI interviews for a VinUni student pilot. The product remains live while further development is paused pending university funding.",
+    "status": "Product development pending university funding",
+    "actions": {
+      "live": "Open live product",
+      "architecture": "Read architecture report"
+    },
+    "facts": {
+      "pilot": {
+        "value": "150+",
+        "label": "real student testers",
+        "detail": "Learners in the VinUni pilot"
+      },
+      "confidence": {
+        "value": "Survey",
+        "label": "higher confidence reported",
+        "detail": "Qualitative feedback; no job-placement uplift claim"
+      },
+      "review": {
+        "value": "Expert review",
+        "label": "CV scoring reviewed",
+        "detail": "Product Owner, VinUni Career Services"
+      }
+    },
+    "problem": {
+      "eyebrow": "01 · Product problem",
+      "title": "Connect preparation to the job a student actually wants",
+      "body": "Career preparation was split between CV review and interview practice. The team began with the idea and interviews with the Product Owner from VinUni Career Services, then built one workflow spanning CV work, JD criteria and a live AI interview."
+    },
+    "scope": {
+      "eyebrow": "02 · Direct contribution",
+      "title": "What I owned",
+      "intro": "My scope was concentrated in the real-time foundation and the CV/JD intelligence layer—not every component shown in the broader product architecture.",
+      "items": {
+        "realtime": {
+          "title": "LiveKit + WebRTC baseline",
+          "body": "Set up the baseline real-time path used by the live AI interview experience."
+        },
+        "matching": {
+          "title": "CV analysis and CV-to-JD matching",
+          "body": "Developed the deeper analysis and matching workflow that turns CV and job criteria into actionable fit feedback."
+        },
+        "builder": {
+          "title": "JD Builder",
+          "body": "Built the workflow used to create and structure job descriptions for downstream analysis and matching."
+        }
+      }
+    },
+    "timeline": {
+      "eyebrow": "03 · Delivery",
+      "title": "From discovery to a real learner pilot",
+      "items": {
+        "discovery": {
+          "label": "Discovery",
+          "title": "Idea and Product Owner interviews",
+          "body": "The six-week team cycle began in May 2026 with problem framing and interviews with VinUni Career Services."
+        },
+        "build": {
+          "label": "Build",
+          "title": "Six weeks from idea to product",
+          "body": "A four-person team developed the product from the initial discovery through a pilot-ready release."
+        },
+        "hackathon": {
+          "label": "Recognition",
+          "title": "2nd Prize · Track 4: Transform with Codex",
+          "body": "VCareer entered the June 27, 2026 Hanoi event as an already-live product, as Track 4 required. It was not built from scratch during the hackathon and received $5,000 in OpenAI API credits."
+        },
+        "pilot": {
+          "label": "Pilot",
+          "title": "Tested by 150+ real learners",
+          "body": "Survey feedback reported higher confidence. CV evaluation and scoring were reviewed by the Product Owner from VinUni Career Services."
+        }
+      }
+    },
+    "architecture": {
+      "eyebrow": "04 · Architecture context",
+      "title": "Realtime in the browser, evidence in the product workflow",
+      "disclaimer": "This section describes the wider product system. My direct ownership is listed above.",
+      "items": {
+        "realtime": {
+          "label": "Realtime path",
+          "title": "Direct WebRTC with ephemeral access",
+          "body": "The browser connects through LiveKit for the live interview path; ephemeral credentials keep long-lived secrets out of the client. The Three.js TalkingHead remains part of the interview experience."
+        },
+        "application": {
+          "label": "Application layer",
+          "title": "Next.js full-stack + managed data services",
+          "body": "The product uses Next.js 16, Drizzle ORM, Neon PostgreSQL and managed AI services for interview, CV and matching workflows."
+        },
+        "storage": {
+          "label": "Storage state",
+          "title": "Cloudflare R2 and Amazon S3 coexist",
+          "body": "Both object-storage paths are retained in the current system; this is not a completed R2-to-S3 replacement."
+        },
+        "deployment": {
+          "label": "Deployment state",
+          "title": "Vercel live; AWS target verified",
+          "body": "Production currently runs on Vercel. The AWS Singapore target architecture has been built and verified, while real-user cutover remains pending."
+        }
+      }
+    },
+    "evidence": {
+      "eyebrow": "05 · Product evidence",
+      "title": "Six views from the live product",
+      "description": "The screenshots show the landing flow, CV Builder, CV/job matching, live interview with TalkingHead, interview review and learner dashboard."
+    },
+    "delivery": {
+      "eyebrow": "06 · Current state",
+      "title": "What exists now, and what waits for funding",
+      "shipped": {
+        "title": "In the current product",
+        "items": {
+          "interview": "Live AI interview flow with LiveKit/WebRTC and TalkingHead",
+          "cv": "CV analysis, improvement and CV-to-JD matching",
+          "jd": "JD Builder for structured job criteria",
+          "feedback": "Interview review and learner-facing feedback"
+        }
+      },
+      "roadmap": {
+        "title": "Pending university funding",
+        "status": "These items are roadmap—not shipped capabilities.",
+        "items": {
+          "mentor": "Book mentor meetings for career advice",
+          "progress": "Track learner progress over time",
+          "jobs": "Match candidate CVs against Career Services job postings so staff can review fit and candidates can discover suitable roles"
+        }
+      }
+    },
+    "links": {
+      "eyebrow": "Link state",
+      "repoTitle": "Private source repository",
+      "repoBody": "The repository cannot be shared because the source code is owned under the university contract. The live product and public architecture report are available above."
+    }
+  },
   "skills": {
     "eyebrow": "Toolbox",
     "title": "Skills",
@@ -152,15 +299,15 @@
     "title": "Awards",
     "subtitle": "A memorable milestone on the product-building journey.",
     "hackathon": {
-      "place": "🥈 1st Runner-up — Track 4: Transform with Codex",
-      "name": "Codex Community Hackathon 2026",
-      "prize": "$10,000 prize from OpenAI",
-      "date": "June 2026",
-      "description": "Won 1st Runner-up with Team VCareer at Codex Community Hackathon 2026, organized by MOR Software and Codex Community Vietnam, sponsored by OpenAI. Built a complete AI career development platform in just 24 hours.",
+      "place": "2nd Prize — Track 4: Transform with Codex",
+      "name": "Codex Community Hackathon — Hanoi",
+      "prize": "$5,000 in OpenAI API credits",
+      "date": "June 27, 2026",
+      "description": "VCareer entered Track 4 as an already-live product and won 2nd Prize. Track 4 was reserved for live products or startups demonstrating transformation with Codex and/or OpenAI models; VCareer was not built from scratch during the event.",
       "stats": {
-        "builders": "150 builders",
-        "ideas": "60 AI ideas",
-        "hours": "24-hour sprint"
+        "track": "Track 4 · live product",
+        "result": "2nd Prize",
+        "format": "One-day event"
       }
     },
     "gallery": {

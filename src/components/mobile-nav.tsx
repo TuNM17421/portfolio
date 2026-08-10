@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { MenuIcon, CloseIcon } from "@/components/icons";
+import { Link } from "@/i18n/navigation";
 
 type NavItem = { href: string; label: string };
 
@@ -59,14 +60,14 @@ export function MobileNav({ items }: { items: NavItem[] }) {
           >
             <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
               {items.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
