@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SOCIALS } from "@/data/socials";
-import { Typewriter } from "@/components/typewriter";
 import { CountUp } from "@/components/count-up";
 import {
   ArrowRightIcon,
@@ -20,7 +19,6 @@ const STATS = [
 
 export function HeroSection() {
   const t = useTranslations("hero");
-  const roles = t.raw("roles") as string[];
 
   return (
     <section
@@ -37,9 +35,7 @@ export function HeroSection() {
         <h1 className="text-[clamp(2.6rem,7vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em]">
           <span className="name-shimmer">{t("name")}</span>
         </h1>
-        <p className="mt-4 text-xl font-semibold sm:text-2xl">
-          <Typewriter phrases={roles} />
-        </p>
+        <p className="mt-4 text-xl font-semibold sm:text-2xl">{t("role")}</p>
         <p className="mt-3 flex items-center gap-1.5 text-sm text-muted-foreground">
           <PinIcon className="h-4 w-4" />
           {t("location")}
