@@ -144,7 +144,7 @@ Measured on 2026-08-10 after Phase 7, with disclosures collapsed:
 | 6 — Accessibility | Complete | Lighthouse reaches 100 and axe has no violations; keyboard, contrast, focus and touch-target checks pass. |
 | 7 — Mobile density | Complete | The evidence hierarchy is preserved and the measured mobile layout meets the agreed density targets. |
 | 8 — Design system | Complete | `MASTER.md`, page contracts and implementation describe the same current rules. |
-| 9 — Finish gate | Pending | Build, lint, tests, locales, themes, breakpoints, interaction states, no-JS and reduced motion all pass together. |
+| 9 — Finish gate | Complete | Build, lint, tests, locales, themes, breakpoints, interaction states, no-JS and reduced motion all pass together. |
 
 ## Verified implementation inputs
 
@@ -156,3 +156,24 @@ Measured on 2026-08-10 after Phase 7, with disclosures collapsed:
 - VCareer facts and publication permissions are recorded in
   `design-system/pages/vcareer.md`; production marketing placeholders are
   explicitly excluded.
+
+## Finish gate evidence — 2026-08-10
+
+- `npm test`: 5 files and 20 tests passed.
+- `npm run lint` and `npx tsc --noEmit`: no lint or type errors.
+- `npm run build`: production build passed for both locales on the homepage and
+  VCareer case-study routes.
+- Lighthouse accessibility: 100/100 on the homepage and VCareer case study.
+- axe: zero violations across homepage/case study, VI/EN and dark/light themes.
+- Browser layout audit: 32 page/locale/theme/breakpoint combinations at 375,
+  768, 1024 and 1440px passed overflow, touch-target, accessible-name and
+  heading-order assertions.
+- At 375px, the final VI/EN page heights are 7,171/7,205px; hero is 1,050px,
+  projects are 1,759/1,693px and experience is 1,270/1,330px.
+- Keyboard checks passed for native disclosures, the mobile menu and the
+  lightbox, including focus trap, arrow navigation, Escape and focus restore.
+- JavaScript-disabled checks kept every reveal visible on all four localized
+  routes; reduced motion removed background, shimmer, float, pulse and reveal
+  animation without hiding content.
+- The live product and public architecture report both returned HTTP 200; each
+  localized case study rendered all six approved screenshots.
