@@ -132,7 +132,7 @@ export function ContactSection({
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby={errors.name ? "name-error" : undefined}
                 placeholder={t("form.namePlaceholder")}
-                className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
+                className="min-h-11 w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
               />
             </Field>
             <Field name="email" label={t("form.email")} error={errors.email}>
@@ -145,7 +145,7 @@ export function ContactSection({
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby={errors.email ? "email-error" : undefined}
                 placeholder={t("form.emailPlaceholder")}
-                className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
+                className="min-h-11 w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
               />
             </Field>
             <Field

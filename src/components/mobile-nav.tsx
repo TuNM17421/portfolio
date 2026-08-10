@@ -35,7 +35,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? t("closeMenu") : t("openMenu")}
-        className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-surface text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+        className="grid h-11 w-11 place-items-center rounded-lg border border-border bg-surface text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
       >
         {open ? (
           <CloseIcon className="h-4 w-4" />
@@ -64,7 +64,7 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+                  className="flex min-h-11 items-center rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
                 >
                   {item.label}
                 </Link>

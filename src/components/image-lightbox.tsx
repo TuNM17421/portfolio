@@ -91,7 +91,7 @@ export function ImageLightbox({
         type="button"
         aria-label={t("gallery.close")}
         onClick={onClose}
-        className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-lg border border-white/20 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-lg border border-white/20 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
       >
         <CloseIcon className="h-5 w-5" />
       </button>

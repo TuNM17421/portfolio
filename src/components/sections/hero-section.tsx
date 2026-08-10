@@ -161,7 +161,7 @@ function IconLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+      className="grid h-11 w-11 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
     >
       {children}
     </a>

@@ -82,7 +82,7 @@
       "privateRepo": "Source private · thuộc sở hữu nhà trường"
     },
     "gallery": {
-      "open": "Xem ảnh chụp màn hình",
+      "open": "Xem {count} ảnh chụp màn hình",
       "prev": "Ảnh trước",
       "next": "Ảnh sau",
       "close": "Đóng thư viện"

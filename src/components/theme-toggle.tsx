@@ -33,7 +33,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={t("toggleTheme")}
-      className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-surface text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+      className="grid h-11 w-11 place-items-center rounded-lg border border-border bg-surface text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
     >
       {theme === "dark" ? (
         <SunIcon className="h-4 w-4" />

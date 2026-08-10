@@ -42,9 +42,9 @@ export function ExperienceSection() {
               </div>
             </div>
             <div className="p-6">
-              <h4 className="font-mono text-xs uppercase tracking-wider text-faint">
+              <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
                 {t("educationHeading")}
-              </h4>
+              </h3>
               <p className="mt-3 font-bold">{t("education.degree")}</p>
               <p className="mt-0.5 text-sm font-semibold text-accent-2">
                 {t("education.school")}
@@ -56,9 +56,9 @@ export function ExperienceSection() {
           </div>
 
           <div className="rounded-2xl border border-border bg-card p-6">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-faint">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-faint">
               {t("languagesHeading")}
-            </h4>
+            </h3>
             <div className="mt-2">
               {languages.map((lang) => {
                 const [name, level] = lang.split(" — ");
@@ -94,10 +94,10 @@ function TimelineItem({ base }: { base: string }) {
       <span className="absolute -left-7 top-[26px] h-3 w-3 rounded-full border-[2.5px] border-primary bg-background shadow-[0_0_0_4px_var(--glow)]" />
       <div className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <p className="text-lg font-bold">
+          <h3 className="text-lg font-bold">
             {t(`${base}.${titleKey}`)} ·{" "}
             <span className="text-accent-2">{t(`${base}.${orgKey}`)}</span>
-          </p>
+          </h3>
           <span className="font-mono text-xs text-faint">
             {t(`${base}.period`)}
           </span>

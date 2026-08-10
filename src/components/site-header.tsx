@@ -20,7 +20,7 @@ export function SiteHeader() {
       <div className="relative mx-auto flex h-[68px] max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-mono text-[15px] font-bold tracking-tight"
+          className="flex min-h-11 items-center gap-2.5 font-mono text-[15px] font-bold tracking-tight"
         >
           <span className="h-2.5 w-2.5 rounded-full bg-brand glow-brand" />
           tunm.dev
@@ -31,7 +31,7 @@ export function SiteHeader() {
             <Link
               key={item.key}
               href={item.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+              className="inline-flex min-h-11 items-center rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
             >
               {t(item.key)}
             </Link>

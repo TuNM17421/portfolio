@@ -24,7 +24,7 @@ export function LocaleSwitcher() {
       type="button"
       onClick={toggleLocale}
       disabled={isPending}
-      className="grid h-9 min-w-9 place-items-center rounded-lg border border-border bg-surface px-2 font-mono text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:text-foreground disabled:opacity-50"
+      className="grid h-11 min-w-11 place-items-center rounded-lg border border-border bg-surface px-2 font-mono text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:text-foreground disabled:opacity-50"
       aria-label={t("toggleLanguage")}
     >
       {t("toggleLanguage")}

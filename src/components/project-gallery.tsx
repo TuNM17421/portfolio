@@ -50,7 +50,7 @@ export function ProjectGallery({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label={t("gallery.open")}
+        aria-label={t("gallery.open", { count: images.length })}
         className={`relative block overflow-hidden bg-surface-2 ${shape}`}
       >
         <Image

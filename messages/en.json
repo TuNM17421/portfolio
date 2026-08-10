@@ -82,7 +82,7 @@
       "privateRepo": "Private source · school-owned"
     },
     "gallery": {
-      "open": "View screenshots",
+      "open": "View {count, plural, one {# screenshot} other {# screenshots}}",
       "prev": "Previous image",
       "next": "Next image",
       "close": "Close gallery"
