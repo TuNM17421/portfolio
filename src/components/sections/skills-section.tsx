@@ -63,38 +63,25 @@ export function SkillsSection() {
                 </div>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-2.5">
+              <ul className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((skill) => (
-                  <div
+                  <li
                     key={skill.name}
-                    className="group/skill relative"
+                    className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-surface-2 px-2.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:bg-surface hover:text-foreground"
                   >
                     <span
-                      role="img"
-                      aria-label={skill.name}
-                      title={skill.name}
-                      className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface-2 transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-surface"
-                    >
-                      <span
-                        aria-hidden
-                        className="skill-icon h-6 w-6"
-                        style={{
-                          maskImage: `url(${skill.icon})`,
-                          WebkitMaskImage: `url(${skill.icon})`,
-                          backgroundColor: skill.color,
-                        }}
-                      />
-                    </span>
-                    <span
-                      role="tooltip"
-                      className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-lg transition-all duration-150 group-hover/skill:translate-y-0 group-hover/skill:opacity-100"
-                    >
-                      {skill.name}
-                      <span className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-foreground" />
-                    </span>
-                  </div>
+                      aria-hidden
+                      className="skill-icon h-5 w-5 shrink-0"
+                      style={{
+                        maskImage: `url(${skill.icon})`,
+                        WebkitMaskImage: `url(${skill.icon})`,
+                        backgroundColor: skill.color,
+                      }}
+                    />
+                    <span>{skill.name}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           );
         })}
