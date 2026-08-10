@@ -8,14 +8,19 @@ Portfolio cá nhân xây dựng bằng **Next.js 15 (App Router)**, **TypeScript
 - 🎨 Dark mode tự động theo hệ điều hành (semantic design tokens)
 - 📱 Responsive, tối ưu SEO (metadata theo ngôn ngữ)
 - 📇 4 phần: Giới thiệu · Dự án · Kỹ năng & Kinh nghiệm · Liên hệ
-- ✅ Form liên hệ có validate bằng Zod (client + API route)
+- ✅ Form liên hệ validate bằng Zod và gửi thật qua Resend; tự chuyển sang
+  liên kết email khi chưa cấu hình delivery
 
 ## Chạy local
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
+
+Điền `RESEND_API_KEY` sau khi domain `scholar-ai.app` đã được xác minh trên
+Resend. Có thể dùng `.env` thay cho `.env.local`; cả hai đều đã được Git ignore.
 
 Mở http://localhost:3000 (tự chuyển hướng sang `/vi`).
 
@@ -39,7 +44,9 @@ npm start
 
 1. Đẩy code lên GitHub/GitLab/Bitbucket.
 2. Vào [vercel.com/new](https://vercel.com/new), import repository.
-3. Vercel tự nhận diện Next.js — bấm **Deploy**, không cần cấu hình thêm.
+3. Thêm `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` và `CONTACT_TO_EMAIL` từ
+   `.env.example` vào Environment Variables.
+4. Vercel tự nhận diện Next.js — bấm **Deploy**.
 
 Hoặc dùng CLI:
 

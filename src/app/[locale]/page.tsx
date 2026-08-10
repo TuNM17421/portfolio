@@ -5,6 +5,7 @@ import { ProjectsSection } from "@/components/sections/projects-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { AwardsSection } from "@/components/sections/awards-section";
 import { ContactSection } from "@/components/sections/contact-section";
+import { isContactDeliveryConfigured } from "@/lib/contact-delivery-config";
 
 export default async function HomePage({
   params,
@@ -21,7 +22,7 @@ export default async function HomePage({
       <ProjectsSection />
       <SkillsSection />
       <AwardsSection />
-      <ContactSection />
+      <ContactSection deliveryEnabled={isContactDeliveryConfigured()} />
     </>
   );
 }

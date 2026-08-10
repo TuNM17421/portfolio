@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import { contactSchema } from "@/lib/contact-schema";
 import { SOCIALS } from "@/data/socials";
 import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/icons";
@@ -11,12 +11,17 @@ type FieldErrors = Partial<Record<FieldName, string>>;
 
 const FIELD_ORDER: FieldName[] = ["name", "email", "message"];
 
-export function ContactSection() {
+export function ContactSection({
+  deliveryEnabled,
+}: {
+  deliveryEnabled: boolean;
+}) {
   const t = useTranslations("contact");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const submissionIdRef = useRef<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,15 +54,31 @@ export function ContactSection() {
 
     setErrors({});
     setSubmitError(null);
+    setSent(false);
     setSubmitting(true);
+    const submissionId = submissionIdRef.current ?? crypto.randomUUID();
+    submissionIdRef.current = submissionId;
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+        body: JSON.stringify({ ...parsed.data, submissionId }),
       });
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+
+      if (!res.ok) {
+        setSubmitError(
+          res.status === 429
+            ? t("form.errorRateLimited")
+            : res.status === 503
+              ? t("form.errorUnavailable")
+              : t("form.errorSubmit")
+        );
+        return;
+      }
+
       setSent(true);
+      submissionIdRef.current = null;
       formEl.reset();
     } catch {
       setSubmitError(t("form.errorSubmit"));
@@ -92,62 +113,81 @@ export function ContactSection() {
           </ContactLink>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-9 space-y-5" noValidate>
-          <Field name="name" label={t("form.name")} error={errors.name}>
-            <input
-              name="name"
-              autoComplete="name"
-              aria-required="true"
-              aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? "name-error" : undefined}
-              placeholder={t("form.namePlaceholder")}
-              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
-            />
-          </Field>
-          <Field name="email" label={t("form.email")} error={errors.email}>
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              aria-required="true"
-              aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? "email-error" : undefined}
-              placeholder={t("form.emailPlaceholder")}
-              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
-            />
-          </Field>
-          <Field name="message" label={t("form.message")} error={errors.message}>
-            <textarea
-              name="message"
-              rows={4}
-              aria-required="true"
-              aria-invalid={Boolean(errors.message)}
-              aria-describedby={errors.message ? "message-error" : undefined}
-              placeholder={t("form.messagePlaceholder")}
-              className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
-            />
-          </Field>
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5 disabled:opacity-50 sm:w-auto"
+        {deliveryEnabled ? (
+          <form
+            onSubmit={handleSubmit}
+            onChange={() => {
+              submissionIdRef.current = null;
+              setSent(false);
+            }}
+            className="mt-9 space-y-5"
+            aria-busy={submitting}
+            noValidate
           >
-            {submitting ? t("form.sending") : t("form.submit")}
-          </button>
+            <Field name="name" label={t("form.name")} error={errors.name}>
+              <input
+                name="name"
+                autoComplete="name"
+                aria-required="true"
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "name-error" : undefined}
+                placeholder={t("form.namePlaceholder")}
+                className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
+              />
+            </Field>
+            <Field name="email" label={t("form.email")} error={errors.email}>
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                aria-required="true"
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                placeholder={t("form.emailPlaceholder")}
+                className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
+              />
+            </Field>
+            <Field
+              name="message"
+              label={t("form.message")}
+              error={errors.message}
+            >
+              <textarea
+                name="message"
+                rows={4}
+                aria-required="true"
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? "message-error" : undefined}
+                placeholder={t("form.messagePlaceholder")}
+                className="w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary ring-brand"
+              />
+            </Field>
 
-          {sent && (
-            <p role="status" className="text-sm font-medium text-accent-2">
-              {t("form.success")}
-            </p>
-          )}
-          {submitError && (
-            <p role="alert" className="text-sm font-medium text-destructive">
-              {submitError}
-            </p>
-          )}
-        </form>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white glow-brand transition-transform hover:-translate-y-0.5 disabled:opacity-50 sm:w-auto"
+            >
+              {submitting ? t("form.sending") : t("form.submit")}
+            </button>
+
+            {sent && (
+              <p role="status" className="text-sm font-medium text-accent-2">
+                {t("form.success")}
+              </p>
+            )}
+            {submitError && (
+              <p role="alert" className="text-sm font-medium text-destructive">
+                {submitError}
+              </p>
+            )}
+          </form>
+        ) : (
+          <p className="mx-auto mt-8 max-w-md text-center text-sm text-muted-foreground">
+            {t("form.unavailable")}
+          </p>
+        )}
       </div>
     </section>
   );
