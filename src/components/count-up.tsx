@@ -27,7 +27,13 @@ export function CountUp({
   useEffect(() => {
     const node = ref.current;
     if (!node || target === 0) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (
+      "matchMedia" in window &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+    if (!("IntersectionObserver" in window)) return;
 
     let raf = 0;
     let start = 0;
