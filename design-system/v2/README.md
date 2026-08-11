@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Part 01 implemented, awaiting visual approval
+> **Status:** Part 01 approved and committed; Part 02 contract approved, checkpoint 02A in progress
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 01 Intro Loader and Part 02 Header + Hero
-> **Implementation status:** Part 01 runs on the isolated `/[locale]/v2` route; Part 02 remains blocked until Part 01 is approved
+> **Implementation status:** Part 01 runs on the isolated `/[locale]/v2` route; Part 02 UI implementation has not started
 
 ## Objective
 
@@ -142,8 +142,8 @@ Relevant implementation references:
 | Part | Scope | User review artifact | Status |
 | --- | --- | --- | --- |
 | 00 | Evidence, direction and contracts | These documents | Approved |
-| 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | In local visual review |
-| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Planned |
+| 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
+| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Contract approved · 02A in progress |
 | 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Not planned in detail |
 | 04 | VCareer flagship showcase | Project transition and evidence hierarchy | Not planned in detail |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
