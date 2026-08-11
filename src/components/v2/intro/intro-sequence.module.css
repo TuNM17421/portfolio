@@ -276,7 +276,7 @@
 .portraitEchoImage {
   object-fit: cover;
   object-position: 34% 50%;
-  filter: saturate(0.38) contrast(1.1) brightness(0.54);
+  filter: saturate(0.66) contrast(1.08) brightness(0.68);
   transform: scale(1.05) skewX(4deg);
 }
 
@@ -287,6 +287,7 @@
 }
 
 .portraitEchoGrade {
+  opacity: 0.5;
   background:
     linear-gradient(90deg, var(--v2-night), transparent 45%),
     linear-gradient(to top, rgba(7, 18, 25, 0.74), transparent 50%),

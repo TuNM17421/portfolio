@@ -82,6 +82,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             handoffEyebrow: t("handoff.eyebrow"),
             handoffRole: t("handoff.role"),
             handoffNote: t("handoff.note"),
+            partLabel: t("handoff.partLabel"),
             reviewLabel: t("handoff.reviewLabel"),
           }}
         />

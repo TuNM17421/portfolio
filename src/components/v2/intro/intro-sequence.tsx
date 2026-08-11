@@ -52,6 +52,7 @@ export type IntroCopy = {
   handoffEyebrow: string;
   handoffRole: string;
   handoffNote: string;
+  partLabel: string;
   reviewLabel: string;
 };
 

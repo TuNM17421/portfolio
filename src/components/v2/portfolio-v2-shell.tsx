@@ -83,7 +83,7 @@ export function PortfolioV2Shell({
             )}
 
             <div className={styles.handoffMeta}>
-              <span>PART 01</span>
+              <span>{copy.partLabel}</span>
               <span className={styles.metaDivider} aria-hidden />
               <span>{locale.toUpperCase()}</span>
             </div>
