@@ -59,35 +59,38 @@ Fresh catalogue browsing at `uizze.com` timed out during this checkpoint, so
 the three repository-recorded UIZZE captures above were re-opened and visually
 inspected instead.
 
-## Visual direction — “Architected Presence”
+## Visual direction — “Systems in Focus”
 
-The visual source is the green architectural window grid in `avatar.jpg` and
-Tu's work on backend/realtime systems. The page should feel constructed in
-layers: frames, rails, masks and signals move into alignment before revealing
-the human portrait and product evidence.
+The visual source is the cool ceremony portrait in `avatar-graduation.jpg`,
+especially the glasses, shallow depth and blue-white background, together with
+Nguyen Manh Tu's work on backend/realtime systems. The page should feel like
+layers of a system coming into focus: planes, masks and signals align before
+revealing the portrait and product evidence.
 
 This is deliberately different from a generic terminal/cyberpunk portfolio.
 There are no decorative command prompts or invented system diagnostics. The
-structural language comes from real architecture in the photograph and real
-engineering specialties in the content.
+structural language comes from the portrait's real focal planes and real
+engineering specialties in the content. It avoids camera-viewfinder clichés:
+one focus line is enough; there are no decorative reticles or fake diagnostics.
 
 ### Signature
 
-The large `TÚ` wordmark is assembled during the intro. Its accent becomes a
-horizontal signal line. The line expands into the reveal mask, while the same
-wordmark moves into its compact header position. This is the one transition the
-opening should be remembered by.
+The exact `Nguyen Manh Tu` wordmark is assembled during the intro. Its baseline
+extends into a horizontal focus signal that moves the portrait from soft to
+sharp and then expands into the reveal mask. The same full-name wordmark moves
+into its compact header position. This is the one transition the opening should
+be remembered by.
 
 ### Palette proposal
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| Night structure | `#071113` | Loader and deepest backdrop |
-| Atlantic frame | `#0B2832` | Full-viewport image grade and panels |
-| Architectural green | `#0B6656` | Lines and structural accents sampled from `avatar.jpg` |
-| Signal mint | `#72E3C1` | Active signal, focus and primary detail |
-| Mineral mist | `#E8F1ED` | Primary text over dark imagery |
-| Warm portrait | `#D1A38F` | Photo highlight reference; not a UI fill color |
+| Night glass | `#071219` | Loader and deepest backdrop |
+| Deep lens blue | `#0B2738` | Full-viewport image grade and panels |
+| Ceremony blue | `#4B7188` | Secondary planes sampled from the portrait background |
+| Focus cyan | `#6BD7D0` | Active signal, focus and primary detail |
+| Mineral white | `#EDF4F5` | Primary text over dark imagery |
+| Warm portrait | `#D3A58F` | Photo highlight reference; not a UI fill color |
 
 The palette is art-directed and dark because it is built around a cinematic
 portrait. It is not the old dark-theme token set and it is not a simple
@@ -108,8 +111,8 @@ to the opening and fixed-size display containers to avoid layout movement.
 ### Image language
 
 - One hero portrait is the first scene's dominant object.
-- Grain, vignette and color separation support depth; they do not obscure the
-  face or text.
+- Soft/sharp separation, grain, vignette and color separation support depth;
+  they do not obscure the face, eyes, glasses or text.
 - Product screenshots remain literal evidence in later parts and are not
   transformed into abstract decoration.
 - Desktop and mobile use art-directed crops rather than one compromise crop.
@@ -152,10 +155,14 @@ Relevant implementation references:
 Detailed contracts for Part 01 and Part 02 live beside this file. Later parts
 receive the same research/contract treatment only after Part 02 is accepted.
 
+## Confirmed user inputs
+
+- The visible wordmark is exactly `Nguyen Manh Tu`.
+- The Hero source is the current user-provided
+  `public/avatar-graduation.jpg` working copy.
+
 ## Decisions awaiting approval
 
 1. Use one art-directed dark V2 palette and remove the theme toggle from V2.
 2. Play the full intro once per browser tab/session; use a short transition on
    repeat navigation, with `?intro=1` available to force the full sequence.
-3. Use `avatar.jpg` as the current hero source and produce separate processed
-   desktop/mobile assets before final Hero acceptance.

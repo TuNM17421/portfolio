@@ -7,11 +7,11 @@
 
 | Field | Decision |
 | --- | --- |
-| Screen job | Establish Tu's identity and exact role, then move a hiring visitor directly to the flagship VCareer proof. |
+| Screen job | Establish Nguyen Manh Tu's identity and exact role, then move a hiring visitor directly to the flagship VCareer proof. |
 | Primary action | Open the localized VCareer case study. Contact is the secondary action. |
 | Content hierarchy | 1. Portrait and name. 2. Exact canonical role. 3. Concise specialization. 4. VCareer/contact actions. 5. Compact verified evidence. |
-| Navigation | Edge-aligned `TÚ / 2026` mark, Work, Experience, Awards and Contact; locale remains available. No Resume action unless a real PDF exists. |
-| Visual language | Art-directed portrait fills the scene; oversized variable display type anchors the lower-left; summary/actions occupy a quieter lower-right zone; metadata follows the photograph's architectural lines. |
+| Navigation | Edge-aligned `Nguyen Manh Tu / 2026` wordmark, Work, Experience, Awards and Contact; locale remains available. No Resume action unless a real PDF exists. |
+| Visual language | Art-directed close portrait fills the scene; oversized variable display type anchors the lower-left; summary/actions occupy a quieter lower-right zone; one focus line and layered sharpness follow the portrait's optical character. |
 | Motion model | Intro shared-element handoff, portrait depth settle, masked role reveal, staggered supporting copy, pointer depth on capable devices and a sticky first-scene scroll phase. |
 | Required states | Intro handoff, direct load without intro, portrait loading/error, mobile menu open/closed, VI/EN, keyboard, touch, no-JS and reduced motion. |
 | Acceptance criteria | Name/role are continuously available; VCareer CTA is real; image and text stay legible at all target widths; direct and intro-assisted loads land in the same final composition. |
@@ -44,10 +44,10 @@ Verified evidence appears as structural metadata, not dashboard cards:
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────┐
-│ TÚ / PORTFOLIO 2026       WORK   EXPERIENCE   AWARDS   CONTACT  VI/EN│
+│ Nguyen Manh Tu / 2026     WORK   EXPERIENCE   AWARDS   CONTACT VI/EN│
 │                                                                      │
 │                  processed full-bleed portrait                       │
-│             architecture / green frames / depth grain                │
+│              cool ceremony blue / focal planes / grain               │
 │                                                                      │
 │ BACKEND SOFTWARE                 Building reliable backends and       │
 │ ENGINEER · AI ENGINEER           realtime AI experiences…             │
@@ -56,15 +56,16 @@ Verified evidence appears as structural metadata, not dashboard cards:
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-The portrait subject sits right of center. The window-frame background creates
-negative space for the role on the left and guides the summary on the right.
-The composition should feel like one poster, not a two-column SaaS hero.
+The portrait subject sits right of center after the secondary person is removed
+and the ceremony background is extended. The softer left background creates
+negative space for the role, while the sharper glasses/eyes remain the focal
+anchor. The composition should feel like one poster, not a two-column SaaS hero.
 
 ## Mobile composition
 
 ```text
 ┌──────────────────────────────┐
-│ TÚ / 26          VI/EN  MENU │
+│ Nguyen Manh Tu   VI/EN  MENU │
 │                              │
 │      portrait / face         │
 │      centered upper 55%      │
@@ -86,8 +87,8 @@ shown in-scene, and remaining proof appears immediately in the next section.
 ## Header behavior
 
 - Transparent and integrated into the image at scroll position zero.
-- The compact `TÚ` mark is the destination of the loader's shared-element
-  transition.
+- The compact `Nguyen Manh Tu` wordmark is the destination of the loader's
+  shared-element transition.
 - Navigation text uses the body face; the mark uses `Anybody`.
 - On downward scroll, the desktop header condenses into a narrow edge rail; on
   upward scroll it expands. This behavior is not implemented until the Hero
@@ -101,9 +102,10 @@ shown in-scene, and remaining proof appears immediately in the next section.
 
 ### Loader handoff
 
-1. The loader's signal mask uncovers the portrait from the architectural-green
-   edge toward the subject.
-2. The large `TÚ` mark moves to the header position using `layoutId`.
+1. The loader's focus line sweeps across the portrait, changing the image from
+   soft to sharp before the signal mask uncovers the final grade.
+2. The large `Nguyen Manh Tu` wordmark moves to the header position using
+   `layoutId`.
 3. Portrait begins at scale `1.10–1.14` with controlled blur/grain separation
    and settles to its resting frame.
 4. Role lines reveal through independent clipping masks.
@@ -111,8 +113,8 @@ shown in-scene, and remaining proof appears immediately in the next section.
 
 ### Idle scene
 
-- A very slow depth drift may separate portrait, architectural background and
-  grain layers.
+- A very slow depth drift may separate portrait, ceremony background and grain
+  layers.
 - Pointer-capable devices receive subtle perspective/parallax tied to cursor
   position. The face never swings or rotates unnaturally.
 - Headline width may breathe once after entry through `Anybody`'s `wdth` axis;
@@ -144,24 +146,26 @@ About transition.
 
 ### Current asset assessment
 
-- `public/avatar.jpg` (800×800) is the stronger source because it contains more
-  torso, a suit and the green architectural frames that inform the design.
-- `public/avatar-graduation.jpg` (760×760) is a close facial crop and does not
-  provide enough negative space for a full-viewport layout.
-- A higher-resolution half-body or full-body source from the user would improve
-  the final result, but the layout can be prototyped with `avatar.jpg`.
+- The user has selected the current working copy of
+  `public/avatar-graduation.jpg` as the Hero source.
+- The selected file is 1280×1159 and provides a strong face, glasses, suit and
+  upper-body crop, but very little clean negative space.
+- A second person occupies the right side and must be removed during processing;
+  the surrounding blue-white ceremony background then needs reconstruction and
+  outpainting for the final desktop/mobile compositions.
 
 ### Required processing
 
 1. Preserve Tu's face, glasses, hair, skin texture and clothing identity. AI
    may extend the scene but must not beautify or reconstruct facial features.
-2. Outpaint the green-window environment to create negative space rather than
-   replacing it with an unrelated futuristic background.
+2. Remove the secondary person on the right without changing Tu's shoulder,
+   jawline or glasses; rebuild the existing ceremony background rather than
+   inventing an unrelated futuristic environment.
 3. Produce separate desktop and mobile compositions:
    - desktop master around 2400×1600, subject in the right-middle third;
    - mobile master around 1400×1900, face centered in the upper-middle region.
-4. Grade the environment toward Atlantic Frame / Architectural Green while
-   keeping skin highlights natural and warmer than the background.
+4. Grade the environment toward Deep Lens Blue / Ceremony Blue while keeping
+   skin highlights natural and warmer than the background.
 5. Add controlled depth: background blur, subject separation, vignette and
    fine grain. Do not blur glasses/eyes or create an artificial halo.
 6. Export AVIF and WebP derivatives plus a tiny blur placeholder; keep the
@@ -171,7 +175,7 @@ About transition.
 
 The processed desktop and mobile images are reviewed side-by-side with their
 original before replacing any current asset. Hero visual approval remains
-provisional while it uses the unprocessed 800×800 source.
+provisional while it uses the unprocessed 1280×1159 source.
 
 ## Planned implementation boundary
 
@@ -208,5 +212,6 @@ is under review.
 1. Approve the single dark art-directed V2 palette and removal of the V2 theme
    toggle.
 2. Approve the proposed positioning copy, or provide the exact replacement.
-3. Confirm `avatar.jpg` as the temporary source while a higher-resolution or
-   AI-assisted processed image is prepared.
+
+Confirmed inputs: the wordmark is exactly `Nguyen Manh Tu`, and the Hero source
+is `public/avatar-graduation.jpg`.

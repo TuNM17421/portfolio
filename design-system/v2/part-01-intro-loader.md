@@ -9,9 +9,9 @@
 | --- | --- |
 | Screen job | Turn the unavoidable preparation of the critical hero assets into a memorable introduction to Nguyen Manh Tu. |
 | Primary user and action | A first-time visitor watches the identity assemble, or chooses `Skip intro` and reaches the Hero immediately. |
-| Content hierarchy | 1. `TÚ` identity. 2. Backend / Realtime / AI specialties. 3. Honest readiness progress. 4. Seamless reveal into the Hero. |
-| Visual language | Full-viewport Night Structure field, variable-width wordmark, one mint signal line, architectural rails and restrained metadata. No spinner, terminal window or generic code rain. |
-| Motion model | Motion `useAnimate` orchestrates the timeline; `AnimatePresence` owns exit; a shared `layoutId` hands the `TÚ` mark to the header. |
+| Content hierarchy | 1. `Nguyen Manh Tu` identity. 2. Backend / Realtime / AI specialties. 3. Honest readiness progress. 4. Seamless reveal into the Hero. |
+| Visual language | Full-viewport Night Glass field, variable-width full-name wordmark, one cyan focus line, layered focal planes and restrained metadata. No spinner, terminal window, viewfinder reticle or generic code rain. |
+| Motion model | Motion `useAnimate` orchestrates the timeline; `AnimatePresence` owns exit; a shared `layoutId` hands the `Nguyen Manh Tu` wordmark to the header. |
 | Required states | First visit, cached/fast assets, slow assets, portrait error, maximum-time fallback, forced replay, skip, no JavaScript and reduced motion. |
 | Responsive behavior | Same narrative at all widths; typography, rail count and metadata placement change. Mobile uses fewer simultaneous layers and no pointer-driven effect. |
 | Acceptance criteria | No hero flash before the intro; progress reaches completion only after critical readiness or fail-safe; exit lands exactly on the Hero; no stuck scroll/focus; all forced states are reviewable locally. |
@@ -82,11 +82,11 @@ visual block may never exceed 8 seconds.
 | Time | Stage | Visual and behavior |
 | ---: | --- | --- |
 | 0.00–0.45s | Boot | Night field appears; small `PORTFOLIO / 2026` and locale metadata resolve at opposing edges. |
-| 0.45–1.55s | Identify | Large `TÚ` enters from a clipped baseline. `Anybody` width moves from compressed to expanded while its acute accent lands last. |
-| 1.20–2.40s | Specialize | `BACKEND`, `REALTIME`, `AI` lock onto an architectural rail one by one. The rail is also the readiness line. |
+| 0.45–1.55s | Identify | Large `Nguyen Manh Tu` enters from a clipped baseline in three coordinated word groups. `Anybody` width moves from compressed to expanded without changing the text value. |
+| 1.20–2.40s | Specialize | `BACKEND`, `REALTIME`, `AI` lock onto the wordmark baseline one by one. The extended baseline is also the readiness/focus line. |
 | 1.55s–ready | Prepare | Progress advances from measured font/image readiness. It may hold below completion while waiting. A `Skip intro` control becomes available. |
 | ready–ready+0.30s | Commit | Progress reaches 100; the rail flashes once and aligns with the Hero horizon. |
-| +0.30–1.25s | Reveal | The signal line expands into a directional mask that exposes the processed portrait. The large `TÚ` travels to the header using shared layout. |
+| +0.30–1.25s | Reveal | The focus line sweeps the processed portrait from soft to sharp, then expands into a directional mask. The full `Nguyen Manh Tu` wordmark travels to the header using shared layout. |
 | +0.65–1.70s | Hero handoff | Portrait depth settles; canonical role, supporting copy and actions enter in the Hero's own timeline. Intro unmounts after the shared transition completes. |
 
 The intro and Hero timelines overlap at the handoff. There is no blank frame
@@ -115,12 +115,12 @@ Desktop:
 ┌────────────────────────────────────────────────────────────────────┐
 │ PORTFOLIO / 2026                                      VI · EN      │
 │                                                                    │
-│                              TÚ                                    │
+│                       Nguyen Manh Tu                               │
 │                                                                    │
 │              BACKEND ───── REALTIME ───── AI                       │
 │              ████████████████████──────────  74                    │
 │                                                                    │
-│ NGUYEN MANH TU                                  SKIP INTRO          │
+│ BACKEND · REALTIME · AI                          SKIP INTRO          │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -130,7 +130,7 @@ Mobile:
 ┌──────────────────────────┐
 │ PORTFOLIO / 26       VI  │
 │                          │
-│            TÚ            │
+│     Nguyen Manh Tu       │
 │                          │
 │ BACKEND                  │
 │ REALTIME ─────────── AI  │
