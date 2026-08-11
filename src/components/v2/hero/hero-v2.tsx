@@ -46,11 +46,11 @@ export function HeroV2({
 
       <div className={styles.portraitField}>
         <div className={styles.portraitFallback} aria-hidden>
-          <span className={styles.fallbackMonogram}>NMT</span>
+          <span className={styles.fallbackMonogram}>TuNM</span>
           <span className={styles.fallbackCopy}>{copy.portraitFallback}</span>
         </div>
         <Image
-          src="/avatar-graduation.jpg"
+          src="/avatar.jpg"
           alt={copy.portraitAlt}
           fill
           priority
