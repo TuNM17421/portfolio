@@ -1,7 +1,7 @@
 # Part 01 — Cinematic Intro Loader
 
-> **Status:** Planned, awaiting approval
-> **Implementation gate:** Do not write loader code until this contract is approved
+> **Status:** Implemented, awaiting local visual approval
+> **Implementation gate:** Do not begin Part 02 until the live Part 01 sequence is approved
 
 ## Design contract
 
@@ -167,12 +167,12 @@ Recommended behavior:
 - Development-only query states expose slow, image-error and reduced-motion
   behavior without changing production data.
 
-## Planned implementation boundary
-
-Files are illustrative until implementation begins:
+## Implemented boundary
 
 ```text
+src/app/[locale]/v2/page.tsx
 src/components/v2/portfolio-v2-shell.tsx
+src/components/v2/portfolio-v2-shell.module.css
 src/components/v2/intro/intro-sequence.tsx
 src/components/v2/intro/intro-sequence.module.css
 src/lib/v2/intro-readiness.ts

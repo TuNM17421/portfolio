@@ -353,6 +353,31 @@
       "sending": "Đang gửi…"
     }
   },
+  "v2": {
+    "intro": {
+      "metaTitle": "Nguyen Manh Tu — Systems in Focus",
+      "metaDescription": "Portfolio giàu chuyển động của Nguyen Manh Tu, Backend Software Engineer và AI Engineer.",
+      "introLabel": "Hoạt cảnh mở đầu portfolio",
+      "portfolio": "Portfolio",
+      "wordmark": "Nguyen Manh Tu",
+      "specialties": {
+        "backend": "Backend",
+        "realtime": "Realtime",
+        "ai": "AI"
+      },
+      "skip": "Bỏ qua intro",
+      "preparing": "Đang hoàn thiện cảnh chính",
+      "ready": "Đã khóa tiêu điểm",
+      "fallbackReady": "Tín hiệu được giữ · vào trang an toàn",
+      "portraitFallback": "Không tải được chân dung · đã bật nền thay thế",
+      "handoff": {
+        "eyebrow": "Part 01 · Điểm bàn giao intro",
+        "role": "Backend Software Engineer · AI Engineer",
+        "note": "Khung đích tạm thời. Hero hoàn chỉnh sẽ bắt đầu sau khi intro được duyệt.",
+        "reviewLabel": "Intro đã sẵn sàng để kiểm tra"
+      }
+    }
+  },
   "footer": {
     "rights": "Bảo lưu mọi quyền.",
     "builtWith": "Xây dựng với Next.js & Tailwind CSS."

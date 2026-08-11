@@ -1,0 +1,525 @@
+.intro {
+  --v2-night: #071219;
+  --v2-deep: #0b2738;
+  --v2-ceremony: #4b7188;
+  --v2-focus: #6bd7d0;
+  --v2-white: #edf4f5;
+  --v2-warm: #d3a58f;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: none;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--v2-white);
+  background: var(--v2-night);
+  clip-path: inset(0% 0% 0% 0%);
+  font-family: var(--font-v2-body), sans-serif;
+}
+
+:global(html[data-intro="pending"]) .intro,
+:global(html[data-intro="running"]) .intro,
+:global(html[data-intro="exiting"]) .intro {
+  display: block;
+}
+
+.field,
+.fieldGlow,
+.fieldGrain,
+.fieldPlaneOne,
+.fieldPlaneTwo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.field {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 72% 40%, rgba(75, 113, 136, 0.2), transparent 31%),
+    radial-gradient(circle at 19% 74%, rgba(107, 215, 208, 0.07), transparent 27%),
+    linear-gradient(135deg, #071219 0%, #081923 52%, #050d12 100%);
+}
+
+.fieldGlow {
+  inset: 24% 18%;
+  opacity: 0.24;
+  background: rgba(107, 215, 208, 0.13);
+  filter: blur(110px);
+  transform: rotate(-14deg);
+}
+
+.fieldGrain {
+  opacity: 0.11;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.fieldPlaneOne,
+.fieldPlaneTwo {
+  border: 1px solid rgba(237, 244, 245, 0.045);
+  transform: rotate(-11deg) skewX(-5deg);
+}
+
+.fieldPlaneOne {
+  inset: 8% -13% 14% 43%;
+  background: linear-gradient(148deg, rgba(107, 215, 208, 0.04), transparent 44%);
+}
+
+.fieldPlaneTwo {
+  inset: 46% 52% -33% -12%;
+  border-color: rgba(211, 165, 143, 0.06);
+}
+
+.topRail,
+.bottomRail {
+  position: absolute;
+  z-index: 8;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(22px, 4.6vw, 72px);
+  color: rgba(237, 244, 245, 0.45);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.61rem, 0.72vw, 0.72rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.topRail {
+  top: clamp(23px, 3.4vw, 46px);
+}
+
+.bottomRail {
+  bottom: clamp(20px, 3vw, 42px);
+}
+
+.topRail p,
+.bottomRail p {
+  margin: 0;
+}
+
+.topRail [data-intro-meta],
+.bottomRail [data-intro-meta] {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.activeLocale {
+  color: var(--v2-white);
+}
+
+.identity {
+  position: absolute;
+  z-index: 7;
+  top: 42%;
+  left: 50%;
+  width: min(90vw, 1360px);
+  transform: translate(-50%, -50%);
+}
+
+.wordmark {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(4.35rem, 9.35vw, 9.6rem);
+  font-variation-settings: "wdth" 78;
+  font-weight: 570;
+  letter-spacing: -0.082em;
+  line-height: 0.77;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.wordmarkText {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
+}
+
+.wordClip {
+  display: inline-block;
+  overflow: hidden;
+  padding-block: 0.1em 0.16em;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(118%);
+}
+
+.specialties {
+  display: flex;
+  width: min(76vw, 950px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.8vw, 26px);
+  margin: clamp(28px, 4.2vh, 46px) auto 0;
+  color: rgba(237, 244, 245, 0.62);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.64rem, 0.82vw, 0.82rem);
+  letter-spacing: 0.18em;
+}
+
+.specialtyWrap {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: clamp(10px, 1.8vw, 26px);
+}
+
+.specialtyWrap:last-child {
+  flex: 0 0 auto;
+}
+
+.specialtyWrap > span {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.specialtyConnector {
+  display: block;
+  min-width: 22px;
+  flex: 1;
+  height: 1px;
+  background: rgba(107, 215, 208, 0.24);
+}
+
+.progressArea {
+  position: absolute;
+  z-index: 9;
+  top: 62%;
+  left: 50%;
+  width: min(76vw, 950px);
+  transform: translateX(-50%);
+}
+
+.progressHeader,
+.checkpoints {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-v2-mono), monospace;
+  text-transform: uppercase;
+}
+
+.progressHeader {
+  margin-bottom: 11px;
+  color: rgba(237, 244, 245, 0.6);
+  font-size: clamp(0.58rem, 0.72vw, 0.7rem);
+  letter-spacing: 0.14em;
+}
+
+.progressHeader span:last-child {
+  color: var(--v2-focus);
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 18px rgba(107, 215, 208, 0.48);
+}
+
+.progressTrack {
+  position: relative;
+  height: 2px;
+}
+
+.railBase,
+.progressFill,
+.readyFlash {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: left center;
+}
+
+.railBase {
+  background: rgba(237, 244, 245, 0.16);
+  transform: scaleX(0);
+}
+
+.progressFill {
+  background: linear-gradient(90deg, var(--v2-focus), rgba(107, 215, 208, 0.46));
+  box-shadow: 0 0 20px rgba(107, 215, 208, 0.45);
+  transition: transform 80ms linear;
+}
+
+.readyFlash {
+  opacity: 0;
+  background: var(--v2-white);
+  box-shadow: 0 0 32px var(--v2-focus);
+}
+
+.checkpoints {
+  margin-top: 10px;
+  color: rgba(237, 244, 245, 0.27);
+  font-size: clamp(0.5rem, 0.62vw, 0.61rem);
+  letter-spacing: 0.12em;
+}
+
+.portraitEcho {
+  position: absolute;
+  z-index: 4;
+  top: 9vh;
+  right: 10vw;
+  width: min(43vw, 650px);
+  height: min(80vh, 770px);
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0% 100% 0% 0%);
+  filter: blur(20px);
+  transform: skewX(-4deg);
+}
+
+.portraitEchoImage {
+  object-fit: cover;
+  object-position: 34% 50%;
+  filter: saturate(0.38) contrast(1.1) brightness(0.54);
+  transform: scale(1.05) skewX(4deg);
+}
+
+.portraitEchoGrade,
+.portraitEchoFallback {
+  position: absolute;
+  inset: 0;
+}
+
+.portraitEchoGrade {
+  background:
+    linear-gradient(90deg, var(--v2-night), transparent 45%),
+    linear-gradient(to top, rgba(7, 18, 25, 0.74), transparent 50%),
+    rgba(11, 39, 56, 0.18);
+}
+
+.portraitEchoFallback {
+  background:
+    repeating-linear-gradient(115deg, rgba(237, 244, 245, 0.05) 0 1px, transparent 1px 28px),
+    linear-gradient(135deg, rgba(107, 215, 208, 0.12), transparent 42%),
+    var(--v2-deep);
+}
+
+.focusSweep {
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  opacity: 0;
+  background: var(--v2-white);
+  box-shadow:
+    0 0 12px var(--v2-focus),
+    0 0 34px 5px rgba(107, 215, 208, 0.48),
+    -28px 0 80px 18px rgba(107, 215, 208, 0.1);
+  transform: translateX(-18vw);
+}
+
+.skipButton {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: -10px -12px -10px 0;
+  padding: 10px 12px;
+  border: 0;
+  color: rgba(237, 244, 245, 0.7);
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.skipButton:hover {
+  color: var(--v2-focus);
+}
+
+.skipButton:focus-visible {
+  border-radius: 0;
+  outline: 1px solid var(--v2-focus);
+  outline-offset: 4px;
+}
+
+.skipButton:disabled {
+  pointer-events: none;
+}
+
+.intro[data-mode="quick"] .topRail,
+.intro[data-mode="quick"] .bottomRail p,
+.intro[data-mode="quick"] .specialties,
+.intro[data-mode="quick"] .portraitEcho {
+  display: none;
+}
+
+.intro[data-mode="quick"] .identity {
+  top: 50%;
+}
+
+.intro[data-mode="quick"] .wordmark {
+  font-size: clamp(3.6rem, 9vw, 8rem);
+  font-variation-settings: "wdth" 112;
+}
+
+.intro[data-mode="quick"] .progressArea {
+  top: 61%;
+}
+
+.intro[data-mode="quick"] .progressHeader,
+.intro[data-mode="quick"] .checkpoints,
+.intro[data-mode="quick"] .progressFill,
+.intro[data-mode="quick"] .readyFlash {
+  display: none;
+}
+
+.intro[data-mode="quick"] .skipButton {
+  display: none;
+}
+
+.intro[data-reduced="true"] .field,
+.intro[data-reduced="true"] [data-intro-meta],
+.intro[data-reduced="true"] [data-intro-word] {
+  opacity: 1;
+  transform: none;
+}
+
+.intro[data-reduced="true"] .wordmark {
+  font-variation-settings: "wdth" 112;
+}
+
+.intro[data-reduced="true"] .specialties,
+.intro[data-reduced="true"] .progressArea,
+.intro[data-reduced="true"] .portraitEcho,
+.intro[data-reduced="true"] .focusSweep,
+.intro[data-reduced="true"] .bottomRail {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .topRail,
+  .bottomRail {
+    padding-inline: 20px;
+  }
+
+  .topRail {
+    top: 21px;
+  }
+
+  .bottomRail {
+    bottom: 16px;
+  }
+
+  .bottomRail > p {
+    display: none;
+  }
+
+  .bottomRail {
+    justify-content: flex-end;
+  }
+
+  .identity {
+    top: 39%;
+    width: calc(100vw - 34px);
+  }
+
+  .wordmark {
+    font-size: clamp(3.7rem, 18.8vw, 6.2rem);
+    line-height: 0.8;
+    white-space: normal;
+  }
+
+  .wordmarkText {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 0.16em;
+  }
+
+  .wordClip:last-child {
+    flex-basis: 100%;
+  }
+
+  .specialties {
+    width: calc(100vw - 40px);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 11px;
+    margin-top: 22px;
+    font-size: 0.6rem;
+  }
+
+  .specialtyWrap {
+    flex: 0 0 auto;
+    gap: 11px;
+  }
+
+  .specialtyWrap:nth-child(2) {
+    flex: 1;
+  }
+
+  .specialtyConnector {
+    min-width: 12px;
+  }
+
+  .progressArea {
+    top: 61%;
+    width: calc(100vw - 40px);
+  }
+
+  .checkpoints span:nth-child(2) {
+    display: none;
+  }
+
+  .portraitEcho {
+    top: 9vh;
+    right: 8vw;
+    width: 84vw;
+    height: 61vh;
+  }
+
+  .portraitEchoImage {
+    object-position: 51% 50%;
+    transform: scale(1.17) skewX(4deg);
+  }
+
+  .intro[data-mode="quick"] .wordmark {
+    font-size: clamp(3.35rem, 17vw, 5rem);
+  }
+}
+
+@media (max-height: 690px) {
+  .identity {
+    top: 38%;
+  }
+
+  .progressArea {
+    top: 64%;
+  }
+
+  .specialties {
+    margin-top: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .intro * {
+    scroll-behavior: auto !important;
+  }
+
+  .wordmark {
+    font-variation-settings: "wdth" 112;
+  }
+
+  .fieldPlaneOne,
+  .fieldPlaneTwo,
+  .portraitEcho,
+  .focusSweep,
+  .progressArea,
+  .specialties {
+    display: none;
+  }
+}

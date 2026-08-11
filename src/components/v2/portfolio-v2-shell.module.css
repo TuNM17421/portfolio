@@ -1,0 +1,397 @@
+.root {
+  --v2-night: #071219;
+  --v2-deep: #0b2738;
+  --v2-ceremony: #4b7188;
+  --v2-focus: #6bd7d0;
+  --v2-white: #edf4f5;
+  --v2-warm: #d3a58f;
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+  isolation: isolate;
+  color: var(--v2-white);
+  background: var(--v2-night);
+  font-family: var(--font-v2-body), sans-serif;
+}
+
+.root,
+.root * {
+  box-sizing: border-box;
+}
+
+.handoff {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 69% 42%, rgba(75, 113, 136, 0.3), transparent 30%),
+    radial-gradient(circle at 12% 82%, rgba(107, 215, 208, 0.08), transparent 26%),
+    linear-gradient(132deg, #071219 0%, #091a25 54%, #061017 100%);
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(237, 244, 245, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237, 244, 245, 0.035) 1px, transparent 1px);
+  background-size: clamp(54px, 6vw, 92px) clamp(54px, 6vw, 92px);
+  mask-image: linear-gradient(to bottom, transparent, black 24%, black 70%, transparent);
+}
+
+.depthPlaneOne,
+.depthPlaneTwo {
+  position: absolute;
+  border: 1px solid rgba(107, 215, 208, 0.11);
+  transform: rotate(-8deg) skewX(-4deg);
+  pointer-events: none;
+}
+
+.depthPlaneOne {
+  top: 13%;
+  right: -8%;
+  width: 54vw;
+  height: 67vh;
+  background: linear-gradient(145deg, rgba(107, 215, 208, 0.05), transparent 48%);
+}
+
+.depthPlaneTwo {
+  bottom: -42%;
+  left: -11%;
+  width: 62vw;
+  height: 72vh;
+  border-color: rgba(211, 165, 143, 0.08);
+}
+
+.handoffHeader {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(24px, 3vw, 46px) clamp(22px, 4.6vw, 72px);
+}
+
+.handoffWordmark {
+  display: inline-block;
+  color: var(--v2-white);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(1.08rem, 1.55vw, 1.48rem);
+  font-variation-settings: "wdth" 116;
+  font-weight: 580;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.handoffMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(237, 244, 245, 0.62);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.metaDivider {
+  width: 28px;
+  height: 1px;
+  background: var(--v2-focus);
+  box-shadow: 0 0 14px rgba(107, 215, 208, 0.56);
+}
+
+.portraitStage {
+  position: absolute;
+  z-index: 2;
+  top: 12.5vh;
+  right: clamp(8vw, 11vw, 176px);
+  width: min(43vw, 650px);
+  height: min(78vh, 760px);
+}
+
+.portraitHalo {
+  position: absolute;
+  inset: 8% -12% -4% 16%;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: rgba(75, 113, 136, 0.45);
+  filter: blur(72px);
+}
+
+.portraitFrame,
+.fallbackPortrait {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: polygon(15% 0, 100% 0, 88% 100%, 0 100%);
+}
+
+.portraitFrame {
+  box-shadow:
+    0 58px 120px rgba(0, 0, 0, 0.44),
+    inset 0 0 0 1px rgba(237, 244, 245, 0.11);
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: 34% 50%;
+  filter: saturate(0.67) contrast(1.06) brightness(0.78);
+  transform: scale(1.035);
+}
+
+.portraitGrade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 18, 25, 0.52), transparent 42%),
+    linear-gradient(to top, rgba(7, 18, 25, 0.58), transparent 46%),
+    linear-gradient(145deg, rgba(107, 215, 208, 0.1), rgba(211, 165, 143, 0.08));
+  mix-blend-mode: color;
+}
+
+.fallbackPortrait {
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  background:
+    linear-gradient(135deg, rgba(107, 215, 208, 0.12), transparent 45%),
+    repeating-linear-gradient(115deg, rgba(237, 244, 245, 0.05) 0 1px, transparent 1px 28px),
+    var(--v2-deep);
+}
+
+.fallbackPortrait span {
+  width: min(70%, 280px);
+  color: rgba(237, 244, 245, 0.55);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.root[data-portrait="error"] .portraitFrame {
+  opacity: 0;
+}
+
+.root[data-portrait="error"] .fallbackPortrait {
+  opacity: 1;
+}
+
+.horizon {
+  position: absolute;
+  z-index: 3;
+  top: 62%;
+  left: clamp(22px, 4.6vw, 72px);
+  width: calc(100% - clamp(44px, 9.2vw, 144px));
+  height: 1px;
+  background: linear-gradient(90deg, var(--v2-focus), rgba(107, 215, 208, 0.04) 58%, transparent);
+  box-shadow: 0 0 22px rgba(107, 215, 208, 0.25);
+}
+
+.handoffCopy {
+  position: absolute;
+  z-index: 5;
+  left: clamp(22px, 4.6vw, 72px);
+  bottom: clamp(82px, 12vh, 134px);
+  width: min(47vw, 680px);
+}
+
+.handoffEyebrow {
+  margin: 0 0 20px;
+  color: var(--v2-focus);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.62rem, 0.78vw, 0.76rem);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.handoffRole {
+  max-width: 12ch;
+  margin: 0;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(2.7rem, 6.4vw, 7rem);
+  font-variation-settings: "wdth" 98;
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.84;
+  text-wrap: balance;
+}
+
+.reviewCard {
+  position: absolute;
+  z-index: 6;
+  right: clamp(22px, 4.6vw, 72px);
+  bottom: clamp(24px, 4vw, 56px);
+  display: flex;
+  max-width: 340px;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1px solid rgba(237, 244, 245, 0.12);
+  background: rgba(7, 18, 25, 0.58);
+  backdrop-filter: blur(18px);
+}
+
+.reviewSignal {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--v2-focus);
+  box-shadow: 0 0 16px var(--v2-focus);
+}
+
+.reviewCard p,
+.reviewCard span {
+  margin: 0;
+}
+
+.reviewCard p {
+  color: var(--v2-white);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.reviewCard div > span {
+  display: block;
+  margin-top: 5px;
+  color: rgba(237, 244, 245, 0.58);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.edgeIndex {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: clamp(7px, 1.4vw, 22px);
+  margin: 0;
+  color: rgba(237, 244, 245, 0.3);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  line-height: 1.65;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.root[data-intro-phase="boot"] .handoff,
+.root[data-intro-phase="identify"] .handoff,
+.root[data-intro-phase="prepare"] .handoff,
+.root[data-intro-phase="ready"] .handoff {
+  pointer-events: none;
+  user-select: none;
+}
+
+.root[data-intro-phase="boot"] .handoffHeader,
+.root[data-intro-phase="identify"] .handoffHeader,
+.root[data-intro-phase="prepare"] .handoffHeader,
+.root[data-intro-phase="ready"] .handoffHeader,
+.root[data-intro-phase="boot"] .handoffCopy,
+.root[data-intro-phase="identify"] .handoffCopy,
+.root[data-intro-phase="prepare"] .handoffCopy,
+.root[data-intro-phase="ready"] .handoffCopy,
+.root[data-intro-phase="boot"] .reviewCard,
+.root[data-intro-phase="identify"] .reviewCard,
+.root[data-intro-phase="prepare"] .reviewCard,
+.root[data-intro-phase="ready"] .reviewCard {
+  opacity: 0;
+}
+
+.root[data-intro-phase="exiting"] .handoffHeader,
+.root[data-intro-phase="exiting"] .handoffCopy,
+.root[data-intro-phase="exiting"] .reviewCard {
+  animation: handoff-resolve 0.82s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes handoff-resolve {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .handoffHeader {
+    padding: 22px 20px;
+  }
+
+  .handoffMeta span:first-child,
+  .edgeIndex {
+    display: none;
+  }
+
+  .metaDivider {
+    width: 18px;
+  }
+
+  .portraitStage {
+    top: 12vh;
+    right: 8vw;
+    width: 84vw;
+    height: 58vh;
+  }
+
+  .portraitFrame,
+  .fallbackPortrait {
+    clip-path: polygon(10% 0, 100% 0, 89% 100%, 0 100%);
+  }
+
+  .portraitImage {
+    object-position: 51% 50%;
+    transform: scale(1.17);
+  }
+
+  .horizon {
+    top: 61%;
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+
+  .handoffCopy {
+    left: 20px;
+    bottom: 114px;
+    width: calc(100% - 40px);
+  }
+
+  .handoffEyebrow {
+    margin-bottom: 13px;
+  }
+
+  .handoffRole {
+    max-width: 9ch;
+    font-size: clamp(2.7rem, 14.2vw, 4.4rem);
+    line-height: 0.86;
+  }
+
+  .reviewCard {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    max-width: none;
+  }
+
+  .depthPlaneOne {
+    right: -52%;
+    width: 112vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root[data-intro-phase="exiting"] .handoffHeader,
+  .root[data-intro-phase="exiting"] .handoffCopy,
+  .root[data-intro-phase="exiting"] .reviewCard {
+    animation-duration: 0.18s;
+  }
+}

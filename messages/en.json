@@ -353,6 +353,31 @@
       "sending": "Sending…"
     }
   },
+  "v2": {
+    "intro": {
+      "metaTitle": "Nguyen Manh Tu — Systems in Focus",
+      "metaDescription": "The motion-forward portfolio of Nguyen Manh Tu, Backend Software Engineer and AI Engineer.",
+      "introLabel": "Portfolio opening sequence",
+      "portfolio": "Portfolio",
+      "wordmark": "Nguyen Manh Tu",
+      "specialties": {
+        "backend": "Backend",
+        "realtime": "Realtime",
+        "ai": "AI"
+      },
+      "skip": "Skip intro",
+      "preparing": "Resolving critical scene",
+      "ready": "Focus locked",
+      "fallbackReady": "Signal preserved · entering safely",
+      "portraitFallback": "Portrait signal unavailable · gradient fallback active",
+      "handoff": {
+        "eyebrow": "Part 01 · Intro handoff target",
+        "role": "Backend Software Engineer · AI Engineer",
+        "note": "Temporary landing frame. Final Hero composition begins after intro approval.",
+        "reviewLabel": "Intro system ready for review"
+      }
+    }
+  },
   "footer": {
     "rights": "All rights reserved.",
     "builtWith": "Built with Next.js & Tailwind CSS."
