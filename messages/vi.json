@@ -369,14 +369,20 @@
       "preparing": "Đang hoàn thiện cảnh chính",
       "ready": "Đã khóa tiêu điểm",
       "fallbackReady": "Tín hiệu được giữ · vào trang an toàn",
-      "portraitFallback": "Không tải được chân dung · đã bật nền thay thế",
-      "handoff": {
-        "eyebrow": "Phần 01 · Chuyển cảnh mở đầu",
-        "role": "Backend Software Engineer · AI Engineer",
-        "note": "Khung đích tạm thời. Bố cục trang đầu hoàn chỉnh sẽ bắt đầu sau khi cảnh mở đầu được duyệt.",
-        "partLabel": "PHẦN 01",
-        "reviewLabel": "Cảnh mở đầu đã sẵn sàng để kiểm tra"
-      }
+      "portraitFallback": "Không tải được chân dung · đã bật nền thay thế"
+    },
+    "hero": {
+      "homeLabel": "Về đầu portfolio",
+      "navigationLabel": "Điều hướng portfolio",
+      "vcareerNav": "VCareer",
+      "contact": "Liên hệ",
+      "localeLabel": "Chọn ngôn ngữ",
+      "role": "Backend Software Engineer · AI Engineer",
+      "positioning": "Xây dựng backend và sản phẩm AI realtime.",
+      "location": "Hà Nội, Việt Nam",
+      "primaryAction": "VCareer / Xem case study",
+      "proof": "150+ học viên pilot",
+      "portraitAlt": "Chân dung Nguyen Manh Tu tại lễ tốt nghiệp"
     }
   },
   "footer": {

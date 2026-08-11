@@ -1,9 +1,9 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Contract approved; checkpoint 02A in progress
+> **Status:** Checkpoint 02A approved
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
-> **Implementation:** Not started
+> **Implementation:** 02A static Header/Hero only; 02B motion choreography not started
 
 ## Recommendation
 

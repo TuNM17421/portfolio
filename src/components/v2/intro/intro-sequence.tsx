@@ -48,12 +48,6 @@ export type IntroCopy = {
   preparing: string;
   ready: string;
   fallbackReady: string;
-  portraitFallback: string;
-  handoffEyebrow: string;
-  handoffRole: string;
-  handoffNote: string;
-  partLabel: string;
-  reviewLabel: string;
 };
 
 type IntroSequenceProps = {
@@ -600,7 +594,6 @@ export function IntroSequence({
                 src={portraitSrc}
                 alt=""
                 fill
-                priority
                 sizes="(max-width: 767px) 84vw, 44vw"
                 className={styles.portraitEchoImage}
               />

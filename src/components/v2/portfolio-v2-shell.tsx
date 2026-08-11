@@ -1,27 +1,38 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useMemo, useState } from "react";
-import { LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { LayoutGroup, useReducedMotion } from "motion/react";
 import {
   IntroSequence,
   type IntroCopy,
   type IntroPhase,
   type PortraitOutcome,
 } from "@/components/v2/intro/intro-sequence";
+import {
+  HeroV2,
+  type HeroV2Copy,
+} from "@/components/v2/hero/hero-v2";
+import {
+  SiteHeaderV2,
+  type SiteHeaderV2Copy,
+} from "@/components/v2/site-header-v2";
 import { parseIntroControls } from "@/lib/v2/intro-readiness";
 import styles from "./portfolio-v2-shell.module.css";
 
 type PortfolioV2ShellProps = {
   locale: "vi" | "en";
   introQuery: string;
-  copy: IntroCopy;
+  introCopy: IntroCopy;
+  headerCopy: SiteHeaderV2Copy;
+  heroCopy: HeroV2Copy;
 };
 
 export function PortfolioV2Shell({
   locale,
   introQuery,
-  copy,
+  introCopy,
+  headerCopy,
+  heroCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -45,7 +56,7 @@ export function PortfolioV2Shell({
     setPortraitOutcome("error");
   }, []);
 
-  const handoffIsActive = phase === "complete";
+  const sceneIsActive = phase === "complete";
   const sharedWordmarkIsActive = phase === "exiting" || phase === "complete";
 
   return (
@@ -55,85 +66,28 @@ export function PortfolioV2Shell({
         data-intro-phase={phase}
         data-portrait={effectivePortraitOutcome}
       >
-        <section
-          className={styles.handoff}
-          aria-label={copy.handoffEyebrow}
-          aria-hidden={!handoffIsActive}
+        <div
+          className={styles.scene}
+          aria-hidden={!sceneIsActive}
+          inert={!sceneIsActive}
         >
-          <div className={styles.atmosphere} aria-hidden />
-          <div className={styles.depthPlaneOne} aria-hidden />
-          <div className={styles.depthPlaneTwo} aria-hidden />
-
-          <header className={styles.handoffHeader}>
-            {sharedWordmarkIsActive && !reduceMotion ? (
-              <motion.span
-                layoutId="v2-wordmark"
-                className={styles.handoffWordmark}
-                transition={{
-                  layout: {
-                    duration: 0.86,
-                    ease: [0.16, 1, 0.3, 1],
-                  },
-                }}
-              >
-                {copy.wordmark}
-              </motion.span>
-            ) : (
-              <span className={styles.handoffWordmark}>{copy.wordmark}</span>
-            )}
-
-            <div className={styles.handoffMeta}>
-              <span>{copy.partLabel}</span>
-              <span className={styles.metaDivider} aria-hidden />
-              <span>{locale.toUpperCase()}</span>
-            </div>
-          </header>
-
-          <div className={styles.portraitStage} aria-hidden>
-            <div className={styles.portraitHalo} />
-            <div className={styles.portraitFrame}>
-              <Image
-                src="/avatar-graduation.jpg"
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 767px) 84vw, 44vw"
-                className={styles.portraitImage}
-                onLoad={handlePortraitLoad}
-                onError={handlePortraitError}
-              />
-              <div className={styles.portraitGrade} />
-            </div>
-            <div className={styles.fallbackPortrait} aria-hidden>
-              <span>{copy.portraitFallback}</span>
-            </div>
-          </div>
-
-          <div className={styles.horizon} aria-hidden />
-
-          <div className={styles.handoffCopy}>
-            <p className={styles.handoffEyebrow}>{copy.handoffEyebrow}</p>
-            <p className={styles.handoffRole}>{copy.handoffRole}</p>
-          </div>
-
-          <aside className={styles.reviewCard}>
-            <span className={styles.reviewSignal} aria-hidden />
-            <div>
-              <p>{copy.reviewLabel}</p>
-              <span>{copy.handoffNote}</span>
-            </div>
-          </aside>
-
-          <p className={styles.edgeIndex} aria-hidden>
-            SYSTEMS
-            <br />
-            IN FOCUS
-          </p>
-        </section>
+          <SiteHeaderV2
+            copy={headerCopy}
+            locale={locale}
+            reduceMotion={reduceMotion}
+            sharedWordmarkIsActive={sharedWordmarkIsActive}
+          />
+          <HeroV2
+            copy={heroCopy}
+            portraitOutcome={effectivePortraitOutcome}
+            onPortraitLoad={handlePortraitLoad}
+            onPortraitError={handlePortraitError}
+          />
+        </div>
 
         <IntroSequence
           controls={controls}
-          copy={copy}
+          copy={introCopy}
           locale={locale}
           portraitOutcome={effectivePortraitOutcome}
           portraitSrc="/avatar-graduation.jpg"

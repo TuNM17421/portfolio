@@ -54,7 +54,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
 
   const query = await searchParams;
   const introQuery = typeof query.intro === "string" ? query.intro : "";
-  const t = await getTranslations({ locale, namespace: "v2.intro" });
+  const introT = await getTranslations({ locale, namespace: "v2.intro" });
+  const heroT = await getTranslations({ locale, namespace: "v2.hero" });
 
   return (
     <>
@@ -65,25 +66,37 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
         <PortfolioV2Shell
           locale={locale}
           introQuery={introQuery}
-          copy={{
-            introLabel: t("introLabel"),
-            portfolio: t("portfolio"),
-            wordmark: t("wordmark"),
+          introCopy={{
+            introLabel: introT("introLabel"),
+            portfolio: introT("portfolio"),
+            wordmark: introT("wordmark"),
             specialties: [
-              t("specialties.backend"),
-              t("specialties.realtime"),
-              t("specialties.ai"),
+              introT("specialties.backend"),
+              introT("specialties.realtime"),
+              introT("specialties.ai"),
             ],
-            skip: t("skip"),
-            preparing: t("preparing"),
-            ready: t("ready"),
-            fallbackReady: t("fallbackReady"),
-            portraitFallback: t("portraitFallback"),
-            handoffEyebrow: t("handoff.eyebrow"),
-            handoffRole: t("handoff.role"),
-            handoffNote: t("handoff.note"),
-            partLabel: t("handoff.partLabel"),
-            reviewLabel: t("handoff.reviewLabel"),
+            skip: introT("skip"),
+            preparing: introT("preparing"),
+            ready: introT("ready"),
+            fallbackReady: introT("fallbackReady"),
+          }}
+          headerCopy={{
+            wordmark: introT("wordmark"),
+            homeLabel: heroT("homeLabel"),
+            navigationLabel: heroT("navigationLabel"),
+            vcareer: heroT("vcareerNav"),
+            contact: heroT("contact"),
+            localeLabel: heroT("localeLabel"),
+          }}
+          heroCopy={{
+            role: heroT("role"),
+            positioning: heroT("positioning"),
+            location: heroT("location"),
+            primaryAction: heroT("primaryAction"),
+            proof: heroT("proof"),
+            contact: heroT("contact"),
+            portraitAlt: heroT("portraitAlt"),
+            portraitFallback: introT("portraitFallback"),
           }}
         />
       </div>

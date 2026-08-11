@@ -369,14 +369,20 @@
       "preparing": "Resolving critical scene",
       "ready": "Focus locked",
       "fallbackReady": "Signal preserved · entering safely",
-      "portraitFallback": "Portrait signal unavailable · gradient fallback active",
-      "handoff": {
-        "eyebrow": "Part 01 · Intro handoff target",
-        "role": "Backend Software Engineer · AI Engineer",
-        "note": "Temporary landing frame. Final Hero composition begins after intro approval.",
-        "partLabel": "PART 01",
-        "reviewLabel": "Intro system ready for review"
-      }
+      "portraitFallback": "Portrait signal unavailable · gradient fallback active"
+    },
+    "hero": {
+      "homeLabel": "Return to the portfolio opening",
+      "navigationLabel": "Portfolio navigation",
+      "vcareerNav": "VCareer",
+      "contact": "Contact",
+      "localeLabel": "Choose language",
+      "role": "Backend Software Engineer · AI Engineer",
+      "positioning": "Building reliable backends and realtime AI experiences.",
+      "location": "Hanoi, Vietnam",
+      "primaryAction": "VCareer / View case study",
+      "proof": "150+ pilot learners",
+      "portraitAlt": "Portrait of Nguyen Manh Tu at his graduation ceremony"
     }
   },
   "footer": {
