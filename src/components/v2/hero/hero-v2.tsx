@@ -1,8 +1,10 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+import Image, { getImageProps } from "next/image";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
+import type { HeroPortraitVariant } from "@/lib/v2/hero-portrait";
 import type {
   IntroPhase,
   PortraitOutcome,
@@ -29,6 +31,7 @@ type HeroV2Props = {
   introWillRun: boolean;
   reduceMotion: boolean;
   holdEnabled: boolean;
+  portraitVariant: HeroPortraitVariant;
   navigationOpen: boolean;
   onPortraitLoad: () => void;
   onPortraitError: () => void;
@@ -41,6 +44,7 @@ export function HeroV2({
   introWillRun,
   reduceMotion,
   holdEnabled,
+  portraitVariant,
   navigationOpen,
   onPortraitLoad,
   onPortraitError,
@@ -74,6 +78,7 @@ export function HeroV2({
         data-portrait={portraitOutcome}
         data-entry-phase={introPhase}
         data-pointer-depth={depth.pointerEnabled ? "enabled" : "disabled"}
+        data-portrait-variant={portraitVariant}
         onPointerMove={depth.handlePointerMove}
         onPointerLeave={depth.resetPointer}
         onPointerCancel={depth.resetPointer}
@@ -100,16 +105,26 @@ export function HeroV2({
                 {copy.portraitFallback}
               </span>
             </div>
-            <Image
-              src="/avatar.jpg"
-              alt={copy.portraitAlt}
-              fill
-              priority={!introWillRun}
-              sizes="(max-width: 899px) 100vw, 40vw"
-              className={styles.portraitImage}
-              onLoad={onPortraitLoad}
-              onError={onPortraitError}
-            />
+            {portraitVariant === "original" ? (
+              <Image
+                src="/avatar.jpg"
+                alt={copy.portraitAlt}
+                fill
+                priority={!introWillRun}
+                sizes="(max-width: 899px) 100vw, 40vw"
+                className={styles.portraitImage}
+                onLoad={onPortraitLoad}
+                onError={onPortraitError}
+              />
+            ) : (
+              <ArtDirectedPortrait
+                variant={portraitVariant}
+                alt={copy.portraitAlt}
+                highPriority={!introWillRun}
+                onLoad={onPortraitLoad}
+                onError={onPortraitError}
+              />
+            )}
             <div className={styles.portraitGrade} aria-hidden />
             <div className={styles.portraitEdge} aria-hidden />
           </div>
@@ -186,5 +201,82 @@ export function HeroV2({
         </motion.div>
       </div>
     </section>
+  );
+}
+
+type ArtDirectedPortraitProps = {
+  variant: Exclude<HeroPortraitVariant, "original">;
+  alt: string;
+  highPriority: boolean;
+  onLoad: () => void;
+  onError: () => void;
+};
+
+const ART_DIRECTED_PORTRAITS = {
+  grade: {
+    desktop: "/v2/hero/avatar-hero-desktop-grade-v1.webp",
+    mobile: "/v2/hero/avatar-hero-mobile-grade-v1.webp",
+    desktopSize: { width: 960, height: 1440 },
+    mobileSize: { width: 1000, height: 1250 },
+  },
+  ai: {
+    desktop: "/v2/hero/avatar-hero-desktop-ai-v1.webp",
+    mobile: "/v2/hero/avatar-hero-mobile-ai-v1.webp",
+    desktopSize: { width: 1024, height: 1536 },
+    mobileSize: { width: 1000, height: 1250 },
+  },
+} as const;
+
+function ArtDirectedPortrait({
+  variant,
+  alt,
+  highPriority,
+  onLoad,
+  onError,
+}: ArtDirectedPortraitProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const source = ART_DIRECTED_PORTRAITS[variant];
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({
+    src: source.desktop,
+    alt: "",
+    sizes: "40vw",
+    width: source.desktopSize.width,
+    height: source.desktopSize.height,
+    quality: 88,
+  });
+  const {
+    props: { srcSet: mobileSrcSet, ...mobileImageProps },
+  } = getImageProps({
+    src: source.mobile,
+    alt,
+    sizes: "100vw",
+    width: source.mobileSize.width,
+    height: source.mobileSize.height,
+    quality: 86,
+  });
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (!image?.complete) return;
+    if (image.naturalWidth > 0) onLoad();
+    else onError();
+  }, [onError, onLoad, variant]);
+
+  return (
+    <picture>
+      <source media="(min-width: 900px)" srcSet={desktopSrcSet} sizes="40vw" />
+      <source media="(max-width: 899px)" srcSet={mobileSrcSet} sizes="100vw" />
+      <img
+        {...mobileImageProps}
+        ref={imageRef}
+        alt={alt}
+        className={styles.portraitImage}
+        fetchPriority={highPriority ? "high" : undefined}
+        onLoad={onLoad}
+        onError={onError}
+      />
+    </picture>
   );
 }

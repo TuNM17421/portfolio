@@ -22,6 +22,7 @@ type SiteHeaderV2Props = {
   locale: "vi" | "en";
   introQuery: string;
   holdQuery: string;
+  portraitQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   onMenuOpenChange: (open: boolean) => void;
@@ -38,6 +39,7 @@ export function SiteHeaderV2({
   locale,
   introQuery,
   holdQuery,
+  portraitQuery,
   reduceMotion,
   wordmarkHidden,
   onMenuOpenChange,
@@ -50,6 +52,7 @@ export function SiteHeaderV2({
   const localeParams = new URLSearchParams();
   if (introQuery) localeParams.set("intro", introQuery);
   if (holdQuery) localeParams.set("hold", holdQuery);
+  if (portraitQuery) localeParams.set("portrait", portraitQuery);
   const localeQuery = localeParams.toString();
   const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
 

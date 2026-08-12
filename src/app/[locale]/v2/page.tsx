@@ -34,6 +34,7 @@ type V2PageProps = {
   searchParams: Promise<{
     intro?: string | string[];
     hold?: string | string[];
+    portrait?: string | string[];
   }>;
 };
 
@@ -58,6 +59,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const query = await searchParams;
   const introQuery = typeof query.intro === "string" ? query.intro : "";
   const holdQuery = typeof query.hold === "string" ? query.hold : "";
+  const portraitQuery =
+    typeof query.portrait === "string" ? query.portrait : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
 
@@ -71,6 +74,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           locale={locale}
           introQuery={introQuery}
           holdQuery={holdQuery}
+          portraitQuery={portraitQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),

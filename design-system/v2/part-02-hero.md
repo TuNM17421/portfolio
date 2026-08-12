@@ -1,6 +1,6 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02D implemented; awaiting visual approval
+> **Status:** Checkpoint 02D approved and committed; checkpoint 02E implemented and awaiting visual approval
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
 > **Implementation:** 02A static Header/Hero approved; 02B motion choreography approved; 02C Header/navigation approved
@@ -350,6 +350,68 @@ Reduced motion keeps a normal `100svh` scene: no sticky extension, boundary
 scrub, pointer parallax, or scroll transforms. The Header, Hero,
 VCareer proof, locale behavior, and keyboard order remain identical.
 
+### Checkpoint 02E portrait art-direction contract
+
+The source remains `public/avatar.jpg`. It is a real square corridor portrait,
+not raw material for generating a different person or a fictional scene. The
+edit should make the existing architecture feel like layers of a system coming
+into focus while keeping Tu immediately recognizable.
+
+**Identity invariants**
+
+- preserve the exact face, age, skin tone, hair, glasses, expression, gaze,
+  body proportions, pose, hands, grey suit, white shirt, black tie, and corridor
+  perspective;
+- preserve natural skin and fabric texture; do not beautify, reshape, smooth,
+  add accessories, replace clothing, or invent body/hand detail;
+- no typography, UI graphics, logos, particles, fake light beams, synthetic
+  circuitry, watermark, or additional objects;
+- tonal recovery and color grading may change; identity and scene geometry may
+  not.
+
+**Desktop master — `2:3` portrait**
+
+- keep Tu on the right half with the face in the upper third and enough lower
+  torso for the `40vw × 100svh` clipped plane;
+- retain the corridor repetition to the left as a real depth system, recovering
+  the blown white areas into cool mineral detail rather than replacing them;
+- move the environment toward Night Glass / Deep Lens Blue with restrained
+  Focus Cyan in the window frames, while keeping skin neutral and the suit
+  recognizably grey;
+- reserve the left edge as a naturally darker seam into the Hero field, not a
+  painted gradient or empty generated background.
+
+**Mobile master — `4:5` portrait**
+
+- preserve the same identity and moment, but use a tighter art-directed crop
+  with the face in the upper-right quadrant;
+- retain clean headroom behind the fixed Header and enough torso through the
+  slanted lower image edge;
+- let the bottom quarter become tonally quieter so the real role remains clear
+  where the CSS composition overlaps it; do not bake text or a UI-shaped panel
+  into the image.
+
+The aesthetic risk is deliberately narrow: keep the recognizable green
+corridor rhythm, but grade its shadow planes into the V2 navy/cyan system. This
+uses something true in the original photograph instead of turning the portrait
+into a generic cyberpunk render.
+
+**Technical delivery and review**
+
+- generated edits use identity-preserving edit mode and versioned filenames
+  under `public/v2/hero/`; `avatar.jpg` is never overwritten. A second
+  deterministic crop/grade candidate preserves every source pixel for direct
+  identity comparison;
+- desktop/mobile sources are switched at the existing `900px` composition
+  breakpoint with a semantic `<picture>` built from Next.js `getImageProps`;
+- the default and `?portrait=original` keep the accepted source unchanged;
+  `?portrait=grade` opts into the source-preserving software treatment and
+  `?portrait=ai` opts into the more cinematic generative treatment;
+- review includes the original, both generated masters at 100%, and rendered
+  Hero crops at 375×812, 899×800, 900×800, 1024×768, and 1440×900;
+- accept only if face, glasses, hands, suit seams, and corridor lines survive
+  close inspection and the new crop materially improves the actual Hero.
+
 ### Reduced motion
 
 - Intro handoff becomes a short crossfade.
@@ -547,8 +609,8 @@ Checkpoint verification:
 
 ## Checkpoint 02D implementation record
 
-Implemented on 12 August 2026 and intentionally left uncommitted for visual
-review:
+Implemented on 12 August 2026, approved after removing the optional role
+width-axis breath, and committed as `9e0fc8a`:
 
 - a `132svh` desktop / `128svh` compact wrapper holds the accepted Hero for a
   short first-scroll scene while its `100svh` stage remains sticky;
@@ -587,6 +649,48 @@ Checkpoint verification:
 - server-rendered HTML returns HTTP 200 with the role, positioning, VCareer,
   and email evidence present before hydration.
 
+## Checkpoint 02E implementation record
+
+Implemented on 12 August 2026 and intentionally left uncommitted for portrait
+selection:
+
+- `grade` is a deterministic Sharp crop/exposure/saturation treatment of the
+  original pixels: desktop `960×1440` / `103,582 B`, mobile `1000×1250` /
+  `90,090 B`; it cannot alter face, hands, clothing, or architecture;
+- `ai` uses the built-in image edit workflow with the identity-preservation
+  brief above: desktop `1024×1536` / `151,916 B`, mobile `1000×1250` /
+  `163,940 B` after WebP delivery conversion;
+- the generated prompt explicitly locks face, age, skin tone, hair, glasses,
+  expression, gaze, body, pose, hands, suit, shirt, tie, seams, and corridor;
+  only crop-safe framing, exposure, restrained navy/cyan grading, and fine
+  grain are requested;
+- a Next.js `getImageProps` `<picture>` selects one optimized mobile or desktop
+  source at the existing `900px` composition boundary. It never downloads both
+  masters for one viewport;
+- the approved original remains the default. Review queries select `grade` or
+  `ai`, invalid values fall back to `original`, and locale changes preserve
+  `intro`, `hold`, and `portrait` together.
+
+Checkpoint verification:
+
+- `41/41` Vitest tests, TypeScript validation, diff check, and production build
+  pass;
+- `/[locale]/v2` is `66.9 kB` with `178 kB` First Load JS: approximately
+  `+0.5 kB` route code and no rounded First Load JS increase over 02D;
+- 375×812, 899×800, 900×800, 1024×768, and 1440×900 load exactly the intended
+  source, show no horizontal overflow or clipped role, and keep the scroll hold
+  unchanged;
+- direct, full Intro, reduced-motion, cached-image hydration, and forced image
+  failure all resolve from `pending` to a usable `ready` or `error` state;
+- desktop start/end and mobile axe checks report zero automatic violations;
+  fresh local navigation reports zero console warnings/errors;
+- rendered self-review finds `grade` completely identity-faithful but tighter
+  and brighter on desktop. `ai` uses the corridor depth and V2 tonal system more
+  successfully, but it reconstructs small skin/hair details when inspected at
+  100%. Neither candidate becomes the default without explicit user approval;
+  desktop/mobile may also be mixed if the user prefers different candidates per
+  breakpoint.
+
 ## Planned code boundary
 
 ```text
@@ -601,7 +705,7 @@ src/app/[locale]/v2/page.tsx
 src/lib/v2/*                           # only state/control logic with tests
 messages/en.json
 messages/vi.json
-public/v2/hero/*                       # only after 02E approval
+public/v2/hero/*                       # review candidates; commit only after 02E approval
 ```
 
 The V1 homepage and existing VCareer case study remain unchanged throughout
