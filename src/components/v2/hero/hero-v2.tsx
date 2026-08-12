@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import type {
   IntroPhase,
   PortraitOutcome,
 } from "@/components/v2/intro/intro-sequence";
+import { useHeroDepth } from "./hero-depth";
 import { useHeroMotion } from "./hero-motion";
 import styles from "./hero-v2.module.css";
 
@@ -26,6 +28,7 @@ type HeroV2Props = {
   introPhase: IntroPhase;
   introWillRun: boolean;
   reduceMotion: boolean;
+  holdEnabled: boolean;
   navigationOpen: boolean;
   onPortraitLoad: () => void;
   onPortraitError: () => void;
@@ -37,6 +40,7 @@ export function HeroV2({
   introPhase,
   introWillRun,
   reduceMotion,
+  holdEnabled,
   navigationOpen,
   onPortraitLoad,
   onPortraitError,
@@ -46,79 +50,140 @@ export function HeroV2({
     introWillRun,
     reduceMotion,
   });
+  const depth = useHeroDepth({ holdEnabled, reduceMotion });
+  const holdState = reduceMotion
+    ? "reduced"
+    : holdEnabled
+      ? "active"
+      : "off";
   const [engineerRole, aiRole] = copy.role.split(" · ");
 
   return (
     <section
-      ref={motionScope}
-      className={styles.hero}
-      data-portrait={portraitOutcome}
+      ref={depth.holdRef}
+      className={styles.heroHold}
+      data-hold={holdState}
       data-entry-phase={introPhase}
       aria-hidden={navigationOpen || undefined}
       inert={navigationOpen}
       aria-labelledby="v2-hero-role"
     >
-      <div className={styles.atmosphere} aria-hidden />
-      <div className={styles.gridField} aria-hidden />
-
-      <div className={styles.portraitField} data-hero-portrait>
-        <div className={styles.portraitFallback} aria-hidden>
-          <span className={styles.fallbackMonogram}>TuNM</span>
-          <span className={styles.fallbackCopy}>{copy.portraitFallback}</span>
-        </div>
-        <Image
-          src="/avatar.jpg"
-          alt={copy.portraitAlt}
-          fill
-          priority={!introWillRun}
-          sizes="(max-width: 899px) 100vw, 40vw"
-          className={styles.portraitImage}
-          onLoad={onPortraitLoad}
-          onError={onPortraitError}
+      <div
+        ref={motionScope}
+        className={styles.hero}
+        data-portrait={portraitOutcome}
+        data-entry-phase={introPhase}
+        data-pointer-depth={depth.pointerEnabled ? "enabled" : "disabled"}
+        onPointerMove={depth.handlePointerMove}
+        onPointerLeave={depth.resetPointer}
+        onPointerCancel={depth.resetPointer}
+      >
+        <motion.div
+          className={styles.atmosphere}
+          style={depth.styles.atmosphere}
+          aria-hidden
         />
-        <div className={styles.portraitGrade} aria-hidden />
-        <div className={styles.portraitEdge} aria-hidden />
-      </div>
+        <motion.div
+          className={styles.gridField}
+          style={depth.styles.grid}
+          aria-hidden
+        />
 
-      <div className={styles.roleShade} aria-hidden />
-      <div className={styles.focusLine} data-hero-focus aria-hidden />
-
-      <div className={styles.identityBlock}>
-        <h1
-          id="v2-hero-role"
-          className={styles.role}
-          aria-label={copy.role}
+        <motion.div
+          className={styles.portraitDepth}
+          style={depth.styles.portrait}
         >
-          <span className={styles.roleDisplay}>
-            <span className={styles.roleLine} data-hero-role-line>
-              {engineerRole}
-            </span>
-            <span className={styles.roleLine} data-hero-role-line>
-              <i>·</i> {aiRole}
-            </span>
-          </span>
-        </h1>
-      </div>
+          <div className={styles.portraitField} data-hero-portrait>
+            <div className={styles.portraitFallback} aria-hidden>
+              <span className={styles.fallbackMonogram}>TuNM</span>
+              <span className={styles.fallbackCopy}>
+                {copy.portraitFallback}
+              </span>
+            </div>
+            <Image
+              src="/avatar.jpg"
+              alt={copy.portraitAlt}
+              fill
+              priority={!introWillRun}
+              sizes="(max-width: 899px) 100vw, 40vw"
+              className={styles.portraitImage}
+              onLoad={onPortraitLoad}
+              onError={onPortraitError}
+            />
+            <div className={styles.portraitGrade} aria-hidden />
+            <div className={styles.portraitEdge} aria-hidden />
+          </div>
+        </motion.div>
 
-      <div className={styles.positioningBlock} data-hero-positioning>
-        <p className={styles.location}>{copy.location}</p>
-        <p className={styles.positioning}>{copy.positioning}</p>
-        <a
-          href="mailto:tunm17421@gmail.com"
-          className={styles.mobileContact}
+        <div className={styles.roleShade} aria-hidden />
+        <motion.div
+          className={styles.focusDepth}
+          style={depth.styles.focus}
+          aria-hidden
         >
-          {copy.contact}
-        </a>
-      </div>
+          <div className={styles.focusLine} data-hero-focus />
+        </motion.div>
 
-      <div className={styles.projectProof} data-hero-proof>
-        <Link href="/projects/vcareer" className={styles.projectLink}>
-          <span>{copy.primaryAction}</span>
-          <span className={styles.projectArrow} aria-hidden>
-            ↗
-          </span>
-        </Link>
-        <p className={styles.proof}>{copy.proof}</p>
+        <motion.div
+          className={styles.nextBoundary}
+          style={depth.styles.boundary}
+          data-hero-boundary
+          aria-hidden
+        />
+
+        <motion.div
+          className={styles.identityDepth}
+          style={depth.styles.role}
+        >
+          <div className={styles.identityBlock}>
+            <h1
+              id="v2-hero-role"
+              className={styles.role}
+              data-hero-role-heading
+              aria-label={copy.role}
+            >
+              <span className={styles.roleDisplay}>
+                <span className={styles.roleLine} data-hero-role-line>
+                  {engineerRole}
+                </span>
+                <span className={styles.roleLine} data-hero-role-line>
+                  <i>·</i> {aiRole}
+                </span>
+              </span>
+            </h1>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className={styles.positioningDepth}
+          style={depth.styles.detail}
+        >
+          <div className={styles.positioningBlock} data-hero-positioning>
+            <p className={styles.location}>{copy.location}</p>
+            <p className={styles.positioning}>{copy.positioning}</p>
+            <a
+              href="mailto:tunm17421@gmail.com"
+              className={styles.mobileContact}
+            >
+              {copy.contact}
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className={styles.projectDepth}
+          style={depth.styles.detail}
+        >
+          <div className={styles.projectProof} data-hero-proof>
+            <Link href="/projects/vcareer" className={styles.projectLink}>
+              <span>{copy.primaryAction}</span>
+              <span className={styles.projectArrow} aria-hidden>
+                ↗
+              </span>
+            </Link>
+            <p className={styles.proof}>{copy.proof}</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -31,7 +31,10 @@ const INTRO_BOOTSTRAP = `(function(){try{delete document.documentElement.dataset
 
 type V2PageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ intro?: string | string[] }>;
+  searchParams: Promise<{
+    intro?: string | string[];
+    hold?: string | string[];
+  }>;
 };
 
 export async function generateMetadata({
@@ -54,6 +57,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
 
   const query = await searchParams;
   const introQuery = typeof query.intro === "string" ? query.intro : "";
+  const holdQuery = typeof query.hold === "string" ? query.hold : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
 
@@ -66,6 +70,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
         <PortfolioV2Shell
           locale={locale}
           introQuery={introQuery}
+          holdQuery={holdQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),

@@ -1,6 +1,6 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02C approved
+> **Status:** Checkpoint 02D implemented; awaiting visual approval
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
 > **Implementation:** 02A static Header/Hero approved; 02B motion choreography approved; 02C Header/navigation approved
@@ -65,6 +65,9 @@ and interaction decisions; they are not templates to copy.
 | [WAI-ARIA modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) | What a full-screen navigation layer must do when it claims modal behavior. | Move focus inside on open, contain Tab/Shift+Tab, close on Escape, provide a visible close control, make the background inert, and return focus to the trigger. | Do not add dialog semantics to a visual overlay unless every one of those behaviors is implemented. |
 | [Motion `AnimatePresence`](https://motion.dev/docs/react-animate-presence) | How the navigation plane can finish its exit before removal. | Keep one keyed overlay as the direct child, use `initial={false}`, and define an explicit reduced-motion branch. | Do not turn each letter or utility control into an independently animated object. |
 | [WHATWG HTML — inert subtrees](https://html.spec.whatwg.org/multipage/interaction.html#inert-subtrees) | How to prevent background Hero controls from remaining clickable or focusable. | Apply `inert` only to the Hero sibling while the menu dialog is open. | Do not make the dialog an inert descendant or hide active controls from the accessibility tree. |
+| [Motion `useScroll`](https://motion.dev/docs/react-use-scroll) + [`useSpring`](https://motion.dev/docs/react-use-spring) | How to bind a short Hero hold to scroll while smoothing bounded fine-pointer input. | Track only the Part 02 wrapper, map one clamped progress value, and spring normalized pointer input back to zero. | Do not bind the whole page to a permanent camera effect or let the portrait chase the cursor. |
+| [Motion accessibility guide](https://motion.dev/docs/react-accessibility) | Which effects must disappear for reduced motion. | Disable parallax and sticky scroll transforms; preserve content and opacity context. | Do not treat a shorter parallax as an adequate reduced-motion branch. |
+| [Motion performance guide](https://motion.dev/docs/performance) | Which properties are safe to update continuously. | Keep pointer/scroll work on transform and opacity layers. | Do not animate layout dimensions, large shadows, filters, or font axes every pointer frame. |
 
 The research supports a single dominant composition. It does not support three
 metric cards in the first scene. The old proposal's `02+ YEARS / 150+ / TRACK
@@ -299,8 +302,8 @@ short opacity/transform entrance and no missing shared element.
 - One slow, low-amplitude depth drift may separate background, portrait, and
   grain planes.
 - Fine-pointer devices receive bounded portrait parallax; touch receives none.
-- `Anybody` may perform one width-axis breath after entry. It never loops and
-  never changes the title string.
+- The role stays typographically static after its entrance; no idle font-axis
+  motion competes with the pointer-depth and first-scroll signature.
 - VCareer text rolls once on hover/focus; duplicate animation text is hidden
   from assistive technology.
 - No cursor replacement, autoplay audio, fake terminal text, particle field,
@@ -317,10 +320,40 @@ short opacity/transform entrance and no missing shared element.
 - The sticky treatment is kept only if the review shows a meaningful handoff;
   otherwise the accepted static Hero remains and normal document scroll wins.
 
+### Checkpoint 02D depth contract
+
+The approved 02C scene gains depth without changing its content hierarchy:
+
+- the default wrapper is `132svh` on desktop and `128svh` on touch layouts;
+  the Hero remains sticky for `100svh`, creating only `28–32svh` of authored
+  scroll rather than pinning the visitor for a second full screen;
+- during that short range, the portrait scales no further than `1.028`, the
+  role rises no more than `24px`, the positioning/proof recede to `0.72`
+  opacity, and the focus line travels toward the incoming lower boundary;
+- a neutral navy boundary enters naturally from below because it occupies the
+  final part of the wrapper. It contains no temporary heading, fake Part 03
+  copy, or inert action; it passes behind role, focus, and interactive content
+  so real links and their focus rings never become obscured;
+- `?hold=0` disables only the sticky hold/boundary for a side-by-side review;
+  the accepted Hero and pointer depth remain unchanged.
+
+Fine-pointer depth is deliberately bounded:
+
+- only `(pointer: fine) and (hover: hover)` devices at `900px+` attach pointer
+  tracking;
+- normalized pointer travel maps the portrait to at most `±8px` horizontally
+  and `±5px` vertically; atmosphere and grid move less and in opposing planes;
+- leaving the Hero springs all pointer layers back to their exact origin;
+  touch/coarse-pointer input receives no pointer listener or substitute tilt.
+
+Reduced motion keeps a normal `100svh` scene: no sticky extension, boundary
+scrub, pointer parallax, or scroll transforms. The Header, Hero,
+VCareer proof, locale behavior, and keyboard order remain identical.
+
 ### Reduced motion
 
 - Intro handoff becomes a short crossfade.
-- No sticky scrub, parallax, font-axis animation, or spatial menu transition.
+- No sticky scrub, parallax, or spatial menu transition.
 - Final composition, reading order, links, focus behavior, and information are
   identical.
 
@@ -432,7 +465,7 @@ after approval, so a rejected idea can be reverted without touching Part 01.
 
 **Build**
 
-- Add bounded fine-pointer parallax and the one-time variable-font breath.
+- Add bounded fine-pointer parallax while keeping the accepted role static.
 - Prototype the `125–135svh` sticky phase against a neutral Part 03 boundary.
 - Add the complete reduced-motion branch.
 
@@ -482,8 +515,8 @@ Part 03 research does not start automatically.
 
 ## Checkpoint 02C implementation record
 
-Implemented on 12 August 2026 and intentionally left uncommitted for visual
-review:
+Implemented on 12 August 2026, approved by the user, and committed as
+`c5d57ac`:
 
 - desktop VCareer text roll, Contact/focus states, fixed header, and the
   scroll-triggered thin edge-band condensation;
@@ -511,6 +544,48 @@ Checkpoint verification:
   violations; console inspection reports zero warnings or errors;
 - server-rendered HTML returns HTTP 200 with the canonical role, positioning,
   VCareer proof/link, and `mailto:` action present without relying on hydration.
+
+## Checkpoint 02D implementation record
+
+Implemented on 12 August 2026 and intentionally left uncommitted for visual
+review:
+
+- a `132svh` desktop / `128svh` compact wrapper holds the accepted Hero for a
+  short first-scroll scene while its `100svh` stage remains sticky;
+- the portrait scales from `1` to `1.028`, the role rises by `24px`, supporting
+  copy rises by `14px` and recedes to `0.72`, while the focus signal moves
+  toward a neutral lower boundary;
+- the boundary is part of the Hero layer stack: it crosses the portrait and
+  atmosphere but remains behind the role, signal, real links, and their focus
+  rings;
+- fine-pointer depth is active only at `900px+`: portrait travel is clamped to
+  `±8px` / `±5px`, atmosphere and grid move less in the opposing direction,
+  and every plane springs back to its origin on pointer exit;
+- `?hold=0` removes only the hold/boundary for direct comparison, while
+  `?intro=reduced` and OS reduced motion remove the sticky extension, pointer
+  response, boundary, and scroll transforms;
+- post-review refinement removes the role width-axis breath completely; the
+  role remains static after its existing Intro/Hero entrance.
+
+Checkpoint verification:
+
+- `37/37` Vitest tests, TypeScript validation, diff check, and the production
+  build pass;
+- `/[locale]/v2` is `66.4 kB` with `178 kB` First Load JS, approximately
+  `+4.4 kB` route code and `+5 kB` First Load JS over the approved 02C build;
+- rendered checks at 375×812, 899×800, 900×800, 1024×768, and 1440×900 show no
+  horizontal overflow or clipped role lines; the authored hold adds `227px`
+  mobile and `288px` desktop scroll in the review viewports;
+- mobile keeps pointer depth disabled, all visible Header targets at least
+  44×44px, and the approved menu focus/lock/Escape behavior intact;
+- full Intro and direct entry both settle into the active hold; the explicit
+  and OS reduced-motion paths render a normal-height static Hero;
+- fresh local navigation reports zero console warnings/errors, and axe reports
+  zero automatic violations at desktop start/end and mobile start. Its
+  contrast rule remains incomplete on gradient/image-backed text and stays a
+  manual 02F finish-gate item;
+- server-rendered HTML returns HTTP 200 with the role, positioning, VCareer,
+  and email evidence present before hydration.
 
 ## Planned code boundary
 

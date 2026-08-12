@@ -18,11 +18,13 @@ import {
 } from "@/components/v2/site-header-v2";
 import { WordmarkHandoff } from "@/components/v2/wordmark-handoff";
 import { parseIntroControls } from "@/lib/v2/intro-readiness";
+import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
 import styles from "./portfolio-v2-shell.module.css";
 
 type PortfolioV2ShellProps = {
   locale: "vi" | "en";
   introQuery: string;
+  holdQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
@@ -31,6 +33,7 @@ type PortfolioV2ShellProps = {
 export function PortfolioV2Shell({
   locale,
   introQuery,
+  holdQuery,
   introCopy,
   headerCopy,
   heroCopy,
@@ -38,6 +41,10 @@ export function PortfolioV2Shell({
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
     [introQuery],
+  );
+  const depthControls = useMemo(
+    () => parseHeroDepthControls(holdQuery),
+    [holdQuery],
   );
   const prefersReducedMotion = useReducedMotion();
   const reduceMotion =
@@ -79,6 +86,7 @@ export function PortfolioV2Shell({
           copy={headerCopy}
           locale={locale}
           introQuery={introQuery}
+          holdQuery={holdQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           onMenuOpenChange={setMobileNavigationOpen}
@@ -89,6 +97,7 @@ export function PortfolioV2Shell({
           introPhase={phase}
           introWillRun={controls.forcedMode !== "skip"}
           reduceMotion={reduceMotion}
+          holdEnabled={depthControls.holdEnabled}
           navigationOpen={mobileNavigationOpen}
           onPortraitLoad={handlePortraitLoad}
           onPortraitError={handlePortraitError}

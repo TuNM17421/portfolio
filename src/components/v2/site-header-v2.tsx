@@ -21,6 +21,7 @@ type SiteHeaderV2Props = {
   copy: SiteHeaderV2Copy;
   locale: "vi" | "en";
   introQuery: string;
+  holdQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   onMenuOpenChange: (open: boolean) => void;
@@ -36,6 +37,7 @@ export function SiteHeaderV2({
   copy,
   locale,
   introQuery,
+  holdQuery,
   reduceMotion,
   wordmarkHidden,
   onMenuOpenChange,
@@ -45,9 +47,11 @@ export function SiteHeaderV2({
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
-  const localeHref = introQuery
-    ? `/v2?intro=${encodeURIComponent(introQuery)}`
-    : "/v2";
+  const localeParams = new URLSearchParams();
+  if (introQuery) localeParams.set("intro", introQuery);
+  if (holdQuery) localeParams.set("hold", holdQuery);
+  const localeQuery = localeParams.toString();
+  const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
 
   const closeMenu = useCallback((restoreFocus = true) => {
     setMenuOpen(false);
