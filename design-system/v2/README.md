@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Part 01 and Part 02 approved; Part 03 checkpoint 03D implemented for live review
+> **Status:** Parts 01–03 approved; Part 04 checkpoint 04A approved
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 01 Intro Loader, Part 02 Header + Hero, and Part 03 Hero-to-About identity story
-> **Implementation status:** Parts 01–02 are approved; Part 03's responsive, accessibility, reduced-motion, no-JS, CLS, and performance finish gate is ready for review on isolated `/[locale]/v2`
+> **Detailed scope in this checkpoint:** Part 04A static VCareer evidence hierarchy
+> **Implementation status:** Parts 01–03 are committed; Part 04A is approved and 04B–04E have not started
 
 ## Objective
 
@@ -145,15 +145,15 @@ Relevant implementation references:
 | 00 | Evidence, direction and contracts | These documents | Approved |
 | 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
 | 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed |
-| 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | 03A–03C committed; 03D ready for approval |
-| 04 | VCareer flagship showcase | Project transition and evidence hierarchy | Not planned in detail |
+| 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Complete · `37de357` |
+| 04 | VCareer flagship showcase | Project transition and evidence hierarchy | 04A approved; 04B–04E pending |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
 | 06 | Experience + Awards | Timeline and event-gallery sequence | Not planned in detail |
 | 07 | Skills + Contact + Footer | Final conversion flow | Not planned in detail |
 | 08 | Case-study visual migration + route transitions | Homepage-to-case-study continuity | Not planned in detail |
 | 09 | Cross-page finish gate | Full responsive, accessibility and motion audit | Not planned in detail |
 
-Detailed contracts for Parts 01–03 live beside this file. Later parts receive
+Detailed contracts for Parts 01–04 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.
 
 ## Confirmed user inputs

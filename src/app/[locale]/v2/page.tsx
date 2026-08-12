@@ -67,6 +67,10 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
+  const vcareerT = await getTranslations({
+    locale,
+    namespace: "v2.vcareer",
+  });
 
   return (
     <>
@@ -139,6 +143,76 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             ],
             closingLabel: aboutT("closingLabel"),
             closing: aboutT("closing"),
+          }}
+          vcareerCopy={{
+            eyebrow: vcareerT("eyebrow"),
+            status: vcareerT("status"),
+            title: vcareerT("title"),
+            subtitle: vcareerT("subtitle"),
+            proposition: vcareerT("proposition"),
+            pilotValue: vcareerT("pilotValue"),
+            pilotLabel: vcareerT("pilotLabel"),
+            scopeLabel: vcareerT("scopeLabel"),
+            scope: [
+              vcareerT("scope.livekit"),
+              vcareerT("scope.matching"),
+              vcareerT("scope.jdBuilder"),
+            ],
+            workflowLabel: vcareerT("workflowLabel"),
+            workflowTitle: vcareerT("workflowTitle"),
+            screenshotDisclaimer: vcareerT("screenshotDisclaimer"),
+            screenLabel: vcareerT("screenLabel"),
+            labels: {
+              direct: vcareerT("labels.direct"),
+              context: vcareerT("labels.context"),
+              analysis: vcareerT("labels.analysis"),
+              baseline: vcareerT("labels.baseline"),
+            },
+            stages: {
+              landing: {
+                name: vcareerT("stages.landing.name"),
+                caption: vcareerT("stages.landing.caption"),
+                alt: vcareerT("stages.landing.alt"),
+              },
+              cvBuilder: {
+                name: vcareerT("stages.cvBuilder.name"),
+                caption: vcareerT("stages.cvBuilder.caption"),
+                alt: vcareerT("stages.cvBuilder.alt"),
+              },
+              match: {
+                name: vcareerT("stages.match.name"),
+                caption: vcareerT("stages.match.caption"),
+                alt: vcareerT("stages.match.alt"),
+              },
+              interviewDemo: {
+                name: vcareerT("stages.interviewDemo.name"),
+                caption: vcareerT("stages.interviewDemo.caption"),
+                alt: vcareerT("stages.interviewDemo.alt"),
+              },
+              interviewReview: {
+                name: vcareerT("stages.interviewReview.name"),
+                caption: vcareerT("stages.interviewReview.caption"),
+                alt: vcareerT("stages.interviewReview.alt"),
+              },
+              dashboard: {
+                name: vcareerT("stages.dashboard.name"),
+                caption: vcareerT("stages.dashboard.caption"),
+                alt: vcareerT("stages.dashboard.alt"),
+              },
+            },
+            outcomesCode: vcareerT("outcomesCode"),
+            outcomesLabel: vcareerT("outcomesLabel"),
+            outcomes: [
+              vcareerT("outcomes.confidence"),
+              vcareerT("outcomes.review"),
+              vcareerT("outcomes.award"),
+            ],
+            repositoryState: vcareerT("repositoryState"),
+            primaryAction: vcareerT("primaryAction"),
+            liveAction: vcareerT("liveAction"),
+            architectureAction: vcareerT("architectureAction"),
+            opensNewWindow: vcareerT("opensNewWindow"),
+            imageUnavailable: vcareerT("imageUnavailable"),
           }}
         />
       </div>

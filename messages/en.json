@@ -407,6 +407,76 @@
       },
       "closingLabel": "What good engineering means",
       "closing": "Good engineering is not the system with the most technology. It is simple enough to maintain and strong enough to solve the right problem."
+    },
+    "vcareer": {
+      "eyebrow": "04 / FLAGSHIP PROOF",
+      "status": "Product live · further development pending university funding",
+      "title": "VCareer",
+      "subtitle": "AI Career Development Platform",
+      "proposition": "Connecting CV preparation, job criteria, and realtime AI interviews in one actionable practice workflow.",
+      "pilotValue": "150+",
+      "pilotLabel": "real learners in the VinUni pilot",
+      "scopeLabel": "What I directly owned",
+      "scope": {
+        "livekit": "LiveKit + WebRTC baseline",
+        "matching": "CV analysis and CV-to-JD matching",
+        "jdBuilder": "JD Builder"
+      },
+      "workflowLabel": "PRODUCT WORKFLOW / 06 SCREENS",
+      "workflowTitle": "From profile to feedback.",
+      "screenshotDisclaimer": "Product interface snapshots · values shown inside are not used as portfolio metrics.",
+      "screenLabel": "SCREEN",
+      "labels": {
+        "direct": "DIRECT SCOPE",
+        "context": "PRODUCT CONTEXT",
+        "analysis": "ANALYSIS LAYER",
+        "baseline": "BASELINE"
+      },
+      "stages": {
+        "landing": {
+          "name": "Landing",
+          "caption": "The entry point to VCareer's journey. Numbers shown in the interface are product demo data only.",
+          "alt": "VCareer platform landing page"
+        },
+        "cvBuilder": {
+          "name": "CV Builder",
+          "caption": "The CV analysis and scoring layer shown inside the builder; it does not imply ownership of the entire interface.",
+          "alt": "VCareer CV building and analysis interface"
+        },
+        "match": {
+          "name": "CV / job matching",
+          "caption": "CV-to-JD comparison makes fit, gaps, and actionable recommendations visible.",
+          "alt": "VCareer CV and job description matching interface"
+        },
+        "interviewDemo": {
+          "name": "Live interview",
+          "caption": "The LiveKit/WebRTC baseline carries the realtime AI interview session; the complete experience is team product context.",
+          "alt": "VCareer live AI interview interface"
+        },
+        "interviewReview": {
+          "name": "Interview review",
+          "caption": "The learner feedback loop after an interview, presented as context for the wider team product.",
+          "alt": "VCareer post-interview review and feedback interface"
+        },
+        "dashboard": {
+          "name": "Dashboard",
+          "caption": "An overview of the learner journey and functional paths in the VCareer pilot system.",
+          "alt": "VCareer learner dashboard"
+        }
+      },
+      "outcomesCode": "VERIFIED / 03",
+      "outcomesLabel": "Verified evidence",
+      "outcomes": {
+        "confidence": "Survey feedback reported higher confidence",
+        "review": "CV scoring reviewed by VinUni Career Services' Product Owner",
+        "award": "Track 4 2nd Prize · $5,000 in OpenAI API credits"
+      },
+      "repositoryState": "Private source · university-owned under contract",
+      "primaryAction": "View the full case study",
+      "liveAction": "Open live product",
+      "architectureAction": "Read architecture report",
+      "opensNewWindow": "Opens in a new window",
+      "imageUnavailable": "Product image unavailable"
     }
   },
   "footer": {

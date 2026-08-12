@@ -407,6 +407,76 @@
       },
       "closingLabel": "Định nghĩa kỹ thuật tốt",
       "closing": "Kỹ thuật tốt không phải là hệ thống dùng nhiều công nghệ nhất. Nó đủ đơn giản để bảo trì, nhưng đủ tốt để giải quyết đúng vấn đề."
+    },
+    "vcareer": {
+      "eyebrow": "04 / BẰNG CHỨNG CHỦ LỰC",
+      "status": "Sản phẩm đang hoạt động · phát triển tiếp đang chờ kinh phí từ nhà trường",
+      "title": "VCareer",
+      "subtitle": "Nền tảng phát triển sự nghiệp ứng dụng AI",
+      "proposition": "Kết nối CV, tiêu chí tuyển dụng và phỏng vấn AI theo thời gian thực trong một luồng luyện tập có thể hành động.",
+      "pilotValue": "150+",
+      "pilotLabel": "học viên thật trong đợt thử nghiệm tại VinUni",
+      "scopeLabel": "Phần mình trực tiếp phụ trách",
+      "scope": {
+        "livekit": "Hạ tầng LiveKit + WebRTC cơ bản",
+        "matching": "Phân tích CV và khớp CV–JD",
+        "jdBuilder": "JD Builder"
+      },
+      "workflowLabel": "LUỒNG SẢN PHẨM / 06 MÀN HÌNH",
+      "workflowTitle": "Từ hồ sơ đến phản hồi.",
+      "screenshotDisclaimer": "Ảnh giao diện sản phẩm · số liệu hiển thị bên trong không được dùng làm bằng chứng định lượng.",
+      "screenLabel": "MÀN HÌNH",
+      "labels": {
+        "direct": "PHẠM VI TRỰC TIẾP",
+        "context": "BỐI CẢNH SẢN PHẨM",
+        "analysis": "LỚP PHÂN TÍCH",
+        "baseline": "HẠ TẦNG CƠ BẢN"
+      },
+      "stages": {
+        "landing": {
+          "name": "Trang giới thiệu",
+          "caption": "Điểm vào của hành trình VCareer. Các con số xuất hiện trong giao diện chỉ là dữ liệu minh họa của sản phẩm.",
+          "alt": "Trang giới thiệu của nền tảng VCareer"
+        },
+        "cvBuilder": {
+          "name": "Trình tạo CV",
+          "caption": "Lớp phân tích và chấm điểm CV được thể hiện bên trong trình tạo CV; không đồng nghĩa mình phụ trách toàn bộ giao diện.",
+          "alt": "Giao diện trình tạo và phân tích CV của VCareer"
+        },
+        "match": {
+          "name": "Khớp CV với việc làm",
+          "caption": "Đối chiếu CV với JD để làm rõ mức độ phù hợp, khoảng trống và các đề xuất có thể hành động.",
+          "alt": "Giao diện đối chiếu CV với mô tả công việc của VCareer"
+        },
+        "interviewDemo": {
+          "name": "Phỏng vấn trực tiếp",
+          "caption": "Hạ tầng LiveKit/WebRTC cơ bản tạo đường truyền cho phiên phỏng vấn AI theo thời gian thực; trải nghiệm hoàn chỉnh là sản phẩm của cả đội.",
+          "alt": "Giao diện phiên phỏng vấn AI trực tiếp của VCareer"
+        },
+        "interviewReview": {
+          "name": "Đánh giá phỏng vấn",
+          "caption": "Vòng phản hồi dành cho học viên sau phiên phỏng vấn, được trình bày như bối cảnh của sản phẩm chung.",
+          "alt": "Giao diện đánh giá và phản hồi sau phỏng vấn của VCareer"
+        },
+        "dashboard": {
+          "name": "Bảng điều khiển",
+          "caption": "Tổng quan hành trình học viên và các luồng chức năng trong hệ thống thử nghiệm của VCareer.",
+          "alt": "Bảng điều khiển người dùng của VCareer"
+        }
+      },
+      "outcomesCode": "XÁC MINH / 03",
+      "outcomesLabel": "Bằng chứng đã xác minh",
+      "outcomes": {
+        "confidence": "Khảo sát ghi nhận phản hồi tự tin hơn",
+        "review": "Hệ thống chấm điểm CV được Product Owner phòng Hướng nghiệp VinUni thẩm định",
+        "award": "Á quân Track 4 · 5.000 USD tín dụng API OpenAI"
+      },
+      "repositoryState": "Mã nguồn riêng tư · thuộc sở hữu theo hợp đồng với nhà trường",
+      "primaryAction": "Xem chi tiết dự án",
+      "liveAction": "Mở sản phẩm",
+      "architectureAction": "Đọc báo cáo kiến trúc",
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "imageUnavailable": "Không tải được ảnh giao diện"
     }
   },
   "footer": {

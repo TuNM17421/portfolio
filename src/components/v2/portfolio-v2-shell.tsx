@@ -15,6 +15,10 @@ import {
   AboutV2,
   type AboutV2Copy,
 } from "@/components/v2/about/about-v2";
+import {
+  VCareerShowcase,
+  type VCareerShowcaseCopy,
+} from "@/components/v2/vcareer/vcareer-showcase";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import {
   SiteHeaderV2,
@@ -38,6 +42,7 @@ type PortfolioV2ShellProps = {
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
   aboutCopy: AboutV2Copy;
+  vcareerCopy: VCareerShowcaseCopy;
 };
 
 export function PortfolioV2Shell({
@@ -50,6 +55,7 @@ export function PortfolioV2Shell({
   headerCopy,
   heroCopy,
   aboutCopy,
+  vcareerCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -136,6 +142,10 @@ export function PortfolioV2Shell({
           copy={aboutCopy}
           navigationOpen={mobileNavigationOpen}
           story={aboutStory}
+        />
+        <VCareerShowcase
+          copy={vcareerCopy}
+          navigationOpen={mobileNavigationOpen}
         />
       </div>
 
