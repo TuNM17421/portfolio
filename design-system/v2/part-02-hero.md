@@ -1,9 +1,9 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02B approved
+> **Status:** Checkpoint 02C approved
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
-> **Implementation:** 02A static Header/Hero approved; 02B motion choreography implemented
+> **Implementation:** 02A static Header/Hero approved; 02B motion choreography approved; 02C Header/navigation approved
 
 ## Recommendation
 
@@ -52,7 +52,7 @@ is isolated behind its own approval gate.
 
 ## Research evidence
 
-Research was refreshed on 11 August 2026. References settle concrete hierarchy
+Research was refreshed on 12 August 2026. References settle concrete hierarchy
 and interaction decisions; they are not templates to copy.
 
 | Evidence | Decision it resolves | Transfer | Explicit no-copy boundary |
@@ -62,6 +62,9 @@ and interaction decisions; they are not templates to copy.
 | [Zellerfeld — UIZZE](https://singapore.objective.company/design-media/5b/5b601f7677593817a37752922ba6f381043e3c21836e31f6a904d0fcb2941a65.webp) | How controls can sit over a full-bleed image without turning into a conventional header bar. | Edge rails, image-led composition, restrained controls, one product action attached to the image. | Do not copy its commerce pills, carousel, product-card overlay, crop, colors, or navigation icons. |
 | [Modal — UIZZE](https://singapore.objective.company/design-media/17/17f44d04ba09f3ed4122e77e32e11bd3e128d6c0be40c4c5f96034f67fac85dd.webp) | Where to spend visual intensity. | Give one object almost all visual energy while copy and navigation remain quiet. | Do not copy the green cube, glow field, centered SaaS heading, logo wall, or pill CTA styling. |
 | [Vercel — UIZZE](https://singapore.objective.company/design-media/42/4202e89300304207ac9eb08c9c45f93785fb5c9cfa9491e60d1a74096280bfbd.webp) | How to separate proposition, focal object, and technical specialty in one viewport. | Use distinct zones with strong whitespace and no explanatory card grid. | Do not copy the triangle, monochrome brand language, customer strip, CTA shapes, or exact ratios. |
+| [WAI-ARIA modal dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) | What a full-screen navigation layer must do when it claims modal behavior. | Move focus inside on open, contain Tab/Shift+Tab, close on Escape, provide a visible close control, make the background inert, and return focus to the trigger. | Do not add dialog semantics to a visual overlay unless every one of those behaviors is implemented. |
+| [Motion `AnimatePresence`](https://motion.dev/docs/react-animate-presence) | How the navigation plane can finish its exit before removal. | Keep one keyed overlay as the direct child, use `initial={false}`, and define an explicit reduced-motion branch. | Do not turn each letter or utility control into an independently animated object. |
+| [WHATWG HTML — inert subtrees](https://html.spec.whatwg.org/multipage/interaction.html#inert-subtrees) | How to prevent background Hero controls from remaining clickable or focusable. | Apply `inert` only to the Hero sibling while the menu dialog is open. | Do not make the dialog an inert descendant or hide active controls from the accessibility tree. |
 
 The research supports a single dominant composition. It does not support three
 metric cards in the first scene. The old proposal's `02+ YEARS / 150+ / TRACK
@@ -174,6 +177,47 @@ reference site. Resume remains absent until a real public PDF is approved.
   only VCareer and Contact at this checkpoint.
 - Menu open/close restores focus, locks background scroll, closes on Escape,
   and exposes no hidden duplicate links to assistive technology.
+
+### Checkpoint 02C interaction contract
+
+The mobile menu is a **navigation plane**, not a dropdown, drawer, rounded
+sheet, or generic stack of pill links:
+
+- opening the 44×44px control replaces the visible Hero with a deep-navy
+  full-viewport plane, a diagonal ceremony-blue field, and one focus-signal
+  sweep derived from the Hero system;
+- the top rail remains legible throughout: wordmark on the left, locale and a
+  line-to-close control on the right;
+- the only rows are `VCareer` with its verified `150+` proof and `Contact` with
+  the real email address; no social placeholders, inert sections, or resume
+  link are introduced;
+- the two rows enter as a short sequence after the plane resolves. The close
+  animation reverses the plane cleanly instead of dropping the layer from the
+  DOM mid-transition;
+- reduced-motion uses a short opacity transition and keeps exactly the same
+  content and focus order.
+
+Desktop interaction remains deliberately quieter than the portrait:
+
+- `VCareer` performs one vertical text roll on hover/focus; its duplicate
+  animation copy is `aria-hidden`;
+- `Contact` keeps the focus-line underline rather than receiving a second
+  signature effect;
+- after real page scroll begins, the fixed rail condenses into a thin dark
+  edge band with no rounded container or floating glass pill.
+
+The accessibility/runtime gate for this checkpoint is exact:
+
+- while open, the Header is the `role="dialog"` / `aria-modal="true"`
+  container and every operable menu/header control remains its descendant;
+- the Hero sibling is both visually obscured and `inert`; the dialog never
+  sits inside the inert subtree;
+- initial focus moves to VCareer, Tab and Shift+Tab wrap, Escape and background
+  click close, and focus returns to the menu trigger;
+- body scroll is locked for the complete open state, and viewport changes to
+  desktop cannot leave an invisible menu lock behind;
+- locale switching preserves the current V2 `intro` query so direct, slow,
+  error, and reduced-motion review states survive a VI/EN switch.
 
 ## Composition
 
@@ -435,6 +479,38 @@ after approval, so a rejected idea can be reverted without touching Part 01.
 
 Part 02 is complete only after final rendered review and explicit user approval.
 Part 03 research does not start automatically.
+
+## Checkpoint 02C implementation record
+
+Implemented on 12 August 2026 and intentionally left uncommitted for visual
+review:
+
+- desktop VCareer text roll, Contact/focus states, fixed header, and the
+  scroll-triggered thin edge-band condensation;
+- VCareer roll viewport remains transparent and carries no text shadow, so it
+  does not read as a selected tab or filled control beside Contact;
+- mobile 44×44px line-to-close control and full-screen navigation plane with
+  only the localized VCareer case study and real email destination;
+- locale query preservation, modal semantics, initial focus, cyclic keyboard
+  focus, Escape/background close, focus return, body scroll lock, resize
+  cleanup, and an inert Hero background;
+- explicit spatial and reduced-motion enter/exit paths through Motion
+  `AnimatePresence`.
+
+Checkpoint verification:
+
+- `31/31` Vitest tests, TypeScript validation, diff check, and production build
+  pass;
+- the production route is `62 kB` with `173 kB` First Load JS, approximately
+  `+1.5 kB` route code and `+1 kB` First Load JS over the approved 02B build;
+- rendered 320×700, 375×812, and 1440×900 checks show no horizontal overflow;
+  every interactive mobile Header/menu target is at least 44px tall and wide;
+- VI→EN preserves `?intro=0`; full intro, direct entry, and the debug
+  reduced-motion path all land on the same final Header/Hero;
+- closed mobile, open mobile, and desktop axe runs report zero WCAG A/AA
+  violations; console inspection reports zero warnings or errors;
+- server-rendered HTML returns HTTP 200 with the canonical role, positioning,
+  VCareer proof/link, and `mailto:` action present without relying on hydration.
 
 ## Planned code boundary
 

@@ -87,6 +87,9 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             vcareer: heroT("vcareerNav"),
             contact: heroT("contact"),
             localeLabel: heroT("localeLabel"),
+            openMenu: heroT("openMenu"),
+            closeMenu: heroT("closeMenu"),
+            proof: heroT("proof"),
           }}
           heroCopy={{
             role: heroT("role"),

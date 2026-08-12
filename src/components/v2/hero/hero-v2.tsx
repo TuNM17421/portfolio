@@ -26,6 +26,7 @@ type HeroV2Props = {
   introPhase: IntroPhase;
   introWillRun: boolean;
   reduceMotion: boolean;
+  navigationOpen: boolean;
   onPortraitLoad: () => void;
   onPortraitError: () => void;
 };
@@ -36,6 +37,7 @@ export function HeroV2({
   introPhase,
   introWillRun,
   reduceMotion,
+  navigationOpen,
   onPortraitLoad,
   onPortraitError,
 }: HeroV2Props) {
@@ -52,6 +54,8 @@ export function HeroV2({
       className={styles.hero}
       data-portrait={portraitOutcome}
       data-entry-phase={introPhase}
+      aria-hidden={navigationOpen || undefined}
+      inert={navigationOpen}
       aria-labelledby="v2-hero-role"
     >
       <div className={styles.atmosphere} aria-hidden />

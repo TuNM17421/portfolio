@@ -47,6 +47,7 @@ export function PortfolioV2Shell({
     useState<PortraitOutcome>("pending");
   const [wordmarkTransitionActive, setWordmarkTransitionActive] =
     useState(false);
+  const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
 
   const effectivePortraitOutcome =
     controls.debugState === "image-error" ? "error" : portraitOutcome;
@@ -77,7 +78,10 @@ export function PortfolioV2Shell({
         <SiteHeaderV2
           copy={headerCopy}
           locale={locale}
+          introQuery={introQuery}
+          reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
+          onMenuOpenChange={setMobileNavigationOpen}
         />
         <HeroV2
           copy={heroCopy}
@@ -85,6 +89,7 @@ export function PortfolioV2Shell({
           introPhase={phase}
           introWillRun={controls.forcedMode !== "skip"}
           reduceMotion={reduceMotion}
+          navigationOpen={mobileNavigationOpen}
           onPortraitLoad={handlePortraitLoad}
           onPortraitError={handlePortraitError}
         />

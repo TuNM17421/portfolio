@@ -377,6 +377,8 @@
       "vcareerNav": "VCareer",
       "contact": "Contact",
       "localeLabel": "Choose language",
+      "openMenu": "Open navigation",
+      "closeMenu": "Close navigation",
       "role": "Software Engineer · AI Engineer",
       "positioning": "Building reliable backends and realtime AI experiences.",
       "location": "Hanoi, Vietnam",
