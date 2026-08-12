@@ -313,24 +313,6 @@
   width: 100%;
 }
 
-.projectProof {
-  position: relative;
-  isolation: isolate;
-}
-
-.projectProof::before {
-  position: absolute;
-  z-index: -1;
-  inset: -18px -16px -16px -24px;
-  background: linear-gradient(
-    90deg,
-    rgba(7, 18, 25, 0.78),
-    rgba(7, 18, 25, 0.6)
-  );
-  filter: blur(12px);
-  content: "";
-}
-
 .location,
 .positioning,
 .proof {
@@ -621,10 +603,6 @@
     bottom: 22px;
     left: 20px;
     width: auto;
-  }
-
-  .projectProof::before {
-    display: none;
   }
 
   .projectLink {

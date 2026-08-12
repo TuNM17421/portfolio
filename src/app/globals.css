@@ -110,6 +110,18 @@ body:has(.portfolio-v2-route) [data-site-shell="v1"] {
 body:has(.portfolio-v2-route) {
   overflow-x: clip;
   background: #071219;
+  scrollbar-width: none;
+}
+
+html:has(.portfolio-v2-route) {
+  scrollbar-width: none;
+}
+
+html:has(.portfolio-v2-route)::-webkit-scrollbar,
+body:has(.portfolio-v2-route)::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body:has(.portfolio-v2-route) > main {

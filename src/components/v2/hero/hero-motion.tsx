@@ -64,7 +64,7 @@ export function useHeroMotion({
 
       play(
         targets.portrait,
-        { opacity: 0.7, scale: 1.055 },
+        { opacity: 0.7, scale: 1 },
         { duration: 0 },
       );
       play(
@@ -143,10 +143,9 @@ export function useHeroMotion({
         await Promise.all([
           play(
             targets.portrait,
-            {
-              opacity: [0.7, 1],
-              scale: [direct ? 1.025 : 1.055, 1],
-            },
+            direct
+              ? { opacity: [0.7, 1], scale: [1.025, 1] }
+              : { opacity: [0.7, 1], scale: 1 },
             {
               duration: direct ? 0.58 : 0.88,
               ease: [0.16, 1, 0.3, 1],
