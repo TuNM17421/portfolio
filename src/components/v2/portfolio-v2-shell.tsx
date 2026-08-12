@@ -24,6 +24,7 @@ import { WordmarkHandoff } from "@/components/v2/wordmark-handoff";
 import { parseIntroControls } from "@/lib/v2/intro-readiness";
 import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
 import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
+import { parseAboutStoryControls } from "@/lib/v2/about-story";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
 import styles from "./portfolio-v2-shell.module.css";
 
@@ -32,6 +33,7 @@ type PortfolioV2ShellProps = {
   introQuery: string;
   holdQuery: string;
   portraitQuery: string;
+  storyQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
@@ -43,6 +45,7 @@ export function PortfolioV2Shell({
   introQuery,
   holdQuery,
   portraitQuery,
+  storyQuery,
   introCopy,
   headerCopy,
   heroCopy,
@@ -60,10 +63,17 @@ export function PortfolioV2Shell({
     () => parseHeroPortraitVariant(portraitQuery),
     [portraitQuery],
   );
+  const storyControls = useMemo(
+    () => parseAboutStoryControls(storyQuery),
+    [storyQuery],
+  );
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
     controls.debugState === "reduced" || Boolean(prefersReducedMotion);
-  const aboutStory = useAboutStory({ reduceMotion });
+  const aboutStory = useAboutStory({
+    reduceMotion,
+    forceStatic: storyControls.forceStatic,
+  });
   const [phase, setPhase] = useState<IntroPhase>("complete");
   const [portraitOutcome, setPortraitOutcome] =
     useState<PortraitOutcome>("pending");
@@ -103,8 +113,10 @@ export function PortfolioV2Shell({
           introQuery={introQuery}
           holdQuery={holdQuery}
           portraitQuery={portraitQuery}
+          storyQuery={storyQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
+          chapterTone={aboutStory.headerTone}
           onMenuOpenChange={setMobileNavigationOpen}
         />
         <HeroV2
@@ -116,7 +128,7 @@ export function PortfolioV2Shell({
           holdEnabled={depthControls.holdEnabled}
           portraitVariant={portraitVariant}
           navigationOpen={mobileNavigationOpen}
-          nextChapterTone={aboutStory.enabled ? "light" : "dark"}
+          nextChapterTone={reduceMotion ? "dark" : "light"}
           onPortraitLoad={handlePortraitLoad}
           onPortraitError={handlePortraitError}
         />

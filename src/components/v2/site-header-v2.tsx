@@ -3,6 +3,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
+import type { AboutHeaderTone } from "@/components/v2/about/about-story";
 import styles from "./site-header-v2.module.css";
 
 export type SiteHeaderV2Copy = {
@@ -23,8 +24,10 @@ type SiteHeaderV2Props = {
   introQuery: string;
   holdQuery: string;
   portraitQuery: string;
+  storyQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
+  chapterTone: AboutHeaderTone;
   onMenuOpenChange: (open: boolean) => void;
 };
 
@@ -40,8 +43,10 @@ export function SiteHeaderV2({
   introQuery,
   holdQuery,
   portraitQuery,
+  storyQuery,
   reduceMotion,
   wordmarkHidden,
+  chapterTone,
   onMenuOpenChange,
 }: SiteHeaderV2Props) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,6 +58,7 @@ export function SiteHeaderV2({
   if (introQuery) localeParams.set("intro", introQuery);
   if (holdQuery) localeParams.set("hold", holdQuery);
   if (portraitQuery) localeParams.set("portrait", portraitQuery);
+  if (storyQuery) localeParams.set("story", storyQuery);
   const localeQuery = localeParams.toString();
   const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
 
@@ -199,9 +205,11 @@ export function SiteHeaderV2({
     : { clipPath: "inset(100% 0 0 0)" };
 
   return (
-    <header
+    <motion.header
       ref={headerRef}
       className={styles.header}
+      style={chapterTone.header}
+      data-v2-header
       data-condensed={condensed && !menuOpen ? "true" : undefined}
       data-menu-open={menuOpen ? "true" : undefined}
       data-reduced-motion={reduceMotion ? "true" : undefined}
@@ -209,7 +217,13 @@ export function SiteHeaderV2({
       aria-modal={menuOpen ? true : undefined}
       aria-labelledby={menuOpen ? "v2-mobile-nav-title" : undefined}
     >
-      <div className={styles.headerRail}>
+      <div className={styles.headerRail} data-v2-header-rail>
+        <motion.div
+          className={styles.chapterTone}
+          style={chapterTone.layer}
+          data-v2-chapter-tone
+          aria-hidden
+        />
         <Link
           href="/v2"
           className={styles.wordmarkLink}
@@ -389,6 +403,6 @@ export function SiteHeaderV2({
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

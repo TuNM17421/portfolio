@@ -349,6 +349,61 @@
 }
 
 @media (min-width: 900px) {
+  .about[data-about-story="static"] .sheet {
+    padding-top: clamp(92px, 8.5vw, 124px);
+    padding-bottom: clamp(112px, 9vw, 144px);
+  }
+
+  .about[data-about-story="static"] .foundationBlock {
+    min-height: 0;
+    padding: clamp(72px, 7vw, 104px) 0 clamp(92px, 8.5vw, 128px);
+  }
+
+  .about[data-about-story="static"] .foundationHeading {
+    padding: clamp(48px, 5vw, 76px) 0;
+  }
+
+  .about[data-about-story="static"] .foundationClaim {
+    font-size: clamp(3.9rem, 7.7vw, 7.7rem);
+  }
+
+  .about[data-about-story="static"] .extensionClaim {
+    max-width: 13.5em;
+    font-size: clamp(2.9rem, 5.45vw, 5.5rem);
+  }
+
+  .about[data-about-story="static"] .principleBlock {
+    padding: clamp(92px, 8vw, 124px) 0;
+  }
+
+  .about[data-about-story="static"] .principleHeadingGroup {
+    gap: clamp(28px, 3.2vw, 46px);
+  }
+
+  .about[data-about-story="static"] .principleHeading {
+    font-size: clamp(3.25rem, 5.8vw, 5.85rem);
+  }
+
+  .about[data-about-story="static"] .processBlock {
+    padding: clamp(68px, 6.2vw, 94px) 0;
+  }
+
+  .about[data-about-story="static"] .processList {
+    margin-top: clamp(34px, 3.5vw, 52px);
+  }
+
+  .about[data-about-story="static"] .processList li {
+    min-height: 132px;
+  }
+
+  .about[data-about-story="static"] .closingBlock {
+    padding-top: clamp(82px, 7.5vw, 112px);
+  }
+
+  .about[data-about-story="static"] .closingStatement {
+    font-size: clamp(2.4rem, 4.4vw, 4.5rem);
+  }
+
   .about[data-about-story="active"] {
     min-height: max(180svh, 1260px);
     overflow: visible;
@@ -489,7 +544,7 @@
   }
 
   .sheet {
-    padding: 88px 20px 104px;
+    padding: 82px 20px 92px;
   }
 
   .sectionRail {
@@ -518,12 +573,12 @@
   .foundationBlock {
     display: block;
     min-height: 0;
-    padding: 72px 0 104px;
+    padding: 62px 0 84px;
   }
 
   .foundationHeading {
     gap: 16px;
-    padding: 50px 0 42px;
+    padding: 42px 0 36px;
     line-height: 0.86;
   }
 
@@ -548,11 +603,11 @@
 
   .principleBlock {
     display: block;
-    padding: 98px 0 112px;
+    padding: 78px 0 88px;
   }
 
   .principleHeadingGroup {
-    gap: 39px;
+    gap: 32px;
   }
 
   .principleHeading {
@@ -561,16 +616,16 @@
   }
 
   .principleBody {
-    margin-top: 50px;
+    margin-top: 42px;
   }
 
   .processBlock {
-    padding: 82px 0 100px;
+    padding: 68px 0 80px;
   }
 
   .processList {
     display: block;
-    margin-top: 46px;
+    margin-top: 38px;
   }
 
   .processList li,
@@ -591,11 +646,11 @@
 
   .closingBlock {
     display: block;
-    padding-top: 94px;
+    padding-top: 74px;
   }
 
   .closingStatement {
-    margin-top: 47px;
+    margin-top: 38px;
     font-size: clamp(2.35rem, 10.6vw, 4rem);
     line-height: 1;
   }

@@ -28,6 +28,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const INTRO_BOOTSTRAP = `(function(){try{delete document.documentElement.dataset.introDirect;var value=new URLSearchParams(window.location.search).get('intro');var bypass=value==='0'||value==='off'||value==='skip';if(bypass){document.documentElement.dataset.intro='skipped';document.documentElement.dataset.introDirect='true';return;}document.documentElement.dataset.intro='pending';window.__portfolioV2IntroFallback=window.setTimeout(function(){document.documentElement.dataset.intro='complete';},8000);}catch(error){document.documentElement.dataset.intro='complete';}})();`;
+const NO_SCRIPT_HEADER_STYLE = `.portfolio-v2-route [data-v2-header]{color:#edf4f5!important}.portfolio-v2-route [data-v2-header-rail]{border-bottom:1px solid rgba(107,215,208,.2);background:rgba(7,18,25,.94);backdrop-filter:blur(16px)}`;
 
 type V2PageProps = {
   params: Promise<{ locale: string }>;
@@ -35,6 +36,7 @@ type V2PageProps = {
     intro?: string | string[];
     hold?: string | string[];
     portrait?: string | string[];
+    story?: string | string[];
   }>;
 };
 
@@ -61,6 +63,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const holdQuery = typeof query.hold === "string" ? query.hold : "";
   const portraitQuery =
     typeof query.portrait === "string" ? query.portrait : "";
+  const storyQuery = typeof query.story === "string" ? query.story : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -68,6 +71,9 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: INTRO_BOOTSTRAP }} />
+      <noscript>
+        <style dangerouslySetInnerHTML={{ __html: NO_SCRIPT_HEADER_STYLE }} />
+      </noscript>
       <div
         className={`portfolio-v2-route ${anybody.variable} ${beVietnamPro.variable} ${ibmPlexMono.variable}`}
       >
@@ -76,6 +82,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           introQuery={introQuery}
           holdQuery={holdQuery}
           portraitQuery={portraitQuery}
+          storyQuery={storyQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),

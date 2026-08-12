@@ -1,6 +1,6 @@
 # Part 03 — Hero-to-About transition + identity story
 
-> **Status:** Checkpoint 03A approved and committed (`70a63d1`); 03B implemented for live review; 03C–03D are not started
+> **Status:** 03A committed (`70a63d1`); 03B committed (`b6fcbae`); 03C implemented for live review; 03D is not started
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0` and `/en/v2?intro=0`
 
@@ -194,6 +194,26 @@ must never be duplicated in the accessibility tree; visual duplicate spans are
 - Add the light Header rail interpolation, compact normal flow, `?story=static`,
   reduced-motion, and no-JS paths.
 - Commit after responsive/fallback approval.
+
+#### Live implementation record
+
+- The Header now shares the About controller instead of creating a second
+  scroll listener. As the mineral sheet reaches the Header rail, its glass,
+  text, accent, rule, and shadow switch through one palette relay; scrolling
+  upward restores the dark treatment. The relay deliberately avoids a
+  low-contrast grey-on-grey interpolation frame.
+- `?story=static` explicitly disables the pinned type choreography while
+  keeping the Hero-to-mineral handoff and Header chapter change available for
+  visual comparison. The flag survives VI/EN switching alongside the existing
+  Intro, hold, and portrait controls.
+- Desktop static, mobile, reduced-motion, and no-JavaScript paths use normal
+  document flow with tighter editorial spacing. They keep the same headings,
+  paragraphs, ordered process, and closing statement rather than shortening
+  the identity story.
+- Opening mobile navigation from the light chapter temporarily restores its
+  night palette, then returns focus and the chapter palette when closed.
+- No-JavaScript keeps a stable dark Header rail because scroll-aware palette
+  changes are unavailable, while the complete About content remains visible.
 
 ### 03D — Finish gate
 
