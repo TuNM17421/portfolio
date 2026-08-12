@@ -141,8 +141,9 @@
   width: calc(100% - clamp(44px, 9.2vw, 144px));
   height: 1px;
   opacity: 0.72;
-  background: linear-gradient(90deg, var(--v2-focus), rgba(107, 215, 208, 0.24) 58%, transparent 88%);
+  background: linear-gradient(90deg, var(--v2-focus), rgba(107, 215, 208, 0.24) 43%, transparent 60%);
   box-shadow: 0 0 20px rgba(107, 215, 208, 0.2);
+  transform-origin: left center;
 }
 
 .identityBlock {
@@ -167,9 +168,23 @@
     0 14px 44px rgba(7, 18, 25, 0.5);
 }
 
-.roleDisplay,
+.roleDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
 .roleLine {
   display: block;
+}
+
+.roleLine {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  padding-block: 0.1em;
+  white-space: nowrap;
 }
 
 .roleLine:last-child {
@@ -268,6 +283,80 @@
   outline-offset: 5px;
 }
 
+@keyframes directPortraitEntrance {
+  from {
+    opacity: 0.7;
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes directFocusEntrance {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 0.72;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes directRoleEntrance {
+  from {
+    opacity: 0;
+    clip-path: inset(0% 0% 100% 0%);
+    transform: translateY(48%);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0% 0% 0% 0%);
+    transform: translateY(0%);
+  }
+}
+
+@keyframes directDetailEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:global(html[data-intro-direct="true"]) .portraitField {
+  animation: directPortraitEntrance 580ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+:global(html[data-intro-direct="true"]) .focusLine {
+  animation: directFocusEntrance 420ms 20ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+:global(html[data-intro-direct="true"]) .roleLine {
+  animation: directRoleEntrance 500ms 70ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+:global(html[data-intro-direct="true"]) .roleLine:last-child {
+  animation-delay: 140ms;
+}
+
+:global(html[data-intro-direct="true"]) .positioningBlock {
+  animation: directDetailEntrance 380ms 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+:global(html[data-intro-direct="true"]) .projectProof {
+  animation: directDetailEntrance 400ms 860ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (max-width: 1100px) and (min-width: 900px) {
   .portraitField {
     width: 40vw;
@@ -354,8 +443,7 @@
   }
 
   .roleLine:last-child {
-    max-width: 8.8ch;
-    margin-top: 4px;
+    max-width: 100%;
     margin-left: 0;
   }
 
@@ -444,5 +532,16 @@
 
   .focusLine {
     top: 69%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-intro-direct="true"]) .portraitField,
+  :global(html[data-intro-direct="true"]) .focusLine,
+  :global(html[data-intro-direct="true"]) .roleLine,
+  :global(html[data-intro-direct="true"]) .positioningBlock,
+  :global(html[data-intro-direct="true"]) .projectProof {
+    animation-delay: 0ms;
+    animation-duration: 1ms;
   }
 }

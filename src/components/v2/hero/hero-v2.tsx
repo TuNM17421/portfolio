@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import type { PortraitOutcome } from "@/components/v2/intro/intro-sequence";
+import type {
+  IntroPhase,
+  PortraitOutcome,
+} from "@/components/v2/intro/intro-sequence";
+import { useHeroMotion } from "./hero-motion";
 import styles from "./hero-v2.module.css";
 
 export type HeroV2Copy = {
@@ -19,6 +23,9 @@ export type HeroV2Copy = {
 type HeroV2Props = {
   copy: HeroV2Copy;
   portraitOutcome: PortraitOutcome;
+  introPhase: IntroPhase;
+  introWillRun: boolean;
+  reduceMotion: boolean;
   onPortraitLoad: () => void;
   onPortraitError: () => void;
 };
@@ -26,25 +33,31 @@ type HeroV2Props = {
 export function HeroV2({
   copy,
   portraitOutcome,
+  introPhase,
+  introWillRun,
+  reduceMotion,
   onPortraitLoad,
   onPortraitError,
 }: HeroV2Props) {
-  const rolePrefix = "Backend Software";
-  const roleSuffix = copy.role.startsWith(`${rolePrefix} `)
-    ? copy.role.slice(rolePrefix.length + 1)
-    : copy.role;
-  const [engineerRole, aiRole] = roleSuffix.split(" · ");
+  const motionScope = useHeroMotion({
+    phase: introPhase,
+    introWillRun,
+    reduceMotion,
+  });
+  const [engineerRole, aiRole] = copy.role.split(" · ");
 
   return (
     <section
+      ref={motionScope}
       className={styles.hero}
       data-portrait={portraitOutcome}
+      data-entry-phase={introPhase}
       aria-labelledby="v2-hero-role"
     >
       <div className={styles.atmosphere} aria-hidden />
       <div className={styles.gridField} aria-hidden />
 
-      <div className={styles.portraitField}>
+      <div className={styles.portraitField} data-hero-portrait>
         <div className={styles.portraitFallback} aria-hidden>
           <span className={styles.fallbackMonogram}>TuNM</span>
           <span className={styles.fallbackCopy}>{copy.portraitFallback}</span>
@@ -53,8 +66,8 @@ export function HeroV2({
           src="/avatar.jpg"
           alt={copy.portraitAlt}
           fill
-          priority
-          sizes="(max-width: 899px) 100vw, 66vw"
+          priority={!introWillRun}
+          sizes="(max-width: 899px) 100vw, 40vw"
           className={styles.portraitImage}
           onLoad={onPortraitLoad}
           onError={onPortraitError}
@@ -64,20 +77,26 @@ export function HeroV2({
       </div>
 
       <div className={styles.roleShade} aria-hidden />
-      <div className={styles.focusLine} aria-hidden />
+      <div className={styles.focusLine} data-hero-focus aria-hidden />
 
       <div className={styles.identityBlock}>
-        <h1 id="v2-hero-role" className={styles.role}>
+        <h1
+          id="v2-hero-role"
+          className={styles.role}
+          aria-label={copy.role}
+        >
           <span className={styles.roleDisplay}>
-            <span className={styles.roleLine}>{rolePrefix} </span>
-            <span className={styles.roleLine}>
-              {engineerRole} <i>·</i> {aiRole}
+            <span className={styles.roleLine} data-hero-role-line>
+              {engineerRole}
+            </span>
+            <span className={styles.roleLine} data-hero-role-line>
+              <i>·</i> {aiRole}
             </span>
           </span>
         </h1>
       </div>
 
-      <div className={styles.positioningBlock}>
+      <div className={styles.positioningBlock} data-hero-positioning>
         <p className={styles.location}>{copy.location}</p>
         <p className={styles.positioning}>{copy.positioning}</p>
         <a
@@ -88,7 +107,7 @@ export function HeroV2({
         </a>
       </div>
 
-      <div className={styles.projectProof}>
+      <div className={styles.projectProof} data-hero-proof>
         <Link href="/projects/vcareer" className={styles.projectLink}>
           <span>{copy.primaryAction}</span>
           <span className={styles.projectArrow} aria-hidden>

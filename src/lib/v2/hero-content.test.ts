@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
 
-const CANONICAL_ROLE = "Backend Software Engineer · AI Engineer";
+const CANONICAL_ROLE = "Software Engineer · AI Engineer";
 
 describe("V2 Hero content contract", () => {
   it("keeps the exact canonical role in both locales", () => {

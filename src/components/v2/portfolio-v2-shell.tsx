@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { LayoutGroup, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import {
   IntroSequence,
   type IntroCopy,
@@ -16,6 +16,7 @@ import {
   SiteHeaderV2,
   type SiteHeaderV2Copy,
 } from "@/components/v2/site-header-v2";
+import { WordmarkHandoff } from "@/components/v2/wordmark-handoff";
 import { parseIntroControls } from "@/lib/v2/intro-readiness";
 import styles from "./portfolio-v2-shell.module.css";
 
@@ -44,6 +45,8 @@ export function PortfolioV2Shell({
   const [phase, setPhase] = useState<IntroPhase>("complete");
   const [portraitOutcome, setPortraitOutcome] =
     useState<PortraitOutcome>("pending");
+  const [wordmarkTransitionActive, setWordmarkTransitionActive] =
+    useState(false);
 
   const effectivePortraitOutcome =
     controls.debugState === "image-error" ? "error" : portraitOutcome;
@@ -57,44 +60,52 @@ export function PortfolioV2Shell({
   }, []);
 
   const sceneIsActive = phase === "complete";
-  const sharedWordmarkIsActive = phase === "exiting" || phase === "complete";
+  const headerWordmarkHidden =
+    phase === "exiting" || wordmarkTransitionActive;
 
   return (
-    <LayoutGroup id="portfolio-v2-opening">
+    <div
+      className={styles.root}
+      data-intro-phase={phase}
+      data-portrait={effectivePortraitOutcome}
+    >
       <div
-        className={styles.root}
-        data-intro-phase={phase}
-        data-portrait={effectivePortraitOutcome}
+        className={styles.scene}
+        aria-hidden={!sceneIsActive}
+        inert={!sceneIsActive}
       >
-        <div
-          className={styles.scene}
-          aria-hidden={!sceneIsActive}
-          inert={!sceneIsActive}
-        >
-          <SiteHeaderV2
-            copy={headerCopy}
-            locale={locale}
-            reduceMotion={reduceMotion}
-            sharedWordmarkIsActive={sharedWordmarkIsActive}
-          />
-          <HeroV2
-            copy={heroCopy}
-            portraitOutcome={effectivePortraitOutcome}
-            onPortraitLoad={handlePortraitLoad}
-            onPortraitError={handlePortraitError}
-          />
-        </div>
-
-        <IntroSequence
-          controls={controls}
-          copy={introCopy}
+        <SiteHeaderV2
+          copy={headerCopy}
           locale={locale}
+          wordmarkHidden={headerWordmarkHidden}
+        />
+        <HeroV2
+          copy={heroCopy}
           portraitOutcome={effectivePortraitOutcome}
-          portraitSrc="/avatar-graduation.jpg"
+          introPhase={phase}
+          introWillRun={controls.forcedMode !== "skip"}
           reduceMotion={reduceMotion}
-          onPhaseChange={setPhase}
+          onPortraitLoad={handlePortraitLoad}
+          onPortraitError={handlePortraitError}
         />
       </div>
-    </LayoutGroup>
+
+      <IntroSequence
+        controls={controls}
+        copy={introCopy}
+        locale={locale}
+        portraitOutcome={effectivePortraitOutcome}
+        portraitSrc="/avatar-graduation.jpg"
+        reduceMotion={reduceMotion}
+        wordmarkHidden={wordmarkTransitionActive}
+        onPhaseChange={setPhase}
+      />
+
+      <WordmarkHandoff
+        phase={phase}
+        reduceMotion={reduceMotion}
+        onActiveChange={setWordmarkTransitionActive}
+      />
+    </div>
   );
 }

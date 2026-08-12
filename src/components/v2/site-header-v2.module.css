@@ -42,12 +42,13 @@
   border-radius: 2px;
 }
 
-.wordmarkMotion,
 .wordmarkText {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .wordmarkText {
+  align-items: baseline;
+  gap: 0.2em;
   font-family: var(--font-v2-display), sans-serif;
   font-size: clamp(1.08rem, 1.55vw, 1.48rem);
   font-variation-settings: "wdth" 116;
@@ -55,6 +56,14 @@
   letter-spacing: -0.035em;
   line-height: 1;
   text-shadow: 0 2px 24px rgba(7, 18, 25, 0.38);
+}
+
+.wordmarkText > span {
+  display: inline-block;
+}
+
+.wordmarkLink[data-wordmark-hidden="true"] .wordmarkText {
+  opacity: 0;
 }
 
 .headerActions,

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import styles from "./site-header-v2.module.css";
 
@@ -16,18 +15,22 @@ export type SiteHeaderV2Copy = {
 type SiteHeaderV2Props = {
   copy: SiteHeaderV2Copy;
   locale: "vi" | "en";
-  reduceMotion: boolean;
-  sharedWordmarkIsActive: boolean;
+  wordmarkHidden: boolean;
 };
 
 export function SiteHeaderV2({
   copy,
   locale,
-  reduceMotion,
-  sharedWordmarkIsActive,
+  wordmarkHidden,
 }: SiteHeaderV2Props) {
   const wordmark = (
-    <span className={styles.wordmarkText}>{copy.wordmark}</span>
+    <span className={styles.wordmarkText} data-wordmark-target>
+      {copy.wordmark.split(" ").map((word, index) => (
+        <span data-wordmark-target-word={index} key={`${word}-${index}`}>
+          {word}
+        </span>
+      ))}
+    </span>
   );
 
   return (
@@ -35,24 +38,10 @@ export function SiteHeaderV2({
       <Link
         href="/v2"
         className={styles.wordmarkLink}
+        data-wordmark-hidden={wordmarkHidden ? "true" : undefined}
         aria-label={`${copy.wordmark} — ${copy.homeLabel}`}
       >
-        {sharedWordmarkIsActive && !reduceMotion ? (
-          <motion.span
-            layoutId="v2-wordmark"
-            className={styles.wordmarkMotion}
-            transition={{
-              layout: {
-                duration: 0.86,
-                ease: [0.16, 1, 0.3, 1],
-              },
-            }}
-          >
-            {wordmark}
-          </motion.span>
-        ) : (
-          wordmark
-        )}
+        {wordmark}
       </Link>
 
       <div className={styles.headerActions}>

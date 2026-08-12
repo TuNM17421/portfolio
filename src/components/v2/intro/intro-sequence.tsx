@@ -57,6 +57,7 @@ type IntroSequenceProps = {
   portraitOutcome: PortraitOutcome;
   portraitSrc: string;
   reduceMotion: boolean;
+  wordmarkHidden: boolean;
   onPhaseChange: (phase: IntroPhase) => void;
 };
 
@@ -101,6 +102,7 @@ export function IntroSequence({
   portraitOutcome,
   portraitSrc,
   reduceMotion,
+  wordmarkHidden,
   onPhaseChange,
 }: IntroSequenceProps) {
   const [scope, animateScope] = useAnimate();
@@ -485,9 +487,13 @@ export function IntroSequence({
 
   const wordmark = (
     <span className={styles.wordmarkText}>
-      {copy.wordmark.split(" ").map((word) => (
-        <span className={styles.wordClip} key={word}>
-          <span data-intro-word className={styles.word}>
+      {copy.wordmark.split(" ").map((word, index) => (
+        <span className={styles.wordClip} key={`${word}-${index}`}>
+          <span
+            data-intro-word
+            data-wordmark-source-word={index}
+            className={styles.word}
+          >
             {word}
           </span>
         </span>
@@ -528,24 +534,13 @@ export function IntroSequence({
           </div>
 
           <div className={styles.identity} data-intro-static>
-            {phase !== "exiting" && !reduceMotion ? (
-              <motion.div
-                layoutId="v2-wordmark"
-                data-intro-wordmark
-                className={styles.wordmark}
-                transition={{
-                  layout: { duration: 0.86, ease: [0.16, 1, 0.3, 1] },
-                }}
-              >
-                {wordmark}
-              </motion.div>
-            ) : (
-              phase !== "exiting" && (
-                <div data-intro-wordmark className={styles.wordmark}>
-                  {wordmark}
-                </div>
-              )
-            )}
+            <div
+              data-intro-wordmark
+              data-wordmark-hidden={wordmarkHidden ? "true" : undefined}
+              className={styles.wordmark}
+            >
+              {wordmark}
+            </div>
 
             <div className={styles.specialties}>
               {copy.specialties.map((specialty, index) => (

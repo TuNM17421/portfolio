@@ -1,14 +1,14 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02A approved
+> **Status:** Checkpoint 02B approved
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
-> **Implementation:** 02A static Header/Hero only; 02B motion choreography not started
+> **Implementation:** 02A static Header/Hero approved; 02B motion choreography implemented
 
 ## Recommendation
 
 Build Part 02 as a **Living Systems Poster**: one full-viewport composition in
-which the graduation portrait is the dominant visual, the exact role is the
+which the portrait is the dominant visual, the exact role is the
 typographic architecture, and VCareer is the only project proof promoted in
 the opening scene.
 
@@ -87,7 +87,7 @@ templated. This is the one deliberate risk in Part 02.
 The canonical title is exact and identical in both locales:
 
 ```text
-Backend Software Engineer · AI Engineer
+Software Engineer · AI Engineer
 ```
 
 Confirmed positioning copy:
@@ -183,18 +183,19 @@ reference site. Resume remains absent until a real public PDF is approved.
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ Nguyen Manh Tu                         VCAREER       CONTACT       VI / EN│
 │                                                                          │
-│                 ceremony depth field          clear portrait focal plane │
+│                 corridor depth field          clear portrait focal plane │
 │                                   eyes / glasses near optical intersection│
 │                                                                          │
-│ BACKEND SOFTWARE                                                        │
-│ ENGINEER · AI ENGINEER ───────── overlaps image boundary                 │
+│ SOFTWARE ENGINEER                                                       │
+│ · AI ENGINEER ───────────────── overlaps image boundary                  │
 │                                                                          │
 │ HANOI, VIETNAM      positioning copy        VCAREER / CASE STUDY →        │
 │                                              150+ PILOT LEARNERS   SCROLL│
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-- Portrait occupies approximately 56–62% of the viewport width, biased right.
+- The desktop portrait panel occupies 40% of the viewport width, biased right;
+  its diagonal edge leaves the dark field slightly wider at the top.
 - Role occupies two or three controlled display lines; it is never typed,
   erased, or allowed to disappear.
 - Summary and action sit on the lower boundary rather than in floating cards.
@@ -210,9 +211,8 @@ reference site. Resume remains absent until a real public PDF is approved.
 │       face / glasses           │
 │       centered upper field     │
 │                               │
-│ BACKEND SOFTWARE              │
-│ ENGINEER · AI                 │
-│ ENGINEER                      │
+│ SOFTWARE ENGINEER             │
+│ · AI ENGINEER                 │
 │                               │
 │ Reliable backend + realtime AI│
 │ VCAREER / CASE STUDY →        │
@@ -239,9 +239,9 @@ replacing spatial movement.
 ### Intro → Hero handoff
 
 1. Part 01 focus line completes its sweep and becomes the Hero baseline.
-2. `Nguyen Manh Tu` moves to the header through the existing shared layout
-   identity.
-3. Portrait expands from the loader crop into the full scene and settles from
+2. `Nguyen Manh Tu` moves to the header through a measured per-word handoff
+   layer that stays above the Intro exit mask for the complete journey.
+3. The Intro portrait yields to the accepted Hero portrait, which settles from
    approximately `scale(1.08)` without obscuring the face.
 4. The two role groups reveal through masks; the actual text is already in the
    document and remains accessible.
@@ -282,8 +282,8 @@ short opacity/transform entrance and no missing shared element.
 
 ## Image art-direction gate
 
-`public/avatar-graduation.jpg` remains the source of truth and is never
-overwritten.
+`public/avatar-graduation.jpg` remains the Intro source and `public/avatar.jpg`
+remains the Hero source. Neither original is overwritten.
 
 ### Layout prototype
 
@@ -295,16 +295,13 @@ judged without waiting for an AI edit.
 After the layout is approved:
 
 1. Preserve Tu's face, glasses, hair, skin texture, suit, and identity.
-2. Remove the secondary person on the right without altering Tu's jaw,
-   shoulder, or glasses.
-3. Reconstruct and outpaint the existing ceremony environment; do not invent
-   a futuristic room or synthetic neon background.
-4. Export a desktop master around 2400×1600 with Tu in the right-middle third.
-5. Export a mobile master around 1400×1900 with the face centered in the
-   upper-middle field.
-6. Keep skin warmer than the blue environment; preserve clear eyes and glasses;
-   use depth blur only behind the subject.
-7. Review original, desktop edit, and mobile edit side-by-side before wiring
+2. Treat the ceremony Intro and corridor Hero as separate masters rather than
+   blending them into a synthetic scene.
+3. Keep the real environments recognizable; do not invent a futuristic room
+   or synthetic neon background.
+4. Export desktop and mobile crops only after comparison inside the real Hero.
+5. Preserve clear eyes and glasses; use depth blur only behind the subject.
+6. Review original, desktop, and mobile variants side-by-side before wiring
    responsive AVIF/WebP derivatives.
 
 If the AI edit changes identity or feels artificial, the implementation falls

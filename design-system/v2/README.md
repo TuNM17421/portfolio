@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Part 01 approved and committed; Part 02 checkpoint 02A approved
+> **Status:** Part 01 approved and committed; Part 02 checkpoint 02B approved
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 01 Intro Loader and Part 02 Header + Hero
-> **Implementation status:** Part 01 and the static Part 02 Header/Hero run on isolated `/[locale]/v2`; Part 02 motion checkpoints have not started
+> **Implementation status:** Part 01 plus the Part 02 static composition and intro-to-Hero choreography run on isolated `/[locale]/v2`
 
 ## Objective
 
@@ -22,7 +22,7 @@ The primary visitor is a recruiter, engineering manager or technical founder.
 Within the first scene they must understand:
 
 1. who Nguyen Manh Tu is;
-2. the exact role: `Backend Software Engineer · AI Engineer`;
+2. the exact role: `Software Engineer · AI Engineer`;
 3. that VCareer is the flagship proof of work;
 4. where to inspect that proof or make contact.
 
@@ -61,11 +61,12 @@ inspected instead.
 
 ## Visual direction — “Systems in Focus”
 
-The visual source is the cool ceremony portrait in `avatar-graduation.jpg`,
-especially the glasses, shallow depth and blue-white background, together with
-Nguyen Manh Tu's work on backend/realtime systems. The page should feel like
-layers of a system coming into focus: planes, masks and signals align before
-revealing the portrait and product evidence.
+The opening uses two approved portraits: the cool ceremony portrait in
+`avatar-graduation.jpg` for the Intro and the corridor portrait in `avatar.jpg`
+for the static Hero. Together with Nguyen Manh Tu's work on backend/realtime
+systems, the page should feel like layers of a system coming into focus:
+planes, masks and signals align before revealing the portrait and product
+evidence.
 
 This is deliberately different from a generic terminal/cyberpunk portfolio.
 There are no decorative command prompts or invented system diagnostics. The
@@ -143,7 +144,7 @@ Relevant implementation references:
 | --- | --- | --- | --- |
 | 00 | Evidence, direction and contracts | These documents | Approved |
 | 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
-| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | 02A approved |
+| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | 02B approved |
 | 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Not planned in detail |
 | 04 | VCareer flagship showcase | Project transition and evidence hierarchy | Not planned in detail |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
@@ -158,8 +159,8 @@ receive the same research/contract treatment only after Part 02 is accepted.
 ## Confirmed user inputs
 
 - The visible wordmark is exactly `Nguyen Manh Tu`.
-- The Hero source is the current user-provided
-  `public/avatar-graduation.jpg` working copy.
+- The Intro source is `public/avatar-graduation.jpg`; the accepted static Hero
+  source is `public/avatar.jpg` with a 60/40 dark-field-to-image composition.
 
 ## Confirmed design decisions
 

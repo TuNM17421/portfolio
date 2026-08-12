@@ -140,6 +140,10 @@
   gap: 0.18em;
 }
 
+.wordmark[data-wordmark-hidden="true"] {
+  opacity: 0;
+}
+
 .wordClip {
   display: inline-block;
   overflow: hidden;
