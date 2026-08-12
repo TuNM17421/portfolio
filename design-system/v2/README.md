@@ -1,6 +1,6 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Part 01 approved and committed; Part 02 checkpoint 02D approved; checkpoint 02E implemented and awaiting visual approval
+> **Status:** Part 01 approved and committed; Part 02 checkpoint 02E approved; checkpoint 02F finish gate in progress
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 01 Intro Loader and Part 02 Header + Hero
 > **Implementation status:** Part 01 plus the Part 02 static composition, intro-to-Hero choreography, adaptive navigation, bounded pointer depth, and first-scroll hold run on isolated `/[locale]/v2`
@@ -144,7 +144,7 @@ Relevant implementation references:
 | --- | --- | --- | --- |
 | 00 | Evidence, direction and contracts | These documents | Approved |
 | 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
-| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | 02D approved · `9e0fc8a`; 02E awaiting visual approval |
+| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | 02E approved; `ai-tidy` is the default; 02F in progress |
 | 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Not planned in detail |
 | 04 | VCareer flagship showcase | Project transition and evidence hierarchy | Not planned in detail |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |

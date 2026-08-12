@@ -225,6 +225,12 @@ const ART_DIRECTED_PORTRAITS = {
     desktopSize: { width: 1024, height: 1536 },
     mobileSize: { width: 1000, height: 1250 },
   },
+  "ai-tidy": {
+    desktop: "/v2/hero/avatar-hero-desktop-ai-tidy-v2.webp",
+    mobile: "/v2/hero/avatar-hero-mobile-ai-tidy-v2.webp",
+    desktopSize: { width: 1024, height: 1536 },
+    mobileSize: { width: 1000, height: 1250 },
+  },
 } as const;
 
 function ArtDirectedPortrait({

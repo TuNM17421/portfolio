@@ -1,6 +1,6 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02D approved and committed; checkpoint 02E implemented and awaiting visual approval
+> **Status:** Checkpoint 02E approved; `ai-tidy` promoted to the default; checkpoint 02F in progress
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
 > **Implementation:** 02A static Header/Hero approved; 02B motion choreography approved; 02C Header/navigation approved
@@ -404,9 +404,10 @@ into a generic cyberpunk render.
   identity comparison;
 - desktop/mobile sources are switched at the existing `900px` composition
   breakpoint with a semantic `<picture>` built from Next.js `getImageProps`;
-- the default and `?portrait=original` keep the accepted source unchanged;
-  `?portrait=grade` opts into the source-preserving software treatment and
-  `?portrait=ai` opts into the more cinematic generative treatment;
+- `?portrait=original` keeps the original source unchanged;
+  `?portrait=grade` opts into the source-preserving software treatment,
+  `?portrait=ai` selects the first cinematic edit, and the approved default
+  uses the refined `ai-tidy` treatment;
 - review includes the original, both generated masters at 100%, and rendered
   Hero crops at 375×812, 899×800, 900×800, 1024×768, and 1440×900;
 - accept only if face, glasses, hands, suit seams, and corridor lines survive
@@ -651,8 +652,8 @@ Checkpoint verification:
 
 ## Checkpoint 02E implementation record
 
-Implemented on 12 August 2026 and intentionally left uncommitted for portrait
-selection:
+Implemented on 12 August 2026, reviewed as a portrait comparison, and committed
+as `339c0bd` after selection:
 
 - `grade` is a deterministic Sharp crop/exposure/saturation treatment of the
   original pixels: desktop `960×1440` / `103,582 B`, mobile `1000×1250` /
@@ -667,9 +668,10 @@ selection:
 - a Next.js `getImageProps` `<picture>` selects one optimized mobile or desktop
   source at the existing `900px` composition boundary. It never downloads both
   masters for one viewport;
-- the approved original remains the default. Review queries select `grade` or
-  `ai`, invalid values fall back to `original`, and locale changes preserve
-  `intro`, `hold`, and `portrait` together.
+- the original remains available through `?portrait=original`. Review queries
+  select `grade`, `ai`, or `ai-tidy`; after approval, missing or invalid values
+  resolve to `ai-tidy`. Locale changes preserve `intro`, `hold`, and `portrait`
+  together.
 
 Checkpoint verification:
 
@@ -687,9 +689,29 @@ Checkpoint verification:
 - rendered self-review finds `grade` completely identity-faithful but tighter
   and brighter on desktop. `ai` uses the corridor depth and V2 tonal system more
   successfully, but it reconstructs small skin/hair details when inspected at
-  100%. Neither candidate becomes the default without explicit user approval;
-  desktop/mobile may also be mixed if the user prefers different candidates per
-  breakpoint.
+  100%. Neither initial candidate became the default without explicit user
+  approval; the narrower `ai-tidy` follow-up was subsequently accepted for both
+  breakpoints.
+
+### 02E approved hair refinement
+
+The 02E comparison baseline is committed as `339c0bd`. The subsequently
+approved `ai-tidy` edit applies one narrow instruction to the AI v1 masters:
+reduce flyaways and organize the crown silhouette while keeping the same
+side-swept fringe, length, color, direction, volume, and hairline.
+
+Every non-hair element is explicitly locked in the edit prompt. The generated
+files remain versioned as `ai-tidy-v2`; `ai-v1`, `grade-v1`, and `avatar.jpg`
+are not overwritten. Review must compare `?portrait=ai` and
+`?portrait=ai-tidy` inside the rendered Hero and at 100%. The user approved the
+refined version after this comparison, so it now resolves as the default while
+all earlier variants remain directly selectable.
+
+The trial passes `42/42` Vitest tests, TypeScript validation, the production
+build, and diff checks. At 1440×900 and 375×812 it loads the intended optimized
+source with no horizontal overflow, console warning/error, or automatic axe
+violation. One axe contrast check remains incomplete on the image-backed Hero
+and stays a manual finish-gate item.
 
 ## Planned code boundary
 
@@ -705,7 +727,7 @@ src/app/[locale]/v2/page.tsx
 src/lib/v2/*                           # only state/control logic with tests
 messages/en.json
 messages/vi.json
-public/v2/hero/*                       # review candidates; commit only after 02E approval
+public/v2/hero/*                       # versioned review candidates and approved sources
 ```
 
 The V1 homepage and existing VCareer case study remain unchanged throughout

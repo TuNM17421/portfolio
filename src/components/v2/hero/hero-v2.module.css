@@ -136,7 +136,8 @@
 }
 
 .hero[data-portrait-variant="grade"] .portraitImage,
-.hero[data-portrait-variant="ai"] .portraitImage {
+.hero[data-portrait-variant="ai"] .portraitImage,
+.hero[data-portrait-variant="ai-tidy"] .portraitImage {
   object-position: 50% 48%;
   filter: saturate(0.96) contrast(1.025) brightness(0.96);
   transform: scale(1.012);
@@ -147,7 +148,8 @@
   opacity: 0.38;
 }
 
-.hero[data-portrait-variant="ai"] .portraitGrade {
+.hero[data-portrait-variant="ai"] .portraitGrade,
+.hero[data-portrait-variant="ai-tidy"] .portraitGrade {
   opacity: 0.3;
 }
 
