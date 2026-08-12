@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Part 01 and Part 02 approved; checkpoint 02F finish gate complete
+> **Status:** Part 01 and Part 02 approved; Part 03 checkpoint 03D implemented for live review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 01 Intro Loader and Part 02 Header + Hero
-> **Implementation status:** Part 01 plus the complete Part 02 Header/Hero experience and its responsive, accessibility, reduced-motion, no-JS, and performance finish gate run on isolated `/[locale]/v2`
+> **Detailed scope in this checkpoint:** Part 01 Intro Loader, Part 02 Header + Hero, and Part 03 Hero-to-About identity story
+> **Implementation status:** Parts 01–02 are approved; Part 03's responsive, accessibility, reduced-motion, no-JS, CLS, and performance finish gate is ready for review on isolated `/[locale]/v2`
 
 ## Objective
 
@@ -145,7 +145,7 @@ Relevant implementation references:
 | 00 | Evidence, direction and contracts | These documents | Approved |
 | 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
 | 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed |
-| 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Not planned in detail |
+| 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | 03A–03C committed; 03D ready for approval |
 | 04 | VCareer flagship showcase | Project transition and evidence hierarchy | Not planned in detail |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
 | 06 | Experience + Awards | Timeline and event-gallery sequence | Not planned in detail |
@@ -153,8 +153,8 @@ Relevant implementation references:
 | 08 | Case-study visual migration + route transitions | Homepage-to-case-study continuity | Not planned in detail |
 | 09 | Cross-page finish gate | Full responsive, accessibility and motion audit | Not planned in detail |
 
-Detailed contracts for Part 01 and Part 02 live beside this file. Later parts
-receive the same research/contract treatment only after Part 02 is accepted.
+Detailed contracts for Parts 01–03 live beside this file. Later parts receive
+the same research/contract treatment only after the preceding part is accepted.
 
 ## Confirmed user inputs
 

@@ -1,6 +1,6 @@
 # Part 03 — Hero-to-About transition + identity story
 
-> **Status:** 03A committed (`70a63d1`); 03B committed (`b6fcbae`); 03C implemented for live review; 03D is not started
+> **Status:** 03A committed (`70a63d1`); 03B committed (`b6fcbae`); 03C committed (`f9114b6`); 03D implemented for live review
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0` and `/en/v2?intro=0`
 
@@ -220,6 +220,57 @@ must never be duplicated in the accessibility tree; visual duplicate spans are
 - Run responsive, accessibility, performance, CLS, scroll-direction, resize,
   locale, menu, reduced-motion, and no-JS verification.
 - Record the route-size delta and update the V2 roadmap.
+
+#### Live finish-gate record
+
+Completed on 12 August 2026 and left for user review before the checkpoint is
+committed. The gate found one runtime fallback defect: after a visitor scrolled
+the desktop story and resized below `900px`, Motion retained the last inline
+opacity and transform values even though the layout had changed to normal
+flow. The static mode selector now authoritatively restores every story frame,
+clip, transform, and signal node. Desktop → compact → desktop resize therefore
+keeps all content visible without forcing a remount or resetting scroll.
+
+Final verification:
+
+- `56/56` Vitest tests, TypeScript, lint, diff checks, and the production build
+  pass. `/[locale]/v2` is `69.1 kB` with `180 kB` First Load JS. Against the
+  approved 02F build (`67.1 kB` / `178 kB`), the complete About chapter adds
+  approximately `2.0 kB` route code and `2 kB` First Load JS;
+- VI and EN were rendered at 1440×900, 1280×720, 1024×768, 900×700,
+  899×900, 768×1024, 430×932, 375×812, and 320×568. Desktop choreography fits
+  the shortest 900×700 viewport; compact layouts retain the complete story in
+  normal flow; no tested state has horizontal overflow;
+- forward scroll resolves foundation → principle → process/closing, and reverse
+  scroll restores those exact frames and the dark Hero Header palette. Live
+  resize switches between absolute/sticky and static layout with all four
+  frames visible in static mode;
+- VI/EN switching preserves `intro`, `hold`, `portrait`, and `story` controls.
+  The mobile navigation traps Tab and Shift+Tab, closes on Escape, locks body
+  scroll, makes Hero/About inert, and returns focus to its trigger;
+- reduced motion and no-JavaScript both render the same `h1 → h2 → h3`
+  hierarchy, four ordered process steps, and closing statement. They use static
+  positions, full opacity, no spatial transforms, and no horizontal overflow;
+- axe reports zero automatic WCAG A/AA violations across active VI/EN story
+  frames, desktop static, compact static, and the open mobile dialog. Its
+  contrast indeterminate cases come from gradients and pseudo-elements; the
+  About chapter's manual text pairs are `4.87:1` (quiet deep ink), `5.35:1`
+  (focus ink), `7.14:1` (body ink), and `17:1` (night ink) against the mineral
+  sheet. Lighthouse Accessibility, Best Practices, and SEO are `100` on both
+  mobile and desktop;
+- Lighthouse desktop is `99 / 100 / 100 / 100` with LCP `1.0s`, TBT `11ms`,
+  and CLS `0`. Three mobile runs have a median `79 / 100 / 100 / 100`, LCP
+  `4.47s`, TBT `215ms`, and CLS `0`. This is a measured decrease from 02F's
+  single mobile run (`86`, LCP `4.2s`) and is retained as an explicit cost for
+  the motion-forward branch rather than hidden by one favorable run;
+- scripted Web Vitals collection records max-session CLS `0` for compact
+  document flow, `0.0011` for desktop scroll plus live resize, and `0.0187` for
+  the complete Intro, handoff, and About journey. Console errors, page errors,
+  failed requests, and Lighthouse binary audit failures are all zero.
+
+The mobile performance cost does not block this checkpoint under the approved
+motion direction, but it remains a cross-page optimization target for Part 09
+after the remaining sections establish the final route payload.
 
 ## Planned code boundary
 

@@ -348,6 +348,40 @@
   line-height: 0.98;
 }
 
+/*
+ * `motion` keeps the last resolved inline values when the story changes from
+ * the desktop scrub to normal flow during a live resize. The mode attribute is
+ * the source of truth for every fallback, so explicitly restore the readable
+ * state here instead of depending on a remount.
+ */
+.about[data-about-story="static"] .foundationBlock,
+.about[data-about-story="static"] .foundationClaim,
+.about[data-about-story="static"] .extensionClaim,
+.about[data-about-story="static"] .foundationBody,
+.about[data-about-story="static"] .principleBlock,
+.about[data-about-story="static"] .principleHeading,
+.about[data-about-story="static"] .principleBody,
+.about[data-about-story="static"] .processBlock,
+.about[data-about-story="static"] .closingBlock {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.about[data-about-story="static"] .foundationClaim,
+.about[data-about-story="static"] .principleHeading {
+  clip-path: none !important;
+}
+
+.about[data-about-story="static"] .signalLine {
+  transform: translateX(-50%) scaleY(1) !important;
+}
+
+.about[data-about-story="static"] .signalNodeOne,
+.about[data-about-story="static"] .signalNodeTwo,
+.about[data-about-story="static"] .signalTerminal {
+  opacity: 1 !important;
+}
+
 @media (min-width: 900px) {
   .about[data-about-story="static"] .sheet {
     padding-top: clamp(92px, 8.5vw, 124px);
