@@ -7,7 +7,10 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { resolveChapterPhase } from "@/lib/v2/chapter-tone";
+import {
+  resolveChapterPhase,
+  resolveChapterTone,
+} from "@/lib/v2/chapter-tone";
 
 type ChapterToneOptions = {
   aboutSectionRef: RefObject<HTMLElement | null>;
@@ -57,36 +60,23 @@ export function useChapterTone({
   );
   const headerColor = useTransform(
     chapterPhase,
-    [0, 1, 2],
-    ["rgb(237, 244, 245)", "rgb(7, 18, 25)", "rgb(237, 244, 245)"],
+    (phase) => resolveChapterTone(phase).color,
   );
   const headerAccent = useTransform(
     chapterPhase,
-    [0, 1, 2],
-    ["rgb(107, 215, 208)", "rgb(23, 111, 107)", "rgb(168, 240, 60)"],
+    (phase) => resolveChapterTone(phase).accent,
   );
   const headerBorder = useTransform(
     chapterPhase,
-    [0, 1, 2],
-    [
-      "rgba(107, 215, 208, 0.2)",
-      "rgba(23, 111, 107, 0.2)",
-      "rgba(168, 240, 60, 0.22)",
-    ],
+    (phase) => resolveChapterTone(phase).border,
   );
   const headerTextShadow = useTransform(
     chapterPhase,
-    [0, 1, 2],
-    [
-      "0 2px 18px rgba(7, 18, 25, 0.7)",
-      "0 2px 16px rgba(7, 18, 25, 0.08)",
-      "0 2px 18px rgba(7, 18, 25, 0.7)",
-    ],
+    (phase) => resolveChapterTone(phase).textShadow,
   );
   const headerLayerOpacity = useTransform(
     chapterPhase,
-    [0, 1, 2],
-    [0, 1, 0],
+    (phase) => resolveChapterTone(phase).layerOpacity,
   );
   const vcareerTraceScale = useTransform(
     vcareerSource,

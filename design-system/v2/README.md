@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–03 and Part 04A–04C approved; checkpoint 04D implemented for live review
+> **Status:** Parts 01–03 and Part 04A–04D approved; checkpoint 04E implemented for final review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 04D compact evidence boards, explicit loading/error surfaces, reduced-motion/no-JS behavior, and live-resize reset
-> **Implementation status:** Part 04A–04C are committed through `ca55bfb`; 04D is uncommitted for compact/fallback review and 04E has not started
+> **Detailed scope in this checkpoint:** Part 04E responsive, accessibility, motion, state, image-transfer, Web Vitals, and Lighthouse finish gate
+> **Implementation status:** Part 04A–04D are committed through `e6985da`; 04E is uncommitted for final review
 
 ## Objective
 
@@ -146,7 +146,7 @@ Relevant implementation references:
 | 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                                |
 | 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                   |
 | 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                |
-| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | 04A–04C committed; 04D implemented for live review; 04E pending     |
+| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | 04A–04D committed; 04E implemented for final review                 |
 | 05   | Supporting projects                             | Desktop/mobile project browsing                           | Not planned in detail                                               |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                               |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                               |

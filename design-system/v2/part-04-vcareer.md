@@ -1,6 +1,6 @@
 # Part 04 — VCareer flagship proof
 
-> **Status:** Checkpoints 04A–04C approved; checkpoint 04D implemented for live review
+> **Status:** Checkpoints 04A–04D approved; checkpoint 04E implemented for final review
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#vcareer`, `/en/v2?intro=0#vcareer`, `?showcase=static`, `?showcase=loading`, and `?showcase=image-error`
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
@@ -497,6 +497,75 @@ not start before explicit approval of the current one.
 - Keep motion if it improves the product story; remove any effect that merely
   repeats Hero or About behavior without adding evidence.
 - Update the V2 roadmap and commit only after final approval.
+
+## Checkpoint 04E finish-gate record
+
+Completed on 12 August 2026 as an uncommitted final-review candidate. The gate
+found and resolved two Header contrast blockers without changing the approved
+VCareer evidence composition:
+
+- the previous continuous About → VCareer tone interpolation moved foreground
+  and background through the same grey range, reaching approximately `1.09:1`;
+  the Header now switches foreground, surface, accent, border, and shadow as
+  one reversible chapter cut, with no stale intermediate palette;
+- the compact menu icon was fixed to mineral white even on the light About
+  Header, and the mineral glass left the active teal locale at approximately
+  `4.16:1`. The icon now inherits the current chapter color and the glass uses
+  `0.94` opacity, raising the active locale to `4.73:1` while retaining the
+  accepted glass treatment.
+
+Final verification:
+
+- `78/78` Vitest tests, TypeScript, lint, diff checks, and the production build
+  pass. `/[locale]/v2` is `73.1 kB` with `184 kB` First Load JS. Against the
+  approved Part 03 build (`69.1 kB` / `180 kB`), the complete VCareer chapter
+  adds approximately `4.0 kB` route code and `4 kB` First Load JS;
+- VI and EN pass all 16 required viewport cases at 1440×900, 1280×720,
+  1024×768, 1023×768, 768×1024, 430×932, 375×812, and 320×568. Each render
+  retains six figures, the correct active/static mode, zero horizontal
+  overflow, and a minimum VCareer action target of `52px`;
+- every named desktop plateau settles at full opacity, zero transform, open
+  clip, and active lime rail in both directions. Header state resolves exactly
+  Hero → About → VCareer and VCareer → About → Hero. Live resize
+  active → 1023px static → active exposes `1 → 6 → 1` evidence screens and
+  restores every static inline value to its explicit baseline;
+- locale switching preserves `intro`, `hold`, `portrait`, `story`, and
+  `showcase` review controls. The mobile dialog retains initial focus, cyclic
+  Tab/Shift+Tab, Escape and background close, focus return, scroll lock,
+  inert background chapters, and desktop-resize cleanup;
+- reduced motion removes pinning, spatial transforms, and the loading trace;
+  toggling the preference live restores the appropriate state. No-JavaScript
+  VI/EN renders at desktop and mobile retain the `h2 → h3 → h4` hierarchy,
+  six figures, real links, static evidence, and zero overflow;
+- forced loading and error states render six localized reserved surfaces. A
+  real intercepted image failure also resolves all six frames to semantic
+  `role="img"` fallbacks with the localized screen name and no native image
+  remnants;
+- axe WCAG A/AA reports zero automatic violations across desktop stages,
+  threshold static, compact VI/EN, About Header, loading, error, reduced
+  motion, and the open mobile menu. Pseudo-element contrast remains
+  indeterminate to axe and was closed manually: critical minima are `4.73:1`
+  for About active locale, `4.80:1` for VCareer blue on mineral, `4.96:1` for
+  quiet product-sky text on night, `5.06:1` for fallback text on product sky,
+  `13.69:1` for night on lime, and `17:1` for mineral on night;
+- no VCareer screenshot is requested at initial Hero load. After all six
+  evidence screens are visited, optimized WebP transfer is `32,144 B` at
+  375px and 768px, and `181,724 B` at 1440px, versus `3,603,041 B` for the six
+  source PNG files;
+- four mobile Lighthouse runs have a median `82 / 100 / 100 / 100`, LCP
+  `4.64s`, TBT `45ms`, and CLS `0`. Desktop is `99 / 100 / 100 / 100`, LCP
+  `1.02s`, TBT `0ms`, and CLS `0`. Scripted full VCareer forward/reverse plus
+  live resize records CLS `0.0009`; compact, loading, and error paths record
+  CLS `0`. Fresh production journeys have zero console warnings/errors, page
+  errors, or unexpected failed requests;
+- both localized case-study destinations and the live product and architecture
+  report resolve with HTTP `200`. External actions retain `_blank` plus
+  `noopener noreferrer`; the private repository remains explanatory text.
+
+The mobile LCP remains above the `2.5s` good threshold and is recorded rather
+than hidden. Part 04 does not add to the opening image transfer, so this remains
+a cross-page opening-scene optimization target for Part 09. The temporary V2
+homepage → V1 case-study visual mismatch remains owned by Part 08.
 
 ## Planned code boundary
 
