@@ -1,6 +1,6 @@
 # Part 02 — Header + Full-viewport Hero
 
-> **Status:** Checkpoint 02E approved; `ai-tidy` promoted to the default; checkpoint 02F in progress
+> **Status:** Complete; checkpoint 02F finish gate passed after the approved `ai-tidy` portrait became the default
 > **Branch:** `redesign/portfolio-v2`
 > **Dependency:** Part 01 approved at commit `a0687e2`
 > **Implementation:** 02A static Header/Hero approved; 02B motion choreography approved; 02C Header/navigation approved
@@ -710,8 +710,60 @@ all earlier variants remain directly selectable.
 The trial passes `42/42` Vitest tests, TypeScript validation, the production
 build, and diff checks. At 1440×900 and 375×812 it loads the intended optimized
 source with no horizontal overflow, console warning/error, or automatic axe
-violation. One axe contrast check remains incomplete on the image-backed Hero
-and stays a manual finish-gate item.
+violation. Axe's incomplete image-backed contrast check was carried into the
+manual 02F finish gate below.
+
+## Checkpoint 02F finish-gate record
+
+Completed on 12 August 2026 after the user approved the refined portrait. The
+finish gate found and resolved four issues without changing the accepted
+composition or motion language:
+
+- the Header wordmark now contains real spaces in its text alternative while
+  retaining the same three-span handoff geometry, closing WCAG 2.5.3 label/name
+  mismatch without a visual shift;
+- direct Hero entry now pairs `fetchpriority="high"` with eager loading, while
+  full Intro entry keeps the behind-loader Hero lazy;
+- OS `prefers-reduced-motion` now uses a live `matchMedia` subscription, so the
+  sticky hold, pointer depth, and spatial mobile-menu transition turn off both
+  on hydration and when the preference changes while the page is open;
+- local dark fields were strengthened only under the mobile Header/role and the
+  desktop VCareer proof. The accepted portrait, crop, role geometry, and CTA
+  positions remain unchanged.
+
+Final verification:
+
+- `42/42` Vitest tests, TypeScript, lint, diff checks, and the production build
+  pass. `/[locale]/v2` is `67.1 kB` with `178 kB` First Load JS;
+- the Part 01 baseline at `a0687e2` builds to `53.9 kB` / `161 kB`, so the
+  complete Header/Hero adds `13.2 kB` route code and `17 kB` First Load JS;
+- direct optimized portrait delivery is `35,088 B` at 375×812 and `42,890 B`
+  at 1440×900. A full Intro additionally delivers the existing graduation
+  portrait at `9,150 B` mobile or `17,228 B` desktop, for `44,238 B` and
+  `60,118 B` total opening-image transfer respectively;
+- VI and EN renders at 375×812, 768×1024, 1024×768, and 1440×900 use the
+  correct art-directed source, keep the title and actions inside the viewport,
+  and show no horizontal overflow;
+- full Intro completes in approximately `6.5s`, repeat entry in `0.8s`, manual
+  skip in `1.8s`, slow readiness in `7.9s`, and reduced motion in `0.45s`.
+  Direct, fallback, cached, no-JS, and both reduced-motion paths all retain the
+  role, positioning, VCareer proof, and real destinations;
+- the largest observed scripted CLS is `0.0367`, below the `0.1` good
+  threshold. Final Lighthouse scores are mobile `86 / 100 / 100 / 100` and
+  desktop `99 / 100 / 100 / 100` for Performance / Accessibility / Best
+  Practices / SEO; mobile LCP is `4.2s` under Lighthouse throttling, desktop
+  LCP is `0.9s`, and reported CLS is `0` in both runs;
+- axe reports zero automatic WCAG A/AA violations for mobile, desktop, open
+  navigation, image fallback, and reduced motion. Its image-gradient contrast
+  cases were closed manually against rendered background pixels: the critical
+  minima include mobile active locale `5.44:1`, mobile first role line `4.58:1`
+  (large-text requirement `3:1`), desktop Header Contact `4.91:1`, desktop
+  VCareer action `11.62:1`, and desktop proof `7.87:1`;
+- the mobile modal keeps initial focus, cyclic Tab/Shift+Tab, Escape and
+  background close, focus return, scroll lock, inert Hero, and resize cleanup.
+  Every visible control remains at least 44px, both localized VCareer routes
+  return HTTP 200, every email action is the real `mailto:` destination, and
+  fresh navigation produces no console warning or error.
 
 ## Planned code boundary
 

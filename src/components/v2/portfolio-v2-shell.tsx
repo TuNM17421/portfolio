@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { useReducedMotion } from "motion/react";
 import {
   IntroSequence,
   type IntroCopy,
@@ -20,6 +19,7 @@ import { WordmarkHandoff } from "@/components/v2/wordmark-handoff";
 import { parseIntroControls } from "@/lib/v2/intro-readiness";
 import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
 import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
+import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
 import styles from "./portfolio-v2-shell.module.css";
 
 type PortfolioV2ShellProps = {
@@ -53,7 +53,7 @@ export function PortfolioV2Shell({
     () => parseHeroPortraitVariant(portraitQuery),
     [portraitQuery],
   );
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
     controls.debugState === "reduced" || Boolean(prefersReducedMotion);
   const [phase, setPhase] = useState<IntroPhase>("complete");

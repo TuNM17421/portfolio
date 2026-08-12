@@ -280,6 +280,7 @@ function ArtDirectedPortrait({
         alt={alt}
         className={styles.portraitImage}
         fetchPriority={highPriority ? "high" : undefined}
+        loading={highPriority ? "eager" : mobileImageProps.loading}
         onLoad={onLoad}
         onError={onError}
       />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import styles from "./site-header-v2.module.css";
@@ -176,10 +176,11 @@ export function SiteHeaderV2({
 
   const wordmark = (
     <span className={styles.wordmarkText} data-wordmark-target>
-      {copy.wordmark.split(" ").map((word, index) => (
-        <span data-wordmark-target-word={index} key={`${word}-${index}`}>
-          {word}
-        </span>
+      {copy.wordmark.split(" ").map((word, index, words) => (
+        <Fragment key={`${word}-${index}`}>
+          <span data-wordmark-target-word={index}>{word}</span>
+          {index < words.length - 1 ? " " : null}
+        </Fragment>
       ))}
     </span>
   );

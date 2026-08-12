@@ -313,6 +313,24 @@
   width: 100%;
 }
 
+.projectProof {
+  position: relative;
+  isolation: isolate;
+}
+
+.projectProof::before {
+  position: absolute;
+  z-index: -1;
+  inset: -18px -16px -16px -24px;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 18, 25, 0.78),
+    rgba(7, 18, 25, 0.6)
+  );
+  filter: blur(12px);
+  content: "";
+}
+
 .location,
 .positioning,
 .proof {
@@ -373,7 +391,7 @@
 
 .proof {
   margin-top: 11px;
-  color: rgba(237, 244, 245, 0.62);
+  color: rgba(237, 244, 245, 0.76);
 }
 
 .projectLink:hover,
@@ -536,7 +554,7 @@
   }
 
   .roleShade {
-    top: 37%;
+    top: 32%;
     width: 100%;
     height: 31%;
     background: linear-gradient(to bottom, transparent, rgba(7, 18, 25, 0.92) 44%, #071219 84%);
@@ -603,6 +621,10 @@
     bottom: 22px;
     left: 20px;
     width: auto;
+  }
+
+  .projectProof::before {
+    display: none;
   }
 
   .projectLink {

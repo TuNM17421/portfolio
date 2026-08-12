@@ -102,7 +102,7 @@
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  color: rgba(237, 244, 245, 0.76);
+  color: rgba(237, 244, 245, 0.86);
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.09em;
@@ -272,6 +272,15 @@
 @media (max-width: 899px) {
   .headerRail {
     padding: 17px 20px;
+  }
+
+  .headerRail::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(7, 18, 25, 0.94),
+      rgba(7, 18, 25, 0.5) 62%,
+      transparent
+    );
   }
 
   .header[data-menu-open="true"] .headerRail::before {
