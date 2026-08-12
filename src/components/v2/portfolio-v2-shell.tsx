@@ -12,6 +12,10 @@ import {
   type HeroV2Copy,
 } from "@/components/v2/hero/hero-v2";
 import {
+  AboutV2,
+  type AboutV2Copy,
+} from "@/components/v2/about/about-v2";
+import {
   SiteHeaderV2,
   type SiteHeaderV2Copy,
 } from "@/components/v2/site-header-v2";
@@ -30,6 +34,7 @@ type PortfolioV2ShellProps = {
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
+  aboutCopy: AboutV2Copy;
 };
 
 export function PortfolioV2Shell({
@@ -40,6 +45,7 @@ export function PortfolioV2Shell({
   introCopy,
   headerCopy,
   heroCopy,
+  aboutCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -110,6 +116,10 @@ export function PortfolioV2Shell({
           navigationOpen={mobileNavigationOpen}
           onPortraitLoad={handlePortraitLoad}
           onPortraitError={handlePortraitError}
+        />
+        <AboutV2
+          copy={aboutCopy}
+          navigationOpen={mobileNavigationOpen}
         />
       </div>
 

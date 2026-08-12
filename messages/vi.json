@@ -385,6 +385,28 @@
       "primaryAction": "VCareer / Xem case study",
       "proof": "150+ học viên pilot",
       "portraitAlt": "Chân dung Nguyen Manh Tu"
+    },
+    "about": {
+      "eyebrow": "ABOUT / CÁCH MÌNH XÂY",
+      "axis": "BACKEND → AI",
+      "foundationLabel": "Nền tảng",
+      "foundationPrefix": "Không rời",
+      "foundationAnchor": "Backend",
+      "foundationSuffix": ".",
+      "extension": "AI là bước phát triển tiếp theo.",
+      "foundationBody": "Hơn hai năm làm Backend cho mình nền tảng về API, dữ liệu, business logic và cách hệ thống production vận hành. Mình mang nền tảng đó vào LLM, RAG, recommendation và AI Agent để xây những hệ thống AI thực tế — không chỉ dừng ở việc gọi model API.",
+      "principleLabel": "Nguyên tắc vận hành",
+      "principle": "Bắt đầu từ bài toán. Không bắt đầu từ công nghệ.",
+      "principleBody": "Mình làm rõ vấn đề của người dùng và tiêu chí thành công trước, sau đó xây giải pháp đơn giản nhất để kiểm chứng. Chỉ khi có dữ liệu sử dụng thực tế, mình mới mở rộng architecture, performance hoặc mức độ phức tạp của AI.",
+      "processLabel": "Cách mình ra quyết định",
+      "process": {
+        "problem": "Hiểu vấn đề",
+        "proof": "Kiểm chứng đơn giản nhất",
+        "usage": "Quan sát cách dùng thật",
+        "scale": "Mở rộng khi có bằng chứng"
+      },
+      "closingLabel": "Định nghĩa kỹ thuật tốt",
+      "closing": "Kỹ thuật tốt không phải là hệ thống dùng nhiều công nghệ nhất. Nó đủ đơn giản để bảo trì, nhưng đủ tốt để giải quyết đúng vấn đề."
     }
   },
   "footer": {

@@ -385,6 +385,28 @@
       "primaryAction": "VCareer / View case study",
       "proof": "150+ pilot learners",
       "portraitAlt": "Portrait of Nguyen Manh Tu"
+    },
+    "about": {
+      "eyebrow": "ABOUT / HOW I BUILD",
+      "axis": "BACKEND → AI",
+      "foundationLabel": "Foundation",
+      "foundationPrefix": "I'm not leaving",
+      "foundationAnchor": "Backend",
+      "foundationSuffix": " behind.",
+      "extension": "AI is the next step forward.",
+      "foundationBody": "More than two years in Backend gave me a foundation in APIs, data, business logic, and how production systems behave. I bring that foundation into LLMs, RAG, recommendation systems, and AI Agents to build AI systems that work in practice — not just wrappers around a model API.",
+      "principleLabel": "Operating principle",
+      "principle": "Start with the problem. Not the technology.",
+      "principleBody": "I first clarify the user's problem and what success looks like, then build the simplest solution that can test the idea. Architecture, performance, and AI complexity evolve only after real usage provides evidence.",
+      "processLabel": "How I make decisions",
+      "process": {
+        "problem": "Understand the problem",
+        "proof": "Prove the simplest version",
+        "usage": "Observe real usage",
+        "scale": "Scale with evidence"
+      },
+      "closingLabel": "What good engineering means",
+      "closing": "Good engineering is not the system with the most technology. It is simple enough to maintain and strong enough to solve the right problem."
     }
   },
   "footer": {

@@ -63,6 +63,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
     typeof query.portrait === "string" ? query.portrait : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
+  const aboutT = await getTranslations({ locale, namespace: "v2.about" });
 
   return (
     <>
@@ -109,6 +110,28 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             contact: heroT("contact"),
             portraitAlt: heroT("portraitAlt"),
             portraitFallback: introT("portraitFallback"),
+          }}
+          aboutCopy={{
+            eyebrow: aboutT("eyebrow"),
+            axis: aboutT("axis"),
+            foundationLabel: aboutT("foundationLabel"),
+            foundationPrefix: aboutT("foundationPrefix"),
+            foundationAnchor: aboutT("foundationAnchor"),
+            foundationSuffix: aboutT("foundationSuffix"),
+            extension: aboutT("extension"),
+            foundationBody: aboutT("foundationBody"),
+            principleLabel: aboutT("principleLabel"),
+            principle: aboutT("principle"),
+            principleBody: aboutT("principleBody"),
+            processLabel: aboutT("processLabel"),
+            process: [
+              aboutT("process.problem"),
+              aboutT("process.proof"),
+              aboutT("process.usage"),
+              aboutT("process.scale"),
+            ],
+            closingLabel: aboutT("closingLabel"),
+            closing: aboutT("closing"),
           }}
         />
       </div>
