@@ -1,6 +1,6 @@
 # Part 03 — Hero-to-About transition + identity story
 
-> **Status:** Checkpoint 03A implemented for live review; 03B–03D are not started
+> **Status:** Checkpoint 03A approved and committed (`70a63d1`); 03B implemented for live review; 03C–03D are not started
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0` and `/en/v2?intro=0`
 
@@ -137,7 +137,7 @@ For 03B, the existing Hero boundary becomes the incoming mineral sheet. The
 Hero focus line continues as the About story spine. Desktop maps the About
 section's own scroll progress to these states:
 
-1. `0–20%`: mineral sheet and Header palette settle;
+1. `0–20%`: mineral sheet settles; Header palette joins in 03C;
 2. `18–45%`: Backend foundation claim appears;
 3. `38–62%`: `Backend` stays as the bridge while the AI extension joins it;
 4. `58–82%`: the operating principle replaces the foundation emphasis;
@@ -171,6 +171,23 @@ must never be duplicated in the accessibility tree; visual duplicate spans are
 - Replace the temporary boundary with the mineral-sheet transition.
 - Add reversible scroll-linked type assembly and shared signal continuity.
 - Commit after desktop choreography approval.
+
+#### Live implementation record
+
+- `PortfolioV2Shell` owns one About story controller so the Hero boundary,
+  story frames, and later Header palette can share the same section state.
+- Desktop uses the agreed `180svh` section with a sticky `100svh` mineral
+  sheet. The existing Hero boundary changes into that sheet before the About
+  section reaches the viewport.
+- One reversible scroll progress drives the foundation reveal, AI extension,
+  operating principle, four-step decision rail, closing statement, and the
+  travelling signal cursor.
+- The semantic story is rendered once and remains in source order. The motion
+  layer only changes presentation properties on those existing elements.
+- Mobile and reduced-motion remain on the approved 03A document-flow layout.
+- The Header intentionally keeps its accepted dark treatment during this
+  checkpoint. Mineral Header interpolation and static-story controls belong to
+  03C.
 
 ### 03C — Responsive, Header, and fallback
 

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "motion/react";
+import type { AboutStoryController } from "./about-story";
 import styles from "./about-v2.module.css";
 
 export type AboutV2Copy = {
@@ -21,17 +25,24 @@ export type AboutV2Copy = {
 type AboutV2Props = {
   copy: AboutV2Copy;
   navigationOpen: boolean;
+  story: AboutStoryController;
 };
 
-export function AboutV2({ copy, navigationOpen }: AboutV2Props) {
+export function AboutV2({ copy, navigationOpen, story }: AboutV2Props) {
+  const motionStyle = <T extends keyof AboutStoryController["styles"]>(
+    key: T,
+  ) => (story.enabled ? story.styles[key] : undefined);
+
   return (
     <section
+      ref={story.sectionRef}
       id="about"
       className={styles.about}
       aria-labelledby="v2-about-title"
       aria-hidden={navigationOpen || undefined}
       inert={navigationOpen}
       data-about-static
+      data-about-story={story.mode}
     >
       <div className={styles.sheet}>
         <header className={styles.sectionRail}>
@@ -42,38 +53,95 @@ export function AboutV2({ copy, navigationOpen }: AboutV2Props) {
         <div className={styles.storyGrid}>
           <div className={styles.signalSpine} aria-hidden>
             <span className={styles.signalOrigin} />
-            <span className={styles.signalLine} />
-            <span className={styles.signalNodeOne} />
-            <span className={styles.signalNodeTwo} />
-            <span className={styles.signalTerminal} />
+            <motion.span
+              className={styles.signalLine}
+              style={motionStyle("signalLine")}
+              data-about-signal-line
+            />
+            <motion.span
+              className={styles.signalCursor}
+              style={motionStyle("signalCursor")}
+              data-about-signal-cursor
+            />
+            <motion.span
+              className={styles.signalNodeOne}
+              style={motionStyle("signalNodeOne")}
+            />
+            <motion.span
+              className={styles.signalNodeTwo}
+              style={motionStyle("signalNodeTwo")}
+            />
+            <motion.span
+              className={styles.signalTerminal}
+              style={motionStyle("signalTerminal")}
+            />
           </div>
 
           <div className={styles.story}>
-            <article className={styles.foundationBlock}>
+            <motion.article
+              className={styles.foundationBlock}
+              style={motionStyle("foundationFrame")}
+              data-about-foundation-frame
+            >
               <p className={styles.metaLabel}>{copy.foundationLabel}</p>
               <h2 id="v2-about-title" className={styles.foundationHeading}>
-                <span className={styles.foundationClaim}>
+                <motion.span
+                  className={styles.foundationClaim}
+                  style={motionStyle("foundationClaim")}
+                  data-about-foundation-claim
+                >
                   <span>{copy.foundationPrefix} </span>
                   <span className={styles.backendAnchor} data-about-backend>
                     {copy.foundationAnchor}
                   </span>
                   <span>{copy.foundationSuffix}</span>
-                </span>
+                </motion.span>
                 {" "}
-                <span className={styles.extensionClaim}>{copy.extension}</span>
+                <motion.span
+                  className={styles.extensionClaim}
+                  style={motionStyle("extensionClaim")}
+                  data-about-extension-claim
+                >
+                  {copy.extension}
+                </motion.span>
               </h2>
-              <p className={styles.foundationBody}>{copy.foundationBody}</p>
-            </article>
+              <motion.p
+                className={styles.foundationBody}
+                style={motionStyle("foundationBody")}
+                data-about-foundation-body
+              >
+                {copy.foundationBody}
+              </motion.p>
+            </motion.article>
 
-            <article className={styles.principleBlock}>
+            <motion.article
+              className={styles.principleBlock}
+              style={motionStyle("principleFrame")}
+              data-about-principle-frame
+            >
               <div className={styles.principleHeadingGroup}>
                 <p className={styles.metaLabel}>{copy.principleLabel}</p>
-                <h3 className={styles.principleHeading}>{copy.principle}</h3>
+                <motion.h3
+                  className={styles.principleHeading}
+                  style={motionStyle("principleHeading")}
+                  data-about-principle-heading
+                >
+                  {copy.principle}
+                </motion.h3>
               </div>
-              <p className={styles.principleBody}>{copy.principleBody}</p>
-            </article>
+              <motion.p
+                className={styles.principleBody}
+                style={motionStyle("principleBody")}
+              >
+                {copy.principleBody}
+              </motion.p>
+            </motion.article>
 
-            <div className={styles.processBlock}>
+            <motion.div
+              className={styles.processBlock}
+              style={motionStyle("process")}
+              data-about-process
+            >
               <p className={styles.metaLabel}>{copy.processLabel}</p>
               <ol className={styles.processList}>
                 {copy.process.map((step, index) => (
@@ -85,12 +153,16 @@ export function AboutV2({ copy, navigationOpen }: AboutV2Props) {
                   </li>
                 ))}
               </ol>
-            </div>
+            </motion.div>
 
-            <div className={styles.closingBlock}>
+            <motion.div
+              className={styles.closingBlock}
+              style={motionStyle("closing")}
+              data-about-closing
+            >
               <p className={styles.metaLabel}>{copy.closingLabel}</p>
               <p className={styles.closingStatement}>{copy.closing}</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

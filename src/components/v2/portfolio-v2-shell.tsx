@@ -15,6 +15,7 @@ import {
   AboutV2,
   type AboutV2Copy,
 } from "@/components/v2/about/about-v2";
+import { useAboutStory } from "@/components/v2/about/about-story";
 import {
   SiteHeaderV2,
   type SiteHeaderV2Copy,
@@ -62,6 +63,7 @@ export function PortfolioV2Shell({
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
     controls.debugState === "reduced" || Boolean(prefersReducedMotion);
+  const aboutStory = useAboutStory({ reduceMotion });
   const [phase, setPhase] = useState<IntroPhase>("complete");
   const [portraitOutcome, setPortraitOutcome] =
     useState<PortraitOutcome>("pending");
@@ -114,12 +116,14 @@ export function PortfolioV2Shell({
           holdEnabled={depthControls.holdEnabled}
           portraitVariant={portraitVariant}
           navigationOpen={mobileNavigationOpen}
+          nextChapterTone={aboutStory.enabled ? "light" : "dark"}
           onPortraitLoad={handlePortraitLoad}
           onPortraitError={handlePortraitError}
         />
         <AboutV2
           copy={aboutCopy}
           navigationOpen={mobileNavigationOpen}
+          story={aboutStory}
         />
       </div>
 

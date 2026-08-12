@@ -33,6 +33,7 @@ type HeroV2Props = {
   holdEnabled: boolean;
   portraitVariant: HeroPortraitVariant;
   navigationOpen: boolean;
+  nextChapterTone: "dark" | "light";
   onPortraitLoad: () => void;
   onPortraitError: () => void;
 };
@@ -46,6 +47,7 @@ export function HeroV2({
   holdEnabled,
   portraitVariant,
   navigationOpen,
+  nextChapterTone,
   onPortraitLoad,
   onPortraitError,
 }: HeroV2Props) {
@@ -79,6 +81,7 @@ export function HeroV2({
         data-entry-phase={introPhase}
         data-pointer-depth={depth.pointerEnabled ? "enabled" : "disabled"}
         data-portrait-variant={portraitVariant}
+        data-next-chapter={nextChapterTone}
         onPointerMove={depth.handlePointerMove}
         onPointerLeave={depth.resetPointer}
         onPointerCancel={depth.resetPointer}

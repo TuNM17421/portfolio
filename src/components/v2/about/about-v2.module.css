@@ -81,6 +81,7 @@
 }
 
 .signalLine,
+.signalCursor,
 .signalOrigin,
 .signalNodeOne,
 .signalNodeTwo,
@@ -102,6 +103,23 @@
     rgba(75, 113, 136, 0.24) 84%,
     transparent
   );
+  transform-origin: top center;
+}
+
+.signalCursor {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  display: none;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--about-sheet);
+  border-radius: 50%;
+  background: var(--about-focus-ink);
+  box-shadow:
+    0 0 0 1px var(--about-focus-ink),
+    0 0 22px 5px rgba(107, 215, 208, 0.5);
+  transform: translate(-50%, -50%);
 }
 
 .signalOrigin,
@@ -328,6 +346,135 @@
   font-weight: 530;
   letter-spacing: -0.055em;
   line-height: 0.98;
+}
+
+@media (min-width: 900px) {
+  .about[data-about-story="active"] {
+    min-height: max(180svh, 1260px);
+    overflow: visible;
+  }
+
+  .about[data-about-story="active"]::before {
+    z-index: 0;
+    opacity: 0.32;
+  }
+
+  .about[data-about-story="active"] .sheet {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    height: 100svh;
+    min-height: 700px;
+    overflow: clip;
+    padding-top: clamp(82px, 10vh, 104px);
+    padding-bottom: clamp(34px, 4.6vh, 52px);
+  }
+
+  .about[data-about-story="active"] .storyGrid {
+    height: calc(100% - 38px);
+  }
+
+  .about[data-about-story="active"] .signalSpine,
+  .about[data-about-story="active"] .story {
+    height: 100%;
+  }
+
+  .about[data-about-story="active"] .signalLine {
+    bottom: 3.5%;
+  }
+
+  .about[data-about-story="active"] .signalCursor {
+    display: block;
+  }
+
+  .about[data-about-story="active"] .signalNodeOne,
+  .about[data-about-story="active"] .signalNodeTwo,
+  .about[data-about-story="active"] .signalTerminal {
+    opacity: 0;
+  }
+
+  .about[data-about-story="active"] .story {
+    position: relative;
+    overflow: clip;
+  }
+
+  .about[data-about-story="active"] .foundationBlock,
+  .about[data-about-story="active"] .principleBlock,
+  .about[data-about-story="active"] .processBlock,
+  .about[data-about-story="active"] .closingBlock {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  .about[data-about-story="active"] .foundationBlock {
+    inset: 0;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    padding: clamp(34px, 5.2vh, 52px) 0 clamp(22px, 3.4vh, 34px);
+  }
+
+  .about[data-about-story="active"] .foundationHeading {
+    padding: clamp(24px, 3.8vh, 42px) 0;
+  }
+
+  .about[data-about-story="active"] .foundationClaim {
+    font-size: clamp(3.45rem, 6.85vw, 6.9rem);
+  }
+
+  .about[data-about-story="active"] .extensionClaim {
+    max-width: 13.5em;
+    font-size: clamp(2.75rem, 5.1vw, 5.15rem);
+  }
+
+  .about[data-about-story="active"] .foundationBody,
+  .about[data-about-story="active"] .principleBody {
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    line-height: 1.66;
+  }
+
+  .about[data-about-story="active"] .principleBlock {
+    inset: 0;
+    align-items: center;
+    padding: clamp(42px, 6.8vh, 72px) 0 clamp(30px, 4.6vh, 50px);
+    border-top: 0;
+  }
+
+  .about[data-about-story="active"] .principleHeadingGroup {
+    gap: clamp(28px, 4.5vh, 46px);
+  }
+
+  .about[data-about-story="active"] .principleHeading {
+    font-size: clamp(3.4rem, 6.2vw, 6.25rem);
+  }
+
+  .about[data-about-story="active"] .processBlock {
+    top: clamp(52px, 7vh, 72px);
+    padding: 0;
+    border-top: 0;
+  }
+
+  .about[data-about-story="active"] .processList {
+    margin-top: clamp(28px, 4.2vh, 44px);
+  }
+
+  .about[data-about-story="active"] .processList li {
+    min-height: clamp(104px, 14vh, 126px);
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .about[data-about-story="active"] .closingBlock {
+    bottom: clamp(18px, 3.2vh, 34px);
+    grid-template-columns: minmax(150px, 0.22fr) minmax(0, 1fr);
+    padding-top: clamp(28px, 4.4vh, 46px);
+  }
+
+  .about[data-about-story="active"] .closingStatement {
+    max-width: 22ch;
+    font-size: clamp(2.2rem, 3.8vw, 3.85rem);
+  }
 }
 
 @media (max-width: 899px) {

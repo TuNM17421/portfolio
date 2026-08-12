@@ -56,6 +56,43 @@
   content: "";
 }
 
+.hero[data-next-chapter="light"] .nextBoundary {
+  background: linear-gradient(
+    to bottom,
+    rgba(237, 244, 245, 0) 0%,
+    rgba(237, 244, 245, 0.88) 24%,
+    #edf4f5 58%,
+    #edf4f5 100%
+  );
+}
+
+.hero[data-next-chapter="light"] .nextBoundary::before {
+  right: clamp(22px, 4.6vw, 72px);
+  left: calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px));
+  opacity: 0.72;
+  background: linear-gradient(
+    90deg,
+    #176f6b,
+    rgba(23, 111, 107, 0.32) 45%,
+    transparent 78%
+  );
+}
+
+.hero[data-next-chapter="light"] .nextBoundary::after {
+  position: absolute;
+  top: 21%;
+  bottom: 0;
+  left: calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px));
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    #6bd7d0,
+    rgba(23, 111, 107, 0.42),
+    transparent
+  );
+  content: "";
+}
+
 .heroHold[data-hold="off"] .nextBoundary,
 .heroHold[data-hold="reduced"] .nextBoundary {
   display: none;
