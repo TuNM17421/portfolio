@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–03 approved; Part 04 checkpoint 04A approved
+> **Status:** Parts 01–03 and Part 04A–04B approved
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 04A static VCareer evidence hierarchy
-> **Implementation status:** Parts 01–03 are committed; Part 04A is approved and 04B–04E have not started
+> **Detailed scope in this checkpoint:** Part 04B About-to-VCareer chapter handoff and Header tone relay
+> **Implementation status:** Part 04A is committed; 04B is approved and 04C–04E have not started
 
 ## Objective
 
@@ -146,7 +146,7 @@ Relevant implementation references:
 | 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
 | 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed |
 | 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Complete · `37de357` |
-| 04 | VCareer flagship showcase | Project transition and evidence hierarchy | 04A approved; 04B–04E pending |
+| 04 | VCareer flagship showcase | Project transition and evidence hierarchy | 04A committed; 04B approved; 04C–04E pending |
 | 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
 | 06 | Experience + Awards | Timeline and event-gallery sequence | Not planned in detail |
 | 07 | Skills + Contact + Footer | Final conversion flow | Not planned in detail |

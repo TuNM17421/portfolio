@@ -1,6 +1,6 @@
 # Part 04 — VCareer flagship proof
 
-> **Status:** Design contract and checkpoint 04A approved; checkpoints 04B–04E pending
+> **Status:** Design contract and checkpoints 04A–04B approved; checkpoints 04C–04E pending
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#vcareer`, `/en/v2?intro=0#vcareer`, and `?showcase=static`
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy

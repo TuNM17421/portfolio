@@ -5,12 +5,124 @@
   --vcareer-blue: #0060f0;
   --vcareer-lime: #a8f03c;
   --vcareer-sky: #c0d8f0;
+  --vcareer-signal-x: max(
+    calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px)),
+    calc((100vw - 1600px) / 2 + 96px)
+  );
   position: relative;
   z-index: 9;
   overflow: clip;
   color: var(--vcareer-mineral);
   background: var(--vcareer-night);
   scroll-margin-top: 76px;
+}
+
+.chapterVeil {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: min(58svh, 620px);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--vcareer-mineral) 0%,
+    #e8f0f2 76%,
+    rgba(237, 244, 245, 0.96) 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
+  will-change: transform;
+}
+
+.chapterVeil::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  opacity: 0.72;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--vcareer-lime) var(--vcareer-signal-x),
+    rgba(168, 240, 60, 0.18) 72%,
+    transparent
+  );
+  content: "";
+}
+
+.showcase[data-vcareer-handoff="active"] .chapterVeil {
+  display: block;
+}
+
+.evidenceRelay {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: var(--vcareer-signal-x);
+  width: min(42vw, 560px);
+  height: clamp(96px, 9vw, 132px);
+  pointer-events: none;
+}
+
+.relayStem,
+.relayTerminal,
+.relayTrack {
+  position: absolute;
+  display: block;
+}
+
+.relayStem {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: clamp(64px, 6.2vw, 92px);
+  background: linear-gradient(
+    to bottom,
+    rgba(107, 215, 208, 0.68),
+    var(--vcareer-lime)
+  );
+  box-shadow: 0 0 16px rgba(168, 240, 60, 0.18);
+  transform-origin: top center;
+}
+
+.relayTerminal {
+  top: clamp(60px, 5.9vw, 88px);
+  left: -5px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--vcareer-night);
+  background: var(--vcareer-lime);
+  box-shadow:
+    0 0 0 1px var(--vcareer-lime),
+    0 0 20px 4px rgba(168, 240, 60, 0.2);
+}
+
+.relayTrack {
+  top: clamp(65px, 6.25vw, 93px);
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--vcareer-lime),
+    rgba(168, 240, 60, 0.52) 58%,
+    transparent
+  );
+  transform-origin: left center;
+}
+
+.relayTrack::after {
+  position: absolute;
+  top: -3px;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(168, 240, 60, 0.76);
+  background: var(--vcareer-night);
+  content: "";
 }
 
 .showcase::before {
@@ -765,6 +877,33 @@
 
   .repositoryState {
     grid-column: 1;
+  }
+}
+
+@media (max-width: 899px) {
+  .showcase {
+    --vcareer-signal-x: 26.5px;
+  }
+
+  .chapterVeil {
+    height: min(48svh, 460px);
+  }
+
+  .evidenceRelay {
+    width: min(68vw, 360px);
+    height: 96px;
+  }
+
+  .relayStem {
+    height: 64px;
+  }
+
+  .relayTerminal {
+    top: 60px;
+  }
+
+  .relayTrack {
+    top: 65px;
   }
 }
 

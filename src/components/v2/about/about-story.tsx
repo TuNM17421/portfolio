@@ -14,16 +14,9 @@ import {
 } from "@/lib/v2/about-story";
 
 const DESKTOP_STORY_QUERY = "(min-width: 900px)";
-const HEADER_TONE_RELAY_POINT = 0.3;
-
 type AboutStoryOptions = {
   reduceMotion: boolean;
   forceStatic: boolean;
-};
-
-export type AboutHeaderTone = {
-  header: MotionStyle;
-  layer: MotionStyle;
 };
 
 export type AboutStoryController = {
@@ -31,7 +24,6 @@ export type AboutStoryController = {
   mode: AboutStoryMode;
   enabled: boolean;
   progress: MotionValue<number>;
-  headerTone: AboutHeaderTone;
   styles: {
     foundationFrame: MotionStyle;
     foundationClaim: MotionStyle;
@@ -60,20 +52,10 @@ export function useAboutStory({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  const { scrollYProgress: headerEntryProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 96px", "start 0px"],
-  });
   const progress = useSpring(scrollYProgress, {
     stiffness: 128,
     damping: 30,
     mass: 0.24,
-    restDelta: 0.001,
-  });
-  const headerToneProgress = useSpring(headerEntryProgress, {
-    stiffness: 190,
-    damping: 32,
-    mass: 0.22,
     restDelta: 0.001,
   });
 
@@ -92,25 +74,6 @@ export function useAboutStory({
     reduceMotion,
     forceStatic,
   });
-
-  const headerIsLight = useTransform(
-    headerToneProgress,
-    (value) => value >= HEADER_TONE_RELAY_POINT,
-  );
-  const headerColor = useTransform(headerIsLight, (light) =>
-    light ? "rgb(7, 18, 25)" : "rgb(237, 244, 245)",
-  );
-  const headerAccent = useTransform(headerIsLight, (light) =>
-    light ? "rgb(23, 111, 107)" : "rgb(107, 215, 208)",
-  );
-  const headerTextShadow = useTransform(headerIsLight, (light) =>
-    light
-      ? "0 2px 16px rgba(7, 18, 25, 0.08)"
-      : "0 2px 18px rgba(7, 18, 25, 0.7)",
-  );
-  const headerLayerOpacity = useTransform(headerIsLight, (light) =>
-    light ? 1 : 0,
-  );
 
   const foundationFrameOpacity = useTransform(
     progress,
@@ -241,16 +204,6 @@ export function useAboutStory({
     mode,
     enabled: mode === "active",
     progress,
-    headerTone: {
-      header: {
-        color: headerColor,
-        "--v2-header-accent": headerAccent,
-        "--v2-header-text-shadow": headerTextShadow,
-      } as MotionStyle,
-      layer: {
-        opacity: headerLayerOpacity,
-      },
-    },
     styles: {
       foundationFrame: {
         opacity: foundationFrameOpacity,

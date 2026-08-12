@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import { VCAREER_PROJECT } from "@/data/projects";
 import {
@@ -10,6 +11,7 @@ import {
   type VCareerEvidenceQualifier,
   type VCareerStageKey,
 } from "@/lib/v2/vcareer-showcase";
+import type { VCareerChapterHandoffController } from "./vcareer-chapter-handoff";
 import styles from "./vcareer-showcase.module.css";
 
 type VCareerStageCopy = {
@@ -52,6 +54,7 @@ export type VCareerShowcaseCopy = {
 
 type VCareerShowcaseProps = {
   copy: VCareerShowcaseCopy;
+  handoff: VCareerChapterHandoffController;
   navigationOpen: boolean;
 };
 
@@ -124,18 +127,51 @@ function evidenceLabel(
 
 export function VCareerShowcase({
   copy,
+  handoff,
   navigationOpen,
 }: VCareerShowcaseProps) {
+  const handoffStyle = <
+    T extends keyof VCareerChapterHandoffController["styles"],
+  >(
+    key: T,
+  ) => (handoff.enabled ? handoff.styles[key] : undefined);
+
   return (
     <section
+      ref={handoff.sectionRef}
       id="vcareer"
       className={styles.showcase}
       aria-labelledby="v2-vcareer-title"
       aria-hidden={navigationOpen || undefined}
       inert={navigationOpen}
       data-vcareer-static
+      data-vcareer-handoff={handoff.mode}
     >
+      <motion.div
+        className={styles.chapterVeil}
+        style={handoffStyle("veil")}
+        aria-hidden
+      />
       <div className={styles.field} aria-hidden />
+      <motion.div
+        className={styles.evidenceRelay}
+        style={handoffStyle("relay")}
+        data-vcareer-evidence-relay
+        aria-hidden
+      >
+        <motion.span
+          className={styles.relayStem}
+          style={handoffStyle("relayStem")}
+        />
+        <motion.span
+          className={styles.relayTerminal}
+          style={handoffStyle("relayTerminal")}
+        />
+        <motion.span
+          className={styles.relayTrack}
+          style={handoffStyle("relayTrack")}
+        />
+      </motion.div>
 
       <div className={styles.inner}>
         <div className={styles.sectionRail}>

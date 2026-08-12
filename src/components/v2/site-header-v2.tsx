@@ -3,7 +3,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
-import type { AboutHeaderTone } from "@/components/v2/about/about-story";
+import type { V2ChapterTone } from "@/components/v2/chapter-tone";
 import styles from "./site-header-v2.module.css";
 
 export type SiteHeaderV2Copy = {
@@ -27,7 +27,7 @@ type SiteHeaderV2Props = {
   storyQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
-  chapterTone: AboutHeaderTone;
+  chapterTone: V2ChapterTone;
   onMenuOpenChange: (open: boolean) => void;
 };
 
@@ -243,6 +243,11 @@ export function SiteHeaderV2({
                   <span aria-hidden>{copy.vcareer}</span>
                 </span>
               </span>
+              <motion.span
+                className={styles.chapterTrace}
+                style={chapterTone.vcareerTrace}
+                aria-hidden
+              />
             </Link>
             <a href="mailto:tunm17421@gmail.com" className={styles.navLink}>
               {copy.contact}

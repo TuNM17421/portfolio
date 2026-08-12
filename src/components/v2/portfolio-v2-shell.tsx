@@ -20,6 +20,8 @@ import {
   type VCareerShowcaseCopy,
 } from "@/components/v2/vcareer/vcareer-showcase";
 import { useAboutStory } from "@/components/v2/about/about-story";
+import { useChapterTone } from "@/components/v2/chapter-tone";
+import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
 import {
   SiteHeaderV2,
   type SiteHeaderV2Copy,
@@ -80,6 +82,12 @@ export function PortfolioV2Shell({
     reduceMotion,
     forceStatic: storyControls.forceStatic,
   });
+  const vcareerHandoff = useVCareerChapterHandoff({ reduceMotion });
+  const chapterTone = useChapterTone({
+    aboutSectionRef: aboutStory.sectionRef,
+    vcareerSectionRef: vcareerHandoff.sectionRef,
+    reduceMotion,
+  });
   const [phase, setPhase] = useState<IntroPhase>("complete");
   const [portraitOutcome, setPortraitOutcome] =
     useState<PortraitOutcome>("pending");
@@ -122,7 +130,7 @@ export function PortfolioV2Shell({
           storyQuery={storyQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
-          chapterTone={aboutStory.headerTone}
+          chapterTone={chapterTone}
           onMenuOpenChange={setMobileNavigationOpen}
         />
         <HeroV2
@@ -145,6 +153,7 @@ export function PortfolioV2Shell({
         />
         <VCareerShowcase
           copy={vcareerCopy}
+          handoff={vcareerHandoff}
           navigationOpen={mobileNavigationOpen}
         />
       </div>
