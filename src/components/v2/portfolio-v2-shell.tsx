@@ -168,6 +168,7 @@ export function PortfolioV2Shell({
         <VCareerShowcase
           copy={vcareerCopy}
           handoff={vcareerHandoff}
+          imageReviewState={showcaseControls.imageState}
           navigationOpen={mobileNavigationOpen}
           relay={vcareerRelay}
         />

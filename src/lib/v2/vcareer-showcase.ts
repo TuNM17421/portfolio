@@ -13,6 +13,7 @@ export type VCareerStageKey = (typeof VCAREER_STAGE_KEYS)[number];
 export type VCareerEvidenceKind = "direct" | "context";
 export type VCareerEvidenceQualifier = "analysis" | "baseline";
 export type VCareerShowcaseMode = "active" | "static";
+export type VCareerImageReviewState = "auto" | "loading" | "error";
 
 export type VCareerStageWindow = {
   enter: number;
@@ -22,9 +23,12 @@ export type VCareerStageWindow = {
 };
 
 const STATIC_SHOWCASE_VALUES = new Set(["static", "0", "off", "false"]);
+const LOADING_SHOWCASE_VALUES = new Set(["loading", "image-loading"]);
+const ERROR_SHOWCASE_VALUES = new Set(["error", "image-error"]);
 
 export type VCareerShowcaseControls = {
   forceStatic: boolean;
+  imageState: VCareerImageReviewState;
 };
 
 type ResolveVCareerShowcaseModeOptions = {
@@ -36,8 +40,14 @@ type ResolveVCareerShowcaseModeOptions = {
 export function parseVCareerShowcaseControls(
   value: string,
 ): VCareerShowcaseControls {
+  const normalized = value.trim().toLowerCase();
+  const forceLoading = LOADING_SHOWCASE_VALUES.has(normalized);
+  const forceError = ERROR_SHOWCASE_VALUES.has(normalized);
+
   return {
-    forceStatic: STATIC_SHOWCASE_VALUES.has(value.trim().toLowerCase()),
+    forceStatic:
+      STATIC_SHOWCASE_VALUES.has(normalized) || forceLoading || forceError,
+    imageState: forceLoading ? "loading" : forceError ? "error" : "auto",
   };
 }
 

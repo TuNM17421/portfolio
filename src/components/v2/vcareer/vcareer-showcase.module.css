@@ -226,6 +226,7 @@
   justify-content: flex-end;
   gap: 10px;
   color: rgba(237, 244, 245, 0.72);
+  overflow-wrap: anywhere;
   text-align: right;
 }
 
@@ -284,6 +285,7 @@
   color: rgba(237, 244, 245, 0.78);
   font-size: clamp(1rem, 1.34vw, 1.28rem);
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .pilotProof {
@@ -514,6 +516,7 @@
   color: rgba(237, 244, 245, 0.68);
   font-size: clamp(0.88rem, 1.02vw, 1.02rem);
   line-height: 1.68;
+  overflow-wrap: anywhere;
 }
 
 .stageMedia {
@@ -569,7 +572,33 @@
   content: "";
 }
 
-.stage[data-evidence="direct"] .imageFrame::after {
+.imageFrame[data-image-state="loading"]::after {
+  background: linear-gradient(
+    90deg,
+    var(--vcareer-blue) 0 34%,
+    var(--vcareer-lime) 46% 54%,
+    var(--vcareer-blue) 66% 100%
+  );
+  background-size: 240% 100%;
+  animation: evidence-loading-trace 1.4s linear infinite;
+}
+
+.imageFrame[data-image-state="error"] {
+  border-color: rgba(192, 216, 240, 0.52);
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.24);
+}
+
+.imageFrame[data-image-state="error"]::after {
+  background: linear-gradient(
+    90deg,
+    rgba(192, 216, 240, 0.72) 0 12%,
+    transparent 12% 15%,
+    rgba(192, 216, 240, 0.3) 15% 100%
+  );
+}
+
+.stage[data-evidence="direct"]
+  .imageFrame[data-image-state="ready"]::after {
   background: linear-gradient(
     90deg,
     var(--vcareer-lime) 0 22%,
@@ -624,6 +653,10 @@
   letter-spacing: 0.09em;
   line-height: 1.5;
   text-transform: uppercase;
+}
+
+.imageFrame[data-image-state="loading"] .imageFallback > span:last-child {
+  color: rgba(11, 39, 56, 0.72);
 }
 
 .fallbackIndex {
@@ -718,7 +751,6 @@
   font-size: 0.42em;
 }
 
-.primaryAction:hover,
 .primaryAction:focus-visible {
   padding-right: clamp(18px, 2vw, 30px);
   padding-left: clamp(18px, 2vw, 30px);
@@ -726,9 +758,13 @@
   background: var(--vcareer-lime);
 }
 
-.primaryAction:hover > span:last-child,
 .primaryAction:focus-visible > span:last-child {
   color: var(--vcareer-night);
+}
+
+.primaryAction > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .primaryAction:focus-visible,
@@ -764,9 +800,35 @@
   border-bottom: 1px solid rgba(192, 216, 240, 0.24);
 }
 
-.utilityActions a:hover,
 .utilityActions a:focus-visible {
   color: var(--vcareer-mineral);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primaryAction:hover {
+    padding-right: clamp(18px, 2vw, 30px);
+    padding-left: clamp(18px, 2vw, 30px);
+    color: var(--vcareer-night);
+    background: var(--vcareer-lime);
+  }
+
+  .primaryAction:hover > span:last-child {
+    color: var(--vcareer-night);
+  }
+
+  .utilityActions a:hover {
+    color: var(--vcareer-mineral);
+  }
+}
+
+@keyframes evidence-loading-trace {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -140% 0;
+  }
 }
 
 .visuallyHidden {
@@ -1348,6 +1410,14 @@
     border-top: 1px solid rgba(192, 216, 240, 0.18);
   }
 
+  .stage[data-evidence="context"]::before {
+    width: 14%;
+  }
+
+  .stage[data-evidence="direct"]::before {
+    width: 24%;
+  }
+
   .stage figure {
     display: flex;
     flex-direction: column;
@@ -1651,5 +1721,12 @@
 
   .primaryAction {
     font-size: 2.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageFrame[data-image-state="loading"]::after {
+    background-position: 50% 0;
+    animation: none;
   }
 }

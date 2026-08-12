@@ -219,6 +219,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             liveAction: vcareerT("liveAction"),
             architectureAction: vcareerT("architectureAction"),
             opensNewWindow: vcareerT("opensNewWindow"),
+            imageLoading: vcareerT("imageLoading"),
             imageUnavailable: vcareerT("imageUnavailable"),
           }}
         />

@@ -1,8 +1,8 @@
 # Part 04 — VCareer flagship proof
 
-> **Status:** Checkpoints 04A–04B approved; checkpoint 04C implemented for live review
+> **Status:** Checkpoints 04A–04C approved; checkpoint 04D implemented for live review
 > **Branch:** `redesign/portfolio-v2`
-> **Planned review artifact:** `/vi/v2?intro=0#vcareer`, `/en/v2?intro=0#vcareer`, and `?showcase=static`
+> **Planned review artifact:** `/vi/v2?intro=0#vcareer`, `/en/v2?intro=0#vcareer`, `?showcase=static`, `?showcase=loading`, and `?showcase=image-error`
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
 
 ## Objective
@@ -376,7 +376,29 @@ Opening mobile navigation always uses the existing dark modal state.
 | Reduced motion            | No pinning, perspective, parallax, `x`/`y`, or clip scrub. Static story; short opacity is optional.                               |
 | No JavaScript             | Same heading, scope, six figures, outcome ledger, status, and real links in source order.                                         |
 | `?showcase=static`        | Force the static desktop comparison state and preserve the flag across VI/EN switching.                                           |
+| `?showcase=loading`       | Force the static evidence board with all six localized product-loading surfaces visible.                                          |
+| `?showcase=image-error`   | Force the static evidence board with all six semantic unavailable-image fallbacks visible.                                        |
 | Live resize               | Active → static → active resets every inline Motion value and never hides evidence.                                               |
+
+### Checkpoint 04D compact and fallback behavior
+
+- Tablet keeps a two-column editorial board. Context bookends occupy a smaller
+  image plane; direct-scope screens receive the longer lime evidence trace.
+- Mobile returns to normal document flow. Direct-scope evidence uses the full
+  content width, while wider-product context bookends remain narrower and
+  alternate alignment so classification is visible before reading the label.
+- Static mode writes explicit baseline values for every Motion-controlled
+  opacity, transform, depth, scale, color, and clip. Crossing `1024px` therefore
+  cannot leave a compact figure carrying a stale desktop inline transform.
+- Loading and failure are different states. Loading uses a temporary
+  blue-to-lime signal trace and localized progress copy; failure uses the
+  reserved aspect ratio, screen number, localized name, and semantic
+  unavailable-image label.
+- The loading trace stops under `prefers-reduced-motion`. Pointer-only hover
+  fills are scoped to fine pointers, while keyboard focus retains the same
+  visible action treatment on every layout.
+- VI/EN status, captions, and primary-action text may wrap without changing the
+  evidence order or causing horizontal overflow at `320px`.
 
 ## Image integrity and loading contract
 
@@ -385,8 +407,9 @@ Opening mobile navigation always uses the existing dark modal state.
 - Permitted derived assets are deterministic crops, resizes, compression, and
   non-destructive framing. Originals remain available in the full case study.
 - Each figure reserves the source aspect ratio before load.
-- The product-sky fallback includes step number, localized screen name, and an
-  explicit unavailable-image message; it is not an empty grey rectangle.
+- The product-sky loading/error surface includes step number and localized
+  screen name. Loading and unavailable-image messages are distinct; neither
+  state becomes an empty grey rectangle.
 - All Part 04 images are below the opening scenes and remain lazy-loaded. The
   implementation does not preload all six screenshots.
 - `sizes` reflects the actual sticky stage, tablet pair, and mobile full-width

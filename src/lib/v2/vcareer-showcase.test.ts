@@ -55,8 +55,16 @@ describe("portfolio v2 VCareer showcase", () => {
     expect(vi.v2.vcareer.labels.context).toBe("BỐI CẢNH SẢN PHẨM");
     expect(vi.v2.vcareer.architectureSource).toBe("TRÌNH DUYỆT");
     expect(vi.v2.vcareer.outcomesCode).toBe("XÁC MINH / 03");
+    expect(vi.v2.vcareer.imageLoading).toBe("Đang tải ảnh giao diện");
+    expect(vi.v2.vcareer.imageUnavailable).toBe(
+      "Không tải được ảnh giao diện",
+    );
     expect(en.v2.vcareer.eyebrow).toBe("04 / FLAGSHIP PROOF");
     expect(en.v2.vcareer.architectureSource).toBe("BROWSER");
+    expect(en.v2.vcareer.imageLoading).toBe("Resolving product image");
+    expect(en.v2.vcareer.imageUnavailable).toBe(
+      "Product image unavailable",
+    );
   });
 
   it("uses the approved reversible six-stage timeline", () => {
@@ -104,12 +112,36 @@ describe("portfolio v2 VCareer showcase", () => {
   it.each(["static", "STATIC", "0", "off", "false", " off "])(
     "recognizes the static showcase review control %s",
     (value) => {
-      expect(parseVCareerShowcaseControls(value).forceStatic).toBe(true);
+      expect(parseVCareerShowcaseControls(value)).toEqual({
+        forceStatic: true,
+        imageState: "auto",
+      });
+    },
+  );
+
+  it.each([
+    ["loading", "loading"],
+    ["image-loading", "loading"],
+    ["error", "error"],
+    ["image-error", "error"],
+  ] as const)(
+    "exposes the %s image review state through the static showcase",
+    (value, imageState) => {
+      expect(parseVCareerShowcaseControls(value)).toEqual({
+        forceStatic: true,
+        imageState,
+      });
     },
   );
 
   it("does not force static showcase mode for unknown controls", () => {
-    expect(parseVCareerShowcaseControls("").forceStatic).toBe(false);
-    expect(parseVCareerShowcaseControls("active").forceStatic).toBe(false);
+    expect(parseVCareerShowcaseControls("")).toEqual({
+      forceStatic: false,
+      imageState: "auto",
+    });
+    expect(parseVCareerShowcaseControls("active")).toEqual({
+      forceStatic: false,
+      imageState: "auto",
+    });
   });
 });

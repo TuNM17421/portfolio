@@ -479,6 +479,7 @@
       "liveAction": "Mở sản phẩm",
       "architectureAction": "Đọc báo cáo kiến trúc",
       "opensNewWindow": "Mở trong cửa sổ mới",
+      "imageLoading": "Đang tải ảnh giao diện",
       "imageUnavailable": "Không tải được ảnh giao diện"
     }
   },

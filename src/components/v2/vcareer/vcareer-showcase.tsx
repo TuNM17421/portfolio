@@ -9,6 +9,7 @@ import {
   VCAREER_SHOWCASE_STAGES,
   type VCareerEvidenceKind,
   type VCareerEvidenceQualifier,
+  type VCareerImageReviewState,
   type VCareerStageKey,
 } from "@/lib/v2/vcareer-showcase";
 import type { VCareerChapterHandoffController } from "./vcareer-chapter-handoff";
@@ -53,6 +54,7 @@ export type VCareerShowcaseCopy = {
   liveAction: string;
   architectureAction: string;
   opensNewWindow: string;
+  imageLoading: string;
   imageUnavailable: string;
 };
 
@@ -61,49 +63,61 @@ type VCareerShowcaseProps = {
   handoff: VCareerChapterHandoffController;
   navigationOpen: boolean;
   relay: VCareerEvidenceRelayController;
+  imageReviewState: VCareerImageReviewState;
 };
 
 type EvidenceImageProps = {
   alt: string;
   fallbackLabel: string;
   height: number;
+  loadingLabel: string;
   name: string;
+  reviewState: VCareerImageReviewState;
   sizes: string;
   src: string;
   stageNumber: string;
   width: number;
 };
 
+type EvidenceRuntimeState = "loading" | "ready" | "error";
+
 function EvidenceImage({
   alt,
   fallbackLabel,
   height,
+  loadingLabel,
   name,
+  reviewState,
   sizes,
   src,
   stageNumber,
   width,
 }: EvidenceImageProps) {
-  const [failed, setFailed] = useState(false);
+  const [runtimeState, setRuntimeState] =
+    useState<EvidenceRuntimeState>("loading");
+  const imageState = reviewState === "auto" ? runtimeState : reviewState;
+  const imageFailed = imageState === "error";
+  const renderImage = reviewState === "auto" && runtimeState !== "error";
 
   return (
     <div
       className={styles.imageFrame}
-      data-image-error={failed ? "true" : undefined}
+      data-image-state={imageState}
+      aria-busy={imageState === "loading" || undefined}
       style={{ aspectRatio: `${width} / ${height}` }}
     >
       <div
         className={styles.imageFallback}
-        role={failed ? "img" : undefined}
-        aria-label={failed ? `${fallbackLabel}: ${name}` : undefined}
-        aria-hidden={failed ? undefined : true}
+        role={imageFailed ? "img" : undefined}
+        aria-label={imageFailed ? `${fallbackLabel}: ${name}` : undefined}
+        aria-hidden={imageFailed ? undefined : true}
       >
         <span className={styles.fallbackIndex}>{stageNumber}</span>
         <strong>{name}</strong>
-        <span>{fallbackLabel}</span>
+        <span>{imageFailed ? fallbackLabel : loadingLabel}</span>
       </div>
 
-      {!failed ? (
+      {renderImage ? (
         <Image
           className={styles.productImage}
           src={src}
@@ -111,12 +125,46 @@ function EvidenceImage({
           width={width}
           height={height}
           sizes={sizes}
-          onError={() => setFailed(true)}
+          loading="lazy"
+          onLoad={() => setRuntimeState("ready")}
+          onError={() => setRuntimeState("error")}
         />
       ) : null}
     </div>
   );
 }
+
+const STATIC_HANDOFF_STYLES: VCareerChapterHandoffController["styles"] = {
+  veil: { y: 0 },
+  relay: { opacity: 1 },
+  relayStem: { scaleY: 1 },
+  relayTerminal: { scale: 1 },
+  relayTrack: { scaleX: 1 },
+};
+
+const STATIC_RELAY_STYLES: VCareerEvidenceRelayController["styles"] = {
+  intro: { opacity: 1, y: 0 },
+  introTitle: { clipPath: "none" },
+  scope: { opacity: 1, y: 0 },
+  workflowHeader: { opacity: 1, y: 0 },
+  architecture: { opacity: 1, y: 0 },
+  architectureTrace: { scaleX: 1 },
+  outcomes: { opacity: 1, y: 0 },
+};
+
+const STATIC_STAGE_STYLES: VCareerEvidenceRelayController["stages"][VCareerStageKey] =
+  {
+    stage: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      z: 0,
+      scale: 1,
+      clipPath: "none",
+    },
+    meta: { opacity: 1, y: 0 },
+    rail: { opacity: 1, scale: 1, color: "var(--vcareer-sky)" },
+  };
 
 function evidenceLabel(
   kind: VCareerEvidenceKind,
@@ -133,6 +181,7 @@ function evidenceLabel(
 export function VCareerShowcase({
   copy,
   handoff,
+  imageReviewState,
   navigationOpen,
   relay,
 }: VCareerShowcaseProps) {
@@ -140,12 +189,13 @@ export function VCareerShowcase({
     T extends keyof VCareerChapterHandoffController["styles"],
   >(
     key: T,
-  ) => (handoff.enabled ? handoff.styles[key] : undefined);
+  ) =>
+    handoff.enabled ? handoff.styles[key] : STATIC_HANDOFF_STYLES[key];
   const relayStyle = <
     T extends keyof VCareerEvidenceRelayController["styles"],
   >(
     key: T,
-  ) => (relay.enabled ? relay.styles[key] : undefined);
+  ) => (relay.enabled ? relay.styles[key] : STATIC_RELAY_STYLES[key]);
 
   return (
     <section
@@ -157,6 +207,7 @@ export function VCareerShowcase({
       inert={navigationOpen}
       data-vcareer-static
       data-vcareer-handoff={handoff.mode}
+      data-vcareer-image-review={imageReviewState}
       data-vcareer-story={relay.mode}
     >
       <motion.div
@@ -264,7 +315,11 @@ export function VCareerShowcase({
                 <motion.li
                   key={stage.key}
                   data-evidence={stage.evidence}
-                  style={relay.enabled ? relay.stages[stage.key].rail : undefined}
+                  style={
+                    relay.enabled
+                      ? relay.stages[stage.key].rail
+                      : STATIC_STAGE_STYLES.rail
+                  }
                 >
                   <span>{stageNumber}</span>
                   <strong>{stageCopy.name}</strong>
@@ -287,14 +342,18 @@ export function VCareerShowcase({
                   data-layout={stage.layout}
                   data-vcareer-stage={stage.key}
                   style={
-                    relay.enabled ? relay.stages[stage.key].stage : undefined
+                    relay.enabled
+                      ? relay.stages[stage.key].stage
+                      : STATIC_STAGE_STYLES.stage
                   }
                 >
                   <figure>
                     <motion.figcaption
                       className={styles.stageMeta}
                       style={
-                        relay.enabled ? relay.stages[stage.key].meta : undefined
+                        relay.enabled
+                          ? relay.stages[stage.key].meta
+                          : STATIC_STAGE_STYLES.meta
                       }
                     >
                       <p className={styles.stageIndex}>
@@ -316,7 +375,9 @@ export function VCareerShowcase({
                         alt={stageCopy.alt}
                         fallbackLabel={copy.imageUnavailable}
                         height={stage.height}
+                        loadingLabel={copy.imageLoading}
                         name={stageCopy.name}
+                        reviewState={imageReviewState}
                         sizes={
                           isBookend
                             ? "(max-width: 767px) 78vw, (max-width: 1023px) 45vw, 58vw"

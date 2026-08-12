@@ -479,6 +479,7 @@
       "liveAction": "Open live product",
       "architectureAction": "Read architecture report",
       "opensNewWindow": "Opens in a new window",
+      "imageLoading": "Resolving product image",
       "imageUnavailable": "Product image unavailable"
     }
   },
