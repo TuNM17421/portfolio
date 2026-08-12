@@ -424,6 +424,9 @@
       },
       "workflowLabel": "PRODUCT WORKFLOW / 06 SCREENS",
       "workflowTitle": "From profile to feedback.",
+      "architectureLabel": "REALTIME PATH",
+      "architectureSource": "BROWSER",
+      "architectureTarget": "LIVEKIT / WEBRTC",
       "screenshotDisclaimer": "Product interface snapshots · values shown inside are not used as portfolio metrics.",
       "screenLabel": "SCREEN",
       "labels": {

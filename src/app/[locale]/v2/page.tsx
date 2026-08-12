@@ -36,6 +36,7 @@ type V2PageProps = {
     intro?: string | string[];
     hold?: string | string[];
     portrait?: string | string[];
+    showcase?: string | string[];
     story?: string | string[];
   }>;
 };
@@ -64,6 +65,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const portraitQuery =
     typeof query.portrait === "string" ? query.portrait : "";
   const storyQuery = typeof query.story === "string" ? query.story : "";
+  const showcaseQuery =
+    typeof query.showcase === "string" ? query.showcase : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -86,6 +89,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           introQuery={introQuery}
           holdQuery={holdQuery}
           portraitQuery={portraitQuery}
+          showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
           introCopy={{
             introLabel: introT("introLabel"),
@@ -160,6 +164,9 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             ],
             workflowLabel: vcareerT("workflowLabel"),
             workflowTitle: vcareerT("workflowTitle"),
+            architectureLabel: vcareerT("architectureLabel"),
+            architectureSource: vcareerT("architectureSource"),
+            architectureTarget: vcareerT("architectureTarget"),
             screenshotDisclaimer: vcareerT("screenshotDisclaimer"),
             screenLabel: vcareerT("screenLabel"),
             labels: {

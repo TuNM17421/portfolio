@@ -330,10 +330,21 @@ The approved 02C scene gains depth without changing its content hierarchy:
 - during that short range, the portrait scales no further than `1.028`, the
   role rises no more than `24px`, the positioning/proof recede to `0.72`
   opacity, and the focus line travels toward the incoming lower boundary;
-- a neutral navy boundary enters naturally from below because it occupies the
-  final part of the wrapper. It contains no temporary heading, fake Part 03
+- the first `55%` of that short range remains entirely night-colored before
+  the mineral About boundary begins rising, preserving a dark opening beat
+  instead of exposing the next chapter on the first wheel delta;
+- the Hero boundary deliberately carries neither a horizontal rule nor a
+  perpendicular stem. It is a tonal handoff only; About owns its complete
+  signal system from the section rail onward;
+- a compact boundary enters naturally from below because it occupies only
+  `clamp(84px, 13svh, 124px)` at the Hero-to-About handoff. It contains no
+  temporary heading, fake Part 03
   copy, or inert action; it passes behind role, focus, and interactive content
   so real links and their focus rings never become obscured;
+- the first `50px` inside that compact boundary remains transparent to the
+  Hero night field before the final mineral fade. This preserves the longer
+  dark runway at the handoff without moving About content or reintroducing a
+  tall white wash;
 - `?hold=0` disables only the sticky hold/boundary for a side-by-side review;
   the accepted Hero and pointer depth remain unchanged.
 
@@ -618,6 +629,8 @@ width-axis breath, and committed as `9e0fc8a`:
 - the portrait scales from `1` to `1.028`, the role rises by `24px`, supporting
   copy rises by `14px` and recedes to `0.72`, while the focus signal moves
   toward a neutral lower boundary;
+- the lower boundary holds below the viewport through the first `55%` of the
+  authored scroll range, then completes the same reversible rise into About;
 - the boundary is part of the Hero layer stack: it crosses the portrait and
   atmosphere but remains behind the role, signal, real links, and their focus
   rings;

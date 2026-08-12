@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–03 and Part 04A–04B approved
+> **Status:** Parts 01–03 and Part 04A–04B approved; checkpoint 04C implemented for live review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 04B About-to-VCareer chapter handoff and Header tone relay
-> **Implementation status:** Part 04A is committed; 04B is approved and 04C–04E have not started
+> **Detailed scope in this checkpoint:** Part 04C desktop Evidence Relay, restored 04B handoff, VCareer stage dwell, and static review control
+> **Implementation status:** Part 04A–04B are committed; 04C is uncommitted for motion review and 04D–04E have not started
 
 ## Objective
 
@@ -47,13 +47,13 @@ rejection affects one isolated part instead of requiring a whole-site rollback.
 
 ## Evidence audit
 
-| Evidence | Transfer | Do not copy |
-| --- | --- | --- |
-| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | Full-viewport portrait, edge-aligned navigation, oversized role typography, staged loader, synchronized loader-to-hero reveal and a pinned first scene. | Namaste copy, five equal curtain panels, exact typography, colors, project structure, imagery or seven-second timing. |
-| [Swaraj deployed animation bundle](https://portfolio-25-phi.vercel.app/assets/index-BuG9GojC.js) | The loader waits for image readiness, then reveals the portrait while hero characters and words enter together. | Loading every below-fold image before showing the hero, fake product claims or its exact GSAP timeline. |
-| [Dylan Brouwer — UIZZE evidence](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) | Typography acts as architecture; one visual anchor carries the scene. | The wording, grayscale identity, monitor object or exact centered composition. |
-| [Modal — UIZZE evidence](https://singapore.objective.company/design-media/17/17f44d04ba09f3ed4122e77e32e11bd3e128d6c0be40c4c5f96034f67fac85dd.webp) | A single luminous object gets the visual spend while navigation and copy remain disciplined. | The green cube, customer logo wall or Modal's brand language. |
-| [Vercel — UIZZE evidence](https://singapore.objective.company/design-media/42/4202e89300304207ac9eb08c9c45f93785fb5c9cfa9491e60d1a74096280bfbd.webp) | Proposition, focal object and technical specialty occupy distinct zones in one viewport. | Triangle branding, blank-space ratios, product copy or logo strip. |
+| Evidence                                                                                                                                                    | Transfer                                                                                                                                                | Do not copy                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design)                                                                                | Full-viewport portrait, edge-aligned navigation, oversized role typography, staged loader, synchronized loader-to-hero reveal and a pinned first scene. | Namaste copy, five equal curtain panels, exact typography, colors, project structure, imagery or seven-second timing. |
+| [Swaraj deployed animation bundle](https://portfolio-25-phi.vercel.app/assets/index-BuG9GojC.js)                                                            | The loader waits for image readiness, then reveals the portrait while hero characters and words enter together.                                         | Loading every below-fold image before showing the hero, fake product claims or its exact GSAP timeline.               |
+| [Dylan Brouwer — UIZZE evidence](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) | Typography acts as architecture; one visual anchor carries the scene.                                                                                   | The wording, grayscale identity, monitor object or exact centered composition.                                        |
+| [Modal — UIZZE evidence](https://singapore.objective.company/design-media/17/17f44d04ba09f3ed4122e77e32e11bd3e128d6c0be40c4c5f96034f67fac85dd.webp)         | A single luminous object gets the visual spend while navigation and copy remain disciplined.                                                            | The green cube, customer logo wall or Modal's brand language.                                                         |
+| [Vercel — UIZZE evidence](https://singapore.objective.company/design-media/42/4202e89300304207ac9eb08c9c45f93785fb5c9cfa9491e60d1a74096280bfbd.webp)        | Proposition, focal object and technical specialty occupy distinct zones in one viewport.                                                                | Triangle branding, blank-space ratios, product copy or logo strip.                                                    |
 
 Fresh catalogue browsing at `uizze.com` timed out during this checkpoint, so
 the three repository-recorded UIZZE captures above were re-opened and visually
@@ -84,14 +84,14 @@ be remembered by.
 
 ### Palette proposal
 
-| Token | Hex | Use |
-| --- | --- | --- |
-| Night glass | `#071219` | Loader and deepest backdrop |
-| Deep lens blue | `#0B2738` | Full-viewport image grade and panels |
-| Ceremony blue | `#4B7188` | Secondary planes sampled from the portrait background |
-| Focus cyan | `#6BD7D0` | Active signal, focus and primary detail |
-| Mineral white | `#EDF4F5` | Primary text over dark imagery |
-| Warm portrait | `#D3A58F` | Photo highlight reference; not a UI fill color |
+| Token          | Hex       | Use                                                   |
+| -------------- | --------- | ----------------------------------------------------- |
+| Night glass    | `#071219` | Loader and deepest backdrop                           |
+| Deep lens blue | `#0B2738` | Full-viewport image grade and panels                  |
+| Ceremony blue  | `#4B7188` | Secondary planes sampled from the portrait background |
+| Focus cyan     | `#6BD7D0` | Active signal, focus and primary detail               |
+| Mineral white  | `#EDF4F5` | Primary text over dark imagery                        |
+| Warm portrait  | `#D3A58F` | Photo highlight reference; not a UI fill color        |
 
 The palette is art-directed and dark because it is built around a cinematic
 portrait. It is not the old dark-theme token set and it is not a simple
@@ -99,11 +99,11 @@ violet-to-cyan replacement.
 
 ### Typography proposal
 
-| Role | Family | Reason |
-| --- | --- | --- |
+| Role               | Family             | Reason                                                                                                   |
+| ------------------ | ------------------ | -------------------------------------------------------------------------------------------------------- |
 | Display / wordmark | `Anybody` variable | Supports Vietnamese and exposes width/weight axes, allowing the type itself to participate in the intro. |
-| Body / navigation | `Be Vietnam Pro` | Strong Vietnamese glyph design and compact readability over imagery. |
-| Technical metadata | `IBM Plex Mono` | Precise utility labels without turning the whole page into a terminal aesthetic. |
+| Body / navigation  | `Be Vietnam Pro`   | Strong Vietnamese glyph design and compact readability over imagery.                                     |
+| Technical metadata | `IBM Plex Mono`    | Precise utility labels without turning the whole page into a terminal aesthetic.                         |
 
 All three families are available through the installed Next.js font metadata
 with Vietnamese subsets where essential. `Anybody` width animation is confined
@@ -140,18 +140,18 @@ Relevant implementation references:
 
 ## Part roadmap
 
-| Part | Scope | User review artifact | Status |
-| --- | --- | --- | --- |
-| 00 | Evidence, direction and contracts | These documents | Approved |
-| 01 | Cinematic Intro Loader | Forced full/fast/error/reduced-motion local URLs | Approved · `a0687e2` |
-| 02 | Header + full-viewport Hero | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed |
-| 03 | Hero-to-About transition + identity story | Full first two-scene scroll capture | Complete · `37de357` |
-| 04 | VCareer flagship showcase | Project transition and evidence hierarchy | 04A committed; 04B approved; 04C–04E pending |
-| 05 | Supporting projects | Desktop/mobile project browsing | Not planned in detail |
-| 06 | Experience + Awards | Timeline and event-gallery sequence | Not planned in detail |
-| 07 | Skills + Contact + Footer | Final conversion flow | Not planned in detail |
-| 08 | Case-study visual migration + route transitions | Homepage-to-case-study continuity | Not planned in detail |
-| 09 | Cross-page finish gate | Full responsive, accessibility and motion audit | Not planned in detail |
+| Part | Scope                                           | User review artifact                                      | Status                                                              |
+| ---- | ----------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------- |
+| 00   | Evidence, direction and contracts               | These documents                                           | Approved                                                            |
+| 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                                |
+| 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                   |
+| 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                |
+| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | 04A–04B committed; 04C implemented for live review; 04D–04E pending |
+| 05   | Supporting projects                             | Desktop/mobile project browsing                           | Not planned in detail                                               |
+| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                               |
+| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                               |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                               |
+| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                               |
 
 Detailed contracts for Parts 01–04 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.

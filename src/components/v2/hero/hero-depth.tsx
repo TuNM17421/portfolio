@@ -13,6 +13,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { HERO_BOUNDARY_REVEAL } from "@/lib/v2/hero-depth";
 
 type HeroDepthOptions = {
   holdEnabled: boolean;
@@ -124,7 +125,11 @@ export function useHeroDepth({
     [0, 1],
     compactLayout ? [0, 72] : [0, 144],
   );
-  const boundaryY = useTransform(progress, [0, 1], ["100%", "0%"]);
+  const boundaryY = useTransform(
+    progress,
+    [0, HERO_BOUNDARY_REVEAL.holdUntil, HERO_BOUNDARY_REVEAL.completeAt],
+    ["100%", "100%", "0%"],
+  );
 
   return {
     holdRef,

@@ -12,6 +12,59 @@ export const VCAREER_STAGE_KEYS = [
 export type VCareerStageKey = (typeof VCAREER_STAGE_KEYS)[number];
 export type VCareerEvidenceKind = "direct" | "context";
 export type VCareerEvidenceQualifier = "analysis" | "baseline";
+export type VCareerShowcaseMode = "active" | "static";
+
+export type VCareerStageWindow = {
+  enter: number;
+  holdStart: number;
+  holdEnd: number;
+  exit: number;
+};
+
+const STATIC_SHOWCASE_VALUES = new Set(["static", "0", "off", "false"]);
+
+export type VCareerShowcaseControls = {
+  forceStatic: boolean;
+};
+
+type ResolveVCareerShowcaseModeOptions = {
+  desktop: boolean;
+  reduceMotion: boolean;
+  forceStatic?: boolean;
+};
+
+export function parseVCareerShowcaseControls(
+  value: string,
+): VCareerShowcaseControls {
+  return {
+    forceStatic: STATIC_SHOWCASE_VALUES.has(value.trim().toLowerCase()),
+  };
+}
+
+export function resolveVCareerShowcaseMode({
+  desktop,
+  reduceMotion,
+  forceStatic = false,
+}: ResolveVCareerShowcaseModeOptions): VCareerShowcaseMode {
+  return desktop && !reduceMotion && !forceStatic ? "active" : "static";
+}
+
+export const VCAREER_STAGE_WINDOWS: Record<
+  VCareerStageKey,
+  VCareerStageWindow
+> = {
+  landing: { enter: 0.145, holdStart: 0.19, holdEnd: 0.255, exit: 0.295 },
+  cvBuilder: { enter: 0.265, holdStart: 0.31, holdEnd: 0.375, exit: 0.415 },
+  match: { enter: 0.385, holdStart: 0.43, holdEnd: 0.495, exit: 0.535 },
+  interviewDemo: { enter: 0.505, holdStart: 0.55, holdEnd: 0.615, exit: 0.655 },
+  interviewReview: {
+    enter: 0.625,
+    holdStart: 0.67,
+    holdEnd: 0.735,
+    exit: 0.775,
+  },
+  dashboard: { enter: 0.745, holdStart: 0.79, holdEnd: 0.855, exit: 0.895 },
+};
 
 type StageBlueprint = {
   key: VCareerStageKey;

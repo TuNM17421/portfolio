@@ -12,6 +12,7 @@ import {
   type VCareerStageKey,
 } from "@/lib/v2/vcareer-showcase";
 import type { VCareerChapterHandoffController } from "./vcareer-chapter-handoff";
+import type { VCareerEvidenceRelayController } from "./vcareer-evidence-relay";
 import styles from "./vcareer-showcase.module.css";
 
 type VCareerStageCopy = {
@@ -32,6 +33,9 @@ export type VCareerShowcaseCopy = {
   scope: [string, string, string];
   workflowLabel: string;
   workflowTitle: string;
+  architectureLabel: string;
+  architectureSource: string;
+  architectureTarget: string;
   screenshotDisclaimer: string;
   screenLabel: string;
   labels: {
@@ -56,6 +60,7 @@ type VCareerShowcaseProps = {
   copy: VCareerShowcaseCopy;
   handoff: VCareerChapterHandoffController;
   navigationOpen: boolean;
+  relay: VCareerEvidenceRelayController;
 };
 
 type EvidenceImageProps = {
@@ -129,12 +134,18 @@ export function VCareerShowcase({
   copy,
   handoff,
   navigationOpen,
+  relay,
 }: VCareerShowcaseProps) {
   const handoffStyle = <
     T extends keyof VCareerChapterHandoffController["styles"],
   >(
     key: T,
   ) => (handoff.enabled ? handoff.styles[key] : undefined);
+  const relayStyle = <
+    T extends keyof VCareerEvidenceRelayController["styles"],
+  >(
+    key: T,
+  ) => (relay.enabled ? relay.styles[key] : undefined);
 
   return (
     <section
@@ -146,6 +157,7 @@ export function VCareerShowcase({
       inert={navigationOpen}
       data-vcareer-static
       data-vcareer-handoff={handoff.mode}
+      data-vcareer-story={relay.mode}
     >
       <motion.div
         className={styles.chapterVeil}
@@ -182,12 +194,16 @@ export function VCareerShowcase({
           </p>
         </div>
 
-        <header className={styles.intro}>
+        <motion.header className={styles.intro} style={relayStyle("intro")}>
           <div className={styles.titleBlock}>
             <p className={styles.subtitle}>{copy.subtitle}</p>
-            <h2 id="v2-vcareer-title" className={styles.title}>
+            <motion.h2
+              id="v2-vcareer-title"
+              className={styles.title}
+              style={relayStyle("introTitle")}
+            >
               {copy.title}
-            </h2>
+            </motion.h2>
           </div>
 
           <div className={styles.introCopy}>
@@ -197,11 +213,12 @@ export function VCareerShowcase({
               <span>{copy.pilotLabel}</span>
             </p>
           </div>
-        </header>
+        </motion.header>
 
-        <section
+        <motion.section
           className={styles.scopeLedger}
           aria-labelledby="v2-vcareer-scope-title"
+          style={relayStyle("scope")}
         >
           <div className={styles.scopeHeading}>
             <p className={styles.ledgerCode} aria-hidden>
@@ -217,19 +234,44 @@ export function VCareerShowcase({
               </li>
             ))}
           </ol>
-        </section>
+        </motion.section>
 
         <section
           className={styles.workflow}
           aria-labelledby="v2-vcareer-workflow-title"
         >
-          <header className={styles.workflowHeader}>
+          <motion.header
+            className={styles.workflowHeader}
+            style={relayStyle("workflowHeader")}
+          >
             <div>
               <p className={styles.workflowLabel}>{copy.workflowLabel}</p>
               <h3 id="v2-vcareer-workflow-title">{copy.workflowTitle}</h3>
             </div>
             <p className={styles.disclaimer}>{copy.screenshotDisclaimer}</p>
-          </header>
+          </motion.header>
+
+          <motion.ol
+            className={styles.storyRail}
+            style={relayStyle("workflowHeader")}
+            aria-hidden
+          >
+            {VCAREER_SHOWCASE_STAGES.map((stage, index) => {
+              const stageCopy = copy.stages[stage.key];
+              const stageNumber = String(index + 1).padStart(2, "0");
+
+              return (
+                <motion.li
+                  key={stage.key}
+                  data-evidence={stage.evidence}
+                  style={relay.enabled ? relay.stages[stage.key].rail : undefined}
+                >
+                  <span>{stageNumber}</span>
+                  <strong>{stageCopy.name}</strong>
+                </motion.li>
+              );
+            })}
+          </motion.ol>
 
           <ol className={styles.sequence}>
             {VCAREER_SHOWCASE_STAGES.map((stage, index) => {
@@ -238,15 +280,23 @@ export function VCareerShowcase({
               const isBookend = stage.layout === "bookend";
 
               return (
-                <li
+                <motion.li
                   key={stage.key}
                   className={styles.stage}
                   data-evidence={stage.evidence}
                   data-layout={stage.layout}
                   data-vcareer-stage={stage.key}
+                  style={
+                    relay.enabled ? relay.stages[stage.key].stage : undefined
+                  }
                 >
                   <figure>
-                    <figcaption className={styles.stageMeta}>
+                    <motion.figcaption
+                      className={styles.stageMeta}
+                      style={
+                        relay.enabled ? relay.stages[stage.key].meta : undefined
+                      }
+                    >
                       <p className={styles.stageIndex}>
                         {copy.screenLabel} {stageNumber} / 06
                       </p>
@@ -259,7 +309,7 @@ export function VCareerShowcase({
                       </p>
                       <h4>{stageCopy.name}</h4>
                       <p className={styles.stageCaption}>{stageCopy.caption}</p>
-                    </figcaption>
+                    </motion.figcaption>
 
                     <div className={styles.stageMedia}>
                       <EvidenceImage
@@ -278,13 +328,33 @@ export function VCareerShowcase({
                       />
                     </div>
                   </figure>
-                </li>
+                </motion.li>
               );
             })}
           </ol>
+
+          <motion.aside
+            className={styles.architectureSlice}
+            style={relayStyle("architecture")}
+            aria-label={copy.architectureLabel}
+          >
+            <p>{copy.architectureLabel}</p>
+            <div>
+              <strong>{copy.architectureSource}</strong>
+              <motion.span
+                className={styles.architectureTrace}
+                style={relayStyle("architectureTrace")}
+                aria-hidden
+              />
+              <strong>{copy.architectureTarget}</strong>
+            </div>
+          </motion.aside>
         </section>
 
-        <footer className={styles.outcomes}>
+        <motion.footer
+          className={styles.outcomes}
+          style={relayStyle("outcomes")}
+        >
           <div className={styles.outcomeHeading}>
             <p className={styles.ledgerCode} aria-hidden>
               {copy.outcomesCode}
@@ -337,7 +407,7 @@ export function VCareerShowcase({
               </a>
             </div>
           </div>
-        </footer>
+        </motion.footer>
       </div>
     </section>
   );

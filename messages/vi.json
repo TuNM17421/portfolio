@@ -424,6 +424,9 @@
       },
       "workflowLabel": "LUỒNG SẢN PHẨM / 06 MÀN HÌNH",
       "workflowTitle": "Từ hồ sơ đến phản hồi.",
+      "architectureLabel": "ĐƯỜNG TRUYỀN REALTIME",
+      "architectureSource": "TRÌNH DUYỆT",
+      "architectureTarget": "LIVEKIT / WEBRTC",
       "screenshotDisclaimer": "Ảnh giao diện sản phẩm · số liệu hiển thị bên trong không được dùng làm bằng chứng định lượng.",
       "screenLabel": "MÀN HÌNH",
       "labels": {

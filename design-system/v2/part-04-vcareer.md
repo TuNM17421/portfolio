@@ -1,6 +1,6 @@
 # Part 04 — VCareer flagship proof
 
-> **Status:** Design contract and checkpoints 04A–04B approved; checkpoints 04C–04E pending
+> **Status:** Checkpoints 04A–04B approved; checkpoint 04C implemented for live review
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#vcareer`, `/en/v2?intro=0#vcareer`, and `?showcase=static`
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
@@ -44,17 +44,17 @@ not an accidental unfinished transition.
 
 ## Source-of-truth audit
 
-| Evidence | Public use in Part 04 | Boundary |
-| --- | --- | --- |
-| `150+` real VinUni learners | Verified pilot proof | Do not combine with production placeholder counts. |
-| Survey feedback | `Higher confidence reported` / `phản hồi tự tin hơn` | Qualitative only; no placement uplift or percentage. |
-| Product Owner review | CV evaluation/scoring was reviewed by VinUni Career Services' Product Owner | No quantified accuracy or formal validation claim. |
-| Direct scope | LiveKit/WebRTC baseline; CV analysis and CV-to-JD matching; JD Builder | Do not imply ownership of every screenshot or architecture component. |
-| Delivery | Four-person team; six weeks from discovery in 05/2026 to pilot-ready product | VCareer was not built during the 24-hour event. |
-| Recognition | Track 4, 2nd Prize, `$5,000` OpenAI API credits | Not `$10,000`; WonderLens Track 1 remains separate. |
-| Current status | Product live; further development pending university funding | Mentor booking, progress tracking, and Career Services job matching remain roadmap. |
-| Repository | Private under the university source-ownership contract | Text state only; never a disabled or fake repo button. |
-| Public links | [Live product](https://topportfolio-sage.vercel.app/) and [architecture report](https://vcareea-architecture.lovable.app/) | Architecture report is team-wide context, not proof of Tu owning every node. |
+| Evidence                    | Public use in Part 04                                                                                                      | Boundary                                                                            |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `150+` real VinUni learners | Verified pilot proof                                                                                                       | Do not combine with production placeholder counts.                                  |
+| Survey feedback             | `Higher confidence reported` / `phản hồi tự tin hơn`                                                                       | Qualitative only; no placement uplift or percentage.                                |
+| Product Owner review        | CV evaluation/scoring was reviewed by VinUni Career Services' Product Owner                                                | No quantified accuracy or formal validation claim.                                  |
+| Direct scope                | LiveKit/WebRTC baseline; CV analysis and CV-to-JD matching; JD Builder                                                     | Do not imply ownership of every screenshot or architecture component.               |
+| Delivery                    | Four-person team; six weeks from discovery in 05/2026 to pilot-ready product                                               | VCareer was not built during the 24-hour event.                                     |
+| Recognition                 | Track 4, 2nd Prize, `$5,000` OpenAI API credits                                                                            | Not `$10,000`; WonderLens Track 1 remains separate.                                 |
+| Current status              | Product live; further development pending university funding                                                               | Mentor booking, progress tracking, and Career Services job matching remain roadmap. |
+| Repository                  | Private under the university source-ownership contract                                                                     | Text state only; never a disabled or fake repo button.                              |
+| Public links                | [Live product](https://topportfolio-sage.vercel.app/) and [architecture report](https://vcareea-architecture.lovable.app/) | Architecture report is team-wide context, not proof of Tu owning every node.        |
 
 The public production landing page currently displays marketing/demo numbers
 such as `2,000+`, `1,080+`, and `4.9★`. Those values, along with numeric values
@@ -71,13 +71,13 @@ roadmap boundary, the verified portfolio contract remains authoritative.
 UIZZE's Web catalogue was inspected on 12 August 2026. References were selected
 for hierarchy, media choreography, and product behavior—not their palettes.
 
-| Source | Decision worth transferring | Why it fits | Do not copy |
-| --- | --- | --- | --- |
-| [Wispr Flow — UIZZE capture](https://singapore.objective.company/design-media/40/40f315ba87e1cca57c609048f685af89d6e6a15290934e750d3ef02c2b25dd4b.webp) · [live site](https://wisprflow.ai/) | A real voice signal becomes the visual connector between proposition and product behavior. | VCareer has an actual realtime voice/WebRTC path; the signal can encode that system rather than decorate it. | Cream/serif identity, exact waveform, circular copy, or macOS CTA. |
-| [Framer — UIZZE capture](https://singapore.objective.company/design-media/01/01c6ebf7ad11cc67fe7165ef78cdac04b2153412de52c9ea2d95df602509cdd3.webp) | Shipped work appears immediately after the proposition with a strong chapter break. | Part 04 follows the About philosophy and answers it with shipped evidence. | Black-void minimalism, exact headline treatment, or its site grid. |
-| [Cosmos — UIZZE capture](https://singapore.objective.company/design-media/1b/1b37b6af6a39e3065efe24bedde456f810a714f7c2a340dacdd643ab37924259.webp) | Media can occupy depth around one stable thesis instead of sitting in equal cards. | Six VCareer screens deserve a spatial stage with one active proof plane. | Random floating thumbnails, soft lifestyle identity, or unordered orbit motion. |
-| [Dylan Brouwer — UIZZE capture](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) | One dominant object and type composition carry the viewport. | The current screen, ownership label, and workflow step should stay legible instead of competing with a thumbnail wall. | Monitor object, grayscale palette, wording, or centered composition. |
-| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | A project can open as a full-screen state rather than another page card. | The user selected this as the overall ambition reference; Part 04 should feel like a chapter change. | Its mini-thumbnail rail, exact overlay, background footage, typography, or project content. |
+| Source                                                                                                                                                                                       | Decision worth transferring                                                                | Why it fits                                                                                                            | Do not copy                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| [Wispr Flow — UIZZE capture](https://singapore.objective.company/design-media/40/40f315ba87e1cca57c609048f685af89d6e6a15290934e750d3ef02c2b25dd4b.webp) · [live site](https://wisprflow.ai/) | A real voice signal becomes the visual connector between proposition and product behavior. | VCareer has an actual realtime voice/WebRTC path; the signal can encode that system rather than decorate it.           | Cream/serif identity, exact waveform, circular copy, or macOS CTA.                          |
+| [Framer — UIZZE capture](https://singapore.objective.company/design-media/01/01c6ebf7ad11cc67fe7165ef78cdac04b2153412de52c9ea2d95df602509cdd3.webp)                                          | Shipped work appears immediately after the proposition with a strong chapter break.        | Part 04 follows the About philosophy and answers it with shipped evidence.                                             | Black-void minimalism, exact headline treatment, or its site grid.                          |
+| [Cosmos — UIZZE capture](https://singapore.objective.company/design-media/1b/1b37b6af6a39e3065efe24bedde456f810a714f7c2a340dacdd643ab37924259.webp)                                          | Media can occupy depth around one stable thesis instead of sitting in equal cards.         | Six VCareer screens deserve a spatial stage with one active proof plane.                                               | Random floating thumbnails, soft lifestyle identity, or unordered orbit motion.             |
+| [Dylan Brouwer — UIZZE capture](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp)                                   | One dominant object and type composition carry the viewport.                               | The current screen, ownership label, and workflow step should stay legible instead of competing with a thumbnail wall. | Monitor object, grayscale palette, wording, or centered composition.                        |
+| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design)                                                                                                                 | A project can open as a full-screen state rather than another page card.                   | The user selected this as the overall ambition reference; Part 04 should feel like a chapter change.                   | Its mini-thumbnail rail, exact overlay, background footage, typography, or project content. |
 
 Technical transfer:
 
@@ -140,14 +140,14 @@ directions, and every screenshot remains a semantic figure in source order.
 The VCareer accents are sampled from the approved product screens and combined
 with the accepted V2 system:
 
-| Token | Hex | Use |
-| --- | --- | --- |
-| Night field | `#071219` | Product chapter background and Header state |
-| Mineral text | `#EDF4F5` | Primary text over the night field |
-| VCareer blue | `#0060F0` | Active workflow label and verified external links |
-| Signal lime | `#A8F03C` | Trace, active node, and non-text motion signal |
-| Product sky | `#C0D8F0` | Screenshot loading/error plane and quiet product context |
-| Deep product ink | `#0B2738` | Text on lime/sky and static compact surfaces |
+| Token            | Hex       | Use                                                      |
+| ---------------- | --------- | -------------------------------------------------------- |
+| Night field      | `#071219` | Product chapter background and Header state              |
+| Mineral text     | `#EDF4F5` | Primary text over the night field                        |
+| VCareer blue     | `#0060F0` | Active workflow label and verified external links        |
+| Signal lime      | `#A8F03C` | Trace, active node, and non-text motion signal           |
+| Product sky      | `#C0D8F0` | Screenshot loading/error plane and quiet product context |
+| Deep product ink | `#0B2738` | Text on lime/sky and static compact surfaces             |
 
 Measured critical pairs are `4.80:1` for VCareer blue on mineral, `13.69:1`
 for night ink on signal lime, `12.91:1` for night ink on product sky, and
@@ -247,7 +247,7 @@ The existing VCareer case-study translations remain the factual source. Part
 - Title: `VCareer`
 - Subtitle: `Nền tảng phát triển sự nghiệp ứng dụng AI`
 - Proposition: `Kết nối CV, tiêu chí tuyển dụng và phỏng vấn AI theo thời gian thực trong
-  một luồng luyện tập có thể hành động.`
+một luồng luyện tập có thể hành động.`
 - Pilot line: `150+ học viên thật đã trải nghiệm trong đợt thử nghiệm tại VinUni.`
 - Scope label: `Phần mình trực tiếp phụ trách`
 - Scope items:
@@ -260,7 +260,7 @@ The existing VCareer case-study translations remain the factual source. Part
   - `Hệ thống chấm điểm CV được Product Owner phòng Hướng nghiệp VinUni thẩm định`
   - `Á quân Track 4 · 5.000 USD tín dụng API OpenAI`
 - Screenshot disclaimer: `Ảnh giao diện sản phẩm · số liệu hiển thị bên trong
-  không được dùng làm bằng chứng định lượng.`
+không được dùng làm bằng chứng định lượng.`
 - Status: `Sản phẩm đang hoạt động · phát triển tiếp đang chờ kinh phí từ nhà trường`
 - Primary action: `Xem chi tiết dự án`
 - Utilities: `Mở sản phẩm` · `Đọc báo cáo kiến trúc`
@@ -272,7 +272,7 @@ The existing VCareer case-study translations remain the factual source. Part
 - Title: `VCareer`
 - Subtitle: `AI Career Development Platform`
 - Proposition: `Connecting CV preparation, job criteria, and realtime AI
-  interviews in one actionable practice workflow.`
+interviews in one actionable practice workflow.`
 - Pilot line: `Tested by 150+ real learners in the VinUni pilot.`
 - Scope label: `What Tu directly owned`
 - Scope items:
@@ -285,7 +285,7 @@ The existing VCareer case-study translations remain the factual source. Part
   - `CV scoring reviewed by VinUni Career Services' Product Owner`
   - `Track 4 2nd Prize · $5,000 in OpenAI API credits`
 - Screenshot disclaimer: `Product interface snapshot · values shown inside
-  are not used as portfolio metrics.`
+are not used as portfolio metrics.`
 - Status: `Product live · further development pending university funding`
 - Primary action: `View the full case study`
 - Utilities: `Open live product` · `Read architecture report`
@@ -295,54 +295,61 @@ The existing VCareer case-study translations remain the factual source. Part
 
 The implementation localizes the classification itself, not only its caption:
 
-| Meaning | Vietnamese | English |
-| --- | --- | --- |
-| Direct ownership | `PHẠM VI TRỰC TIẾP` | `DIRECT SCOPE` |
-| Wider team product | `BỐI CẢNH SẢN PHẨM` | `PRODUCT CONTEXT` |
-| Analysis-layer qualifier | `LỚP PHÂN TÍCH` | `ANALYSIS LAYER` |
-| Baseline qualifier | `HẠ TẦNG CƠ BẢN` | `BASELINE` |
+| Meaning                  | Vietnamese          | English           |
+| ------------------------ | ------------------- | ----------------- |
+| Direct ownership         | `PHẠM VI TRỰC TIẾP` | `DIRECT SCOPE`    |
+| Wider team product       | `BỐI CẢNH SẢN PHẨM` | `PRODUCT CONTEXT` |
+| Analysis-layer qualifier | `LỚP PHÂN TÍCH`     | `ANALYSIS LAYER`  |
+| Baseline qualifier       | `HẠ TẦNG CƠ BẢN`    | `BASELINE`        |
 
 Screen names are localized as a second independent namespace:
 
-| Stage | Vietnamese | English |
-| --- | --- | --- |
-| 01 | `Trang giới thiệu` | `Landing` |
-| 02 | `Trình tạo CV` | `CV Builder` |
-| 03 | `Khớp CV với việc làm` | `CV / job matching` |
-| 04 | `Phỏng vấn trực tiếp` | `Live interview` |
-| 05 | `Đánh giá phỏng vấn` | `Interview review` |
-| 06 | `Bảng điều khiển` | `Dashboard` |
+| Stage | Vietnamese             | English             |
+| ----- | ---------------------- | ------------------- |
+| 01    | `Trang giới thiệu`     | `Landing`           |
+| 02    | `Trình tạo CV`         | `CV Builder`        |
+| 03    | `Khớp CV với việc làm` | `CV / job matching` |
+| 04    | `Phỏng vấn trực tiếp`  | `Live interview`    |
+| 05    | `Đánh giá phỏng vấn`   | `Interview review`  |
+| 06    | `Bảng điều khiển`      | `Dashboard`         |
 
-| Stage | Screen | Visible classification | Claim it supports |
-| --- | --- | --- | --- |
-| 01 | Landing | Wider team product | VCareer proposition and entry point only; no displayed number becomes evidence. |
-| 02 | CV Builder | Direct ownership · analysis layer | The CV analysis/scoring layer shown inside the builder; not ownership of the entire builder UI. |
-| 03 | CV / job matching | Direct ownership | CV-to-JD matching and actionable gap analysis. |
-| 04 | Live interview | Direct ownership · baseline | LiveKit/WebRTC foundation; the wider interview experience is team context. |
-| 05 | Interview review | Wider team product | Learner feedback loop; no ownership of all scoring components is implied. |
-| 06 | Dashboard | Wider team product | Wider learner journey and pilot-ready system. |
+| Stage | Screen            | Visible classification            | Claim it supports                                                                               |
+| ----- | ----------------- | --------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 01    | Landing           | Wider team product                | VCareer proposition and entry point only; no displayed number becomes evidence.                 |
+| 02    | CV Builder        | Direct ownership · analysis layer | The CV analysis/scoring layer shown inside the builder; not ownership of the entire builder UI. |
+| 03    | CV / job matching | Direct ownership                  | CV-to-JD matching and actionable gap analysis.                                                  |
+| 04    | Live interview    | Direct ownership · baseline       | LiveKit/WebRTC foundation; the wider interview experience is team context.                      |
+| 05    | Interview review  | Wider team product                | Learner feedback loop; no ownership of all scoring components is implied.                       |
+| 06    | Dashboard         | Wider team product                | Wider learner journey and pilot-ready system.                                                   |
 
 ## Motion choreography
 
-Desktop `>=1024px` uses a `420svh` wrapper with a sticky `100svh` scene.
+Desktop `>=1024px` uses a `560svh` wrapper with a sticky `100svh` scene.
 One local `scrollYProgress` drives the complete reversible journey:
 
-| Progress | State |
-| --- | --- |
-| `0–12%` | About terminal changes cyan → lime; night product field rises; Header returns to dark treatment. |
-| `9–23%` | VCareer title, proposition, and verified pilot line establish the chapter. |
-| `18–34%` | Landing establishes product context. |
-| `30–46%` | CV Builder moves into focus; direct CV-analysis scope resolves. |
-| `42–58%` | CV/JD match becomes active; the trace connects CV evidence to job criteria. |
-| `54–70%` | Live interview reaches the foreground; the trace becomes a short `Browser ⇄ LiveKit/WebRTC` architecture slice. |
-| `66–81%` | Interview review replaces realtime presence with evidence and feedback. |
-| `77–90%` | Dashboard closes the workflow as product context. |
-| `88–100%` | Screens recede; direct-scope ledger, verified outcomes, status, and primary case-study action land. |
+| Progress              | State                                                                                                                                                    |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Before local progress | About terminal changes cyan → lime, turns 90 degrees above the section eyebrow, and the angled mineral veil reveals the night product field. Header returns to its dark treatment. |
+| `0–14.5%`             | VCareer title, proposition, pilot line, and direct scope establish the chapter.                                                                          |
+| `14.5–29.5%`          | Landing enters, remains completely settled from `19–25.5%`, then exits.                                                                                  |
+| `26.5–41.5%`          | CV Builder enters, remains completely settled from `31–37.5%`, then exits.                                                                               |
+| `38.5–53.5%`          | CV/JD match enters, remains completely settled from `43–49.5%`, then exits.                                                                              |
+| `50.5–65.5%`          | Live interview enters, remains completely settled from `55–61.5%`, and carries the stable `Browser ⇄ LiveKit/WebRTC` slice.                              |
+| `62.5–77.5%`          | Interview review enters, remains completely settled from `67–73.5%`, then exits.                                                                         |
+| `74.5–89.5%`          | Dashboard enters, remains completely settled from `79–85.5%`, then exits.                                                                                |
+| `86.5–100%`           | Screens recede; verified outcomes, status, and primary case-study action land and hold.                                                                  |
 
 Screen motion uses `clip-path`, `z`, `scale`, and controlled perspective. It
 does not rotate freely, orbit, autoplay, or continue moving after scroll stops.
-The previous and next screens remain spatially related to the stage rail, so
-reverse scroll reconstructs the exact prior state.
+The previous and next screens remain spatially related to the stage rail. Each
+named point has a real plateau where opacity, position, scale, depth, clip, and
+rail state all stop changing. Reverse scroll traverses the same plateaus and
+reconstructs the exact prior state.
+
+The VCareer title reveal expands its final clip beyond the title line box.
+This preserves the authored bottom-up reveal while leaving room for the
+rounded `C` optical overshoot; the accepted font size, `4px` tracking offset,
+and intro grid geometry do not change.
 
 ### Header choreography
 
@@ -360,16 +367,16 @@ Opening mobile navigation always uses the existing dark modal state.
 
 ## Responsive and fallback contract
 
-| Environment | Required behavior |
-| --- | --- |
-| `>=1024px`, normal motion | `420svh` scroll-linked sticky Evidence Relay. |
-| `768–1023px` | Static editorial board: direct scope first, then paired evidence figures, then verified ledger. No compressed pseudo-desktop pin. |
-| `<768px` | Normal-flow vertical story with all six figures; central workflow screens full width and context bookends smaller. |
-| Touch / hover-none | No information or action depends on hover; screenshots do not tilt with pointer. |
-| Reduced motion | No pinning, perspective, parallax, `x`/`y`, or clip scrub. Static story; short opacity is optional. |
-| No JavaScript | Same heading, scope, six figures, outcome ledger, status, and real links in source order. |
-| `?showcase=static` | Force the static desktop comparison state and preserve the flag across VI/EN switching. |
-| Live resize | Active → static → active resets every inline Motion value and never hides evidence. |
+| Environment               | Required behavior                                                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `>=1024px`, normal motion | `560svh` scroll-linked sticky Evidence Relay with a short reading plateau at all six named points.                                |
+| `768–1023px`              | Static editorial board: direct scope first, then paired evidence figures, then verified ledger. No compressed pseudo-desktop pin. |
+| `<768px`                  | Normal-flow vertical story with all six figures; central workflow screens full width and context bookends smaller.                |
+| Touch / hover-none        | No information or action depends on hover; screenshots do not tilt with pointer.                                                  |
+| Reduced motion            | No pinning, perspective, parallax, `x`/`y`, or clip scrub. Static story; short opacity is optional.                               |
+| No JavaScript             | Same heading, scope, six figures, outcome ledger, status, and real links in source order.                                         |
+| `?showcase=static`        | Force the static desktop comparison state and preserve the flag across VI/EN switching.                                           |
+| Live resize               | Active → static → active resets every inline Motion value and never hides evidence.                                               |
 
 ## Image integrity and loading contract
 
@@ -399,18 +406,18 @@ Opening mobile navigation always uses the existing dark modal state.
 
 ## Design contract
 
-| Field | Decision |
-| --- | --- |
-| Screen job | Convert About's engineering philosophy into verifiable flagship product proof. |
-| Primary user and action | Recruiter, engineering manager, or technical founder reviews Tu's scope and opens the full VCareer case study. |
-| Content hierarchy | Product job → verified pilot → direct scope → ordered product workflow → verified outcomes/status → case-study action. |
-| Navigation | One primary internal action; live/architecture as secondary external utilities; private repo as text. |
-| Visual language | Product-specific blue/lime signal on the accepted night/mineral system; one dominant real screen at a time; no mock device. |
-| Required states | Animated, static, loading, image error, reduced motion, no-JS, compact, menu open, live resize, VI, and EN. |
-| Responsive behavior | Sticky only at `>=1024px`; tablet editorial board; mobile normal flow with evidence hierarchy preserved. |
-| Evidence | Six approved screenshots, verified VCareer contract, live product, public architecture report, UIZZE captures, Motion and Next Image docs. |
-| Forbidden defaults | Stat cards, generic SaaS grid, autoplay carousel, random 3D collage, fake architecture metrics, disabled repo button, hover-gated evidence. |
-| Acceptance | Ownership boundary is unmistakable; every link is real; all evidence survives no-JS/reduced motion; reverse and resize are stable; finish gate passes. |
+| Field                   | Decision                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Screen job              | Convert About's engineering philosophy into verifiable flagship product proof.                                                                         |
+| Primary user and action | Recruiter, engineering manager, or technical founder reviews Tu's scope and opens the full VCareer case study.                                         |
+| Content hierarchy       | Product job → verified pilot → direct scope → ordered product workflow → verified outcomes/status → case-study action.                                 |
+| Navigation              | One primary internal action; live/architecture as secondary external utilities; private repo as text.                                                  |
+| Visual language         | Product-specific blue/lime signal on the accepted night/mineral system; one dominant real screen at a time; no mock device.                            |
+| Required states         | Animated, static, loading, image error, reduced motion, no-JS, compact, menu open, live resize, VI, and EN.                                            |
+| Responsive behavior     | Sticky only at `>=1024px`; tablet editorial board; mobile normal flow with evidence hierarchy preserved.                                               |
+| Evidence                | Six approved screenshots, verified VCareer contract, live product, public architecture report, UIZZE captures, Motion and Next Image docs.             |
+| Forbidden defaults      | Stat cards, generic SaaS grid, autoplay carousel, random 3D collage, fake architecture metrics, disabled repo button, hover-gated evidence.            |
+| Acceptance              | Ownership boundary is unmistakable; every link is real; all evidence survives no-JS/reduced motion; reverse and resize are stable; finish gate passes. |
 
 ## Approval checkpoints
 
@@ -438,7 +445,8 @@ not start before explicit approval of the current one.
 
 ### 04C — Desktop Evidence Relay
 
-- Add the `420svh` / sticky `100svh` desktop story.
+- Add the `560svh` / sticky `100svh` desktop story and a stable reading
+  plateau for every named product screen.
 - Map all six screens, ownership labels, architecture slice, and final evidence
   ledger to one reversible section progress.
 - Add `?showcase=static` and preserve it across locales.

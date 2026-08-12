@@ -22,6 +22,7 @@ import {
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
+import { useVCareerEvidenceRelay } from "@/components/v2/vcareer/vcareer-evidence-relay";
 import {
   SiteHeaderV2,
   type SiteHeaderV2Copy,
@@ -31,6 +32,7 @@ import { parseIntroControls } from "@/lib/v2/intro-readiness";
 import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
 import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
 import { parseAboutStoryControls } from "@/lib/v2/about-story";
+import { parseVCareerShowcaseControls } from "@/lib/v2/vcareer-showcase";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
 import styles from "./portfolio-v2-shell.module.css";
 
@@ -39,6 +41,7 @@ type PortfolioV2ShellProps = {
   introQuery: string;
   holdQuery: string;
   portraitQuery: string;
+  showcaseQuery: string;
   storyQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
@@ -52,6 +55,7 @@ export function PortfolioV2Shell({
   introQuery,
   holdQuery,
   portraitQuery,
+  showcaseQuery,
   storyQuery,
   introCopy,
   headerCopy,
@@ -75,6 +79,10 @@ export function PortfolioV2Shell({
     () => parseAboutStoryControls(storyQuery),
     [storyQuery],
   );
+  const showcaseControls = useMemo(
+    () => parseVCareerShowcaseControls(showcaseQuery),
+    [showcaseQuery],
+  );
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
     controls.debugState === "reduced" || Boolean(prefersReducedMotion);
@@ -83,6 +91,11 @@ export function PortfolioV2Shell({
     forceStatic: storyControls.forceStatic,
   });
   const vcareerHandoff = useVCareerChapterHandoff({ reduceMotion });
+  const vcareerRelay = useVCareerEvidenceRelay({
+    sectionRef: vcareerHandoff.sectionRef,
+    reduceMotion,
+    forceStatic: showcaseControls.forceStatic,
+  });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
@@ -127,6 +140,7 @@ export function PortfolioV2Shell({
           introQuery={introQuery}
           holdQuery={holdQuery}
           portraitQuery={portraitQuery}
+          showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
@@ -155,6 +169,7 @@ export function PortfolioV2Shell({
           copy={vcareerCopy}
           handoff={vcareerHandoff}
           navigationOpen={mobileNavigationOpen}
+          relay={vcareerRelay}
         />
       </div>
 

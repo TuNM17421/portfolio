@@ -24,6 +24,7 @@ type SiteHeaderV2Props = {
   introQuery: string;
   holdQuery: string;
   portraitQuery: string;
+  showcaseQuery: string;
   storyQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
@@ -43,6 +44,7 @@ export function SiteHeaderV2({
   introQuery,
   holdQuery,
   portraitQuery,
+  showcaseQuery,
   storyQuery,
   reduceMotion,
   wordmarkHidden,
@@ -58,6 +60,7 @@ export function SiteHeaderV2({
   if (introQuery) localeParams.set("intro", introQuery);
   if (holdQuery) localeParams.set("hold", holdQuery);
   if (portraitQuery) localeParams.set("portrait", portraitQuery);
+  if (showcaseQuery) localeParams.set("showcase", showcaseQuery);
   if (storyQuery) localeParams.set("story", storyQuery);
   const localeQuery = localeParams.toString();
   const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
