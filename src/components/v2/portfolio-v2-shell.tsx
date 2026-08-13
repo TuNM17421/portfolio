@@ -241,6 +241,7 @@ export function PortfolioV2Shell({
         />
         <CareerRecognition
           copy={careerCopy}
+          forcedDocumentary={recognitionControls.forcedDocumentary}
           imageReviewState={recognitionControls.imageState}
           navigationOpen={mobileNavigationOpen}
           recognitionStage={recognitionStage}

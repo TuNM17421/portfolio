@@ -620,9 +620,27 @@
       "recognition": {
         "eyebrow": "CHỈ MỤC GHI NHẬN / 03",
         "title": "Kết quả được ghi nhận.",
-        "documentaryLabel": "BẰNG CHỨNG / LỄ BẾ GIẢNG VINUNIVERSITY",
-        "documentaryCaption": "Màn hình tại lễ bế giảng VinUniversity tuyên dương team VCareer và ghi lại hai kết quả tại Codex Community Hackathon Hanoi 2026.",
-        "documentaryAlt": "Sân khấu lễ bế giảng VinUniversity hiển thị Team VCareer là dự án nổi bật cùng kết quả giải của VCareer và WonderLens.",
+        "documentarySelectorLabel": "SỔ TƯ LIỆU / CHỌN THỦ CÔNG",
+        "documentaries": {
+          "ceremony": {
+            "index": "01",
+            "label": "LỄ BẾ GIẢNG VINUNIVERSITY",
+            "caption": "Màn hình tại lễ bế giảng VinUniversity tuyên dương đội VCareer và ghi lại hai kết quả tại Codex Community Hackathon Hanoi 2026.",
+            "alt": "Sân khấu lễ bế giảng VinUniversity hiển thị Team VCareer là dự án nổi bật cùng kết quả giải của VCareer và WonderLens."
+          },
+          "hackathon": {
+            "index": "02",
+            "label": "CÙNG BAN TỔ CHỨC HACKATHON",
+            "caption": "Khoảnh khắc tại Codex Community Hackathon Hanoi cùng ban tổ chức sự kiện, nơi VCareer tham gia Track 4 và WonderLens tham gia Track 1.",
+            "alt": "Ảnh nhóm của Nguyễn Mạnh Tú cùng các thành viên và ban tổ chức tại Codex Community Hackathon Hanoi."
+          },
+          "careerServices": {
+            "index": "03",
+            "label": "ĐỘI NGŨ HƯỚNG NGHIỆP VINUNIVERSITY",
+            "caption": "Khoảnh khắc cùng đội ngũ hướng nghiệp VinUniversity — đơn vị đồng hành trực tiếp trong quá trình xây dựng và thử nghiệm VCareer.",
+            "alt": "Nguyễn Mạnh Tú cùng các thành viên VCareer và đội ngũ hướng nghiệp VinUniversity tại khu vực Graduate Destination."
+          }
+        },
         "imageLoading": "ĐANG TẢI ẢNH TƯ LIỆU",
         "imageUnavailable": "ẢNH TƯ LIỆU KHÔNG KHẢ DỤNG",
         "supportingLabel": "GHI NHẬN LIÊN QUAN / 02",

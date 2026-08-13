@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–05 and Part 06 checkpoints 06A–06B approved; checkpoint 06C in review
+> **Status:** Parts 01–05 and Part 06 checkpoints 06A–06D approved; checkpoint 06E not started
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 06 dark documentary Recognition Stage with the real VinUniversity ceremony image
-> **Implementation status:** Part 06 checkpoint 06B is committed at `6b46e68`; checkpoint 06C is implemented and awaiting review
+> **Detailed scope in this checkpoint:** Part 06 documentary image register with manual selection and directional masks
+> **Implementation status:** Part 06 checkpoint 06D is approved and ready to commit
 
 ## Objective
 

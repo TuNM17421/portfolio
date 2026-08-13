@@ -6,13 +6,16 @@ import {
   CAREER_TRACE_CONTACTS,
   CAREER_TRACE_RANGE,
   CAREER_TRACE_WINDOWS,
+  DEFAULT_RECOGNITION_DOCUMENTARY_KEY,
   parseCareerTraceControls,
   parseRecognitionStageControls,
-  RECOGNITION_DOCUMENTARY_IMAGE,
+  RECOGNITION_DOCUMENTARY_IMAGES,
   RECOGNITION_RECORDS,
   resolveActiveCareerRecord,
   resolveCareerTraceMode,
   resolveCareerTraceProgress,
+  resolveRecognitionDocumentaryDirection,
+  resolveRecognitionDocumentaryNavigation,
   resolveRecognitionStageMode,
 } from "./career-recognition";
 
@@ -155,18 +158,52 @@ describe("portfolio v2 career and recognition foundation", () => {
     );
   });
 
-  it("uses the real VinUniversity ceremony image as the 06C document", () => {
-    expect(RECOGNITION_DOCUMENTARY_IMAGE).toEqual({
-      src: "/awards/vinuni-ceremony.jpg",
-      width: 2568,
-      height: 1926,
-    });
+  it("keeps the ceremony, organiser, and stakeholder images as a curated document register", () => {
+    expect(DEFAULT_RECOGNITION_DOCUMENTARY_KEY).toBe("ceremony");
+    expect(RECOGNITION_DOCUMENTARY_IMAGES).toEqual([
+      {
+        key: "ceremony",
+        reviewValue: "ceremony",
+        src: "/awards/vinuni-ceremony.jpg",
+        width: 2568,
+        height: 1926,
+        fit: "cover",
+      },
+      {
+        key: "hackathon",
+        reviewValue: "hackathon",
+        src: "/awards/hackathon.jpg",
+        width: 2560,
+        height: 1920,
+        fit: "cover",
+      },
+      {
+        key: "careerServices",
+        reviewValue: "career-services",
+        src: "/awards/stakeholder-congrats-2.jpg",
+        width: 1920,
+        height: 2560,
+        fit: "contain",
+      },
+    ]);
 
     for (const locale of [vi, en]) {
       const recognition = locale.v2.career.recognition;
 
-      expect(recognition.documentaryAlt).toBeTruthy();
-      expect(recognition.documentaryCaption).toBeTruthy();
+      expect(recognition.documentarySelectorLabel).toBeTruthy();
+      expect(Object.keys(recognition.documentaries)).toEqual([
+        "ceremony",
+        "hackathon",
+        "careerServices",
+      ]);
+
+      for (const documentary of Object.values(recognition.documentaries)) {
+        expect(documentary.index).toMatch(/^0[1-3]$/);
+        expect(documentary.label).toBeTruthy();
+        expect(documentary.alt).toBeTruthy();
+        expect(documentary.caption).toBeTruthy();
+      }
+
       expect(recognition.imageLoading).toBeTruthy();
       expect(recognition.imageUnavailable).toBeTruthy();
     }
@@ -182,6 +219,23 @@ describe("portfolio v2 career and recognition foundation", () => {
       forceStatic: false,
       forcedProgress: progress,
       imageState: "auto",
+      forcedDocumentary: null,
+    });
+  });
+
+  it.each([
+    ["ceremony", "ceremony"],
+    ["vinuni", "ceremony"],
+    ["hackathon", "hackathon"],
+    ["organisers", "hackathon"],
+    ["career-services", "careerServices"],
+    ["stakeholder", "careerServices"],
+  ] as const)("maps %s to the %s documentary", (value, documentary) => {
+    expect(parseRecognitionStageControls(value)).toEqual({
+      forceStatic: false,
+      forcedProgress: 1,
+      imageState: "auto",
+      forcedDocumentary: documentary,
     });
   });
 
@@ -197,9 +251,38 @@ describe("portfolio v2 career and recognition foundation", () => {
         forceStatic: true,
         forcedProgress: null,
         imageState,
+        forcedDocumentary: null,
       });
     },
   );
+
+  it("resolves directional masks and keyboard navigation from register order", () => {
+    expect(
+      resolveRecognitionDocumentaryDirection("ceremony", "hackathon"),
+    ).toBe(1);
+    expect(
+      resolveRecognitionDocumentaryDirection("careerServices", "hackathon"),
+    ).toBe(-1);
+    expect(
+      resolveRecognitionDocumentaryDirection("hackathon", "hackathon"),
+    ).toBe(0);
+
+    expect(
+      resolveRecognitionDocumentaryNavigation("ceremony", "ArrowRight"),
+    ).toBe("hackathon");
+    expect(
+      resolveRecognitionDocumentaryNavigation("ceremony", "ArrowLeft"),
+    ).toBe("careerServices");
+    expect(
+      resolveRecognitionDocumentaryNavigation("hackathon", "End"),
+    ).toBe("careerServices");
+    expect(
+      resolveRecognitionDocumentaryNavigation("careerServices", "Home"),
+    ).toBe("ceremony");
+    expect(
+      resolveRecognitionDocumentaryNavigation("ceremony", "Enter"),
+    ).toBeNull();
+  });
 
   it("keeps compact and reduced-motion Recognition Stages static", () => {
     expect(

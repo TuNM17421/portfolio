@@ -1,10 +1,10 @@
 # Part 06 — Experience + recognition
 
-> **Status:** Checkpoints 06A–06B approved and committed; 06C implemented, awaiting owner review
+> **Status:** Checkpoints 06A–06D approved and committed; 06E not started
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0#career` and `/en/v2?intro=0#career`
 > **Forced motion states:** `?intro=0&career=education#career`, `?intro=0&career=fpt#career`, `?intro=0&career=ai-program#career`, and `?intro=0&career=static#career`
-> **Recognition review states:** `?intro=0&recognition=transition#recognition`, `?intro=0&recognition=ready#recognition`, `?intro=0&recognition=loading#recognition`, `?intro=0&recognition=error#recognition`, and `?intro=0&recognition=static#recognition`
+> **Recognition review states:** `?intro=0&recognition=transition#recognition`, `?intro=0&recognition=ready#recognition`, `?intro=0&recognition=loading#recognition`, `?intro=0&recognition=error#recognition`, `?intro=0&recognition=static#recognition`, `?intro=0&recognition=ceremony#recognition`, `?intro=0&recognition=hackathon#recognition`, and `?intro=0&recognition=career-services#recognition`
 > **Internal direction name:** **Career Trace → Recognition Stage** — not rendered as marketing copy
 
 ## Decision summary
@@ -171,6 +171,50 @@ Implementation contract:
 - Add labelled, keyboard-operable photo selection with short directional masks.
 - Provide captions for organisers, VinUniversity career services, and the
   ceremony context; never autoplay.
+
+Implementation contract:
+
+- **Screen job:** let a recruiter inspect the three documentary contexts behind
+  the recognition record without changing the VCareer-first proof hierarchy.
+- **Evidence set:** use only `vinuni-ceremony.jpg`, `hackathon.jpg`, and
+  `stakeholder-congrats-2.jpg`. They represent the ceremony recognition, the
+  Codex Community Hackathon context with event organisers, and the
+  VinUniversity career-services stakeholder context respectively. The other
+  local award photographs remain outside this checkpoint.
+- **Layout:** keep the 06C 4:3 evidence field and proof column stable. A ruled
+  three-entry document register sits beneath the image; selection never changes
+  the frame dimensions or pushes the recognition facts around.
+- **Signature interaction:** moving forward in the register reveals the next
+  image with a short left-to-right mask; moving backward reverses that mask.
+  Reduced motion uses a brief opacity handoff. There is no timer, autoplay,
+  drag surface, pagination dot, or generic previous/next carousel control.
+- **Controls:** every entry carries an index and visible label, remains at least
+  44px high, and is reachable as a real link without JavaScript. With JavaScript
+  active, click/Enter selects in place; Arrow Left/Up, Arrow Right/Down, Home,
+  and End move through the ordered register and return focus to the selected
+  entry.
+- **Image treatment:** both 4:3 landscape documents use the complete frame. The
+  portrait career-services photograph uses `contain` inside the same fixed
+  evidence field so no stakeholder is cropped out.
+- **Copy and semantics:** captions and localized alt text identify only the
+  confirmed context; no person is named from visual inference. The current
+  selection is exposed with `aria-current`, loading/error states remain useful,
+  and the updated caption is announced politely.
+- **Progressive enhancement:** the selector links resolve to forced review URLs,
+  so all three documents are reachable without JavaScript. Enhanced selection
+  stays in place and never starts an automatic sequence.
+- **Reference transfer:** Cosmos' media-first browsing makes the source choice
+  explicit; Dylan Brouwer's ledger treatment keeps active state terse; Tech
+  Barcelona's fixed evidence field keeps facts and photography separate. Do
+  not copy their social controls, branding, masonry, or page composition.
+- **Review states:** `?intro=0&recognition=ceremony#recognition`,
+  `?intro=0&recognition=hackathon#recognition`, and
+  `?intro=0&recognition=career-services#recognition`, alongside all 06C image
+  and stage states.
+- **Acceptance:** all three labels and captions are equivalent in VI/EN; the
+  selector has no interval/timer; direction reverses with selection order;
+  the portrait document is uncropped; keyboard and no-JS paths work; and
+  VCareer remains the only primary proof.
 
 ### 06E — Header and finish gate
 

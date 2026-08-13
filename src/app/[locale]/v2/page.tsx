@@ -371,9 +371,41 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             recognition: {
               eyebrow: careerT("recognition.eyebrow"),
               title: careerT("recognition.title"),
-              documentaryLabel: careerT("recognition.documentaryLabel"),
-              documentaryCaption: careerT("recognition.documentaryCaption"),
-              documentaryAlt: careerT("recognition.documentaryAlt"),
+              documentarySelectorLabel: careerT(
+                "recognition.documentarySelectorLabel",
+              ),
+              documentaries: {
+                ceremony: {
+                  index: careerT("recognition.documentaries.ceremony.index"),
+                  label: careerT("recognition.documentaries.ceremony.label"),
+                  caption: careerT(
+                    "recognition.documentaries.ceremony.caption",
+                  ),
+                  alt: careerT("recognition.documentaries.ceremony.alt"),
+                },
+                hackathon: {
+                  index: careerT("recognition.documentaries.hackathon.index"),
+                  label: careerT("recognition.documentaries.hackathon.label"),
+                  caption: careerT(
+                    "recognition.documentaries.hackathon.caption",
+                  ),
+                  alt: careerT("recognition.documentaries.hackathon.alt"),
+                },
+                careerServices: {
+                  index: careerT(
+                    "recognition.documentaries.careerServices.index",
+                  ),
+                  label: careerT(
+                    "recognition.documentaries.careerServices.label",
+                  ),
+                  caption: careerT(
+                    "recognition.documentaries.careerServices.caption",
+                  ),
+                  alt: careerT(
+                    "recognition.documentaries.careerServices.alt",
+                  ),
+                },
+              },
               imageLoading: careerT("recognition.imageLoading"),
               imageUnavailable: careerT("recognition.imageUnavailable"),
               supportingLabel: careerT("recognition.supportingLabel"),

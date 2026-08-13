@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import {
   CAREER_RECORDS,
   type CareerRecordKey,
+  type RecognitionDocumentaryKey,
   type RecognitionImageReviewState,
 } from "@/lib/v2/career-recognition";
 import styles from "./career-recognition.module.css";
@@ -40,6 +41,7 @@ export type CareerRecognitionCopy = {
 
 type CareerRecognitionProps = {
   copy: CareerRecognitionCopy;
+  forcedDocumentary: RecognitionDocumentaryKey | null;
   imageReviewState: RecognitionImageReviewState;
   navigationOpen: boolean;
   recognitionStage: RecognitionStageMotionController;
@@ -48,6 +50,7 @@ type CareerRecognitionProps = {
 
 export function CareerRecognition({
   copy,
+  forcedDocumentary,
   imageReviewState,
   navigationOpen,
   recognitionStage,
@@ -270,6 +273,7 @@ export function CareerRecognition({
 
       <RecognitionStage
         copy={copy.recognition}
+        forcedDocumentary={forcedDocumentary}
         imageReviewState={imageReviewState}
         motionController={recognitionStage}
       />

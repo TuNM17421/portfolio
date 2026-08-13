@@ -620,9 +620,27 @@
       "recognition": {
         "eyebrow": "RECOGNITION INDEX / 03",
         "title": "Recognised outcomes.",
-        "documentaryLabel": "DOCUMENT / VINUNIVERSITY CLOSING CEREMONY",
-        "documentaryCaption": "The VinUniversity closing-ceremony screen recognised Team VCareer and recorded both Codex Community Hackathon Hanoi 2026 results.",
-        "documentaryAlt": "VinUniversity closing-ceremony stage showing Team VCareer as a featured project alongside the VCareer and WonderLens award results.",
+        "documentarySelectorLabel": "DOCUMENT REGISTER / MANUAL SELECT",
+        "documentaries": {
+          "ceremony": {
+            "index": "01",
+            "label": "VINUNIVERSITY CLOSING CEREMONY",
+            "caption": "The VinUniversity closing-ceremony screen recognised Team VCareer and recorded both Codex Community Hackathon Hanoi 2026 results.",
+            "alt": "VinUniversity closing-ceremony stage showing Team VCareer as a featured project alongside the VCareer and WonderLens award results."
+          },
+          "hackathon": {
+            "index": "02",
+            "label": "WITH THE HACKATHON ORGANISERS",
+            "caption": "A moment at Codex Community Hackathon Hanoi with the event organisers, where VCareer entered Track 4 and WonderLens entered Track 1.",
+            "alt": "Group photograph of Nguyen Manh Tu with team members and event organisers at Codex Community Hackathon Hanoi."
+          },
+          "careerServices": {
+            "index": "03",
+            "label": "VINUNIVERSITY CAREER SERVICES",
+            "caption": "A moment with the VinUniversity career-services team — VCareer's stakeholder during product development and user testing.",
+            "alt": "Nguyen Manh Tu with VCareer members and the VinUniversity career-services team at the Graduate Destination area."
+          }
+        },
         "imageLoading": "LOADING DOCUMENTARY IMAGE",
         "imageUnavailable": "DOCUMENTARY IMAGE UNAVAILABLE",
         "supportingLabel": "RELATED RECOGNITION / 02",

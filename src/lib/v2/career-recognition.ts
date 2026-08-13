@@ -34,11 +34,37 @@ export const RECOGNITION_RECORDS = [
 
 export type RecognitionRecordKey = (typeof RECOGNITION_RECORDS)[number]["key"];
 
-export const RECOGNITION_DOCUMENTARY_IMAGE = {
-  src: "/awards/vinuni-ceremony.jpg",
-  width: 2568,
-  height: 1926,
-} as const;
+export const RECOGNITION_DOCUMENTARY_IMAGES = [
+  {
+    key: "ceremony",
+    reviewValue: "ceremony",
+    src: "/awards/vinuni-ceremony.jpg",
+    width: 2568,
+    height: 1926,
+    fit: "cover",
+  },
+  {
+    key: "hackathon",
+    reviewValue: "hackathon",
+    src: "/awards/hackathon.jpg",
+    width: 2560,
+    height: 1920,
+    fit: "cover",
+  },
+  {
+    key: "careerServices",
+    reviewValue: "career-services",
+    src: "/awards/stakeholder-congrats-2.jpg",
+    width: 1920,
+    height: 2560,
+    fit: "contain",
+  },
+] as const;
+
+export type RecognitionDocumentaryKey =
+  (typeof RECOGNITION_DOCUMENTARY_IMAGES)[number]["key"];
+
+export const DEFAULT_RECOGNITION_DOCUMENTARY_KEY = "ceremony" as const;
 
 export type RecognitionImageReviewState = "auto" | "loading" | "error";
 export type RecognitionStageMode = "active" | "forced" | "static";
@@ -47,6 +73,7 @@ export type RecognitionStageControls = {
   forceStatic: boolean;
   forcedProgress: number | null;
   imageState: RecognitionImageReviewState;
+  forcedDocumentary: RecognitionDocumentaryKey | null;
 };
 
 const STATIC_RECOGNITION_VALUES = new Set(["static", "0", "off", "false"]);
@@ -56,6 +83,21 @@ const ERROR_RECOGNITION_VALUES = new Set([
   "image-error",
   "image_error",
 ]);
+
+const DOCUMENTARY_RECOGNITION_VALUES: Record<
+  string,
+  RecognitionDocumentaryKey
+> = {
+  ceremony: "ceremony",
+  vinuni: "ceremony",
+  "closing-ceremony": "ceremony",
+  hackathon: "hackathon",
+  organisers: "hackathon",
+  organizers: "hackathon",
+  "career-services": "careerServices",
+  careerservices: "careerServices",
+  stakeholder: "careerServices",
+};
 
 export function parseRecognitionStageControls(
   value: string,
@@ -67,6 +109,7 @@ export function parseRecognitionStageControls(
       forceStatic: false,
       forcedProgress: 0.34,
       imageState: "auto",
+      forcedDocumentary: null,
     };
   }
 
@@ -75,6 +118,17 @@ export function parseRecognitionStageControls(
       forceStatic: false,
       forcedProgress: 1,
       imageState: "auto",
+      forcedDocumentary: null,
+    };
+  }
+
+  const forcedDocumentary = DOCUMENTARY_RECOGNITION_VALUES[normalized];
+  if (forcedDocumentary) {
+    return {
+      forceStatic: false,
+      forcedProgress: 1,
+      imageState: "auto",
+      forcedDocumentary,
     };
   }
 
@@ -83,6 +137,7 @@ export function parseRecognitionStageControls(
       forceStatic: true,
       forcedProgress: null,
       imageState: "loading",
+      forcedDocumentary: null,
     };
   }
 
@@ -91,6 +146,7 @@ export function parseRecognitionStageControls(
       forceStatic: true,
       forcedProgress: null,
       imageState: "error",
+      forcedDocumentary: null,
     };
   }
 
@@ -98,7 +154,46 @@ export function parseRecognitionStageControls(
     forceStatic: STATIC_RECOGNITION_VALUES.has(normalized),
     forcedProgress: null,
     imageState: "auto",
+    forcedDocumentary: null,
   };
+}
+
+export function resolveRecognitionDocumentaryDirection(
+  current: RecognitionDocumentaryKey,
+  next: RecognitionDocumentaryKey,
+): -1 | 0 | 1 {
+  const currentIndex = RECOGNITION_DOCUMENTARY_IMAGES.findIndex(
+    (documentary) => documentary.key === current,
+  );
+  const nextIndex = RECOGNITION_DOCUMENTARY_IMAGES.findIndex(
+    (documentary) => documentary.key === next,
+  );
+
+  if (nextIndex === currentIndex) return 0;
+  return nextIndex > currentIndex ? 1 : -1;
+}
+
+export function resolveRecognitionDocumentaryNavigation(
+  current: RecognitionDocumentaryKey,
+  key: string,
+): RecognitionDocumentaryKey | null {
+  const currentIndex = RECOGNITION_DOCUMENTARY_IMAGES.findIndex(
+    (documentary) => documentary.key === current,
+  );
+  const lastIndex = RECOGNITION_DOCUMENTARY_IMAGES.length - 1;
+  let nextIndex: number;
+
+  if (key === "Home") nextIndex = 0;
+  else if (key === "End") nextIndex = lastIndex;
+  else if (key === "ArrowRight" || key === "ArrowDown") {
+    nextIndex = (currentIndex + 1) % RECOGNITION_DOCUMENTARY_IMAGES.length;
+  } else if (key === "ArrowLeft" || key === "ArrowUp") {
+    nextIndex =
+      (currentIndex - 1 + RECOGNITION_DOCUMENTARY_IMAGES.length) %
+      RECOGNITION_DOCUMENTARY_IMAGES.length;
+  } else return null;
+
+  return RECOGNITION_DOCUMENTARY_IMAGES[nextIndex].key;
 }
 
 export function resolveRecognitionStageMode({
