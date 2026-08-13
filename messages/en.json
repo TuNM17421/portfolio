@@ -44,9 +44,9 @@
       "period": "May 2024 — Mar 2026",
       "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL — improving system efficiency by 20%.",
+        "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL.",
         "Cloud Infrastructure: Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack to optimize local development and testing.",
-        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews — boosting team productivity by 30% during the lead's absence."
+        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews during the lead's absence."
       ]
     },
     "course": {
@@ -321,8 +321,8 @@
         "vinuniCeremony": "Honored as a featured project at VinUniversity's graduation ceremony",
         "vinuniFaculty": "With the faculty at VinUniversity",
         "aiInAction": "With the cohort at the closing ceremony of Vingroup's \"AI in Action\" talent program",
-        "codex": "Presenting at Codex Community Hackathon 2026",
-        "stakeholder": "Congratulated by the organizers",
+        "codex": "With the team and organizers at Codex Community Hackathon 2026",
+        "stakeholder": "With the VinUniversity Career Services team",
         "teamDetail": "The team at VinUniversity"
       }
     }
@@ -576,6 +576,74 @@
       "opensNewWindow": "Opens in a new window",
       "imageLoading": "Resolving evidence image",
       "imageUnavailable": "Evidence image unavailable"
+    },
+    "career": {
+      "eyebrow": "06 / EXPERIENCE & RECOGNITION",
+      "axis": "2019 → 2026",
+      "title": "Career trace.",
+      "summary": "From an Information Technology foundation, through production backend work, to practical AI training.",
+      "timelineLabel": "DEVELOPMENT TRACE / 03 RECORDS",
+      "responsibilitiesLabel": "WORK SCOPE",
+      "technologyLabel": "SYSTEMS & TOOLS",
+      "records": {
+        "education": {
+          "index": "01 / FOUNDATION",
+          "period": "2019 — 2024",
+          "title": "Bachelor of Information Technology",
+          "organization": "FPT University",
+          "meta": "Hoa Lac, Hanoi",
+          "description": "Bachelor's program in Information Technology at the Hoa Lac campus in Hanoi."
+        },
+        "fpt": {
+          "index": "02 / PRIMARY EXPERIENCE",
+          "period": "MAY 2024 — MAR 2026",
+          "title": "Software Engineer",
+          "organization": "FPT Software",
+          "meta": "Backend systems · 4–5 person sub-team",
+          "description": "Developed backend services for an HR system and helped coordinate a backend sub-team.",
+          "responsibilities": [
+            "Built APIs and business logic with Java, Spring Boot, and PostgreSQL.",
+            "Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack for local development and testing.",
+            "Coordinated work and reviewed code for a 4–5 person backend sub-team while the team lead was absent."
+          ],
+          "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
+        },
+        "aiProgram": {
+          "index": "03 / AI DEVELOPMENT",
+          "period": "APR 2026 — JUL 2026",
+          "title": "Practical AI Talent Program — Foundation",
+          "organization": "VinUniversity × Vingroup",
+          "meta": "12 weeks · SFIA skills framework",
+          "description": "A hands-on program focused on AI thinking, AI ethics, AI assistants, and problem-solving under VinUni faculty."
+        }
+      },
+      "recognition": {
+        "eyebrow": "RECOGNITION INDEX / 03",
+        "title": "Recognised outcomes.",
+        "records": {
+          "vcareer": {
+            "index": "01 / FLAGSHIP",
+            "project": "VCareer",
+            "result": "2nd Prize · Track 4: Transform with Codex",
+            "context": "$5,000 in OpenAI API credits · Codex Community Hackathon — Hanoi",
+            "date": "JUN 27, 2026"
+          },
+          "wonderlens": {
+            "index": "02 / HACKATHON",
+            "project": "WonderLens",
+            "result": "1st Prize · Track 1: Market Scale",
+            "context": "Codex Community Hackathon — Hanoi",
+            "date": "JUN 27, 2026"
+          },
+          "vinuni": {
+            "index": "03 / VINUNIVERSITY",
+            "project": "VCareer",
+            "result": "Featured project",
+            "context": "Closing ceremony at VinUniversity",
+            "date": "2026"
+          }
+        }
+      }
     }
   },
   "footer": {

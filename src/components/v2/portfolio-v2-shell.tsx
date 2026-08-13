@@ -17,6 +17,10 @@ import {
   SupportingWork,
   type SupportingWorkCopy,
 } from "@/components/v2/work/supporting-work";
+import {
+  CareerRecognition,
+  type CareerRecognitionCopy,
+} from "@/components/v2/career/career-recognition";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
 import { useSupportingWorkStory } from "@/components/v2/work/supporting-work-story";
 import { useFinancialArchiveMotion } from "@/components/v2/work/financial-archive-motion";
@@ -52,6 +56,7 @@ type PortfolioV2ShellProps = {
   aboutCopy: AboutV2Copy;
   vcareerCopy: VCareerShowcaseCopy;
   workCopy: SupportingWorkCopy;
+  careerCopy: CareerRecognitionCopy;
 };
 
 export function PortfolioV2Shell({
@@ -68,6 +73,7 @@ export function PortfolioV2Shell({
   aboutCopy,
   vcareerCopy,
   workCopy,
+  careerCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -202,6 +208,10 @@ export function PortfolioV2Shell({
           navigationOpen={mobileNavigationOpen}
           story={supportingWorkStory}
           forcedBenchmark={workControls.forcedBenchmark}
+        />
+        <CareerRecognition
+          copy={careerCopy}
+          navigationOpen={mobileNavigationOpen}
         />
       </div>
 

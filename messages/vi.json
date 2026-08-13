@@ -44,9 +44,9 @@
       "period": "05/2024 — 03/2026",
       "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL — tăng 20% hiệu suất hệ thống.",
+        "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL.",
         "Cloud Infrastructure: Xây dựng batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack để tối ưu phát triển, kiểm thử local.",
-        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code — tăng 30% năng suất nhóm khi team lead vắng mặt."
+        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code khi team lead vắng mặt."
       ]
     },
     "course": {
@@ -321,8 +321,8 @@
         "vinuniCeremony": "Được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity",
         "vinuniFaculty": "Chụp ảnh cùng giảng viên tại VinUniversity",
         "aiInAction": "Cùng học viên tại Lễ bế giảng chương trình \"AI in Action\" của Vingroup",
-        "codex": "Thuyết trình tại Codex Community Hackathon 2026",
-        "stakeholder": "Ban tổ chức chúc mừng nhóm",
+        "codex": "Cùng đội và ban tổ chức tại Codex Community Hackathon 2026",
+        "stakeholder": "Cùng đội ngũ phòng Hướng nghiệp VinUniversity",
         "teamDetail": "Đội ngũ tại VinUniversity"
       }
     }
@@ -576,6 +576,74 @@
       "opensNewWindow": "Mở trong cửa sổ mới",
       "imageLoading": "Đang tải ảnh bằng chứng",
       "imageUnavailable": "Không tải được ảnh bằng chứng"
+    },
+    "career": {
+      "eyebrow": "06 / KINH NGHIỆM & GHI NHẬN",
+      "axis": "2019 → 2026",
+      "title": "Dấu vết nghề nghiệp.",
+      "summary": "Từ nền tảng Công nghệ Thông tin, qua backend production, đến chương trình AI thực chiến.",
+      "timelineLabel": "TRỤC PHÁT TRIỂN / 03 MỐC",
+      "responsibilitiesLabel": "PHẠM VI CÔNG VIỆC",
+      "technologyLabel": "HỆ THỐNG & CÔNG CỤ",
+      "records": {
+        "education": {
+          "index": "01 / NỀN TẢNG",
+          "period": "2019 — 2024",
+          "title": "Cử nhân Công nghệ Thông tin",
+          "organization": "Đại học FPT",
+          "meta": "Hòa Lạc, Hà Nội",
+          "description": "Chương trình cử nhân Công nghệ Thông tin tại cơ sở Hòa Lạc, Hà Nội."
+        },
+        "fpt": {
+          "index": "02 / KINH NGHIỆM CHÍNH",
+          "period": "05/2024 — 03/2026",
+          "title": "Software Engineer",
+          "organization": "FPT Software",
+          "meta": "Backend systems · Sub-team 4–5 người",
+          "description": "Phát triển backend cho hệ thống nhân sự và phối hợp vận hành một sub-team backend.",
+          "responsibilities": [
+            "Xây dựng API và business logic bằng Java, Spring Boot và PostgreSQL.",
+            "Triển khai batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack cho phát triển và kiểm thử local.",
+            "Điều phối công việc và review code cho sub-team backend 4–5 người khi team lead vắng mặt."
+          ],
+          "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
+        },
+        "aiProgram": {
+          "index": "03 / BƯỚC PHÁT TRIỂN AI",
+          "period": "04/2026 — 07/2026",
+          "title": "Chương trình Nhân tài AI Thực chiến — Khóa Cơ bản",
+          "organization": "VinUniversity × Vingroup",
+          "meta": "12 tuần · Khung năng lực SFIA",
+          "description": "Chương trình thực hành tập trung vào tư duy AI, đạo đức AI, trợ lý AI và giải quyết vấn đề dưới sự hướng dẫn của giảng viên VinUni."
+        }
+      },
+      "recognition": {
+        "eyebrow": "CHỈ MỤC GHI NHẬN / 03",
+        "title": "Kết quả được ghi nhận.",
+        "records": {
+          "vcareer": {
+            "index": "01 / CHỦ LỰC",
+            "project": "VCareer",
+            "result": "Giải Nhì · Track 4: Transform with Codex",
+            "context": "$5,000 OpenAI API credits · Codex Community Hackathon — Hanoi",
+            "date": "27/06/2026"
+          },
+          "wonderlens": {
+            "index": "02 / HACKATHON",
+            "project": "WonderLens",
+            "result": "Giải Nhất · Track 1: Market Scale",
+            "context": "Codex Community Hackathon — Hanoi",
+            "date": "27/06/2026"
+          },
+          "vinuni": {
+            "index": "03 / VINUNIVERSITY",
+            "project": "VCareer",
+            "result": "Dự án nổi bật",
+            "context": "Lễ bế giảng tại VinUniversity",
+            "date": "2026"
+          }
+        }
+      }
     }
   },
   "footer": {

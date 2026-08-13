@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–04 approved; Part 05 checkpoints 05A–05D approved; 05E in review
+> **Status:** Parts 01–05 approved; Part 06 checkpoint 06A in review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 05 ScholarAI evidence stage, Financial Planning source archive, responsive fallbacks, and phased review gates
-> **Implementation status:** Part 04 is complete through `050f023`; Part 05 is complete through 05D (`9fbf3e0`) with the 05E finish gate in review
+> **Detailed scope in this checkpoint:** Part 06 Experience + Recognition foundation, static career ledger, and phased review gates
+> **Implementation status:** Part 05 is complete through `274358b`; Part 06 checkpoint 06A is implemented and awaiting review
 
 ## Objective
 
@@ -147,13 +147,13 @@ Relevant implementation references:
 | 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                         |
 | 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                      |
 | 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                                      |
-| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | 05A `cc631b4`; 05B `cd20449`; 05C `5d059a4`; 05D `9fbf3e0`; 05E in review |
-| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                                     |
+| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                                      |
+| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | 06A implemented; awaiting review                                         |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                                     |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                                     |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                                     |
 
-Detailed contracts for Parts 01–05 live beside this file. Later parts receive
+Detailed contracts for Parts 01–06 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.
 
 ## Confirmed user inputs

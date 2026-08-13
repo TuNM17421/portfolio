@@ -77,6 +77,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
     namespace: "v2.vcareer",
   });
   const workT = await getTranslations({ locale, namespace: "v2.work" });
+  const careerT = await getTranslations({ locale, namespace: "v2.career" });
 
   return (
     <>
@@ -321,6 +322,72 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             opensNewWindow: workT("opensNewWindow"),
             imageLoading: workT("imageLoading"),
             imageUnavailable: workT("imageUnavailable"),
+          }}
+          careerCopy={{
+            eyebrow: careerT("eyebrow"),
+            axis: careerT("axis"),
+            title: careerT("title"),
+            summary: careerT("summary"),
+            timelineLabel: careerT("timelineLabel"),
+            responsibilitiesLabel: careerT("responsibilitiesLabel"),
+            technologyLabel: careerT("technologyLabel"),
+            records: {
+              education: {
+                index: careerT("records.education.index"),
+                period: careerT("records.education.period"),
+                title: careerT("records.education.title"),
+                organization: careerT("records.education.organization"),
+                meta: careerT("records.education.meta"),
+                description: careerT("records.education.description"),
+              },
+              fpt: {
+                index: careerT("records.fpt.index"),
+                period: careerT("records.fpt.period"),
+                title: careerT("records.fpt.title"),
+                organization: careerT("records.fpt.organization"),
+                meta: careerT("records.fpt.meta"),
+                description: careerT("records.fpt.description"),
+                responsibilities: careerT.raw(
+                  "records.fpt.responsibilities",
+                ) as string[],
+                technology: careerT("records.fpt.technology"),
+              },
+              aiProgram: {
+                index: careerT("records.aiProgram.index"),
+                period: careerT("records.aiProgram.period"),
+                title: careerT("records.aiProgram.title"),
+                organization: careerT("records.aiProgram.organization"),
+                meta: careerT("records.aiProgram.meta"),
+                description: careerT("records.aiProgram.description"),
+              },
+            },
+            recognition: {
+              eyebrow: careerT("recognition.eyebrow"),
+              title: careerT("recognition.title"),
+              records: {
+                vcareer: {
+                  index: careerT("recognition.records.vcareer.index"),
+                  project: careerT("recognition.records.vcareer.project"),
+                  result: careerT("recognition.records.vcareer.result"),
+                  context: careerT("recognition.records.vcareer.context"),
+                  date: careerT("recognition.records.vcareer.date"),
+                },
+                wonderlens: {
+                  index: careerT("recognition.records.wonderlens.index"),
+                  project: careerT("recognition.records.wonderlens.project"),
+                  result: careerT("recognition.records.wonderlens.result"),
+                  context: careerT("recognition.records.wonderlens.context"),
+                  date: careerT("recognition.records.wonderlens.date"),
+                },
+                vinuni: {
+                  index: careerT("recognition.records.vinuni.index"),
+                  project: careerT("recognition.records.vinuni.project"),
+                  result: careerT("recognition.records.vinuni.result"),
+                  context: careerT("recognition.records.vinuni.context"),
+                  date: careerT("recognition.records.vinuni.date"),
+                },
+              },
+            },
           }}
         />
       </div>

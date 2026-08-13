@@ -1,0 +1,124 @@
+# Part 06 — Experience + recognition
+
+> **Status:** Checkpoint 06A implemented; awaiting owner review
+> **Branch:** `redesign/portfolio-v2`
+> **Review artifact:** `/vi/v2?intro=0#career` and `/en/v2?intro=0#career`
+> **Internal direction name:** **Career Trace → Recognition Stage** — not rendered as marketing copy
+
+## Decision summary
+
+Part 06 gives a recruiter one compact career record after the long-form project
+evidence. It must connect the backend foundation to Tu's current AI direction,
+then show externally recognised outcomes without repeating the VCareer case
+study or turning seven event photographs into a long gallery.
+
+```text
+Part 05 system archive
+        │
+        └── 06 / career trace
+              2019—2024  FPT University
+              2024—2026  FPT Software — primary professional record
+              2026       VinUniversity × Vingroup practical AI program
+                           │
+                           └── recognition stage
+                                 VCareer — Track 4, 2nd Prize
+                                 WonderLens — Track 1, 1st Prize (one line only)
+                                 VCareer — featured at VinUniversity
+```
+
+- **FPT Software is the dominant career record.** The copy may describe API,
+  asynchronous processing, local infrastructure, sub-team coordination, and
+  code review. The previous `+20%` and `+30%` claims are removed everywhere;
+  they are not de-emphasised or moved into fine print.
+- **Education and AI training are compact endpoints.** They establish the
+  2019–2026 direction without competing with professional work.
+- **VCareer is the primary recognition.** The page may state Track 4 2nd Prize
+  and `$5,000 in OpenAI API credits`.
+- **WonderLens remains one recognition line.** It may state Track 1 1st Prize
+  at Codex Community Hackathon Hanoi 2026, but it receives no project scope,
+  repository action, screenshot, or case-study copy until the owner supplies
+  the finished product and new media.
+- **Photography is documentary evidence.** `vinuni-ceremony.jpg` is the future
+  default stage image. `hackathon.jpg` includes organisers;
+  `stakeholder-congrats-2.jpg` includes VinUniversity's career-services team.
+
+## Reference evidence
+
+References transfer information hierarchy and interaction behaviour only. Do
+not copy branding, typography, imagery, proprietary copy, or exact composition.
+
+| Reference | Transfer | Do not copy |
+| --- | --- | --- |
+| [Dylan Brouwer — About](https://www.dylanbrouwer.design/about) | A recognition ledger with stable columns, terse metadata, and rows that can be scanned without opening cards. | The black-and-white identity, exact columns, award count, or twelve-row length. |
+| [Cosmos](https://www.cosmos.so/) | Treat each photograph as a sourced record with a caption rather than anonymous decoration. | Its masonry density, social-product controls, or collection mechanics. |
+| [Tech Barcelona](https://www.techbarcelona.com/en/) | One documentary image field beside structured facts, separated by explicit rules. | Its brand palette, promotional language, or editorial page structure. |
+| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | Concentrate recognition into one composed scene after the work narrative. | The portrait collage, tiny proof cards, exact dark composition, or typography. |
+
+## Design contract
+
+| Field | Decision |
+| --- | --- |
+| Screen job | Let a recruiter understand Tu's 2019–2026 progression and verify the three recognition records without rereading project sections. |
+| Primary user and action | A recruiter or engineering manager scans the professional record first, then continues to a concise recognition stage. No action is required in 06A. |
+| Content hierarchy | 1. Part 06 rail and 2019–2026 axis. 2. FPT Software role and responsibilities. 3. FPT University and practical AI training. 4. VCareer Track 4 result. 5. One-line WonderLens result. 6. VinUniversity featured-project recognition. |
+| Navigation and controls | Real `#career` and `#recognition` anchors. Header navigation is added only in 06E. The future image selector is explicit and user-controlled; 06A exposes no inert controls. |
+| Visual language | Continue the Part 05 mineral sheet using `#edf4f5`, deep ink `#071219`, cyan `#176f6b`, signal blue `#0060f0`, Anybody display, Be Vietnam Pro body, and IBM Plex Mono record labels. Square rules and time codes replace generic cards. |
+| Signature | A single data trace connects the Part 05 archive to ordered career records and later drops into the dark recognition stage. In 06A it is a static structural line; scroll-linked drawing belongs to 06B. |
+| Required states | Full VI/EN content, 320px through wide desktop, no JavaScript, and reduced motion. Recognition image loading/error and selector states begin in 06C–06D. |
+| Responsive behaviour | Desktop uses a wide ledger with a stable period column and a dominant FPT row. Mobile becomes a compact vertical record, preserves dates and all responsibility copy, and does not rely on hover or sticky positioning. |
+| Evidence used | Existing Experience/Awards copy, owner corrections in this thread, seven local award images, event documentation, and the four interface references above. |
+| Forbidden defaults | Rounded timeline cards, equal award stat cards, count-up numbers, a standalone fullscreen opener, long sticky scrollytelling, autoplay gallery, masonry of all seven photos, technology chips, invented impact metrics, or repeated VCareer case-study copy. |
+| Acceptance criteria | The FPT record is visually dominant; no `20%` or `30%` claim remains; WonderLens is one line only; all VI/EN facts are equivalent; `#career` and `#recognition` work; no content is hidden without JavaScript; and 06A adds no timeline or gallery animation. |
+
+## Content contract
+
+### Career ledger
+
+| Record | Public content |
+| --- | --- |
+| FPT University | Bachelor of Information Technology · 2019–2024 · Hoa Lac, Hanoi. |
+| FPT Software | Software Engineer · May 2024–March 2026. Backend APIs and business logic with Java/Spring Boot/PostgreSQL; batch/asynchronous processing with AWS SQS; Docker/LocalStack for local development and testing; coordination and code review for a 4–5 person backend sub-team when the team lead was absent. |
+| VinUniversity × Vingroup | Practical AI Talent Program — Foundation · April–July 2026 · 12 weeks · SFIA-based practical AI training. |
+
+### Recognition index
+
+| Record | Public content |
+| --- | --- |
+| VCareer | 2nd Prize · Track 4: Transform with Codex · `$5,000 in OpenAI API credits` · Codex Community Hackathon Hanoi · June 27, 2026. |
+| WonderLens | 1st Prize · Track 1: Market Scale · Codex Community Hackathon Hanoi 2026. No project detail in this part. |
+| VCareer at VinUniversity | Featured project at the VinUniversity closing ceremony in 2026. |
+
+## Checkpoints
+
+### 06A — Foundation and static ledger
+
+- Add typed career/recognition record keys and content tests.
+- Add equivalent VI/EN copy and remove the two stale FPT percentages.
+- Render the Part 05 handoff, compact chapter rail, static Career ledger, and
+  static Recognition index.
+- Add real `#career` and `#recognition` anchors.
+- Do not add scroll motion, image fields, gallery controls, or header changes.
+
+### 06B — Career Trace motion
+
+- Draw the 2019–2026 trace with reversible scroll progress.
+- Activate records in chronological order while keeping FPT dominant.
+- Preserve the static ledger for compact and reduced-motion modes.
+
+### 06C — Recognition Stage
+
+- Transition the light ledger into one short dark documentary stage.
+- Introduce the ceremony image, loading/error treatment, and responsive crop.
+- Keep VCareer primary and WonderLens to one line.
+
+### 06D — Documentary image selector
+
+- Add labelled, keyboard-operable photo selection with short directional masks.
+- Provide captions for organisers, VinUniversity career services, and the
+  ceremony context; never autoplay.
+
+### 06E — Header and finish gate
+
+- Add Career navigation, active chapter trace, and light/dark header tone.
+- Verify reverse scroll, live reduced-motion changes, no-JS, keyboard, 44px
+  targets, contrast, CLS, image requests, bundle size, and all supported widths.
