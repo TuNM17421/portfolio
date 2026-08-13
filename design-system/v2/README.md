@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–05 and Part 06 checkpoints 06A–06D approved; checkpoint 06E not started
+> **Status:** Parts 01–05 and Part 06 checkpoints 06A–06D approved; checkpoint 06E implemented and awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 06 documentary image register with manual selection and directional masks
-> **Implementation status:** Part 06 checkpoint 06D is approved and ready to commit
+> **Detailed scope in this checkpoint:** Part 06 header completion, Career navigation, active chapter trace, and finish gate
+> **Implementation status:** Part 06 checkpoint 06D is committed at `4d559ec`; checkpoint 06E remains uncommitted for owner review
 
 ## Objective
 
@@ -148,7 +148,7 @@ Relevant implementation references:
 | 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                           |
 | 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                           |
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                           |
-| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | 06A–06B approved · `6b46e68`; 06C implemented, awaiting review |
+| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | 06A–06D approved · `4d559ec`; 06E implemented, awaiting review |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                          |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                          |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                          |

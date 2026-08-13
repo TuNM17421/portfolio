@@ -394,9 +394,10 @@ export function VCareerShowcase({
             })}
           </ol>
 
-          <motion.aside
+          <motion.div
             className={styles.architectureSlice}
             style={relayStyle("architecture")}
+            role="group"
             aria-label={copy.architectureLabel}
           >
             <p>{copy.architectureLabel}</p>
@@ -409,7 +410,7 @@ export function VCareerShowcase({
               />
               <strong>{copy.architectureTarget}</strong>
             </div>
-          </motion.aside>
+          </motion.div>
         </section>
 
         <motion.footer

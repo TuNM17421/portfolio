@@ -12,6 +12,8 @@ export type SiteHeaderV2Copy = {
   navigationLabel: string;
   work: string;
   workProof: string;
+  career: string;
+  careerProof: string;
   contact: string;
   localeLabel: string;
   openMenu: string;
@@ -59,9 +61,10 @@ export function SiteHeaderV2({
 }: SiteHeaderV2Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [condensed, setCondensed] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const workMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const careerMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const localeParams = new URLSearchParams();
   if (introQuery) localeParams.set("intro", introQuery);
   if (holdQuery) localeParams.set("hold", holdQuery);
@@ -72,13 +75,21 @@ export function SiteHeaderV2({
   if (careerQuery) localeParams.set("career", careerQuery);
   if (recognitionQuery) localeParams.set("recognition", recognitionQuery);
   const localeQuery = localeParams.toString();
+  const activeChapterHash =
+    chapterTone.activeChapter === "hero"
+      ? ""
+      : `#${chapterTone.activeChapter}`;
   const localeHash = recognitionQuery
     ? "#recognition"
     : careerQuery
       ? "#career"
       : workQuery
         ? "#work"
-        : "";
+        : showcaseQuery
+          ? "#vcareer"
+          : storyQuery
+            ? "#about"
+            : activeChapterHash;
   const localeHref = localeQuery
     ? `/v2?${localeQuery}${localeHash}`
     : `/v2${localeHash}`;
@@ -91,17 +102,20 @@ export function SiteHeaderV2({
     }
   }, []);
 
-  const goToWork = useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const goToSection = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
       event.preventDefault();
-      window.history.replaceState(null, "", "#vcareer");
-      const target = document.getElementById("vcareer");
+      window.history.replaceState(null, "", `#${targetId}`);
+      const target = document.getElementById(targetId);
       closeMenu(false);
       window.requestAnimationFrame(() => {
-        target?.scrollIntoView({ behavior: "auto", block: "start" });
+        target?.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "start",
+        });
       });
     },
-    [closeMenu],
+    [closeMenu, reduceMotion],
   );
 
   useEffect(() => {
@@ -157,7 +171,11 @@ export function SiteHeaderV2({
 
     const header = headerRef.current;
     const focusFrame = window.requestAnimationFrame(() => {
-      firstMenuLinkRef.current?.focus();
+      const initialLink =
+        chapterTone.activeNavigation === "career"
+          ? careerMenuLinkRef.current
+          : workMenuLinkRef.current;
+      initialLink?.focus();
     });
 
     const getFocusableElements = () =>
@@ -200,7 +218,7 @@ export function SiteHeaderV2({
       window.cancelAnimationFrame(focusFrame);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [closeMenu, menuOpen]);
+  }, [chapterTone.activeNavigation, closeMenu, menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -240,11 +258,12 @@ export function SiteHeaderV2({
     : { clipPath: "inset(100% 0 0 0)" };
 
   return (
-    <motion.header
+    <motion.div
       ref={headerRef}
       className={styles.header}
       style={chapterTone.header}
       data-v2-header
+      data-active-chapter={chapterTone.activeChapter}
       data-condensed={condensed && !menuOpen ? "true" : undefined}
       data-menu-open={menuOpen ? "true" : undefined}
       data-reduced-motion={reduceMotion ? "true" : undefined}
@@ -275,7 +294,15 @@ export function SiteHeaderV2({
               href="#vcareer"
               className={styles.navLink}
               data-header-work
-              onClick={goToWork}
+              data-nav-active={
+                chapterTone.activeNavigation === "work" ? "true" : undefined
+              }
+              aria-current={
+                chapterTone.activeNavigation === "work"
+                  ? "location"
+                  : undefined
+              }
+              onClick={(event) => goToSection(event, "vcareer")}
             >
               <span className={styles.rollViewport}>
                 <span className={styles.rollTrack}>
@@ -286,6 +313,34 @@ export function SiteHeaderV2({
               <motion.span
                 className={styles.chapterTrace}
                 style={chapterTone.workTrace}
+                aria-hidden
+              />
+            </a>
+            <a
+              href="#career"
+              className={styles.navLink}
+              data-header-career
+              data-nav-active={
+                chapterTone.activeNavigation === "career"
+                  ? "true"
+                  : undefined
+              }
+              aria-current={
+                chapterTone.activeNavigation === "career"
+                  ? "location"
+                  : undefined
+              }
+              onClick={(event) => goToSection(event, "career")}
+            >
+              <span className={styles.rollViewport}>
+                <span className={styles.rollTrack}>
+                  <span>{copy.career}</span>
+                  <span aria-hidden>{copy.career}</span>
+                </span>
+              </span>
+              <motion.span
+                className={styles.chapterTrace}
+                style={chapterTone.careerTrace}
                 aria-hidden
               />
             </a>
@@ -397,10 +452,20 @@ export function SiteHeaderV2({
                 <ul className={styles.menuList}>
                   <li className={styles.menuItem}>
                     <a
-                      ref={firstMenuLinkRef}
+                      ref={workMenuLinkRef}
                       href="#vcareer"
                       className={styles.menuLink}
-                      onClick={goToWork}
+                      data-nav-active={
+                        chapterTone.activeNavigation === "work"
+                          ? "true"
+                          : undefined
+                      }
+                      aria-current={
+                        chapterTone.activeNavigation === "work"
+                          ? "location"
+                          : undefined
+                      }
+                      onClick={(event) => goToSection(event, "vcareer")}
                     >
                       <span className={styles.menuIndex} aria-hidden>
                         04—05
@@ -408,6 +473,35 @@ export function SiteHeaderV2({
                       <span className={styles.menuLinkCopy}>
                         <strong>{copy.work}</strong>
                         <small>{copy.workProof}</small>
+                      </span>
+                      <span className={styles.menuArrow} aria-hidden>
+                        ↓
+                      </span>
+                    </a>
+                  </li>
+                  <li className={styles.menuItem}>
+                    <a
+                      ref={careerMenuLinkRef}
+                      href="#career"
+                      className={styles.menuLink}
+                      data-nav-active={
+                        chapterTone.activeNavigation === "career"
+                          ? "true"
+                          : undefined
+                      }
+                      aria-current={
+                        chapterTone.activeNavigation === "career"
+                          ? "location"
+                          : undefined
+                      }
+                      onClick={(event) => goToSection(event, "career")}
+                    >
+                      <span className={styles.menuIndex} aria-hidden>
+                        06
+                      </span>
+                      <span className={styles.menuLinkCopy}>
+                        <strong>{copy.career}</strong>
+                        <small>{copy.careerProof}</small>
                       </span>
                       <span className={styles.menuArrow} aria-hidden>
                         ↓
@@ -451,6 +545,6 @@ export function SiteHeaderV2({
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </motion.header>
+    </motion.div>
   );
 }

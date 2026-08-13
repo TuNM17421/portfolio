@@ -1,6 +1,6 @@
 # Part 06 — Experience + recognition
 
-> **Status:** Checkpoints 06A–06D approved and committed; 06E not started
+> **Status:** Checkpoints 06A–06D approved and committed; 06E implemented and awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0#career` and `/en/v2?intro=0#career`
 > **Forced motion states:** `?intro=0&career=education#career`, `?intro=0&career=fpt#career`, `?intro=0&career=ai-program#career`, and `?intro=0&career=static#career`
@@ -221,3 +221,86 @@ Implementation contract:
 - Add Career navigation, active chapter trace, and light/dark header tone.
 - Verify reverse scroll, live reduced-motion changes, no-JS, keyboard, 44px
   targets, contrast, CLS, image requests, bundle size, and all supported widths.
+
+Implementation contract:
+
+- **Screen job:** keep recruiters oriented across the completed long-form page
+  and expose direct routes to project evidence and the professional record.
+- **Primary action:** `Work/Dự án` moves to VCareer; `Career/Kinh nghiệm` moves
+  to the Career ledger. Contact remains a mail action and does not pretend to be
+  a chapter.
+- **Hierarchy:** the wordmark remains the home action. The two content routes
+  sit beside Contact and locale controls. No second navigation bar, floating
+  pill, or center-screen chapter badge is introduced.
+- **Chapter model:** track `Hero → About → VCareer → Work → Career →
+  Recognition` from document position. `Work` is current through VCareer and
+  supporting work; `Career` is current through Career and Recognition.
+- **Signature:** one thin system signal hands off from the Work label to the
+  Career label at the Work → Career boundary. It is an active-location trace,
+  not a scroll-percentage meter and not an ambient loop.
+- **Tone:** Hero, VCareer, and Recognition use mineral text over the night
+  glass. About, Work, and Career use ink text over the mineral glass. The
+  existing cyan, teal, lime, and signal-blue accents remain chapter-specific;
+  Recognition returns to focus cyan so locale and focus states retain contrast.
+- **Motion:** entry progress is derived from five section boundaries and the
+  same springs in both directions. Reduced motion reads the unsmoothed position
+  and removes CSS transition duration. No text translation or extra reveal is
+  added.
+- **Desktop layout:**
+
+  ```text
+  Nguyen Manh Tu                    DỰ ÁN  KINH NGHIỆM  LIÊN HỆ  VI / EN
+                                         ━ active system signal ━
+  ```
+
+- **Mobile layout:** retain the compact wordmark/locale/menu rail. The full
+  navigation plane contains ordered `04—05 Work`, `06 Career`, then `MAIL`.
+  Active content routes carry the same signal. Short-height screens use a
+  scrollable compact menu rather than cropping the final action.
+- **Locale and anchors:** switching VI/EN preserves forced-state query strings
+  and the currently active chapter hash. All content routes remain real anchors
+  and still navigate when JavaScript is unavailable.
+- **Required states:** all six chapter tones, forward/reverse scroll, normal and
+  condensed rails, desktop/mobile menu, open/closed/focus-trap states, live
+  reduced-motion changes, direct hashes, no-JS, and both locales.
+- **Reference evidence:**
+
+  | Reference | Transfer | Do not copy |
+  | --- | --- | --- |
+  | [Shade — UIZZE evidence](https://singapore.objective.company/design-media/0d/0d3695682b246b0a7b6b98f1ab126f2776b684dfed301fce4df84186f5da8daa.webp) | A quiet edge-aligned header lets content remain dominant while routes stay readable. | Its product dropdowns, demo CTA, purple branding, or exact spacing. |
+  | [Symbolic.ai — UIZZE evidence](https://singapore.objective.company/design-media/3d/3d93ae2f7a0e16eaca4de1f5063c46f8c454ef24de0a312ccf7186e33f12f452.webp) | A thin persistent utility rail can sit over changing editorial material without becoming a second hero. | Its newspaper imagery, serif system, cream palette, or account controls. |
+  | [Dylan Brouwer — UIZZE evidence](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) | Short chapter nouns and edge navigation support a long portfolio without a generic contents drawer. | Its monochrome identity, plus-sign labels, wording, or exact positions. |
+  | [Framer — UIZZE evidence](https://singapore.objective.company/design-media/01/01c6ebf7ad11cc67fe7165ef78cdac04b2153412de52c9ea2d95df602509cdd3.webp) | Compact navigation remains legible on a deep dark plane through disciplined grouping and contrast. | Its brand mark, SaaS routes, CTA, black field, or component gallery. |
+
+- **Forbidden defaults:** sticky percentage bar, six equal nav links, floating
+  rounded navbar, scroll dots, autoplay highlight, duplicated mobile drawer,
+  or a permanent dark header over light chapters.
+- **Acceptance:** Career is reachable on desktop/mobile/no-JS; exactly one of
+  Work or Career is current in their owned chapters; all six tone states and
+  reverse scroll are correct; direct locale switching preserves location; every
+  target is at least 44px; no content overflows 320–1920px; and Lighthouse,
+  axe, CLS, image-request, bundle, build, lint, type, and test gates are recorded.
+
+### 06E verification record
+
+- `141/141` Vitest checks pass; TypeScript, scoped ESLint, `git diff --check`,
+  and the production build pass.
+- The `/[locale]/v2` route is `85 kB`; its First Load JS is `196 kB`.
+- Rendered checks cover 320, 375, 768, 899, 900, 1024, 1440, and 1920px with
+  no horizontal overflow. The mobile/desktop navigation cut occurs exactly
+  between 899 and 900px, and every visible header target is at least 44px.
+- Forward and reverse chapter sampling returns the same six-state sequence.
+  Direct hashes re-align after fonts/layout settle, and VI/EN switches retain
+  the current chapter. No-JS exposes the full content and real anchors.
+- The mobile plane starts on the current route, traps focus, closes with Escape
+  or the background, restores focus, locks page scroll, and keeps `MAIL`
+  reachable at 320×568. Live reduced-motion changes switch the controller to
+  direct position values and set navigation transitions to 1ms.
+- axe-core 4.10.3 reports zero violations for the desktop document and the open
+  mobile dialog. A full-page media pass records CLS `0.0022`, 13 image requests,
+  no duplicate image URL, no incomplete image, and no failed HTTP response.
+- Lighthouse 13.4.1 desktop records Performance `99`, Accessibility `100`, Best
+  Practices `100`, and SEO `100` (LCP `1.03s`, TBT `0ms`, CLS `0`). Its simulated
+  mobile run records `73/100/100/100` (LCP `5.25s`, TBT `189ms`, CLS `0`). The
+  mobile render delay remains explicit Part 09 performance debt under the
+  approved motion-first direction; it is not hidden by the waiting sequence.

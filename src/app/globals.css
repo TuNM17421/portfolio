@@ -114,6 +114,9 @@ body:has(.portfolio-v2-route) {
 }
 
 html:has(.portfolio-v2-route) {
+  /* V2 sections own their individual header clearance. */
+  scroll-behavior: auto;
+  scroll-padding-top: 0;
   scrollbar-width: none;
 }
 

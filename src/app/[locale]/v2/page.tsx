@@ -123,6 +123,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             navigationLabel: heroT("navigationLabel"),
             work: heroT("workNav"),
             workProof: heroT("workProof"),
+            career: heroT("careerNav"),
+            careerProof: heroT("careerProof"),
             contact: heroT("contact"),
             localeLabel: heroT("localeLabel"),
             openMenu: heroT("openMenu"),

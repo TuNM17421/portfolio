@@ -28,6 +28,7 @@ import { useSupportingWorkStory } from "@/components/v2/work/supporting-work-sto
 import { useFinancialArchiveMotion } from "@/components/v2/work/financial-archive-motion";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
+import { useChapterAnchorAlignment } from "@/components/v2/chapter-anchor-alignment";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
 import { useVCareerEvidenceRelay } from "@/components/v2/vcareer/vcareer-evidence-relay";
 import {
@@ -155,6 +156,8 @@ export function PortfolioV2Shell({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
     workSectionRef: supportingWorkHandoff.surfaceRef,
+    careerSectionRef: careerTrace.sectionRef,
+    recognitionSectionRef: recognitionStage.stageRef,
     reduceMotion,
   });
   const [phase, setPhase] = useState<IntroPhase>("complete");
@@ -177,6 +180,7 @@ export function PortfolioV2Shell({
 
   const sceneIsActive = phase === "complete";
   const headerWordmarkHidden = phase === "exiting" || wordmarkTransitionActive;
+  useChapterAnchorAlignment(sceneIsActive);
 
   return (
     <div

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { motion } from "motion/react";
 import {
   CAREER_RECORDS,
@@ -56,62 +55,6 @@ export function CareerRecognition({
   recognitionStage,
   trace,
 }: CareerRecognitionProps) {
-  useEffect(() => {
-    const targetId = window.location.hash.slice(1);
-    if (targetId !== "career" && targetId !== "recognition") return;
-
-    let cancelled = false;
-    let userMoved = false;
-    const frames = new Set<number>();
-    const target = document.getElementById(targetId);
-    if (!target) return;
-
-    const markUserMovement = () => {
-      userMoved = true;
-    };
-
-    const jumpToTarget = (force = false) => {
-      if (cancelled || (userMoved && !force)) return;
-
-      const root = document.documentElement;
-      const previousScrollBehavior = root.style.scrollBehavior;
-      root.style.scrollBehavior = "auto";
-      target.scrollIntoView({ block: "start" });
-      root.style.scrollBehavior = previousScrollBehavior;
-    };
-
-    const scheduleJump = (force = false) => {
-      const firstFrame = window.requestAnimationFrame(() => {
-        frames.delete(firstFrame);
-        const secondFrame = window.requestAnimationFrame(() => {
-          frames.delete(secondFrame);
-          jumpToTarget(force);
-        });
-        frames.add(secondFrame);
-      });
-      frames.add(firstFrame);
-    };
-    const handleWindowLoad = () => scheduleJump();
-
-    scheduleJump(true);
-    document.fonts.ready.then(() => scheduleJump());
-    window.addEventListener("load", handleWindowLoad, { once: true });
-    window.addEventListener("wheel", markUserMovement, { passive: true });
-    window.addEventListener("touchstart", markUserMovement, { passive: true });
-    window.addEventListener("keydown", markUserMovement);
-    const settleTimer = window.setTimeout(() => jumpToTarget(), 720);
-
-    return () => {
-      cancelled = true;
-      frames.forEach((frame) => window.cancelAnimationFrame(frame));
-      window.clearTimeout(settleTimer);
-      window.removeEventListener("load", handleWindowLoad);
-      window.removeEventListener("wheel", markUserMovement);
-      window.removeEventListener("touchstart", markUserMovement);
-      window.removeEventListener("keydown", markUserMovement);
-    };
-  }, []);
-
   return (
     <section
       ref={trace.sectionRef}
