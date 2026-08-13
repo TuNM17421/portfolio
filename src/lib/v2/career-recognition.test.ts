@@ -3,8 +3,14 @@ import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
 import {
   CAREER_RECORDS,
+  CAREER_TRACE_CONTACTS,
   CAREER_TRACE_RANGE,
+  CAREER_TRACE_WINDOWS,
+  parseCareerTraceControls,
   RECOGNITION_RECORDS,
+  resolveActiveCareerRecord,
+  resolveCareerTraceMode,
+  resolveCareerTraceProgress,
 } from "./career-recognition";
 
 describe("portfolio v2 career and recognition foundation", () => {
@@ -15,9 +21,9 @@ describe("portfolio v2 career and recognition foundation", () => {
       "fpt",
       "aiProgram",
     ]);
-    expect(CAREER_RECORDS.filter((record) => record.emphasis === "primary")).toEqual([
-      expect.objectContaining({ key: "fpt" }),
-    ]);
+    expect(
+      CAREER_RECORDS.filter((record) => record.emphasis === "primary"),
+    ).toEqual([expect.objectContaining({ key: "fpt" })]);
   });
 
   it("keeps WonderLens as a compact recognition record only", () => {
@@ -69,5 +75,72 @@ describe("portfolio v2 career and recognition foundation", () => {
       "1st Prize",
     );
   });
-});
 
+  it("gives FPT the longest active career window", () => {
+    const holdLengths = Object.fromEntries(
+      Object.entries(CAREER_TRACE_WINDOWS).map(([key, window]) => [
+        key,
+        window.holdEnd - window.holdStart,
+      ]),
+    );
+
+    expect(holdLengths.fpt).toBeGreaterThan(holdLengths.education);
+    expect(holdLengths.fpt).toBeGreaterThan(holdLengths.aiProgram);
+    expect(CAREER_TRACE_CONTACTS.education).toBeLessThan(
+      CAREER_TRACE_CONTACTS.fpt,
+    );
+    expect(CAREER_TRACE_CONTACTS.fpt).toBeLessThan(
+      CAREER_TRACE_CONTACTS.aiProgram,
+    );
+  });
+
+  it.each([
+    ["education", "education"],
+    ["foundation", "education"],
+    ["fpt", "fpt"],
+    ["experience", "fpt"],
+    ["ai", "aiProgram"],
+    ["ai-program", "aiProgram"],
+  ] as const)("forces the %s Career Trace review state", (value, record) => {
+    expect(parseCareerTraceControls(value)).toEqual({
+      forceStatic: false,
+      forcedRecord: record,
+    });
+    expect(resolveCareerTraceProgress(record)).toBeGreaterThan(0);
+  });
+
+  it.each(["static", "0", "off", "false"])(
+    "recognizes the %s static Career Trace state",
+    (value) => {
+      expect(parseCareerTraceControls(value)).toEqual({
+        forceStatic: true,
+        forcedRecord: null,
+      });
+    },
+  );
+
+  it("activates career records in chronological order", () => {
+    expect(resolveActiveCareerRecord(0.12)).toBe("education");
+    expect(resolveActiveCareerRecord(0.5)).toBe("fpt");
+    expect(resolveActiveCareerRecord(0.88)).toBe("aiProgram");
+  });
+
+  it("keeps compact and reduced-motion layouts static", () => {
+    expect(
+      resolveCareerTraceMode({ desktop: false, reduceMotion: false }),
+    ).toBe("static");
+    expect(resolveCareerTraceMode({ desktop: true, reduceMotion: true })).toBe(
+      "static",
+    );
+    expect(
+      resolveCareerTraceMode({
+        desktop: true,
+        reduceMotion: false,
+        forcedRecord: "fpt",
+      }),
+    ).toBe("forced");
+    expect(resolveCareerTraceMode({ desktop: true, reduceMotion: false })).toBe(
+      "active",
+    );
+  });
+});

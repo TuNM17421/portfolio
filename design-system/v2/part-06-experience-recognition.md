@@ -1,8 +1,9 @@
 # Part 06 — Experience + recognition
 
-> **Status:** Checkpoint 06A implemented; awaiting owner review
+> **Status:** Checkpoint 06A approved and committed; 06B implemented, awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0#career` and `/en/v2?intro=0#career`
+> **Forced motion states:** `?intro=0&career=education#career`, `?intro=0&career=fpt#career`, `?intro=0&career=ai-program#career`, and `?intro=0&career=static#career`
 > **Internal direction name:** **Career Trace → Recognition Stage** — not rendered as marketing copy
 
 ## Decision summary
@@ -47,46 +48,46 @@ Part 05 system archive
 References transfer information hierarchy and interaction behaviour only. Do
 not copy branding, typography, imagery, proprietary copy, or exact composition.
 
-| Reference | Transfer | Do not copy |
-| --- | --- | --- |
-| [Dylan Brouwer — About](https://www.dylanbrouwer.design/about) | A recognition ledger with stable columns, terse metadata, and rows that can be scanned without opening cards. | The black-and-white identity, exact columns, award count, or twelve-row length. |
-| [Cosmos](https://www.cosmos.so/) | Treat each photograph as a sourced record with a caption rather than anonymous decoration. | Its masonry density, social-product controls, or collection mechanics. |
-| [Tech Barcelona](https://www.techbarcelona.com/en/) | One documentary image field beside structured facts, separated by explicit rules. | Its brand palette, promotional language, or editorial page structure. |
-| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | Concentrate recognition into one composed scene after the work narrative. | The portrait collage, tiny proof cards, exact dark composition, or typography. |
+| Reference                                                                    | Transfer                                                                                                      | Do not copy                                                                     |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [Dylan Brouwer — About](https://www.dylanbrouwer.design/about)               | A recognition ledger with stable columns, terse metadata, and rows that can be scanned without opening cards. | The black-and-white identity, exact columns, award count, or twelve-row length. |
+| [Cosmos](https://www.cosmos.so/)                                             | Treat each photograph as a sourced record with a caption rather than anonymous decoration.                    | Its masonry density, social-product controls, or collection mechanics.          |
+| [Tech Barcelona](https://www.techbarcelona.com/en/)                          | One documentary image field beside structured facts, separated by explicit rules.                             | Its brand palette, promotional language, or editorial page structure.           |
+| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | Concentrate recognition into one composed scene after the work narrative.                                     | The portrait collage, tiny proof cards, exact dark composition, or typography.  |
 
 ## Design contract
 
-| Field | Decision |
-| --- | --- |
-| Screen job | Let a recruiter understand Tu's 2019–2026 progression and verify the three recognition records without rereading project sections. |
-| Primary user and action | A recruiter or engineering manager scans the professional record first, then continues to a concise recognition stage. No action is required in 06A. |
-| Content hierarchy | 1. Part 06 rail and 2019–2026 axis. 2. FPT Software role and responsibilities. 3. FPT University and practical AI training. 4. VCareer Track 4 result. 5. One-line WonderLens result. 6. VinUniversity featured-project recognition. |
-| Navigation and controls | Real `#career` and `#recognition` anchors. Header navigation is added only in 06E. The future image selector is explicit and user-controlled; 06A exposes no inert controls. |
-| Visual language | Continue the Part 05 mineral sheet using `#edf4f5`, deep ink `#071219`, cyan `#176f6b`, signal blue `#0060f0`, Anybody display, Be Vietnam Pro body, and IBM Plex Mono record labels. Square rules and time codes replace generic cards. |
-| Signature | A single data trace connects the Part 05 archive to ordered career records and later drops into the dark recognition stage. In 06A it is a static structural line; scroll-linked drawing belongs to 06B. |
-| Required states | Full VI/EN content, 320px through wide desktop, no JavaScript, and reduced motion. Recognition image loading/error and selector states begin in 06C–06D. |
-| Responsive behaviour | Desktop uses a wide ledger with a stable period column and a dominant FPT row. Mobile becomes a compact vertical record, preserves dates and all responsibility copy, and does not rely on hover or sticky positioning. |
-| Evidence used | Existing Experience/Awards copy, owner corrections in this thread, seven local award images, event documentation, and the four interface references above. |
-| Forbidden defaults | Rounded timeline cards, equal award stat cards, count-up numbers, a standalone fullscreen opener, long sticky scrollytelling, autoplay gallery, masonry of all seven photos, technology chips, invented impact metrics, or repeated VCareer case-study copy. |
-| Acceptance criteria | The FPT record is visually dominant; no `20%` or `30%` claim remains; WonderLens is one line only; all VI/EN facts are equivalent; `#career` and `#recognition` work; no content is hidden without JavaScript; and 06A adds no timeline or gallery animation. |
+| Field                   | Decision                                                                                                                                                                                                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Screen job              | Let a recruiter understand Tu's 2019–2026 progression and verify the three recognition records without rereading project sections.                                                                                                                                                                                                                     |
+| Primary user and action | A recruiter or engineering manager scans the professional record first, then continues to a concise recognition stage. No action is required in 06A.                                                                                                                                                                                                   |
+| Content hierarchy       | 1. Part 06 rail and 2019–2026 axis. 2. FPT Software role and responsibilities. 3. FPT University and practical AI training. 4. VCareer Track 4 result. 5. One-line WonderLens result. 6. VinUniversity featured-project recognition.                                                                                                                   |
+| Navigation and controls | Real `#career` and `#recognition` anchors. Header navigation is added only in 06E. The future image selector is explicit and user-controlled; 06A exposes no inert controls.                                                                                                                                                                           |
+| Visual language         | Continue the Part 05 mineral sheet using `#edf4f5`, deep ink `#071219`, cyan `#176f6b`, signal blue `#0060f0`, Anybody display, Be Vietnam Pro body, and IBM Plex Mono record labels. Square rules and time codes replace generic cards.                                                                                                               |
+| Signature               | A single data trace connects the Part 05 archive to ordered career records and later drops into the dark recognition stage. In 06B the handoff, year axis, and vertical trace draw as one reversible scroll-linked signal.                                                                                                                             |
+| Required states         | Full VI/EN content, 320px through wide desktop, no JavaScript, and reduced motion. Recognition image loading/error and selector states begin in 06C–06D.                                                                                                                                                                                               |
+| Responsive behaviour    | Desktop uses a wide ledger with a stable period column and a dominant FPT row. Mobile becomes a compact vertical record, preserves dates and all responsibility copy, and does not rely on hover or sticky positioning.                                                                                                                                |
+| Evidence used           | Existing Experience/Awards copy, owner corrections in this thread, seven local award images, event documentation, and the four interface references above.                                                                                                                                                                                             |
+| Forbidden defaults      | Rounded timeline cards, equal award stat cards, count-up numbers, a standalone fullscreen opener, long sticky scrollytelling, autoplay gallery, masonry of all seven photos, technology chips, invented impact metrics, or repeated VCareer case-study copy.                                                                                           |
+| Acceptance criteria     | The FPT record is visually dominant; no `20%` or `30%` claim remains; WonderLens is one line only; all VI/EN facts are equivalent; `#career` and `#recognition` work; no content is hidden without JavaScript; 06B activates Education → FPT → AI Program in both scroll directions; and compact/reduced-motion modes keep the complete static ledger. |
 
 ## Content contract
 
 ### Career ledger
 
-| Record | Public content |
-| --- | --- |
-| FPT University | Bachelor of Information Technology · 2019–2024 · Hoa Lac, Hanoi. |
-| FPT Software | Software Engineer · May 2024–March 2026. Backend APIs and business logic with Java/Spring Boot/PostgreSQL; batch/asynchronous processing with AWS SQS; Docker/LocalStack for local development and testing; coordination and code review for a 4–5 person backend sub-team when the team lead was absent. |
-| VinUniversity × Vingroup | Practical AI Talent Program — Foundation · April–July 2026 · 12 weeks · SFIA-based practical AI training. |
+| Record                   | Public content                                                                                                                                                                                                                                                                                            |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FPT University           | Bachelor of Information Technology · 2019–2024 · Hoa Lac, Hanoi.                                                                                                                                                                                                                                          |
+| FPT Software             | Software Engineer · May 2024–March 2026. Backend APIs and business logic with Java/Spring Boot/PostgreSQL; batch/asynchronous processing with AWS SQS; Docker/LocalStack for local development and testing; coordination and code review for a 4–5 person backend sub-team when the team lead was absent. |
+| VinUniversity × Vingroup | Practical AI Talent Program — Foundation · April–July 2026 · 12 weeks · SFIA-based practical AI training.                                                                                                                                                                                                 |
 
 ### Recognition index
 
-| Record | Public content |
-| --- | --- |
-| VCareer | 2nd Prize · Track 4: Transform with Codex · `$5,000 in OpenAI API credits` · Codex Community Hackathon Hanoi · June 27, 2026. |
-| WonderLens | 1st Prize · Track 1: Market Scale · Codex Community Hackathon Hanoi 2026. No project detail in this part. |
-| VCareer at VinUniversity | Featured project at the VinUniversity closing ceremony in 2026. |
+| Record                   | Public content                                                                                                                |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| VCareer                  | 2nd Prize · Track 4: Transform with Codex · `$5,000 in OpenAI API credits` · Codex Community Hackathon Hanoi · June 27, 2026. |
+| WonderLens               | 1st Prize · Track 1: Market Scale · Codex Community Hackathon Hanoi 2026. No project detail in this part.                     |
+| VCareer at VinUniversity | Featured project at the VinUniversity closing ceremony in 2026.                                                               |
 
 ## Checkpoints
 
@@ -104,6 +105,21 @@ not copy branding, typography, imagery, proprietary copy, or exact composition.
 - Draw the 2019–2026 trace with reversible scroll progress.
 - Activate records in chronological order while keeping FPT dominant.
 - Preserve the static ledger for compact and reduced-motion modes.
+
+Implementation contract:
+
+- The Part 05 handoff first draws down, makes one square contact, then extends
+  horizontally into the Career sheet.
+- The year axis sweeps from 2019 to 2026 while a single cursor descends through
+  the real record boundaries. A node briefly expands when contacted; the
+  corresponding record gains contrast without translating its text.
+- Education owns the opening interval, FPT owns the longest reading interval,
+  and the practical AI program owns the closing interval. Scrolling upward
+  rewinds the exact same sequence rather than playing a separate exit motion.
+- Desktop at 1024px and above receives the scroll-linked sequence. Compact,
+  reduced-motion, and `career=static` modes render the full trace and all copy
+  immediately, with no cursor or arbitrary active-record highlight.
+- 06B adds no sticky wrapper, synthetic scroll distance, or per-line reveal.
 
 ### 06C — Recognition Stage
 

@@ -39,6 +39,7 @@ type V2PageProps = {
     showcase?: string | string[];
     story?: string | string[];
     work?: string | string[];
+    career?: string | string[];
   }>;
 };
 
@@ -69,6 +70,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const showcaseQuery =
     typeof query.showcase === "string" ? query.showcase : "";
   const workQuery = typeof query.work === "string" ? query.work : "";
+  const careerQuery = typeof query.career === "string" ? query.career : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -96,6 +98,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
           workQuery={workQuery}
+          careerQuery={careerQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),

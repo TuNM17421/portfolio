@@ -28,7 +28,13 @@
     linear-gradient(rgba(75, 113, 136, 0.035) 1px, transparent 1px);
   background-position: clamp(22px, 4.6vw, 72px) 0;
   background-size: clamp(76px, 8vw, 122px) clamp(76px, 8vw, 122px);
-  mask-image: linear-gradient(to bottom, black, transparent 18%, transparent 78%, black);
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 18%,
+    transparent 78%,
+    black
+  );
   content: "";
 }
 
@@ -52,7 +58,12 @@
   left: var(--career-signal-x);
   width: 1px;
   height: 52%;
-  background: linear-gradient(to bottom, var(--career-cyan), var(--career-signal));
+  background: linear-gradient(
+    to bottom,
+    var(--career-cyan),
+    var(--career-signal)
+  );
+  transform-origin: top center;
 }
 
 .handoffNode {
@@ -64,6 +75,7 @@
   border: 2px solid var(--career-sheet);
   background: var(--career-signal);
   box-shadow: 0 0 0 1px var(--career-signal);
+  transform-origin: center;
 }
 
 .handoffTrack {
@@ -71,7 +83,12 @@
   right: 0;
   left: var(--career-signal-x);
   height: 1px;
-  background: linear-gradient(90deg, var(--career-signal), rgba(0, 96, 240, 0.16));
+  background: linear-gradient(
+    90deg,
+    var(--career-signal),
+    rgba(0, 96, 240, 0.16)
+  );
+  transform-origin: left center;
 }
 
 .sheet {
@@ -207,18 +224,48 @@
   content: "";
 }
 
-.yearAxis span {
+.yearAxisProgress,
+.yearAxisCursor {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  display: block;
+  pointer-events: none;
+}
+
+.yearAxisProgress {
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--career-signal);
+  transform-origin: left center;
+}
+
+.yearAxisCursor {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-signal);
+  box-shadow:
+    0 0 0 1px var(--career-signal),
+    0 0 18px 3px rgba(0, 96, 240, 0.2);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.yearLabel {
   position: relative;
+  z-index: 2;
   width: max-content;
   padding: 6px 10px;
   background: var(--career-sheet);
 }
 
-.yearAxis span:nth-child(2) {
+.yearLabel[data-year-position="middle"] {
   justify-self: center;
 }
 
-.yearAxis span:last-child {
+.yearLabel[data-year-position="end"] {
   justify-self: end;
 }
 
@@ -234,25 +281,80 @@
   border-bottom: 1px solid var(--career-rule);
 }
 
+.careerRecordsShell {
+  position: relative;
+}
+
+.careerTraceRail {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 18%;
+  width: 1px;
+  pointer-events: none;
+  background: rgba(75, 113, 136, 0.32);
+}
+
+.careerTraceProgress,
+.careerTraceCursor {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.careerTraceProgress {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--career-cyan),
+    var(--career-signal) 46%,
+    var(--career-cyan)
+  );
+  transform-origin: top center;
+}
+
+.careerTraceCursor {
+  left: 1px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-signal);
+  box-shadow:
+    0 0 0 1px var(--career-signal),
+    0 0 20px 4px rgba(0, 96, 240, 0.24);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
 .careerRecord {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(136px, 0.18fr) minmax(260px, 0.32fr) minmax(0, 0.5fr);
+  grid-template-columns: minmax(136px, 0.18fr) minmax(260px, 0.32fr) minmax(
+      0,
+      0.5fr
+    );
   gap: clamp(34px, 5vw, 80px);
   padding: clamp(32px, 3.8vw, 58px) 0;
   border-top: 1px solid var(--career-rule);
 }
 
-.careerRecord::before {
+.recordNode {
   position: absolute;
+  z-index: 3;
   top: -5px;
   left: calc(18% - 5px);
+  display: block;
   width: 9px;
   height: 9px;
   border: 2px solid var(--career-sheet);
   background: var(--career-cyan);
   box-shadow: 0 0 0 1px var(--career-cyan);
-  content: "";
+  pointer-events: none;
+  transform-origin: center;
 }
 
 .careerRecord[data-emphasis="primary"] {
@@ -261,7 +363,7 @@
   border-top: 2px solid var(--career-signal);
 }
 
-.careerRecord[data-emphasis="primary"]::before {
+.careerRecord[data-emphasis="primary"] .recordNode {
   top: -7px;
   width: 13px;
   height: 13px;
@@ -269,6 +371,28 @@
   box-shadow:
     0 0 0 1px var(--career-signal),
     0 0 18px rgba(0, 96, 240, 0.2);
+}
+
+.career:is([data-career-motion="active"], [data-career-motion="forced"])
+  :is(
+    .handoffStem,
+    .handoffNode,
+    .handoffTrack,
+    .yearAxisProgress,
+    .yearAxisCursor,
+    .careerTraceProgress,
+    .careerTraceCursor,
+    .careerRecord,
+    .recordNode
+  ) {
+  will-change: transform, opacity, background-color, box-shadow;
+}
+
+.career:is([data-career-motion="active"], [data-career-motion="forced"])
+  .careerRecord[data-active="true"]
+  .recordTime
+  strong {
+  color: var(--career-signal);
 }
 
 .recordTime {
@@ -492,12 +616,18 @@
   }
 
   .careerRecord {
-    grid-template-columns: minmax(130px, 0.22fr) minmax(220px, 0.34fr) minmax(0, 0.44fr);
+    grid-template-columns: minmax(130px, 0.22fr) minmax(220px, 0.34fr) minmax(
+        0,
+        0.44fr
+      );
     gap: clamp(24px, 4vw, 48px);
   }
 
   .recognitionRecords li {
-    grid-template-columns: minmax(100px, 0.16fr) minmax(150px, 0.24fr) minmax(0, 0.42fr) minmax(100px, 0.18fr);
+    grid-template-columns: minmax(100px, 0.16fr) minmax(150px, 0.24fr) minmax(
+        0,
+        0.42fr
+      ) minmax(100px, 0.18fr);
   }
 
   .recognitionContext {
@@ -578,8 +708,12 @@
     padding-bottom: 44px;
   }
 
-  .careerRecord::before {
+  .recordNode {
     left: 0;
+  }
+
+  .careerTraceRail {
+    left: 4px;
   }
 
   .recordTime {

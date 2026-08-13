@@ -21,6 +21,7 @@ import {
   CareerRecognition,
   type CareerRecognitionCopy,
 } from "@/components/v2/career/career-recognition";
+import { useCareerTraceMotion } from "@/components/v2/career/career-trace-motion";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
 import { useSupportingWorkStory } from "@/components/v2/work/supporting-work-story";
 import { useFinancialArchiveMotion } from "@/components/v2/work/financial-archive-motion";
@@ -39,6 +40,7 @@ import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
 import { parseAboutStoryControls } from "@/lib/v2/about-story";
 import { parseVCareerShowcaseControls } from "@/lib/v2/vcareer-showcase";
 import { parseSupportingWorkControls } from "@/lib/v2/supporting-work";
+import { parseCareerTraceControls } from "@/lib/v2/career-recognition";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
 import styles from "./portfolio-v2-shell.module.css";
 
@@ -50,6 +52,7 @@ type PortfolioV2ShellProps = {
   showcaseQuery: string;
   storyQuery: string;
   workQuery: string;
+  careerQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
@@ -67,6 +70,7 @@ export function PortfolioV2Shell({
   showcaseQuery,
   storyQuery,
   workQuery,
+  careerQuery,
   introCopy,
   headerCopy,
   heroCopy,
@@ -99,6 +103,10 @@ export function PortfolioV2Shell({
     () => parseSupportingWorkControls(workQuery),
     [workQuery],
   );
+  const careerControls = useMemo(
+    () => parseCareerTraceControls(careerQuery),
+    [careerQuery],
+  );
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
     controls.debugState === "reduced" || Boolean(prefersReducedMotion);
@@ -122,6 +130,11 @@ export function PortfolioV2Shell({
     reduceMotion,
     forceStatic: workControls.forceStatic,
     focusArchive: workControls.focusFinancial,
+  });
+  const careerTrace = useCareerTraceMotion({
+    reduceMotion,
+    forceStatic: careerControls.forceStatic,
+    forcedRecord: careerControls.forcedRecord,
   });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
@@ -170,6 +183,7 @@ export function PortfolioV2Shell({
           showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
           workQuery={workQuery}
+          careerQuery={careerQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           chapterTone={chapterTone}
@@ -212,6 +226,7 @@ export function PortfolioV2Shell({
         <CareerRecognition
           copy={careerCopy}
           navigationOpen={mobileNavigationOpen}
+          trace={careerTrace}
         />
       </div>
 
