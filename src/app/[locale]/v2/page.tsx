@@ -113,12 +113,12 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             wordmark: introT("wordmark"),
             homeLabel: heroT("homeLabel"),
             navigationLabel: heroT("navigationLabel"),
-            vcareer: heroT("vcareerNav"),
+            work: heroT("workNav"),
+            workProof: heroT("workProof"),
             contact: heroT("contact"),
             localeLabel: heroT("localeLabel"),
             openMenu: heroT("openMenu"),
             closeMenu: heroT("closeMenu"),
-            proof: heroT("proof"),
           }}
           heroCopy={{
             role: heroT("role"),
@@ -265,15 +265,11 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                   qaLabel: workT("scholar.evidence.evaluate.qaLabel"),
                   qaCaption: workT("scholar.evidence.evaluate.qaCaption"),
                   qaAlt: workT("scholar.evidence.evaluate.qaAlt"),
-                  refusalLabel: workT(
-                    "scholar.evidence.evaluate.refusalLabel",
-                  ),
+                  refusalLabel: workT("scholar.evidence.evaluate.refusalLabel"),
                   refusalCaption: workT(
                     "scholar.evidence.evaluate.refusalCaption",
                   ),
-                  refusalAlt: workT(
-                    "scholar.evidence.evaluate.refusalAlt",
-                  ),
+                  refusalAlt: workT("scholar.evidence.evaluate.refusalAlt"),
                 },
               },
               technology: workT("scholar.technology"),
@@ -288,6 +284,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
               subtitle: workT("financial.subtitle"),
               description: workT("financial.description"),
               topologyLabel: workT("financial.topologyLabel"),
+              domainLabel: workT("financial.domainLabel"),
               topology: {
                 api: {
                   label: workT("financial.topology.api.label"),
@@ -304,9 +301,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                 worker: {
                   label: workT("financial.topology.worker.label"),
                   title: workT("financial.topology.worker.title"),
-                  description: workT(
-                    "financial.topology.worker.description",
-                  ),
+                  description: workT("financial.topology.worker.description"),
                   action: workT("financial.topology.worker.action"),
                 },
               },

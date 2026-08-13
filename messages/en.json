@@ -323,7 +323,7 @@
         "aiInAction": "With the cohort at the closing ceremony of Vingroup's \"AI in Action\" talent program",
         "codex": "Presenting at Codex Community Hackathon 2026",
         "stakeholder": "Congratulated by the organizers",
-      "teamDetail": "The team at VinUniversity"
+        "teamDetail": "The team at VinUniversity"
       }
     }
   },
@@ -374,7 +374,8 @@
     "hero": {
       "homeLabel": "Return to the portfolio opening",
       "navigationLabel": "Portfolio navigation",
-      "vcareerNav": "VCareer",
+      "workNav": "Work",
+      "workProof": "03 projects · 04 source repositories",
       "contact": "Contact",
       "localeLabel": "Choose language",
       "openMenu": "Open navigation",
@@ -538,6 +539,7 @@
         "subtitle": "Internal planning, expense approval, and financial reporting system",
         "description": "I led the backend for a role-aware financial workflow spanning authentication, authorization, planning terms, expenses, reports, and scheduled processing.",
         "topologyLabel": "THREE DEPLOYMENT BOUNDARIES",
+        "domainLabel": "SHARED FINANCIAL DOMAIN",
         "topology": {
           "api": {
             "label": "API",

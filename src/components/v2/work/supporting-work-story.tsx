@@ -12,6 +12,7 @@ import {
 import {
   resolveScholarAIEvidenceStage,
   resolveSupportingWorkStoryMode,
+  SCHOLARAI_EVIDENCE_KEYS,
   SCHOLARAI_EVIDENCE_WINDOWS,
   type ScholarAIEvidenceKey,
   type ScholarAIEvidenceWindow,
@@ -30,6 +31,7 @@ export type SupportingWorkStoryController = {
   stageRef: React.RefObject<HTMLDivElement | null>;
   mode: SupportingWorkStoryMode;
   enabled: boolean;
+  compactEnhanced: boolean;
   activeStage: ScholarAIEvidenceKey;
   progress: MotionValue<number>;
   progressStyle: MotionStyle;
@@ -109,6 +111,7 @@ export function useSupportingWorkStory({
   forcedStage,
 }: SupportingWorkStoryOptions): SupportingWorkStoryController {
   const stageRef = useRef<HTMLDivElement>(null);
+  const [hydrated, setHydrated] = useState(false);
   const [desktop, setDesktop] = useState(false);
   const [activeStage, setActiveStage] = useState<ScholarAIEvidenceKey>(
     forcedStage ?? "retrieve",
@@ -126,7 +129,10 @@ export function useSupportingWorkStory({
 
   useEffect(() => {
     const query = window.matchMedia(DESKTOP_WORK_QUERY);
-    const update = () => setDesktop(query.matches);
+    const update = () => {
+      setDesktop(query.matches);
+      setHydrated(true);
+    };
 
     update();
     query.addEventListener("change", update);
@@ -140,6 +146,8 @@ export function useSupportingWorkStory({
     forceStatic,
     forcedStage,
   });
+  const compactEnhanced =
+    hydrated && !desktop && !reduceMotion && !forceStatic && !forcedStage;
 
   useEffect(() => {
     if (forcedStage) {
@@ -157,6 +165,51 @@ export function useSupportingWorkStory({
     const nextStage = resolveScholarAIEvidenceStage(latest);
     setActiveStage((current) => (current === nextStage ? current : nextStage));
   });
+
+  useEffect(() => {
+    if (!compactEnhanced) return;
+
+    let frame = 0;
+    const updateCompactStage = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const target = stageRef.current;
+        if (!target) return;
+
+        const readingLine = window.innerHeight * 0.38;
+        const closest = SCHOLARAI_EVIDENCE_KEYS.map((stage) => {
+          const rect = target
+            .querySelector<HTMLElement>(`[data-evidence="${stage}"]`)
+            ?.getBoundingClientRect();
+          if (!rect) return { stage, distance: Number.POSITIVE_INFINITY };
+
+          const distance =
+            readingLine < rect.top
+              ? rect.top - readingLine
+              : readingLine > rect.bottom
+                ? readingLine - rect.bottom
+                : 0;
+          return { stage, distance };
+        }).sort((a, b) => a.distance - b.distance)[0];
+
+        if (closest) {
+          setActiveStage((current) =>
+            current === closest.stage ? current : closest.stage,
+          );
+        }
+      });
+    };
+
+    updateCompactStage();
+    window.addEventListener("scroll", updateCompactStage, { passive: true });
+    window.addEventListener("resize", updateCompactStage);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateCompactStage);
+      window.removeEventListener("resize", updateCompactStage);
+    };
+  }, [compactEnhanced]);
 
   const retrieve = useEvidenceMotion(
     progress,
@@ -181,6 +234,7 @@ export function useSupportingWorkStory({
       if (!target) return;
 
       if (mode !== "active") {
+        setActiveStage(stage);
         target
           .querySelector<HTMLElement>(`[data-evidence="${stage}"]`)
           ?.scrollIntoView({
@@ -207,6 +261,7 @@ export function useSupportingWorkStory({
     stageRef,
     mode,
     enabled: mode === "active",
+    compactEnhanced,
     activeStage,
     progress,
     progressStyle: { scaleY: progressScale },

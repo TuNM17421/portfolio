@@ -28,6 +28,7 @@ export const SCHOLARAI_EVIDENCE_WINDOWS: Record<
 export type SupportingWorkImageState = "auto" | "loading" | "error";
 
 export type SupportingWorkControls = {
+  focusFinancial: boolean;
   forceStatic: boolean;
   imageState: SupportingWorkImageState;
   forcedStage: ScholarAIEvidenceKey | null;
@@ -128,6 +129,7 @@ export function parseSupportingWorkControls(
 
   if (normalized === "retrieve" || normalized === "ground") {
     return {
+      focusFinancial: false,
       forceStatic: false,
       imageState: "auto",
       forcedStage: normalized,
@@ -137,6 +139,7 @@ export function parseSupportingWorkControls(
 
   if (normalized === "evaluate-qa" || normalized === "evaluate-refusal") {
     return {
+      focusFinancial: false,
       forceStatic: false,
       imageState: "auto",
       forcedStage: "evaluate",
@@ -146,6 +149,7 @@ export function parseSupportingWorkControls(
 
   if (normalized === "loading" || normalized === "image-loading") {
     return {
+      focusFinancial: false,
       forceStatic: true,
       imageState: "loading",
       forcedStage: null,
@@ -159,6 +163,7 @@ export function parseSupportingWorkControls(
     normalized === "image_error"
   ) {
     return {
+      focusFinancial: false,
       forceStatic: true,
       imageState: "error",
       forcedStage: null,
@@ -166,7 +171,18 @@ export function parseSupportingWorkControls(
     };
   }
 
+  if (normalized === "finplanning" || normalized === "financial") {
+    return {
+      focusFinancial: true,
+      forceStatic: true,
+      imageState: "auto",
+      forcedStage: null,
+      forcedBenchmark: null,
+    };
+  }
+
   return {
+    focusFinancial: false,
     forceStatic: ["static", "0", "off", "false"].includes(normalized),
     imageState: "auto",
     forcedStage: null,

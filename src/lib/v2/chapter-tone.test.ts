@@ -3,7 +3,7 @@ import {
   resolveChapterName,
   resolveChapterPhase,
   resolveChapterTone,
-  resolveVCareerTraceScale,
+  resolveWorkTraceScale,
 } from "./chapter-tone";
 
 describe("V2 chapter tone relay", () => {
@@ -64,10 +64,10 @@ describe("V2 chapter tone relay", () => {
     });
   });
 
-  it("removes the VCareer trace atomically when Work becomes active", () => {
-    expect(resolveVCareerTraceScale(1, 0.49)).toBe(1);
-    expect(resolveVCareerTraceScale(1, 0.5)).toBe(0);
-    expect(resolveVCareerTraceScale(1, 1)).toBe(0);
-    expect(resolveVCareerTraceScale(0.42, 0)).toBe(0.42);
+  it("keeps the Work trace active across VCareer and supporting work", () => {
+    expect(resolveWorkTraceScale(0)).toBe(0);
+    expect(resolveWorkTraceScale(0.42)).toBe(0.42);
+    expect(resolveWorkTraceScale(1)).toBe(1);
+    expect(resolveWorkTraceScale(1.4)).toBe(1);
   });
 });

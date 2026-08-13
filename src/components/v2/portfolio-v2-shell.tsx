@@ -19,6 +19,7 @@ import {
 } from "@/components/v2/work/supporting-work";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
 import { useSupportingWorkStory } from "@/components/v2/work/supporting-work-story";
+import { useFinancialArchiveMotion } from "@/components/v2/work/financial-archive-motion";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
@@ -111,6 +112,11 @@ export function PortfolioV2Shell({
     forceStatic: workControls.forceStatic,
     forcedStage: workControls.forcedStage,
   });
+  const financialArchive = useFinancialArchiveMotion({
+    reduceMotion,
+    forceStatic: workControls.forceStatic,
+    focusArchive: workControls.focusFinancial,
+  });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
@@ -189,6 +195,7 @@ export function PortfolioV2Shell({
           relay={vcareerRelay}
         />
         <SupportingWork
+          archive={financialArchive}
           copy={workCopy}
           handoff={supportingWorkHandoff}
           imageReviewState={workControls.imageState}

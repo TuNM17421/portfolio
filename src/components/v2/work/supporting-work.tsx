@@ -16,6 +16,7 @@ import {
   type SupportingWorkImageState,
 } from "@/lib/v2/supporting-work";
 import styles from "./supporting-work.module.css";
+import type { FinancialArchiveMotionController } from "./financial-archive-motion";
 import type { SupportingWorkHandoffController } from "./supporting-work-handoff";
 import type { SupportingWorkStoryController } from "./supporting-work-story";
 
@@ -81,6 +82,7 @@ export type SupportingWorkCopy = {
     subtitle: string;
     description: string;
     topologyLabel: string;
+    domainLabel: string;
     topology: Record<FinancialArchiveRepositoryKey, FinancialNodeCopy>;
     mediaLabel: string;
     media: Record<FinancialArchiveImageKey, FinancialMediaCopy>;
@@ -92,6 +94,7 @@ export type SupportingWorkCopy = {
 };
 
 type SupportingWorkProps = {
+  archive: FinancialArchiveMotionController;
   copy: SupportingWorkCopy;
   forcedBenchmark: ScholarAIBenchmarkKey | null;
   handoff: SupportingWorkHandoffController;
@@ -173,6 +176,7 @@ function ExternalWindowHint({ label }: { label: string }) {
 }
 
 export function SupportingWork({
+  archive,
   copy,
   forcedBenchmark,
   handoff,
@@ -195,6 +199,7 @@ export function SupportingWork({
     useState<ScholarAIBenchmarkKey | null>(null);
   const visibleBenchmark = previewBenchmark ?? lockedBenchmark;
   const interactiveEvidence = story.mode !== "static";
+  const interactiveBenchmark = interactiveEvidence || story.compactEnhanced;
   const evidenceCopy = {
     retrieve: copy.scholar.evidence.retrieve,
     ground: copy.scholar.evidence.ground,
@@ -288,7 +293,7 @@ export function SupportingWork({
   return (
     <section
       ref={handoff.sectionRef}
-      id="work"
+      id={archive.focusArchive ? "work-story" : "work"}
       className={styles.work}
       aria-labelledby="v2-work-title"
       aria-hidden={navigationOpen || undefined}
@@ -297,6 +302,7 @@ export function SupportingWork({
       data-work-handoff={handoff.mode}
       data-work-image-review={imageReviewState}
       data-work-story={story.mode}
+      data-work-compact-enhanced={story.compactEnhanced || undefined}
     >
       <div
         className={styles.chapterHandoff}
@@ -524,7 +530,7 @@ export function SupportingWork({
                       </p>
                     </header>
 
-                    {interactiveEvidence ? (
+                    {interactiveBenchmark ? (
                       <div className={styles.benchmarkInteractive}>
                         <div
                           className={styles.benchmarkTabs}
@@ -661,8 +667,12 @@ export function SupportingWork({
         </article>
 
         <article
+          ref={archive.sectionRef}
+          id={archive.focusArchive ? "work" : "financial-archive"}
           className={styles.financial}
           aria-labelledby="v2-financial-title"
+          data-financial-archive
+          data-financial-motion={archive.enabled ? "active" : "static"}
         >
           <header className={styles.financialHeader}>
             <div>
@@ -687,34 +697,171 @@ export function SupportingWork({
             <h4 id="v2-financial-topology-title">
               {copy.financial.topologyLabel}
             </h4>
-            <ol>
-              {FINANCIAL_ARCHIVE_REPOSITORIES.map((repository, index) => {
-                const node = copy.financial.topology[repository.key];
+            <div className={styles.topologyDiagram} aria-hidden>
+              <span>{copy.financial.domainLabel}</span>
 
-                return (
-                  <li key={repository.key}>
-                    <a
-                      href={repository.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className={styles.nodeIndex} aria-hidden>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className={styles.nodeLabel}>{node.label}</span>
-                      <strong>{node.title}</strong>
-                      <span className={styles.nodeDescription}>
-                        {node.description}
-                      </span>
-                      <span className={styles.nodeAction}>
-                        {node.action} <span aria-hidden>↗</span>
-                      </span>
-                      <ExternalWindowHint label={copy.opensNewWindow} />
-                    </a>
-                  </li>
-                );
-              })}
-            </ol>
+              <svg
+                className={styles.topologyDesktopDiagram}
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+              >
+                <motion.path
+                  className={styles.topologyRelay}
+                  d="M0 10 H500 V28"
+                  style={
+                    archive.enabled
+                      ? archive.styles.relay
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 28 H166"
+                  style={
+                    archive.enabled
+                      ? archive.styles.ledgerLeft
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 28 H834"
+                  style={
+                    archive.enabled
+                      ? archive.styles.ledgerRight
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M166 28 V98"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.api
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 28 V98"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.web
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M834 28 V98"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.worker
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+              </svg>
+
+              <svg
+                className={styles.topologyTabletDiagram}
+                viewBox="0 0 1000 132"
+                preserveAspectRatio="none"
+              >
+                <motion.path
+                  className={styles.topologyRelay}
+                  d="M0 10 H500 V30"
+                  style={
+                    archive.enabled
+                      ? archive.styles.relay
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 30 H250"
+                  style={
+                    archive.enabled
+                      ? archive.styles.ledgerLeft
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 30 H750"
+                  style={
+                    archive.enabled
+                      ? archive.styles.ledgerRight
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M250 30 V78"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.api
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M750 30 V78"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.web
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+                <motion.path
+                  d="M500 30 V130"
+                  style={
+                    archive.enabled
+                      ? archive.styles.branches.worker
+                      : { pathLength: 1, opacity: 1 }
+                  }
+                />
+              </svg>
+            </div>
+
+            <div className={styles.topologyListShell}>
+              <motion.span
+                className={styles.topologyMobileTrace}
+                style={
+                  archive.enabled
+                    ? archive.styles.mobileTrace
+                    : { scaleY: 1, opacity: 1 }
+                }
+                aria-hidden
+              />
+              <ol>
+                {FINANCIAL_ARCHIVE_REPOSITORIES.map((repository, index) => {
+                  const node = copy.financial.topology[repository.key];
+
+                  return (
+                    <li key={repository.key}>
+                      <motion.span
+                        className={styles.topologyNode}
+                        data-topology-node={repository.key}
+                        style={
+                          archive.enabled
+                            ? archive.styles.nodes[repository.key]
+                            : { scale: 1, opacity: 1 }
+                        }
+                        aria-hidden
+                      />
+                      <a
+                        href={repository.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className={styles.nodeIndex} aria-hidden>
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className={styles.nodeLabel}>{node.label}</span>
+                        <strong>{node.title}</strong>
+                        <span className={styles.nodeDescription}>
+                          {node.description}
+                        </span>
+                        <span className={styles.nodeAction}>
+                          {node.action} <span aria-hidden>↗</span>
+                        </span>
+                        <ExternalWindowHint label={copy.opensNewWindow} />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
           </section>
 
           <section
@@ -723,11 +870,11 @@ export function SupportingWork({
           >
             <h4 id="v2-financial-media-title">{copy.financial.mediaLabel}</h4>
             <div>
-              {FINANCIAL_ARCHIVE_IMAGES.map((image) => {
-                const mediaCopy = copy.financial.media[image.key];
+              {FINANCIAL_ARCHIVE_IMAGES.map(({ key, ...image }) => {
+                const mediaCopy = copy.financial.media[key];
 
                 return (
-                  <figure key={image.key}>
+                  <figure key={key}>
                     <EvidenceImage
                       {...image}
                       alt={mediaCopy.alt}

@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–04 approved; Part 05 checkpoints 05A–05C approved; 05D is next
+> **Status:** Parts 01–04 approved; Part 05 checkpoints 05A–05D approved; 05E is next
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 05 ScholarAI evidence stage, Financial Planning source archive, responsive fallbacks, and phased review gates
-> **Implementation status:** Part 04 is complete through `050f023`; Part 05 is complete through 05C, with 05D next
+> **Implementation status:** Part 04 is complete through `050f023`; Part 05 is complete through 05D, with the 05E finish gate next
 
 ## Objective
 
@@ -140,18 +140,18 @@ Relevant implementation references:
 
 ## Part roadmap
 
-| Part | Scope                                           | User review artifact                                      | Status                                                           |
-| ---- | ----------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------- |
-| 00   | Evidence, direction and contracts               | These documents                                           | Approved                                                         |
-| 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                             |
-| 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                |
-| 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                             |
-| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                             |
-| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | 05A approved · `cc631b4`; 05B approved · `cd20449`; 05C approved |
-| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                            |
-| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                            |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                            |
-| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                            |
+| Part | Scope                                           | User review artifact                                      | Status                                                                                     |
+| ---- | ----------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 00   | Evidence, direction and contracts               | These documents                                           | Approved                                                                                   |
+| 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                                                       |
+| 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                                          |
+| 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                                       |
+| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                                                       |
+| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | 05A approved · `cc631b4`; 05B approved · `cd20449`; 05C approved · `5d059a4`; 05D approved |
+| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                                                      |
+| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                                                      |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                                                      |
+| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                                                      |
 
 Detailed contracts for Parts 01–05 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.

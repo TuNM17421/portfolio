@@ -377,7 +377,11 @@
     min-height: 100svh;
     overflow: hidden;
     background:
-      radial-gradient(circle at 14% 70%, rgba(107, 215, 208, 0.12), transparent 26%),
+      radial-gradient(
+        circle at 14% 70%,
+        rgba(107, 215, 208, 0.12),
+        transparent 26%
+      ),
       linear-gradient(155deg, #071219 0%, #091d29 57%, #061018 100%);
     transform-origin: top center;
   }
@@ -398,7 +402,13 @@
       linear-gradient(rgba(237, 244, 245, 0.045) 1px, transparent 1px),
       linear-gradient(90deg, rgba(237, 244, 245, 0.045) 1px, transparent 1px);
     background-size: 52px 52px;
-    mask-image: linear-gradient(to bottom, transparent, black 16%, black 72%, transparent);
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 16%,
+      black 72%,
+      transparent
+    );
   }
 
   .menuPlane {
@@ -471,7 +481,7 @@
   .menuLink {
     display: grid;
     min-height: 118px;
-    grid-template-columns: 34px minmax(0, 1fr) 28px;
+    grid-template-columns: 54px minmax(0, 1fr) 28px;
     align-items: center;
     gap: 10px;
     padding: 18px 0;
@@ -499,6 +509,7 @@
     align-self: start;
     padding-top: 12px;
     color: rgba(237, 244, 245, 0.44);
+    white-space: nowrap;
   }
 
   .menuLinkCopy {

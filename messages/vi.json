@@ -323,7 +323,7 @@
         "aiInAction": "Cùng học viên tại Lễ bế giảng chương trình \"AI in Action\" của Vingroup",
         "codex": "Thuyết trình tại Codex Community Hackathon 2026",
         "stakeholder": "Ban tổ chức chúc mừng nhóm",
-      "teamDetail": "Đội ngũ tại VinUniversity"
+        "teamDetail": "Đội ngũ tại VinUniversity"
       }
     }
   },
@@ -374,7 +374,8 @@
     "hero": {
       "homeLabel": "Về đầu portfolio",
       "navigationLabel": "Điều hướng portfolio",
-      "vcareerNav": "VCareer",
+      "workNav": "Dự án",
+      "workProof": "03 dự án · 04 kho mã nguồn",
       "contact": "Liên hệ",
       "localeLabel": "Chọn ngôn ngữ",
       "openMenu": "Mở điều hướng",
@@ -538,6 +539,7 @@
         "subtitle": "Hệ thống lập kế hoạch, phê duyệt chi phí và báo cáo tài chính nội bộ",
         "description": "Mình dẫn dắt backend cho luồng tài chính nhiều vai trò: xác thực, phân quyền, kỳ lập kế hoạch, chi phí, báo cáo và các tác vụ định kỳ.",
         "topologyLabel": "BA RANH GIỚI TRIỂN KHAI",
+        "domainLabel": "MIỀN NGHIỆP VỤ TÀI CHÍNH CHUNG",
         "topology": {
           "api": {
             "label": "API",

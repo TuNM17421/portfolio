@@ -1,6 +1,6 @@
 # Part 05 — ScholarAI evidence + backend archive
 
-> **Status:** Checkpoints 05A–05C approved; 05D is next
+> **Status:** Checkpoints 05A–05D approved; 05E is next
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#work`, `/en/v2?intro=0#work`, and deterministic `?work=` states listed below
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy

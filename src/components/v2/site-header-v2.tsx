@@ -10,12 +10,12 @@ export type SiteHeaderV2Copy = {
   wordmark: string;
   homeLabel: string;
   navigationLabel: string;
-  vcareer: string;
+  work: string;
+  workProof: string;
   contact: string;
   localeLabel: string;
   openMenu: string;
   closeMenu: string;
-  proof: string;
 };
 
 type SiteHeaderV2Props = {
@@ -66,7 +66,10 @@ export function SiteHeaderV2({
   if (storyQuery) localeParams.set("story", storyQuery);
   if (workQuery) localeParams.set("work", workQuery);
   const localeQuery = localeParams.toString();
-  const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
+  const localeHash = workQuery ? "#work" : "";
+  const localeHref = localeQuery
+    ? `/v2?${localeQuery}${localeHash}`
+    : `/v2${localeHash}`;
 
   const closeMenu = useCallback((restoreFocus = true) => {
     setMenuOpen(false);
@@ -75,6 +78,19 @@ export function SiteHeaderV2({
       window.requestAnimationFrame(() => menuButtonRef.current?.focus());
     }
   }, []);
+
+  const goToWork = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      window.history.replaceState(null, "", "#vcareer");
+      const target = document.getElementById("vcareer");
+      closeMenu(false);
+      window.requestAnimationFrame(() => {
+        target?.scrollIntoView({ behavior: "auto", block: "start" });
+      });
+    },
+    [closeMenu],
+  );
 
   useEffect(() => {
     onMenuOpenChange(menuOpen);
@@ -112,7 +128,8 @@ export function SiteHeaderV2({
     const body = document.body;
     const previousOverflow = body.style.overflow;
     const previousPaddingRight = body.style.paddingRight;
-    const scrollbarGap = window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarGap =
+      window.innerWidth - document.documentElement.clientWidth;
 
     body.style.overflow = "hidden";
     if (scrollbarGap > 0) body.style.paddingRight = `${scrollbarGap}px`;
@@ -242,19 +259,24 @@ export function SiteHeaderV2({
 
         <div className={styles.headerActions}>
           <nav className={styles.primaryNav} aria-label={copy.navigationLabel}>
-            <Link href="/projects/vcareer" className={styles.navLink}>
+            <a
+              href="#vcareer"
+              className={styles.navLink}
+              data-header-work
+              onClick={goToWork}
+            >
               <span className={styles.rollViewport}>
                 <span className={styles.rollTrack}>
-                  <span>{copy.vcareer}</span>
-                  <span aria-hidden>{copy.vcareer}</span>
+                  <span>{copy.work}</span>
+                  <span aria-hidden>{copy.work}</span>
                 </span>
               </span>
               <motion.span
                 className={styles.chapterTrace}
-                style={chapterTone.vcareerTrace}
+                style={chapterTone.workTrace}
                 aria-hidden
               />
-            </Link>
+            </a>
             <a href="mailto:tunm17421@gmail.com" className={styles.navLink}>
               {copy.contact}
             </a>
@@ -330,7 +352,10 @@ export function SiteHeaderV2({
             transition={overlayTransition}
             onPointerDown={(event) => {
               const target = event.target;
-              if (!(target instanceof Element) || !target.closest("a, button")) {
+              if (
+                !(target instanceof Element) ||
+                !target.closest("a, button")
+              ) {
                 closeMenu();
               }
             }}
@@ -359,23 +384,23 @@ export function SiteHeaderV2({
               <nav aria-label={copy.navigationLabel}>
                 <ul className={styles.menuList}>
                   <li className={styles.menuItem}>
-                    <Link
+                    <a
                       ref={firstMenuLinkRef}
-                      href="/projects/vcareer"
+                      href="#vcareer"
                       className={styles.menuLink}
-                      onClick={() => closeMenu(false)}
+                      onClick={goToWork}
                     >
                       <span className={styles.menuIndex} aria-hidden>
-                        01
+                        04—05
                       </span>
                       <span className={styles.menuLinkCopy}>
-                        <strong>{copy.vcareer}</strong>
-                        <small>{copy.proof}</small>
+                        <strong>{copy.work}</strong>
+                        <small>{copy.workProof}</small>
                       </span>
                       <span className={styles.menuArrow} aria-hidden>
-                        ↗
+                        ↓
                       </span>
-                    </Link>
+                    </a>
                   </li>
                   <li className={styles.menuItem}>
                     <a
@@ -384,7 +409,7 @@ export function SiteHeaderV2({
                       onClick={() => closeMenu()}
                     >
                       <span className={styles.menuIndex} aria-hidden>
-                        02
+                        MAIL
                       </span>
                       <span className={styles.menuLinkCopy}>
                         <strong>{copy.contact}</strong>

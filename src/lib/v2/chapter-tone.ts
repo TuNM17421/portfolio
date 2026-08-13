@@ -65,10 +65,6 @@ export function resolveChapterTone(phase: number): V2ChapterToneTokens {
   return CHAPTER_TONES[resolveChapterName(phase)];
 }
 
-export function resolveVCareerTraceScale(
-  vcareerEntryProgress: number,
-  workEntryProgress: number,
-) {
-  if (clampChapterProgress(workEntryProgress) >= 0.5) return 0;
+export function resolveWorkTraceScale(vcareerEntryProgress: number) {
   return clampChapterProgress(vcareerEntryProgress);
 }

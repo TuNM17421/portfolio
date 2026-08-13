@@ -757,6 +757,7 @@
 .financial {
   padding-top: clamp(68px, 8vw, 122px);
   border-top: 2px solid var(--work-night);
+  scroll-margin-top: 76px;
 }
 
 .financialHeader {
@@ -825,21 +826,67 @@
   color: var(--work-cyan);
 }
 
-.topology ol {
+.topologyDiagram {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(44px, 5vw, 76px);
+  height: 102px;
+  margin-top: clamp(38px, 4.4vw, 68px);
 }
 
-.topology ol::before {
+.topologyDiagram > span {
   position: absolute;
-  top: 28px;
-  right: 16.66%;
-  left: 16.66%;
-  height: 1px;
-  background: var(--work-trace);
-  content: "";
+  z-index: 2;
+  top: 18px;
+  left: 50%;
+  padding: 0 14px;
+  color: var(--work-cyan);
+  background: var(--work-sheet);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.topologyDiagram svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.topologyDiagram path {
+  fill: none;
+  stroke: var(--work-cyan);
+  stroke-linecap: square;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.topologyDiagram .topologyRelay {
+  stroke: var(--work-signal);
+}
+
+.topologyTabletDiagram {
+  display: none !important;
+}
+
+.topologyListShell {
+  position: relative;
+}
+
+.topologyMobileTrace {
+  display: none;
+}
+
+.topology ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .topology li {
@@ -852,28 +899,35 @@
   border-right: 0;
 }
 
-.topology li::before {
+.topologyNode {
   position: absolute;
   z-index: 2;
-  top: 24px;
+  top: -6px;
   left: calc(50% - 5px);
+  display: block;
   width: 10px;
   height: 10px;
   border: 2px solid var(--work-sheet);
   background: var(--work-cyan);
   box-shadow: 0 0 0 1px var(--work-cyan);
-  content: "";
+  transform-origin: center;
 }
 
-.topology li:first-child::before {
+.topologyNode[data-topology-node="api"] {
   background: var(--work-signal);
   box-shadow: 0 0 0 1px var(--work-signal);
 }
 
-.topology li:last-child::before {
+.topologyNode[data-topology-node="worker"] {
   border-radius: 50%;
   background: var(--work-lime);
   box-shadow: 0 0 0 1px var(--work-lime);
+}
+
+.financial[data-financial-motion="active"] .topologyDiagram path,
+.financial[data-financial-motion="active"] .topologyNode,
+.financial[data-financial-motion="active"] .topologyMobileTrace {
+  will-change: transform, opacity, stroke-dashoffset;
 }
 
 .topology a {
@@ -881,7 +935,7 @@
   min-height: 360px;
   align-content: start;
   gap: 18px;
-  padding: 72px clamp(24px, 3vw, 48px) 24px;
+  padding: 34px clamp(24px, 3vw, 48px) 24px;
   color: var(--work-night);
   text-decoration: none;
   transition:
@@ -1405,6 +1459,74 @@
     width: min(100%, 520px);
   }
 
+  .work[data-work-compact-enhanced="true"] .evidenceNavigation {
+    display: block;
+    margin-top: 28px;
+    border-top: 1px solid rgba(11, 39, 56, 0.24);
+    border-bottom: 1px solid rgba(11, 39, 56, 0.24);
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceProgressTrack {
+    display: none;
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail li {
+    min-width: 0;
+    border-right: 1px solid rgba(11, 39, 56, 0.18);
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail li:last-child {
+    border-right: 0;
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail button {
+    display: grid;
+    width: 100%;
+    min-height: 72px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px 12px;
+    align-content: center;
+    padding: 12px clamp(12px, 2.3vw, 22px);
+    border: 0;
+    color: rgba(11, 39, 56, 0.58);
+    background: transparent;
+    font-family: var(--font-v2-mono), monospace;
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail strong {
+    display: none;
+  }
+
+  .work[data-work-compact-enhanced="true"]
+    .evidenceRail
+    li[data-active]
+    button {
+    color: var(--work-sheet);
+    background: var(--work-signal);
+  }
+
+  .work[data-work-compact-enhanced="true"] .evidenceRail button:focus-visible {
+    position: relative;
+    z-index: 2;
+    border-radius: 0;
+    outline: 2px solid var(--work-signal);
+    outline-offset: 4px;
+  }
+
   .evidenceItem figure {
     display: flex;
     flex-direction: column;
@@ -1431,6 +1553,80 @@
     margin-left: auto;
   }
 
+  .benchmarkInteractive {
+    display: grid;
+    gap: 24px;
+  }
+
+  .benchmarkTabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(11, 39, 56, 0.22);
+    border-bottom: 1px solid rgba(11, 39, 56, 0.22);
+  }
+
+  .benchmarkTabs button {
+    display: flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border: 0;
+    border-right: 1px solid rgba(11, 39, 56, 0.18);
+    color: rgba(11, 39, 56, 0.58);
+    background: transparent;
+    font-family: var(--font-v2-mono), monospace;
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .benchmarkTabs button:last-child {
+    border-right: 0;
+  }
+
+  .benchmarkTabs button[aria-selected="true"] {
+    color: var(--work-sheet);
+    background: var(--work-signal);
+  }
+
+  .benchmarkTabs button:focus-visible {
+    position: relative;
+    z-index: 2;
+    border-radius: 0;
+    outline: 2px solid var(--work-signal);
+    outline-offset: 4px;
+  }
+
+  .benchmarkViewport figure {
+    display: grid;
+    margin: 0;
+  }
+
+  .benchmarkViewport figcaption {
+    display: grid;
+    grid-template-columns: minmax(130px, 0.32fr) minmax(0, 0.68fr);
+    gap: 24px;
+    padding-top: 18px;
+  }
+
+  .benchmarkViewport figcaption strong {
+    color: var(--work-cyan);
+    font-family: var(--font-v2-mono), monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+  }
+
+  .benchmarkViewport figcaption span {
+    color: rgba(11, 39, 56, 0.7);
+    font-size: 0.84rem;
+    line-height: 1.62;
+  }
+
   .evidenceItem:nth-child(2) .evidenceMedia {
     width: 88%;
     margin-right: auto;
@@ -1441,10 +1637,91 @@
     grid-template-columns: minmax(180px, 0.3fr) minmax(0, 0.7fr);
   }
 
+  .topologyDesktopDiagram {
+    display: none !important;
+  }
+
+  .topologyTabletDiagram {
+    display: block !important;
+  }
+
+  .topologyDiagram {
+    height: 132px;
+  }
+
+  .topology ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topology li:nth-child(2) {
+    border-right: 0;
+  }
+
+  .topology li:nth-child(3) {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(11, 39, 56, 0.2);
+    border-right: 0;
+  }
+
   .topology a {
-    min-height: 390px;
+    min-height: 320px;
     padding-right: 24px;
     padding-left: 24px;
+  }
+
+  .topology li:first-child a,
+  .topology li:last-child a {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .evidenceItem {
+    padding: clamp(78px, 9vw, 104px) 0;
+  }
+
+  .evidenceItem figure {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 48px);
+    align-items: center;
+  }
+
+  .evidenceCopy,
+  .evidenceItem:nth-child(2) .evidenceCopy {
+    width: auto;
+    max-width: none;
+  }
+
+  .evidenceCopy {
+    grid-column: 1 / 6;
+  }
+
+  .evidenceMedia {
+    width: 100%;
+    grid-column: 6 / -1;
+    margin: 0;
+  }
+
+  .evidenceItem:nth-child(2) .evidenceCopy {
+    grid-column: 8 / -1;
+  }
+
+  .evidenceItem:nth-child(2) .evidenceMedia {
+    width: 100%;
+    grid-column: 1 / 8;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .benchmarkInteractive {
+    width: 88%;
+    margin-left: auto;
+  }
+
+  .archiveMedia > div {
+    gap: clamp(28px, 4vw, 48px);
   }
 }
 
@@ -1609,6 +1886,21 @@
     gap: 58px;
   }
 
+  .benchmarkInteractive {
+    width: 100%;
+    margin: 0;
+  }
+
+  .benchmarkTabs button {
+    min-height: 56px;
+    padding: 12px;
+  }
+
+  .benchmarkViewport figcaption {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
   .scholarFooter {
     display: block;
     padding: 76px 0 132px;
@@ -1622,6 +1914,7 @@
 
   .financial {
     padding-top: 48px;
+    scroll-margin-top: 68px;
   }
 
   .financialHeader {
@@ -1646,27 +1939,47 @@
     padding: 44px 0 104px;
   }
 
-  .topology ol {
-    display: block;
+  .topologyDiagram {
+    display: none;
+  }
+
+  .topologyListShell {
     margin-top: 42px;
   }
 
-  .topology ol::before {
+  .topologyMobileTrace {
+    position: absolute;
+    z-index: 1;
     top: 0;
-    right: auto;
     bottom: 0;
     left: 4px;
+    display: block;
     width: 1px;
-    height: auto;
+    background: linear-gradient(
+      to bottom,
+      var(--work-signal),
+      var(--work-cyan) 54%,
+      var(--work-lime)
+    );
+    transform-origin: top center;
+  }
+
+  .topology ol {
+    display: block;
   }
 
   .topology li,
   .topology li:last-child {
+    grid-column: auto;
     border-right: 0;
     border-bottom: 1px solid rgba(11, 39, 56, 0.2);
   }
 
-  .topology li::before {
+  .topology li:nth-child(3) {
+    border-top: 0;
+  }
+
+  .topologyNode {
     top: 32px;
     left: 0;
   }

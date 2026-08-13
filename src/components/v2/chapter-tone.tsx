@@ -10,7 +10,7 @@ import {
 import {
   resolveChapterPhase,
   resolveChapterTone,
-  resolveVCareerTraceScale,
+  resolveWorkTraceScale,
 } from "@/lib/v2/chapter-tone";
 
 type ChapterToneOptions = {
@@ -23,7 +23,7 @@ type ChapterToneOptions = {
 export type V2ChapterTone = {
   header: MotionStyle;
   layer: MotionStyle;
-  vcareerTrace: MotionStyle;
+  workTrace: MotionStyle;
 };
 
 export function useChapterTone({
@@ -96,10 +96,8 @@ export function useChapterTone({
     chapterPhase,
     (phase) => resolveChapterTone(phase).layerOpacity,
   );
-  const vcareerTraceScale = useTransform(
-    [vcareerSource, workSource],
-    ([vcareerValue, workValue]) =>
-      resolveVCareerTraceScale(Number(vcareerValue), Number(workValue)),
+  const workTraceScale = useTransform(vcareerSource, (vcareerValue) =>
+    resolveWorkTraceScale(Number(vcareerValue)),
   );
 
   return {
@@ -112,8 +110,8 @@ export function useChapterTone({
     layer: {
       opacity: headerLayerOpacity,
     },
-    vcareerTrace: {
-      scaleX: vcareerTraceScale,
+    workTrace: {
+      scaleX: workTraceScale,
     },
   };
 }

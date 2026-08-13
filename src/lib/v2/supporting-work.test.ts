@@ -64,6 +64,7 @@ describe("portfolio v2 supporting work foundation", () => {
     "recognizes the static review state %s",
     (value) => {
       expect(parseSupportingWorkControls(value)).toEqual({
+        focusFinancial: false,
         forceStatic: true,
         imageState: "auto",
         forcedStage: null,
@@ -80,6 +81,7 @@ describe("portfolio v2 supporting work foundation", () => {
     ["image_error", "error"],
   ] as const)("maps %s to the %s media state", (value, imageState) => {
     expect(parseSupportingWorkControls(value)).toEqual({
+      focusFinancial: false,
       forceStatic: true,
       imageState,
       forcedStage: null,
@@ -96,6 +98,7 @@ describe("portfolio v2 supporting work foundation", () => {
     "forces the %s ScholarAI review plateau",
     (value, forcedStage, forcedBenchmark) => {
       expect(parseSupportingWorkControls(value)).toEqual({
+        focusFinancial: false,
         forceStatic: false,
         imageState: "auto",
         forcedStage,
@@ -106,12 +109,26 @@ describe("portfolio v2 supporting work foundation", () => {
 
   it("keeps the default work route scroll-driven", () => {
     expect(parseSupportingWorkControls("")).toEqual({
+      focusFinancial: false,
       forceStatic: false,
       imageState: "auto",
       forcedStage: null,
       forcedBenchmark: null,
     });
   });
+
+  it.each(["finplanning", "financial", " FINPLANNING "])(
+    "opens the %s review state directly on the static Financial archive",
+    (value) => {
+      expect(parseSupportingWorkControls(value)).toEqual({
+        focusFinancial: true,
+        forceStatic: true,
+        imageState: "auto",
+        forcedStage: null,
+        forcedBenchmark: null,
+      });
+    },
+  );
 
   it("keeps broad evidence plateaus with short transition windows", () => {
     expect(SCHOLARAI_EVIDENCE_WINDOWS).toEqual({
