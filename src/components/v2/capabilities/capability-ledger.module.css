@@ -11,63 +11,8 @@
   z-index: 3;
   overflow: clip;
   color: var(--capability-night);
-  background: var(--capability-night);
+  background: var(--capability-mineral);
   scroll-margin-top: 0;
-}
-
-.handoff {
-  position: relative;
-  height: clamp(132px, 18svh, 196px);
-  overflow: hidden;
-  background: var(--capability-night);
-}
-
-.handoff::before {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.25;
-  background-image:
-    linear-gradient(rgba(107, 215, 208, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(107, 215, 208, 0.04) 1px, transparent 1px);
-  background-position: 50% 0;
-  background-size: clamp(76px, 8vw, 122px) clamp(76px, 8vw, 122px);
-  mask-image: linear-gradient(to bottom, transparent, black 38%, black 100%);
-  content: "";
-}
-
-.handoffStem,
-.handoffNode {
-  position: absolute;
-  left: 50%;
-  display: block;
-  pointer-events: none;
-}
-
-.handoffStem {
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    rgba(107, 215, 208, 0),
-    var(--capability-focus) 36%,
-    var(--capability-signal)
-  );
-  box-shadow: 0 0 20px rgba(107, 215, 208, 0.13);
-}
-
-.handoffNode {
-  z-index: 2;
-  bottom: -6px;
-  width: 13px;
-  height: 13px;
-  border: 2px solid var(--capability-night);
-  background: var(--capability-signal);
-  box-shadow:
-    0 0 0 1px var(--capability-signal),
-    0 0 18px rgba(0, 96, 240, 0.24);
-  transform: translateX(-50%);
 }
 
 .sheet {
@@ -99,6 +44,7 @@
 }
 
 .inner {
+  --route-node-x: calc(clamp(18px, 2.4vw, 38px) + 4px);
   position: relative;
   z-index: 1;
   width: 100%;
@@ -184,8 +130,45 @@
   list-style: none;
 }
 
-.ledger {
+.ledgerFrame {
+  position: relative;
   border-top: 2px solid var(--capability-night);
+}
+
+.routeBus,
+.routeCursor {
+  position: absolute;
+  z-index: 3;
+  left: var(--route-node-x);
+  display: block;
+  pointer-events: none;
+}
+
+.routeBus {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--capability-signal),
+    var(--capability-cyan)
+  );
+  box-shadow: 0 0 18px rgba(0, 96, 240, 0.08);
+  transform-origin: top center;
+}
+
+.routeCursor {
+  top: 100%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  margin-left: -4px;
+  border: 2px solid var(--capability-mineral);
+  background: var(--capability-signal);
+  box-shadow:
+    0 0 0 1px var(--capability-signal),
+    0 0 18px 3px rgba(0, 96, 240, 0.18);
+  opacity: 0;
 }
 
 .capability {
@@ -196,6 +179,8 @@
     minmax(126px, 0.14fr) minmax(280px, 0.31fr) minmax(280px, 0.29fr)
     minmax(240px, 0.26fr);
   border-bottom: 1px solid var(--capability-rule);
+  background-color: rgba(0, 96, 240, 0);
+  transition: background-color 220ms ease;
 }
 
 .route,
@@ -213,18 +198,41 @@
   border-right: 1px solid var(--capability-rule);
 }
 
-.route::after {
+.routeTrack {
   position: absolute;
+  z-index: 0;
   top: 31px;
   right: 0;
-  left: 13px;
+  left: var(--route-node-x);
+  display: block;
   height: 1px;
   background: linear-gradient(
     90deg,
     var(--capability-signal),
     rgba(0, 96, 240, 0.12)
   );
-  content: "";
+  pointer-events: none;
+  transform-origin: left center;
+}
+
+.routePacket {
+  position: absolute;
+  z-index: 2;
+  top: 28px;
+  left: var(--route-node-x);
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin-left: -4px;
+  border: 1px solid var(--capability-mineral);
+  background: var(--capability-signal);
+  box-shadow: 0 0 13px 2px rgba(0, 96, 240, 0.22);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.capabilities[data-capabilities-enhanced="true"] .routeCursor {
+  top: 0;
 }
 
 .routeNode {
@@ -272,6 +280,7 @@
   font-weight: 545;
   letter-spacing: calc(-0.055em + 2px);
   line-height: 0.94;
+  transition: color 220ms ease;
 }
 
 .identity > p {
@@ -333,6 +342,7 @@
   font-weight: 600;
   line-height: 1.5;
   text-decoration: none;
+  transition: color 180ms ease;
 }
 
 .evidence a > span:last-child {
@@ -349,6 +359,122 @@
 .evidence a:focus-visible {
   outline: 2px solid var(--capability-signal);
   outline-offset: 5px;
+}
+
+.capability:is(
+    [data-route-active="true"],
+    :focus-within,
+    :has(.evidence a:active)
+  ) {
+  background-color: rgba(0, 96, 240, 0.045);
+}
+
+.capability:is(
+    [data-route-active="true"],
+    :focus-within,
+    :has(.evidence a:active)
+  )
+  .identity
+  h3,
+.capability:is(
+    [data-route-active="true"],
+    :focus-within,
+    :has(.evidence a:active)
+  )
+  .evidence
+  a {
+  color: var(--capability-signal);
+}
+
+.capability:is(
+    [data-route-active="true"],
+    :focus-within,
+    :has(.evidence a:active)
+  )
+  .routeNode {
+  box-shadow:
+    0 0 0 1px var(--capability-signal),
+    0 0 18px 3px rgba(0, 96, 240, 0.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .capability:hover {
+    background-color: rgba(0, 96, 240, 0.045);
+  }
+
+  .capability:hover .identity h3,
+  .capability:hover .evidence a {
+    color: var(--capability-signal);
+  }
+
+  .capability:hover .routeNode {
+    box-shadow:
+      0 0 0 1px var(--capability-signal),
+      0 0 18px 3px rgba(0, 96, 240, 0.2);
+  }
+}
+
+.convergence {
+  --convergence-node-x: var(--route-node-x);
+  position: relative;
+  height: clamp(116px, 10vw, 156px);
+  overflow: hidden;
+}
+
+.convergenceStem,
+.convergenceTrack,
+.convergenceNode {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.convergenceStem {
+  top: 0;
+  left: var(--convergence-node-x);
+  width: 1px;
+  height: 50%;
+  background: var(--capability-cyan);
+  transform-origin: top center;
+}
+
+.convergenceTrack {
+  top: 50%;
+  left: var(--convergence-node-x);
+  width: calc(50% - var(--convergence-node-x));
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--capability-cyan),
+    var(--capability-signal)
+  );
+  transform-origin: left center;
+}
+
+.convergenceNode {
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--capability-mineral);
+  background: var(--capability-signal);
+  box-shadow:
+    0 0 0 1px var(--capability-signal),
+    0 0 18px 3px rgba(0, 96, 240, 0.18);
+}
+
+.capabilities[data-capabilities-motion="active"]
+  :is(
+    .routeBus,
+    .routeCursor,
+    .routeTrack,
+    .routePacket,
+    .routeNode,
+    .convergenceStem,
+    .convergenceTrack,
+    .convergenceNode
+  ) {
+  will-change: transform, opacity;
 }
 
 @media (max-width: 1199px) {
@@ -393,10 +519,6 @@
     scroll-margin-top: 68px;
   }
 
-  .handoff {
-    height: clamp(108px, 16svh, 144px);
-  }
-
   .sheet::before {
     opacity: 0.2;
     background-position: 20px 0;
@@ -436,22 +558,13 @@
     font-size: 0.98rem;
   }
 
-  .ledger {
-    position: relative;
+  .inner {
+    --route-node-x: 5px;
   }
 
-  .ledger::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 5px;
-    width: 1px;
-    background: linear-gradient(
-      to bottom,
-      var(--capability-signal),
-      var(--capability-cyan)
-    );
-    content: "";
+  .routeCursor {
+    width: 8px;
+    height: 8px;
   }
 
   .capability {
@@ -477,8 +590,17 @@
     border: 0;
   }
 
-  .route::after {
-    display: none;
+  .routeTrack {
+    top: 32px;
+    right: auto;
+    left: 5px;
+    width: 29px;
+  }
+
+  .routePacket {
+    top: 29px;
+    width: 7px;
+    height: 7px;
   }
 
   .routeNode {
@@ -538,6 +660,10 @@
     min-height: 54px;
     font-size: 0.82rem;
   }
+
+  .convergence {
+    height: 112px;
+  }
 }
 
 @media (max-width: 359px) {
@@ -551,5 +677,13 @@
 
   .technology ul {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability,
+  .identity h3,
+  .evidence a {
+    transition-duration: 0ms;
   }
 }

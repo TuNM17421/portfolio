@@ -47,3 +47,20 @@ export type CapabilityKey = (typeof CAPABILITY_DEFINITIONS)[number]["key"];
 
 export type CapabilityProofKey =
   (typeof CAPABILITY_DEFINITIONS)[number]["proofs"][number]["key"];
+
+export type CapabilityRouteRect = {
+  key: CapabilityKey;
+  top: number;
+  bottom: number;
+};
+
+export function resolveCapabilityAtFocusLine(
+  routes: readonly CapabilityRouteRect[],
+  focusLine: number,
+): CapabilityKey | null {
+  return (
+    routes.find(
+      (route) => route.top <= focusLine && route.bottom >= focusLine,
+    )?.key ?? null
+  );
+}

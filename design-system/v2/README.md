@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–06 complete; Part 07A implemented and awaiting owner review
+> **Status:** Parts 01–06 complete; Part 07A approved and Part 07B awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 07 evidence-backed capabilities, contact conversion, and footer plan
-> **Implementation status:** Part 06 is committed at `8940bf7`; Part 07A is implemented and intentionally uncommitted for review
+> **Implementation status:** Part 07A is committed at `48577f1`; Part 07B is implemented and intentionally uncommitted for review
 
 ## Objective
 
@@ -149,7 +149,7 @@ Relevant implementation references:
 | 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                           |
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                           |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                           |
-| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | 07A implemented; awaiting owner review                         |
+| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | 07A committed; 07B implemented and awaiting owner review      |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                          |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                          |
 

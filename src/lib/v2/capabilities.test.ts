@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
-import { CAPABILITY_DEFINITIONS } from "./capabilities";
+import {
+  CAPABILITY_DEFINITIONS,
+  resolveCapabilityAtFocusLine,
+} from "./capabilities";
 
 describe("portfolio v2 evidence-backed capability foundation", () => {
   it("keeps four ordered capabilities with real proof anchors", () => {
@@ -61,5 +64,20 @@ describe("portfolio v2 evidence-backed capability foundation", () => {
     expect(en.v2.capabilities.title).toBe(
       "Capabilities anchored in evidence.",
     );
+  });
+
+  it("resolves the route intersecting the reading focus in either direction", () => {
+    const routes = [
+      { key: "backend" as const, top: 120, bottom: 360 },
+      { key: "realtime" as const, top: 360, bottom: 600 },
+      { key: "retrieval" as const, top: 600, bottom: 840 },
+      { key: "delivery" as const, top: 840, bottom: 1080 },
+    ];
+
+    expect(resolveCapabilityAtFocusLine(routes, 480)).toBe("realtime");
+    expect(resolveCapabilityAtFocusLine([...routes].reverse(), 720)).toBe(
+      "retrieval",
+    );
+    expect(resolveCapabilityAtFocusLine(routes, 80)).toBeNull();
   });
 });

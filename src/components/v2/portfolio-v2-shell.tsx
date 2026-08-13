@@ -25,6 +25,7 @@ import {
   CapabilityLedger,
   type CapabilityLedgerCopy,
 } from "@/components/v2/capabilities/capability-ledger";
+import { useCapabilityRoutingMotion } from "@/components/v2/capabilities/capability-routing-motion";
 import { useCareerTraceMotion } from "@/components/v2/career/career-trace-motion";
 import { useRecognitionStageMotion } from "@/components/v2/career/recognition-stage-motion";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
@@ -158,6 +159,7 @@ export function PortfolioV2Shell({
     forceStatic: recognitionControls.forceStatic,
     forcedProgress: recognitionControls.forcedProgress,
   });
+  const capabilityRouting = useCapabilityRoutingMotion({ reduceMotion });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
@@ -260,6 +262,7 @@ export function PortfolioV2Shell({
         <CapabilityLedger
           copy={capabilitiesCopy}
           navigationOpen={mobileNavigationOpen}
+          routing={capabilityRouting}
         />
       </div>
 

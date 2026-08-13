@@ -1,11 +1,11 @@
 # Part 07 — Evidence routing, contact, and footer
 
-> **Status:** 07A implemented; awaiting owner review
+> **Status:** 07A approved and committed; 07B implemented for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Implementation status:** Static capability foundation implemented and left
-> uncommitted; 07B–07E have not started
+> **Implementation status:** 07A committed at `48577f1`; 07B routing motion is
+> implemented and intentionally uncommitted; 07C–07E have not started
 >
 > **Scope:** Final homepage chapter only. Part 08 case-study migration remains
 > separate.
@@ -131,7 +131,7 @@ version of the same choreography.
 | Type system | Anybody display, Be Vietnam Pro body, IBM Plex Mono metadata; no additional font family. |
 | Palette | Existing night, mineral, focus-cyan, ceremony-blue, teal, and signal-blue tokens only. |
 | Spacing rhythm | Preserve the V2 outer gutters and section rail; capability rows use one consistent vertical unit. No extra fullscreen opener and no long blank dwell between Recognition, Skills, and Contact. |
-| Signature | The Recognition signal fans into four capability routes and reconverges into the email baseline. |
+| Signature | The capability ledger draws four evidence routes and reconverges them into the email baseline. Recognition ends cleanly without repeating the inter-chapter signal motif. |
 | Aesthetic risk | Treat the oversized email baseline as the physical endpoint of the routing system. It is justified because the whole portfolio uses signals to connect evidence, and the final signal now becomes an action. |
 | Responsive behavior | Wide routing board on desktop; one vertical bus with four short evidence branches on compact screens. No horizontal swipe rail and no hover-only labels. |
 | Motion behavior | Natural-scroll, reversible routing over a short range. No long pinned dwell, autoplay loop, or scroll-jacking. |
@@ -146,9 +146,10 @@ version of the same choreography.
 ### Surface cadence
 
 1. Recognition remains fully night-glass until its final document and caption
-   clear the handoff boundary. The mineral Part 07 surface must not rise behind
+   clear the chapter boundary. The mineral Part 07 surface must not rise behind
    or wash out the Recognition content early.
-2. A focus-cyan stem exits the Recognition register and crosses the boundary.
+2. Recognition ends directly at the mineral Part 07 surface. No transition
+   signal is added because that motif already appears repeatedly earlier.
 3. The capability chapter uses the mineral surface so dense labels stay calm
    and readable.
 4. The routes converge at the lower boundary; the night-glass contact field
@@ -349,7 +350,7 @@ Acceptance:
 - 320–1920px has no clipped typography or horizontal overflow;
 - VI/EN content is equivalent.
 
-Implementation record (awaiting owner review):
+Implementation record (approved and committed at `48577f1`):
 
 - the full localized ledger renders in server HTML and does not depend on
   hydration for its labels or proof routes;
@@ -364,7 +365,6 @@ Implementation record (awaiting owner review):
 
 Add the Part 07 signature only after 07A is approved:
 
-- Recognition signal exits its final register without covering the last caption;
 - signal branches into four capability routes;
 - active route emphasis follows scroll, pointer, focus, and touch;
 - routes reconverge at the lower Skills boundary;
@@ -373,7 +373,6 @@ Add the Part 07 signature only after 07A is approved:
 
 Review focus:
 
-- origin and timing of the handoff;
 - signal visibility without text overlap;
 - route speed and whether the effect adds understanding;
 - no long sticky dwell.
@@ -385,6 +384,23 @@ Acceptance:
 - reduced motion shows the final static map;
 - no ambient loop continues after the chapter settles;
 - no layout shift is caused by line drawing or active states.
+
+Implementation record (awaiting owner review):
+
+- Recognition ends directly at the mineral Skills surface with no repeated
+  handoff signal; the routing motion begins only at the capability ledger;
+- a geometry-bound route bus contacts each capability lane and terminates at a
+  90-degree convergence node;
+- lane packets and the vertical cursor use measured GPU transforms rather than
+  changing layout coordinates;
+- forward and reverse sampling selects all four routes in order; pointer hover,
+  keyboard focus, and pressed/touch-equivalent states produce the same emphasis;
+- live reduced-motion switching removes enhancement styles and restores the
+  already-complete static route map;
+- 320, 375, 768, 1024, 1440, and 1920px report no horizontal overflow, and
+  a full forward/reverse Part 07 sample records `CLS = 0`;
+- TypeScript, scoped lint, `146` tests, `git diff --check`, and production build
+  pass. The V2 route is `86.9 kB` / `198 kB` First Load JS in this build.
 
 ### 07C — Contact conversion field
 
