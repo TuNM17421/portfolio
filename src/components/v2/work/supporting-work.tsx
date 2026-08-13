@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "motion/react";
 import {
   FINANCIAL_ARCHIVE_IMAGES,
   FINANCIAL_ARCHIVE_REPOSITORIES,
@@ -13,6 +14,7 @@ import {
   type SupportingWorkImageState,
 } from "@/lib/v2/supporting-work";
 import styles from "./supporting-work.module.css";
+import type { SupportingWorkHandoffController } from "./supporting-work-handoff";
 
 type EvidenceCopy = {
   label: string;
@@ -88,6 +90,7 @@ export type SupportingWorkCopy = {
 
 type SupportingWorkProps = {
   copy: SupportingWorkCopy;
+  handoff: SupportingWorkHandoffController;
   imageReviewState: SupportingWorkImageState;
   navigationOpen: boolean;
 };
@@ -166,6 +169,7 @@ function ExternalWindowHint({ label }: { label: string }) {
 
 export function SupportingWork({
   copy,
+  handoff,
   imageReviewState,
   navigationOpen,
 }: SupportingWorkProps) {
@@ -179,15 +183,67 @@ export function SupportingWork({
 
   return (
     <section
+      ref={handoff.sectionRef}
       id="work"
       className={styles.work}
       aria-labelledby="v2-work-title"
       aria-hidden={navigationOpen || undefined}
       inert={navigationOpen}
       data-work-static
+      data-work-handoff={handoff.mode}
       data-work-image-review={imageReviewState}
     >
-      <div className={styles.sheet}>
+      <div
+        className={styles.chapterHandoff}
+        data-work-chapter-handoff
+        aria-hidden
+      >
+        <motion.span
+          className={styles.handoffStem}
+          style={handoff.enabled ? handoff.styles.stem : { scaleY: 1 }}
+        />
+        <motion.span
+          className={styles.handoffCursor}
+          style={handoff.enabled ? handoff.styles.cursor : { opacity: 0 }}
+          data-work-handoff-cursor
+        />
+        <motion.span
+          className={styles.handoffTerminal}
+          style={handoff.enabled ? handoff.styles.terminal : { scale: 1 }}
+        />
+        <motion.span
+          className={styles.handoffTrackLeft}
+          style={handoff.enabled ? handoff.styles.trackLeft : { scaleX: 1 }}
+        />
+        <motion.span
+          className={styles.handoffTrackRight}
+          style={handoff.enabled ? handoff.styles.trackRight : { scaleX: 1 }}
+        />
+        <span className={styles.handoffPacketLaneLeft}>
+          <motion.span
+            className={styles.handoffPacketLeft}
+            style={
+              handoff.enabled
+                ? handoff.styles.packetLeft
+                : { opacity: 0, right: "100%" }
+            }
+            data-work-handoff-packet="left"
+          />
+        </span>
+        <span className={styles.handoffPacketLaneRight}>
+          <motion.span
+            className={styles.handoffPacketRight}
+            style={
+              handoff.enabled
+                ? handoff.styles.packetRight
+                : { opacity: 0, left: "100%" }
+            }
+            data-work-handoff-packet="right"
+          />
+        </span>
+      </div>
+
+      <div ref={handoff.surfaceRef} className={styles.sheet} data-work-surface>
         <header className={styles.sectionRail}>
           <p>{copy.eyebrow}</p>
           <p>{copy.axis}</p>
@@ -198,10 +254,7 @@ export function SupportingWork({
           <p>{copy.framing}</p>
         </header>
 
-        <article
-          className={styles.scholar}
-          aria-labelledby="v2-scholar-title"
-        >
+        <article className={styles.scholar} aria-labelledby="v2-scholar-title">
           <header className={styles.scholarHeader}>
             <div className={styles.scholarIdentity}>
               <p className={styles.kicker}>{copy.scholar.kicker}</p>
@@ -329,9 +382,7 @@ export function SupportingWork({
                     <strong>
                       {copy.scholar.evidence.evaluate.refusalLabel}
                     </strong>
-                    <span>
-                      {copy.scholar.evidence.evaluate.refusalCaption}
-                    </span>
+                    <span>{copy.scholar.evidence.evaluate.refusalCaption}</span>
                   </figcaption>
                 </figure>
               </div>

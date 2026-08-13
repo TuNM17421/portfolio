@@ -10,11 +10,13 @@ import {
 import {
   resolveChapterPhase,
   resolveChapterTone,
+  resolveVCareerTraceScale,
 } from "@/lib/v2/chapter-tone";
 
 type ChapterToneOptions = {
   aboutSectionRef: RefObject<HTMLElement | null>;
   vcareerSectionRef: RefObject<HTMLElement | null>;
+  workSectionRef: RefObject<HTMLElement | null>;
   reduceMotion: boolean;
 };
 
@@ -27,6 +29,7 @@ export type V2ChapterTone = {
 export function useChapterTone({
   aboutSectionRef,
   vcareerSectionRef,
+  workSectionRef,
   reduceMotion,
 }: ChapterToneOptions): V2ChapterTone {
   const { scrollYProgress: aboutEntryProgress } = useScroll({
@@ -35,6 +38,10 @@ export function useChapterTone({
   });
   const { scrollYProgress: vcareerEntryProgress } = useScroll({
     target: vcareerSectionRef,
+    offset: ["start 96px", "start 0px"],
+  });
+  const { scrollYProgress: workEntryProgress } = useScroll({
+    target: workSectionRef,
     offset: ["start 96px", "start 0px"],
   });
   const aboutEntrySpring = useSpring(aboutEntryProgress, {
@@ -49,14 +56,25 @@ export function useChapterTone({
     mass: 0.22,
     restDelta: 0.001,
   });
+  const workEntrySpring = useSpring(workEntryProgress, {
+    stiffness: 190,
+    damping: 32,
+    mass: 0.22,
+    restDelta: 0.001,
+  });
   const aboutSource = reduceMotion ? aboutEntryProgress : aboutEntrySpring;
   const vcareerSource = reduceMotion
     ? vcareerEntryProgress
     : vcareerEntrySpring;
+  const workSource = reduceMotion ? workEntryProgress : workEntrySpring;
   const chapterPhase = useTransform(
-    [aboutSource, vcareerSource],
-    ([aboutValue, vcareerValue]) =>
-      resolveChapterPhase(Number(aboutValue), Number(vcareerValue)),
+    [aboutSource, vcareerSource, workSource],
+    ([aboutValue, vcareerValue, workValue]) =>
+      resolveChapterPhase(
+        Number(aboutValue),
+        Number(vcareerValue),
+        Number(workValue),
+      ),
   );
   const headerColor = useTransform(
     chapterPhase,
@@ -79,9 +97,9 @@ export function useChapterTone({
     (phase) => resolveChapterTone(phase).layerOpacity,
   );
   const vcareerTraceScale = useTransform(
-    vcareerSource,
-    [0, 0.42, 1],
-    [0, 0, 1],
+    [vcareerSource, workSource],
+    ([vcareerValue, workValue]) =>
+      resolveVCareerTraceScale(Number(vcareerValue), Number(workValue)),
   );
 
   return {

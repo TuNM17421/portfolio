@@ -1,6 +1,6 @@
 # Part 05 — ScholarAI evidence + backend archive
 
-> **Status:** Evidence audit resolved; ready for 05A approval; implementation has not started
+> **Status:** Checkpoints 05A–05B approved; 05C is next
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#work`, `/en/v2?intro=0#work`, and deterministic `?work=` states listed below
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
@@ -47,9 +47,9 @@ carousel and not two unrelated landing pages.
 
 ### What is already usable
 
-| Project | Repository evidence | Media available | Current public destination |
-| --- | --- | --- | --- |
-| ScholarAI | Tu confirms this is a solo project and that he built the current product end to end. Public source independently exposes FastAPI, Next.js, Qdrant dense + BM25 RRF, hierarchical RAG, clickable citations, authentication/quotas, PDF workflows, and a LangSmith evaluation harness. | Seven screenshots, 1,903,192 source bytes. Images are 1332–1844px wide and include discovery, grounded chat, workspace/notes, and separate QA/refusal benchmark runs. | `https://github.com/TuNM17421/ScholarAI` resolves publicly and lists no homepage. The product was shown to other learners for hands-on testing, but no user-test count or survey dataset was retained. |
+| Project            | Repository evidence                                                                                                                                                                                                                                                                                            | Media available                                                                                                                                                                                                   | Current public destination                                                                                                                                                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ScholarAI          | Tu confirms this is a solo project and that he built the current product end to end. Public source independently exposes FastAPI, Next.js, Qdrant dense + BM25 RRF, hierarchical RAG, clickable citations, authentication/quotas, PDF workflows, and a LangSmith evaluation harness.                           | Seven screenshots, 1,903,192 source bytes. Images are 1332–1844px wide and include discovery, grounded chat, workspace/notes, and separate QA/refusal benchmark runs.                                             | `https://github.com/TuNM17421/ScholarAI` resolves publicly and lists no homepage. The product was shown to other learners for hands-on testing, but no user-test count or survey dataset was retained.                                  |
 | Financial Planning | Source audit confirms a Java 17/Spring Boot API, React 18/Vite client, SQL Server driver, Redis-backed token/OTP/user-authority state, Excel import/export, and a separate Spring worker for annual-report and term schedules. Tu confirms it was a capstone and he led the backend before AI-assisted coding. | Fourteen screenshots, 590,542 source bytes. Images are only 582–752px wide. The dashboard/report frames are usable as small archive thumbnails; list views expose demo names and must not become oversized proof. | Three public repositories now resolve: `fin-planning-backend`, `fin-planning-frontend`, and `fin-planning-worker`. There is no live demo or preserved runtime dataset, so they are labeled source archive rather than runnable product. |
 
 ### Truth boundary before implementation
@@ -95,12 +95,12 @@ separately verified:
 References transfer structure and behavior only. Do not copy branding, product
 imagery, proprietary text, palette, typography, or exact layout.
 
-| Reference | Structural decision worth transferring | Why it fits Part 05 | Do not copy |
-| --- | --- | --- | --- |
-| [UIZZE · Zellerfeld capture](https://singapore.objective.company/design-media/5b/5b601f7677593817a37752922ba6f381043e3c21836e31f6a904d0fcb2941a65.webp) · [live site](https://www.zellerfeld.com/) | One dominant media field, a compact ranked rail, and contextual information that changes without duplicating the whole composition. | ScholarAI needs one dominant evidence viewport with a legible active-system state. | E-commerce chrome, lifestyle photography, product claims, rounded buy card, or Zellerfeld's palette. |
-| [UIZZE · Bécane capture](https://singapore.objective.company/design-media/b1/b1a0e59213caa0615c87b25c7871f19d3e11aa22112eac1ea5d9a2204fe6e89e.webp) · [live collection](https://www.becaneparis.com/) | Sparse catalogue plane with a visible collection count and objects treated as an index rather than decorated cards. | Financial Planning can read as a compact source archive without pretending to be a current live product. | Fashion silhouettes, extreme emptiness, commerce controls, or tiny illegible objects. |
-| [UIZZE · 099 SUPPLY capture](https://singapore.objective.company/design-media/c4/c455441505aa7c6a32d953222c0703a9068bb3688bb3eb527b6502931b95cbca.webp) · [live catalogue](https://099.supply/) | Stable item IDs, terse metadata, and consistent preview affordances make a dense catalogue scannable. | ScholarAI evidence labels and Financial's three repository nodes need stable names and concise metadata. | The marketplace grid, mockup imagery, monochrome branding, or its number of tiles. |
-| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design) | A persistent project scene changes from a compact project selector and hands off to a deeper project view. Desktop uses a large shared visual field; compact mode keeps a direct linear path. | This is the accepted overall migration reference and confirms that supporting work can share one scene instead of becoming equal cards. | Portrait imagery, condensed font, exact thumbnail rail, tiny mobile previews, inaccessible empty alt text, or its content hierarchy. |
+| Reference                                                                                                                                                                                             | Structural decision worth transferring                                                                                                                                                        | Why it fits Part 05                                                                                                                     | Do not copy                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [UIZZE · Zellerfeld capture](https://singapore.objective.company/design-media/5b/5b601f7677593817a37752922ba6f381043e3c21836e31f6a904d0fcb2941a65.webp) · [live site](https://www.zellerfeld.com/)    | One dominant media field, a compact ranked rail, and contextual information that changes without duplicating the whole composition.                                                           | ScholarAI needs one dominant evidence viewport with a legible active-system state.                                                      | E-commerce chrome, lifestyle photography, product claims, rounded buy card, or Zellerfeld's palette.                                 |
+| [UIZZE · Bécane capture](https://singapore.objective.company/design-media/b1/b1a0e59213caa0615c87b25c7871f19d3e11aa22112eac1ea5d9a2204fe6e89e.webp) · [live collection](https://www.becaneparis.com/) | Sparse catalogue plane with a visible collection count and objects treated as an index rather than decorated cards.                                                                           | Financial Planning can read as a compact source archive without pretending to be a current live product.                                | Fashion silhouettes, extreme emptiness, commerce controls, or tiny illegible objects.                                                |
+| [UIZZE · 099 SUPPLY capture](https://singapore.objective.company/design-media/c4/c455441505aa7c6a32d953222c0703a9068bb3688bb3eb527b6502931b95cbca.webp) · [live catalogue](https://099.supply/)       | Stable item IDs, terse metadata, and consistent preview affordances make a dense catalogue scannable.                                                                                         | ScholarAI evidence labels and Financial's three repository nodes need stable names and concise metadata.                                | The marketplace grid, mockup imagery, monochrome branding, or its number of tiles.                                                   |
+| [Swaraj Portfolio '25](https://portfolio-25-phi.vercel.app/?ref=save.design)                                                                                                                          | A persistent project scene changes from a compact project selector and hands off to a deeper project view. Desktop uses a large shared visual field; compact mode keeps a direct linear path. | This is the accepted overall migration reference and confirms that supporting work can share one scene instead of becoming equal cards. | Portrait imagery, condensed font, exact thumbnail rail, tiny mobile previews, inaccessible empty alt text, or its content hierarchy. |
 
 Motion implementation should follow the current official Motion APIs already
 used by V2:
@@ -113,19 +113,19 @@ used by V2:
 
 ## Design contract
 
-| Field | Decision |
-| --- | --- |
-| Screen job | Prove that Tu can build and evaluate an end-to-end AI research product, then connect that work to an earlier backend foundation without diluting the flagship VCareer story. |
-| Primary user and action | A recruiter or engineering manager inspects ScholarAI's retrieval, grounding, and evaluation evidence, opens its source, then optionally traces Financial Planning across API, Web, and Worker archives. |
-| Content hierarchy | 1. Part 05 framing. 2. ScholarAI problem and end-to-end solo scope. 3. ScholarAI product/evaluation evidence and source. 4. Financial Planning backend-lead archive. 5. Three repository nodes and one compact interface record. ScholarAI receives roughly 75–85% of the visual/time budget. |
-| Navigation and controls | Desktop scroll moves through three ScholarAI evidence plateaus. The evaluation plateau exposes explicit QA/Refusal controls. Financial Planning is a static archive topology with three real repository links; it has no project switcher, gallery carousel, or fake live action. |
-| Visual language | Mineral-light chapter after the dark VCareer flagship. Anybody display type, Be Vietnam Pro body, IBM Plex Mono evidence labels, square media framing, hairline rails, deep ink, and existing cyan/warm signals. Product screenshots keep their real colors and are not filtered into brand art. |
-| Signature motion | The VCareer lime relay crosses the chapter boundary as one line, expands into the ScholarAI retrieval/grounding/evaluation rail, then compresses into a three-node API → Web → Worker archive topology. It never splits into two equal project lanes. |
-| Required states | ScholarAI Retrieve, Ground, Evaluate-QA, Evaluate-Refusal, image loading/error, Financial archive, public-source link, static, compact, no-JavaScript, and live reduced-motion preference changes. |
-| Responsive behavior | At 1024px and above, only ScholarAI receives a sticky evidence stage. Financial Planning follows as a compact non-sticky archive. At 320–1023px both become deliberate linear chapters; all evidence names and repository actions remain visible without hover. |
-| Evidence used | The four references above; current Part 01–04 motion language; `src/data/projects.ts`; 21 local screenshots; full reachable Git history/blame for ScholarAI; the three public Financial Planning repositories; and owner-confirmed scope/context. |
-| Forbidden defaults | Equal project cards or equal dwell time, horizontal-scroll hijacking, generic bento grids, autoplay carousels, a 14-image Financial gallery, tiny thumbnail-only mobile UI, tech-chip walls, hover-only copy, invented user metrics, a live-demo CTA for an archived system, stretched screenshots, or a second VCareer-length case study. |
-| Acceptance criteria | ScholarAI is unmistakably the dominant Part 05 proof; its three evidence jobs are understood without opening source; Financial Planning reads as backend provenance rather than a current product claim; all controls and links are real; VI/EN and reverse scroll work; no-JS/reduced-motion preserve content; and Part 05 does not affect Hero LCP requests. |
+| Field                   | Decision                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Screen job              | Prove that Tu can build and evaluate an end-to-end AI research product, then connect that work to an earlier backend foundation without diluting the flagship VCareer story.                                                                                                                                                                                   |
+| Primary user and action | A recruiter or engineering manager inspects ScholarAI's retrieval, grounding, and evaluation evidence, opens its source, then optionally traces Financial Planning across API, Web, and Worker archives.                                                                                                                                                       |
+| Content hierarchy       | 1. Part 05 framing. 2. ScholarAI problem and end-to-end solo scope. 3. ScholarAI product/evaluation evidence and source. 4. Financial Planning backend-lead archive. 5. Three repository nodes and one compact interface record. ScholarAI receives roughly 75–85% of the visual/time budget.                                                                  |
+| Navigation and controls | Desktop scroll moves through three ScholarAI evidence plateaus. The evaluation plateau exposes explicit QA/Refusal controls. Financial Planning is a static archive topology with three real repository links; it has no project switcher, gallery carousel, or fake live action.                                                                              |
+| Visual language         | Mineral-light chapter after the dark VCareer flagship. Anybody display type, Be Vietnam Pro body, IBM Plex Mono evidence labels, square media framing, hairline rails, deep ink, and existing cyan/warm signals. Product screenshots keep their real colors and are not filtered into brand art.                                                               |
+| Signature motion        | The VCareer lime relay crosses the chapter boundary as one line, expands into the ScholarAI retrieval/grounding/evaluation rail, then compresses into a three-node API → Web → Worker archive topology. It never splits into two equal project lanes.                                                                                                          |
+| Required states         | ScholarAI Retrieve, Ground, Evaluate-QA, Evaluate-Refusal, image loading/error, Financial archive, public-source link, static, compact, no-JavaScript, and live reduced-motion preference changes.                                                                                                                                                             |
+| Responsive behavior     | At 1024px and above, only ScholarAI receives a sticky evidence stage. Financial Planning follows as a compact non-sticky archive. At 320–1023px both become deliberate linear chapters; all evidence names and repository actions remain visible without hover.                                                                                                |
+| Evidence used           | The four references above; current Part 01–04 motion language; `src/data/projects.ts`; 21 local screenshots; full reachable Git history/blame for ScholarAI; the three public Financial Planning repositories; and owner-confirmed scope/context.                                                                                                              |
+| Forbidden defaults      | Equal project cards or equal dwell time, horizontal-scroll hijacking, generic bento grids, autoplay carousels, a 14-image Financial gallery, tiny thumbnail-only mobile UI, tech-chip walls, hover-only copy, invented user metrics, a live-demo CTA for an archived system, stretched screenshots, or a second VCareer-length case study.                     |
+| Acceptance criteria     | ScholarAI is unmistakably the dominant Part 05 proof; its three evidence jobs are understood without opening source; Financial Planning reads as backend provenance rather than a current product claim; all controls and links are real; VI/EN and reverse scroll work; no-JS/reduced-motion preserve content; and Part 05 does not affect Hero LCP requests. |
 
 ## Proposed content architecture
 
@@ -133,10 +133,10 @@ used by V2:
 
 Provisional copy, pending owner approval:
 
-| Element | VI | EN |
-| --- | --- | --- |
-| Eyebrow | `05 / HỆ THỐNG & BẰNG CHỨNG` | `05 / SYSTEMS & EVIDENCE` |
-| Title | `AI hiện tại. Nền tảng phía sau.` | `Current AI work. The foundation behind it.` |
+| Element | VI                                                                                                                                     | EN                                                                                                                                |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Eyebrow | `05 / HỆ THỐNG & BẰNG CHỨNG`                                                                                                           | `05 / SYSTEMS & EVIDENCE`                                                                                                         |
+| Title   | `AI hiện tại. Nền tảng phía sau.`                                                                                                      | `Current AI work. The foundation behind it.`                                                                                      |
 | Framing | `ScholarAI cho thấy cách mình xây một sản phẩm AI end-to-end; Financial Planning lưu lại nền tảng backend dẫn đến công việc hiện tại.` | `ScholarAI shows how I build an AI product end to end; Financial Planning records the backend foundation behind my current work.` |
 
 The opener is intentionally shorter than Part 04 and states the asymmetry up
@@ -230,6 +230,18 @@ Technology never replaces personal scope or outcome evidence.
 This handoff is isolated in checkpoint 05B because the previous transitions
 showed that seam height and line placement need live visual approval.
 
+05B implements that contract with one shared signal axis aligned to the V2
+system rail. The relay begins only after the sticky VCareer scene has released,
+inside a `240–320px` dark transfer bay with no copy. It travels vertically to
+the mineral boundary, lands on one blue node, then splits into two visible
+signal packets. Each packet stays on the leading edge of its blue branch while
+travelling left or right across the seam. This keeps the outgoing CTA and
+incoming chapter title completely clear while making the 90-degree fork
+legible. The header remains on the VCareer token set until the mineral surface
+itself reaches the header rail, then foreground, accent, border, shadow, glass
+layer, and the VCareer trace switch as one discrete Work state. The same
+scroll-derived values play backward without direction flags.
+
 ### Desktop ScholarAI evidence stage
 
 - The chapter uses native vertical scroll; it does not capture the wheel or turn
@@ -277,6 +289,8 @@ showed that seam height and line placement need live visual approval.
 - Reduced motion removes the sticky spatial choreography, signal travel, clip
   wipes, and topology draw. ScholarAI evidence and the Financial archive render
   sequentially with either no transition or a short opacity change.
+- The blue seam remains visible in reduced-motion mode, but the travelling
+  cursor and split packets are hidden.
 - A live preference change fully clears active transforms and restores the
   correct layout in both directions.
 - With JavaScript disabled, the server-rendered section shows ScholarAI's
@@ -289,16 +303,16 @@ showed that seam height and line placement need live visual approval.
 The Part 05 parser should preserve the existing V2 query contract and add one
 independent `work` control:
 
-| Query | Expected result |
-| --- | --- |
-| `?intro=0&work=static#work` | Disable Part 05 pinning and render all evidence sequentially. |
-| `?intro=0&work=retrieve#work` | Force the desktop ScholarAI Retrieve plateau. |
-| `?intro=0&work=ground#work` | Force the desktop ScholarAI Ground plateau. |
-| `?intro=0&work=evaluate-qa#work` | Force ScholarAI Evaluate with the QA benchmark. |
-| `?intro=0&work=evaluate-refusal#work` | Force ScholarAI Evaluate with the refusal benchmark. |
-| `?intro=0&work=finplanning#work` | Scroll directly to the non-sticky Financial archive. |
-| `?intro=0&work=loading#work` | Reserve every media surface and expose localized loading feedback. |
-| `?intro=0&work=image-error#work` | Replace media with localized semantic fallbacks. |
+| Query                                 | Expected result                                                    |
+| ------------------------------------- | ------------------------------------------------------------------ |
+| `?intro=0&work=static#work`           | Disable Part 05 pinning and render all evidence sequentially.      |
+| `?intro=0&work=retrieve#work`         | Force the desktop ScholarAI Retrieve plateau.                      |
+| `?intro=0&work=ground#work`           | Force the desktop ScholarAI Ground plateau.                        |
+| `?intro=0&work=evaluate-qa#work`      | Force ScholarAI Evaluate with the QA benchmark.                    |
+| `?intro=0&work=evaluate-refusal#work` | Force ScholarAI Evaluate with the refusal benchmark.               |
+| `?intro=0&work=finplanning#work`      | Scroll directly to the non-sticky Financial archive.               |
+| `?intro=0&work=loading#work`          | Reserve every media surface and expose localized loading feedback. |
+| `?intro=0&work=image-error#work`      | Replace media with localized semantic fallbacks.                   |
 
 Locale switching must preserve `intro`, `hold`, `portrait`, `story`,
 `showcase`, and `work`.

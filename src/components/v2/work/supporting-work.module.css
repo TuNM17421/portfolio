@@ -7,12 +7,162 @@
   --work-signal: #0060f0;
   --work-lime: #83bd2d;
   --work-trace: #4b7188;
+  --work-signal-x: max(
+    calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px)),
+    calc((100vw - 1600px) / 2 + 96px)
+  );
   position: relative;
   z-index: 10;
   overflow: clip;
   color: var(--work-night);
   background: var(--work-sheet);
   scroll-margin-top: 76px;
+}
+
+.chapterHandoff {
+  position: relative;
+  z-index: 2;
+  height: clamp(240px, 34svh, 320px);
+  overflow: visible;
+  color: var(--work-lime);
+  background: var(--work-night);
+}
+
+.chapterHandoff::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(192, 216, 240, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 216, 240, 0.045) 1px, transparent 1px);
+  background-position: clamp(22px, 4.6vw, 72px) 0;
+  background-size: clamp(76px, 8vw, 122px) clamp(76px, 8vw, 122px);
+  mask-image: linear-gradient(to bottom, transparent, black 24%, black 100%);
+  content: "";
+}
+
+.handoffStem,
+.handoffCursor,
+.handoffTerminal,
+.handoffTrackLeft,
+.handoffTrackRight,
+.handoffPacketLaneLeft,
+.handoffPacketLaneRight,
+.handoffPacketLeft,
+.handoffPacketRight {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.handoffCursor {
+  z-index: 4;
+  left: var(--work-signal-x);
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  box-shadow: 0 0 15px 3px rgba(0, 96, 240, 0.28);
+  transform: translate(-50%, -50%);
+  animation: work-signal-pulse 720ms ease-in-out infinite alternate;
+  will-change: top, opacity, border-color, background-color;
+}
+
+.handoffStem {
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: var(--work-signal-x);
+  width: 1px;
+  background: linear-gradient(to bottom, var(--work-lime), var(--work-signal));
+  box-shadow: 0 0 18px rgba(0, 96, 240, 0.14);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.handoffTerminal {
+  z-index: 3;
+  bottom: -6px;
+  left: calc(var(--work-signal-x) - 6px);
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--work-night);
+  background: var(--work-signal);
+  box-shadow:
+    0 0 0 1px var(--work-signal),
+    0 0 20px 4px rgba(0, 96, 240, 0.2);
+  will-change: transform;
+}
+
+.handoffTrackLeft,
+.handoffTrackRight {
+  z-index: 1;
+  bottom: -1px;
+  height: 2px;
+  will-change: transform;
+}
+
+.handoffTrackLeft {
+  right: calc(100% - var(--work-signal-x));
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 96, 240, 0.2), var(--work-signal));
+  transform-origin: right center;
+}
+
+.handoffTrackRight {
+  right: 0;
+  left: var(--work-signal-x);
+  background: linear-gradient(90deg, var(--work-signal), rgba(0, 96, 240, 0.2));
+  transform-origin: left center;
+}
+
+.handoffPacketLaneLeft,
+.handoffPacketLaneRight {
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+}
+
+.handoffPacketLaneLeft {
+  right: calc(100% - var(--work-signal-x));
+}
+
+.handoffPacketLaneRight {
+  left: var(--work-signal-x);
+}
+
+.handoffPacketLeft,
+.handoffPacketRight {
+  bottom: -3px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--work-sheet);
+  background: var(--work-signal);
+  box-shadow: 0 0 15px 3px rgba(0, 96, 240, 0.3);
+  animation: work-signal-pulse 720ms ease-in-out infinite alternate;
+  will-change: right, left, opacity;
+}
+
+.handoffPacketLeft {
+  transform: translateX(50%);
+}
+
+.handoffPacketRight {
+  transform: translateX(-50%);
+}
+
+@keyframes work-signal-pulse {
+  from {
+    filter: brightness(0.82);
+    box-shadow: 0 0 8px 1px rgba(0, 96, 240, 0.16);
+  }
+
+  to {
+    filter: brightness(1.18);
+    box-shadow: 0 0 18px 4px rgba(0, 96, 240, 0.4);
+  }
 }
 
 .work::before {
@@ -41,6 +191,7 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
+  background: var(--work-sheet);
   padding: clamp(92px, 10vw, 150px) clamp(22px, 4.6vw, 72px)
     clamp(112px, 13vw, 204px);
 }
@@ -909,7 +1060,12 @@
 
 @media (max-width: 767px) {
   .work {
+    --work-signal-x: 26.5px;
     scroll-margin-top: 68px;
+  }
+
+  .chapterHandoff {
+    height: clamp(150px, 24svh, 210px);
   }
 
   .work::before {
@@ -1180,6 +1336,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .handoffCursor,
+  .handoffPacketLeft,
+  .handoffPacketRight {
+    animation: none;
+  }
+
   .imageFrame[data-image-state="loading"]::after {
     background-position: 50% 0;
     animation: none;

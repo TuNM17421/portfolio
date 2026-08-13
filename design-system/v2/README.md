@@ -1,6 +1,6 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–04 approved; Part 05 evidence audit resolved and ready for 05A approval
+> **Status:** Parts 01–04 approved; Part 05 checkpoints 05A–05B approved
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 05 ScholarAI evidence stage, Financial Planning source archive, responsive fallbacks, and phased review gates
 > **Implementation status:** Part 04 is complete through `050f023`; Part 05 implementation has not started
@@ -147,7 +147,7 @@ Relevant implementation references:
 | 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                   |
 | 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                |
 | 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                                |
-| 05   | ScholarAI evidence + backend archive             | Desktop/mobile evidence browsing and source topology      | Evidence audit resolved; ready for 05A approval                      |
+| 05   | ScholarAI evidence + backend archive             | Desktop/mobile evidence browsing and source topology      | 05A approved · `cc631b4`; 05B approved                               |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                               |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                               |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                               |

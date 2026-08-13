@@ -7,14 +7,8 @@ import {
   type IntroPhase,
   type PortraitOutcome,
 } from "@/components/v2/intro/intro-sequence";
-import {
-  HeroV2,
-  type HeroV2Copy,
-} from "@/components/v2/hero/hero-v2";
-import {
-  AboutV2,
-  type AboutV2Copy,
-} from "@/components/v2/about/about-v2";
+import { HeroV2, type HeroV2Copy } from "@/components/v2/hero/hero-v2";
+import { AboutV2, type AboutV2Copy } from "@/components/v2/about/about-v2";
 import {
   VCareerShowcase,
   type VCareerShowcaseCopy,
@@ -23,6 +17,7 @@ import {
   SupportingWork,
   type SupportingWorkCopy,
 } from "@/components/v2/work/supporting-work";
+import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
@@ -109,9 +104,11 @@ export function PortfolioV2Shell({
     reduceMotion,
     forceStatic: showcaseControls.forceStatic,
   });
+  const supportingWorkHandoff = useSupportingWorkHandoff({ reduceMotion });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
+    workSectionRef: supportingWorkHandoff.surfaceRef,
     reduceMotion,
   });
   const [phase, setPhase] = useState<IntroPhase>("complete");
@@ -133,8 +130,7 @@ export function PortfolioV2Shell({
   }, []);
 
   const sceneIsActive = phase === "complete";
-  const headerWordmarkHidden =
-    phase === "exiting" || wordmarkTransitionActive;
+  const headerWordmarkHidden = phase === "exiting" || wordmarkTransitionActive;
 
   return (
     <div
@@ -188,6 +184,7 @@ export function PortfolioV2Shell({
         />
         <SupportingWork
           copy={workCopy}
+          handoff={supportingWorkHandoff}
           imageReviewState={workControls.imageState}
           navigationOpen={mobileNavigationOpen}
         />
