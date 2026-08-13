@@ -229,8 +229,6 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           workCopy={{
             eyebrow: workT("eyebrow"),
             axis: workT("axis"),
-            title: workT("title"),
-            framing: workT("framing"),
             scholar: {
               kicker: workT("scholar.kicker"),
               status: workT("scholar.status"),

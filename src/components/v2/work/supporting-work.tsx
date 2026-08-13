@@ -43,8 +43,6 @@ type FinancialMediaCopy = {
 export type SupportingWorkCopy = {
   eyebrow: string;
   axis: string;
-  title: string;
-  framing: string;
   scholar: {
     kicker: string;
     status: string;
@@ -360,10 +358,9 @@ export function SupportingWork({
           <p>{copy.axis}</p>
         </header>
 
-        <header className={styles.chapterIntro}>
-          <h2 id="v2-work-title">{copy.title}</h2>
-          <p>{copy.framing}</p>
-        </header>
+        <h2 id="v2-work-title" className={styles.visuallyHidden}>
+          {copy.eyebrow}
+        </h2>
 
         <article className={styles.scholar} aria-labelledby="v2-scholar-title">
           <header className={styles.scholarHeader}>
@@ -544,6 +541,7 @@ export function SupportingWork({
                             return (
                               <button
                                 key={benchmark}
+                                id={`${benchmarkPanelId}-tab-${benchmark}`}
                                 type="button"
                                 role="tab"
                                 aria-selected={selected}
@@ -574,6 +572,7 @@ export function SupportingWork({
                           id={benchmarkPanelId}
                           className={styles.benchmarkViewport}
                           role="tabpanel"
+                          aria-labelledby={`${benchmarkPanelId}-tab-${visibleBenchmark}`}
                           data-benchmark-current={visibleBenchmark}
                         >
                           <AnimatePresence mode="wait" initial={false}>
@@ -603,7 +602,7 @@ export function SupportingWork({
                                 loadingLabel={copy.imageLoading}
                                 name={visibleBenchmarkEvidence.label}
                                 reviewState={imageReviewState}
-                                sizes="(min-width: 1024px) 68vw, 64vw"
+                                sizes="(min-width: 1024px) 68vw, (min-width: 768px) 77vw, calc(100vw - 40px)"
                                 variant="scholar"
                               />
                               <figcaption>
@@ -691,6 +690,7 @@ export function SupportingWork({
           </header>
 
           <section
+            ref={archive.topologyRef}
             className={styles.topology}
             aria-labelledby="v2-financial-topology-title"
           >
@@ -698,20 +698,24 @@ export function SupportingWork({
               {copy.financial.topologyLabel}
             </h4>
             <div className={styles.topologyDiagram} aria-hidden>
-              <span>{copy.financial.domainLabel}</span>
+              <span className={styles.topologyDomainLabel}>
+                {copy.financial.domainLabel}
+              </span>
 
               <svg
                 className={styles.topologyDesktopDiagram}
                 viewBox="0 0 1000 100"
                 preserveAspectRatio="none"
               >
-                <motion.path
-                  className={styles.topologyRelay}
-                  d="M0 10 H500 V28"
+                <motion.circle
+                  className={styles.topologyHub}
+                  cx="500"
+                  cy="28"
+                  r="5"
                   style={
                     archive.enabled
-                      ? archive.styles.relay
-                      : { pathLength: 1, opacity: 1 }
+                      ? archive.styles.hub
+                      : { scale: 1, opacity: 1 }
                   }
                 />
                 <motion.path
@@ -761,13 +765,15 @@ export function SupportingWork({
                 viewBox="0 0 1000 132"
                 preserveAspectRatio="none"
               >
-                <motion.path
-                  className={styles.topologyRelay}
-                  d="M0 10 H500 V30"
+                <motion.circle
+                  className={styles.topologyHub}
+                  cx="500"
+                  cy="30"
+                  r="5"
                   style={
                     archive.enabled
-                      ? archive.styles.relay
-                      : { pathLength: 1, opacity: 1 }
+                      ? archive.styles.hub
+                      : { scale: 1, opacity: 1 }
                   }
                 />
                 <motion.path

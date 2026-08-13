@@ -4,6 +4,7 @@ import vi from "../../../messages/vi.json";
 import {
   FINANCIAL_ARCHIVE_IMAGES,
   FINANCIAL_ARCHIVE_REPOSITORIES,
+  FINANCIAL_TOPOLOGY_TIMELINE,
   parseSupportingWorkControls,
   resolveScholarAIEvidenceStage,
   resolveSupportingWorkStoryMode,
@@ -53,6 +54,21 @@ describe("portfolio v2 supporting work foundation", () => {
     ]);
     expect(FINANCIAL_ARCHIVE_IMAGES.map((image) => image.src)).not.toContain(
       "/projects/finplanning/list_expenses.png",
+    );
+  });
+
+  it("draws the Financial topology from one center hub with simultaneous drops", () => {
+    expect(FINANCIAL_TOPOLOGY_TIMELINE).toEqual({
+      hub: { start: 0.04, end: 0.16 },
+      ledger: { start: 0.12, end: 0.48 },
+      drops: { start: 0.44, end: 0.82 },
+      contacts: { start: 0.78, end: 0.94 },
+    });
+    expect(FINANCIAL_TOPOLOGY_TIMELINE.drops.start).toBeLessThan(
+      FINANCIAL_TOPOLOGY_TIMELINE.ledger.end,
+    );
+    expect(FINANCIAL_TOPOLOGY_TIMELINE.contacts.start).toBeLessThan(
+      FINANCIAL_TOPOLOGY_TIMELINE.drops.end,
     );
   });
 

@@ -1,6 +1,6 @@
 # Part 05 — ScholarAI evidence + backend archive
 
-> **Status:** Checkpoints 05A–05D approved; 05E is next
+> **Status:** Checkpoints 05A–05D approved; 05E is in review
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#work`, `/en/v2?intro=0#work`, and deterministic `?work=` states listed below
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
@@ -117,10 +117,10 @@ used by V2:
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Screen job              | Prove that Tu can build and evaluate an end-to-end AI research product, then connect that work to an earlier backend foundation without diluting the flagship VCareer story.                                                                                                                                                                                   |
 | Primary user and action | A recruiter or engineering manager inspects ScholarAI's retrieval, grounding, and evaluation evidence, opens its source, then optionally traces Financial Planning across API, Web, and Worker archives.                                                                                                                                                       |
-| Content hierarchy       | 1. Part 05 framing. 2. ScholarAI problem and end-to-end solo scope. 3. ScholarAI product/evaluation evidence and source. 4. Financial Planning backend-lead archive. 5. Three repository nodes and one compact interface record. ScholarAI receives roughly 75–85% of the visual/time budget.                                                                  |
-| Navigation and controls | Desktop scroll moves through three ScholarAI evidence plateaus. The evaluation plateau exposes explicit QA/Refusal controls. Financial Planning is a static archive topology with three real repository links; it has no project switcher, gallery carousel, or fake live action.                                                                              |
+| Content hierarchy       | 1. Compact Part 05 rail. 2. ScholarAI problem and end-to-end solo scope. 3. ScholarAI product/evaluation evidence and source. 4. Financial Planning backend-lead archive. 5. Three repository nodes and one compact interface record. ScholarAI receives roughly 75–85% of the visual/time budget.                                                             |
+| Navigation and controls | Desktop scroll moves through three ScholarAI evidence plateaus. The evaluation plateau exposes explicit QA/Refusal controls. Financial Planning uses a non-sticky, reversible archive topology with three real repository links; it has no project switcher, gallery carousel, or fake live action.                                                            |
 | Visual language         | Mineral-light chapter after the dark VCareer flagship. Anybody display type, Be Vietnam Pro body, IBM Plex Mono evidence labels, square media framing, hairline rails, deep ink, and existing cyan/warm signals. Product screenshots keep their real colors and are not filtered into brand art.                                                               |
-| Signature motion        | The VCareer lime relay crosses the chapter boundary as one line, expands into the ScholarAI retrieval/grounding/evaluation rail, then compresses into a three-node API → Web → Worker archive topology. It never splits into two equal project lanes.                                                                                                          |
+| Signature motion        | The VCareer lime relay crosses the chapter boundary as one line and expands into the ScholarAI retrieval/grounding/evaluation rail. Financial Planning begins from one cyan shared-domain hub: its ledger opens from the center, then three synchronized drops contact API, Web, and Worker. It never becomes two equal project lanes.                         |
 | Required states         | ScholarAI Retrieve, Ground, Evaluate-QA, Evaluate-Refusal, image loading/error, Financial archive, public-source link, static, compact, no-JavaScript, and live reduced-motion preference changes.                                                                                                                                                             |
 | Responsive behavior     | At 1024px and above, only ScholarAI receives a sticky evidence stage. Financial Planning follows as a compact non-sticky archive. At 320–1023px both become deliberate linear chapters; all evidence names and repository actions remain visible without hover.                                                                                                |
 | Evidence used           | The four references above; current Part 01–04 motion language; `src/data/projects.ts`; 21 local screenshots; full reachable Git history/blame for ScholarAI; the three public Financial Planning repositories; and owner-confirmed scope/context.                                                                                                              |
@@ -129,19 +129,17 @@ used by V2:
 
 ## Proposed content architecture
 
-### Chapter opener
+### Chapter rail
 
-Provisional copy, pending owner approval:
+| Element | VI                               | EN                                |
+| ------- | -------------------------------- | --------------------------------- |
+| Eyebrow | `05 / HỆ THỐNG & BẰNG CHỨNG`     | `05 / SYSTEMS & EVIDENCE`         |
+| Axis    | `AI HIỆN TẠI → NỀN TẢNG BACKEND` | `CURRENT AI → BACKEND FOUNDATION` |
 
-| Element | VI                                                                                                                                     | EN                                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Eyebrow | `05 / HỆ THỐNG & BẰNG CHỨNG`                                                                                                           | `05 / SYSTEMS & EVIDENCE`                                                                                                         |
-| Title   | `AI hiện tại. Nền tảng phía sau.`                                                                                                      | `Current AI work. The foundation behind it.`                                                                                      |
-| Framing | `ScholarAI cho thấy cách mình xây một sản phẩm AI end-to-end; Financial Planning lưu lại nền tảng backend dẫn đến công việc hiện tại.` | `ScholarAI shows how I build an AI product end to end; Financial Planning records the backend foundation behind my current work.` |
-
-The opener is intentionally shorter than Part 04 and states the asymmetry up
-front. It yields first to ScholarAI; Financial Planning is not introduced as an
-equal choice.
+The approved revision removes the large standalone chapter opener and its
+framing paragraph. The compact rail now hands off directly to ScholarAI,
+reducing scroll length without presenting Financial Planning as an equal
+project choice.
 
 ### Project 01 — ScholarAI
 
@@ -262,9 +260,11 @@ scroll-derived values play backward without direction flags.
 
 ### Financial archive handoff
 
-- After ScholarAI releases its pin, the relay contracts into a quiet horizontal
-  ledger and then branches once into `API`, `Web`, and `Worker` nodes. The branch
-  represents actual repository boundaries, so its geometry carries meaning.
+- After ScholarAI releases its pin, Financial Planning introduces one cyan hub
+  directly below the shared-domain label. Its ledger opens from the center to
+  both sides; three vertical signals then fall within the same progress window
+  and contact `API`, `Web`, and `Worker` together. The branch represents actual
+  repository boundaries, so its geometry carries meaning.
 - Financial Planning does not pin. The topology, backend-lead context, two small
   interface records, and three source links are visible in normal document flow.
 - The branch draws only while its archive block enters view and reverses on
@@ -379,7 +379,7 @@ deliberate.
 
 ### 05D — Financial archive, compact input model, and fallbacks
 
-- Add the API → Web → Worker archive topology and its reversible one-time draw;
+- Add the API → Web → Worker archive topology and its reversible center-out draw;
   keep the archive itself non-sticky at every width.
 - Replace the ScholarAI desktop pin below 1024px with the approved linear
   composition.
@@ -415,6 +415,38 @@ story; resize does not retain desktop transforms.
 
 **What to review:** final whole-page rhythm and any remaining effect that feels
 decorative, repetitive, or tiring after the longer VCareer chapter.
+
+### 05E audit record
+
+- The 05D checkpoint is committed at `9fbf3e0`. The 05E fixes remain
+  uncommitted for live review.
+- `106/106` unit tests, lint, TypeScript, production build, and diff checks
+  pass. The V2 route moved from `73.4 kB / 184 kB` at `050f023` to
+  `79.4 kB / 191 kB` after Part 05.
+- VI and EN pass at `320×568`, `375×812`, `430×932`, `768×1024`,
+  `1023×768`, `1024×768`, `1280×720`, and `1440×900` with no horizontal
+  document overflow or sub-44px Part 05 controls.
+- The finish gate fixed two blockers: low-contrast inactive evidence metadata,
+  and intrinsic benchmark width that clipped the Refusal control and evidence
+  frame below `430px`. The benchmark tabpanel is now programmatically labelled
+  by its active tab.
+- Axe reports no Part 05 violations after the layered background is isolated;
+  Lighthouse Accessibility, Best Practices, and SEO each score `100`. Heading
+  order, roving-tab keyboard behavior, visible focus, deterministic anchors,
+  image-error fallbacks, and locale-query preservation pass.
+- No-JavaScript mode exposes six evidence images/captions and all four source
+  links. Live reduced-motion changes, `768↔1440` resize, and reverse scroll
+  restore the same static or scroll-linked state without stale transforms.
+- Fresh-load observation records `CLS 0`, the Hero portrait as LCP, one `50ms`
+  long task, and zero initial ScholarAI/Financial image requests. Reviewing all
+  six Part 05 images transfers about `155 kB`; all remain lazy.
+- Lighthouse mobile runs score `79–80 / 100 / 100 / 100` with throttled LCP at
+  `4.8–5.0s`, while desktop scores `99 / 100 / 100 / 100` with LCP `1.0s`.
+  The LCP request remains eager, high priority, and discoverable; Part 05 does
+  not change the approved Hero source or request.
+- Full-page interaction sweeps produce no console errors, page errors, failed
+  requests, or `4xx/5xx` responses. ScholarAI and all three Financial Planning
+  repository links resolve with HTTP `200`.
 
 ## Planned code boundary
 

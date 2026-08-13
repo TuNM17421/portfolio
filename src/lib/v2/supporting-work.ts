@@ -122,6 +122,13 @@ export const FINANCIAL_ARCHIVE_REPOSITORIES = [
 export type FinancialArchiveRepositoryKey =
   (typeof FINANCIAL_ARCHIVE_REPOSITORIES)[number]["key"];
 
+export const FINANCIAL_TOPOLOGY_TIMELINE = {
+  hub: { start: 0.04, end: 0.16 },
+  ledger: { start: 0.12, end: 0.48 },
+  drops: { start: 0.44, end: 0.82 },
+  contacts: { start: 0.78, end: 0.94 },
+} as const;
+
 export function parseSupportingWorkControls(
   value: string,
 ): SupportingWorkControls {

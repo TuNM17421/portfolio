@@ -7,7 +7,10 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import type { FinancialArchiveRepositoryKey } from "@/lib/v2/supporting-work";
+import {
+  FINANCIAL_TOPOLOGY_TIMELINE,
+  type FinancialArchiveRepositoryKey,
+} from "@/lib/v2/supporting-work";
 
 type FinancialArchiveMotionOptions = {
   focusArchive: boolean;
@@ -17,10 +20,11 @@ type FinancialArchiveMotionOptions = {
 
 export type FinancialArchiveMotionController = {
   sectionRef: React.RefObject<HTMLElement | null>;
+  topologyRef: React.RefObject<HTMLElement | null>;
   enabled: boolean;
   focusArchive: boolean;
   styles: {
-    relay: MotionStyle;
+    hub: MotionStyle;
     ledgerLeft: MotionStyle;
     ledgerRight: MotionStyle;
     branches: Record<FinancialArchiveRepositoryKey, MotionStyle>;
@@ -43,17 +47,10 @@ function usePathDraw(
 function useNodeArrival(
   progress: ReturnType<typeof useSpring>,
   start: number,
+  end = Math.min(start + 0.12, 1),
 ): MotionStyle {
-  const scale = useTransform(
-    progress,
-    [start, Math.min(start + 0.12, 1)],
-    [0.4, 1],
-  );
-  const opacity = useTransform(
-    progress,
-    [start, Math.min(start + 0.08, 1)],
-    [0, 1],
-  );
+  const scale = useTransform(progress, [start, end], [0.4, 1]);
+  const opacity = useTransform(progress, [start, end], [0, 1]);
 
   return { scale, opacity };
 }
@@ -64,10 +61,11 @@ export function useFinancialArchiveMotion({
   reduceMotion,
 }: FinancialArchiveMotionOptions): FinancialArchiveMotionController {
   const sectionRef = useRef<HTMLElement>(null);
+  const topologyRef = useRef<HTMLElement>(null);
   const [hydrated, setHydrated] = useState(false);
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 88%", "start 28%"],
+    target: topologyRef,
+    offset: ["start 82%", "start 34%"],
   });
   const progress = useSpring(scrollYProgress, {
     stiffness: 126,
@@ -121,23 +119,29 @@ export function useFinancialArchiveMotion({
     };
   }, [focusArchive, hydrated]);
 
-  const relay = usePathDraw(progress, 0, 0.22);
-  const ledgerLeft = usePathDraw(progress, 0.16, 0.46);
-  const ledgerRight = usePathDraw(progress, 0.16, 0.46);
-  const apiBranch = usePathDraw(progress, 0.36, 0.58);
-  const webBranch = usePathDraw(progress, 0.48, 0.7);
-  const workerBranch = usePathDraw(progress, 0.6, 0.82);
-  const apiNode = useNodeArrival(progress, 0.5);
-  const webNode = useNodeArrival(progress, 0.64);
-  const workerNode = useNodeArrival(progress, 0.78);
-  const mobileTraceScale = useTransform(progress, [0.12, 0.88], [0, 1]);
+  const { hub, ledger, drops, contacts } = FINANCIAL_TOPOLOGY_TIMELINE;
+  const hubArrival = useNodeArrival(progress, hub.start, hub.end);
+  const ledgerLeft = usePathDraw(progress, ledger.start, ledger.end);
+  const ledgerRight = usePathDraw(progress, ledger.start, ledger.end);
+  const apiBranch = usePathDraw(progress, drops.start, drops.end);
+  const webBranch = usePathDraw(progress, drops.start, drops.end);
+  const workerBranch = usePathDraw(progress, drops.start, drops.end);
+  const apiNode = useNodeArrival(progress, contacts.start, contacts.end);
+  const webNode = useNodeArrival(progress, contacts.start, contacts.end);
+  const workerNode = useNodeArrival(progress, contacts.start, contacts.end);
+  const mobileTraceScale = useTransform(
+    progress,
+    [ledger.start, drops.end],
+    [0, 1],
+  );
 
   return {
     sectionRef,
+    topologyRef,
     enabled: hydrated && !reduceMotion && !forceStatic && !focusArchive,
     focusArchive,
     styles: {
-      relay,
+      hub: hubArrival,
       ledgerLeft,
       ledgerRight,
       branches: {
