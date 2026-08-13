@@ -481,6 +481,101 @@
       "opensNewWindow": "Opens in a new window",
       "imageLoading": "Resolving product image",
       "imageUnavailable": "Product image unavailable"
+    },
+    "work": {
+      "eyebrow": "05 / SYSTEMS & EVIDENCE",
+      "axis": "CURRENT AI → BACKEND FOUNDATION",
+      "title": "Current AI work. The foundation behind it.",
+      "framing": "ScholarAI shows how I build an AI product end to end. Financial Planning records the backend foundation behind my current work.",
+      "scholar": {
+        "kicker": "AI RESEARCH SYSTEM",
+        "status": "SOLO PROJECT · END-TO-END ENGINEERING",
+        "title": "ScholarAI",
+        "subtitle": "AI-augmented literature discovery and reading workspace",
+        "thesis": "From finding the right paper to tracing an answer back to source: retrieval, PDF reading, notes, citation-aware RAG, and evaluation share one workspace.",
+        "scopeLabel": "One codebase. The complete loop.",
+        "scope": {
+          "search": "Dense + BM25 retrieval fused through Qdrant RRF.",
+          "grounding": "Hierarchical RAG, SSE responses, and citations linked back to PDF pages.",
+          "evaluation": "A LangSmith harness for QA, retrieval, faithfulness, and refusal."
+        },
+        "evidenceLabel": "ENGINEERING EVIDENCE / 03",
+        "screenLabel": "SIGNAL",
+        "evidence": {
+          "retrieve": {
+            "label": "RETRIEVE",
+            "title": "Search by meaning and exact terms.",
+            "caption": "Dense embeddings and BM25 meet in Qdrant RRF, preserving semantic relevance alongside acronyms, author names, and exact-match queries.",
+            "alt": "ScholarAI academic search interface with semantic retrieval and filters"
+          },
+          "ground": {
+            "label": "GROUND",
+            "title": "Answers return to source.",
+            "caption": "Hierarchical RAG retrieves PDF context, streams the response, and attaches citations that reopen the relevant document location.",
+            "alt": "ScholarAI PDF reader and citation-aware chat interface"
+          },
+          "evaluate": {
+            "label": "EVALUATE",
+            "title": "Measure instead of assume.",
+            "caption": "Two LangSmith runs record QA and refusal behavior. Values remain visible as experiment output, not repackaged as an improvement claim.",
+            "qaLabel": "QA / RETRIEVAL",
+            "qaCaption": "Tracks answer presence, citation accuracy, correctness, faithfulness, retrieval hit rate, and latency.",
+            "qaAlt": "ScholarAI QA and retrieval benchmark results in LangSmith",
+            "refusalLabel": "REFUSAL / GUARDRAIL",
+            "refusalCaption": "Tests out-of-scope refusal behavior alongside latency and error rate for each run.",
+            "refusalAlt": "ScholarAI refusal guardrail benchmark results in LangSmith"
+          }
+        },
+        "technology": "FastAPI · Qdrant RRF · PostgreSQL · OpenAI · LangSmith",
+        "testingContext": "Tried hands-on by fellow learners · no metric published because the feedback dataset was not retained.",
+        "sourceState": "Public source · No live demo",
+        "sourceAction": "View ScholarAI source"
+      },
+      "financial": {
+        "eyebrow": "BACKEND FOUNDATION ARCHIVE",
+        "status": "CAPSTONE · BACKEND LEAD · BUILT BEFORE AI-ASSISTED CODING",
+        "title": "Financial Planning",
+        "subtitle": "Internal planning, expense approval, and financial reporting system",
+        "description": "I led the backend for a role-aware financial workflow spanning authentication, authorization, planning terms, expenses, reports, and scheduled processing.",
+        "topologyLabel": "THREE DEPLOYMENT BOUNDARIES",
+        "topology": {
+          "api": {
+            "label": "API",
+            "title": "Spring Boot · SQL Server",
+            "description": "REST APIs, financial rules, and Redis-backed OTP, token, user-detail, and authority state.",
+            "action": "Open API source"
+          },
+          "web": {
+            "label": "WEB",
+            "title": "React · Vite",
+            "description": "Role-aware interfaces for plans, approvals, master data, and reporting.",
+            "action": "Open Web source"
+          },
+          "worker": {
+            "label": "WORKER",
+            "title": "Spring scheduled jobs",
+            "description": "Separate recurring jobs for term state and annual-report aggregation.",
+            "action": "Open Worker source"
+          }
+        },
+        "mediaLabel": "ARCHIVE INTERFACE / 02",
+        "media": {
+          "dashboard": {
+            "label": "DASHBOARD",
+            "caption": "A snapshot of planning terms, departments, and demo expense allocation.",
+            "alt": "Archived Financial Planning dashboard interface"
+          },
+          "report": {
+            "label": "FINANCIAL REPORT",
+            "caption": "The reporting surface connecting planned values to the approval workflow.",
+            "alt": "Archived Financial Planning report interface"
+          }
+        },
+        "sourceState": "Source archive · No live demo or preserved runtime dataset"
+      },
+      "opensNewWindow": "Opens in a new window",
+      "imageLoading": "Resolving evidence image",
+      "imageUnavailable": "Evidence image unavailable"
     }
   },
   "footer": {

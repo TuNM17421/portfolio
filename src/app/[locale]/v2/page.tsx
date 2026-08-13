@@ -38,6 +38,7 @@ type V2PageProps = {
     portrait?: string | string[];
     showcase?: string | string[];
     story?: string | string[];
+    work?: string | string[];
   }>;
 };
 
@@ -67,6 +68,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const storyQuery = typeof query.story === "string" ? query.story : "";
   const showcaseQuery =
     typeof query.showcase === "string" ? query.showcase : "";
+  const workQuery = typeof query.work === "string" ? query.work : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -74,6 +76,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
     locale,
     namespace: "v2.vcareer",
   });
+  const workT = await getTranslations({ locale, namespace: "v2.work" });
 
   return (
     <>
@@ -91,6 +94,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           portraitQuery={portraitQuery}
           showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
+          workQuery={workQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),
@@ -221,6 +225,109 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             opensNewWindow: vcareerT("opensNewWindow"),
             imageLoading: vcareerT("imageLoading"),
             imageUnavailable: vcareerT("imageUnavailable"),
+          }}
+          workCopy={{
+            eyebrow: workT("eyebrow"),
+            axis: workT("axis"),
+            title: workT("title"),
+            framing: workT("framing"),
+            scholar: {
+              kicker: workT("scholar.kicker"),
+              status: workT("scholar.status"),
+              title: workT("scholar.title"),
+              subtitle: workT("scholar.subtitle"),
+              thesis: workT("scholar.thesis"),
+              scopeLabel: workT("scholar.scopeLabel"),
+              scope: [
+                workT("scholar.scope.search"),
+                workT("scholar.scope.grounding"),
+                workT("scholar.scope.evaluation"),
+              ],
+              evidenceLabel: workT("scholar.evidenceLabel"),
+              screenLabel: workT("scholar.screenLabel"),
+              evidence: {
+                retrieve: {
+                  label: workT("scholar.evidence.retrieve.label"),
+                  title: workT("scholar.evidence.retrieve.title"),
+                  caption: workT("scholar.evidence.retrieve.caption"),
+                  alt: workT("scholar.evidence.retrieve.alt"),
+                },
+                ground: {
+                  label: workT("scholar.evidence.ground.label"),
+                  title: workT("scholar.evidence.ground.title"),
+                  caption: workT("scholar.evidence.ground.caption"),
+                  alt: workT("scholar.evidence.ground.alt"),
+                },
+                evaluate: {
+                  label: workT("scholar.evidence.evaluate.label"),
+                  title: workT("scholar.evidence.evaluate.title"),
+                  caption: workT("scholar.evidence.evaluate.caption"),
+                  qaLabel: workT("scholar.evidence.evaluate.qaLabel"),
+                  qaCaption: workT("scholar.evidence.evaluate.qaCaption"),
+                  qaAlt: workT("scholar.evidence.evaluate.qaAlt"),
+                  refusalLabel: workT(
+                    "scholar.evidence.evaluate.refusalLabel",
+                  ),
+                  refusalCaption: workT(
+                    "scholar.evidence.evaluate.refusalCaption",
+                  ),
+                  refusalAlt: workT(
+                    "scholar.evidence.evaluate.refusalAlt",
+                  ),
+                },
+              },
+              technology: workT("scholar.technology"),
+              testingContext: workT("scholar.testingContext"),
+              sourceState: workT("scholar.sourceState"),
+              sourceAction: workT("scholar.sourceAction"),
+            },
+            financial: {
+              eyebrow: workT("financial.eyebrow"),
+              status: workT("financial.status"),
+              title: workT("financial.title"),
+              subtitle: workT("financial.subtitle"),
+              description: workT("financial.description"),
+              topologyLabel: workT("financial.topologyLabel"),
+              topology: {
+                api: {
+                  label: workT("financial.topology.api.label"),
+                  title: workT("financial.topology.api.title"),
+                  description: workT("financial.topology.api.description"),
+                  action: workT("financial.topology.api.action"),
+                },
+                web: {
+                  label: workT("financial.topology.web.label"),
+                  title: workT("financial.topology.web.title"),
+                  description: workT("financial.topology.web.description"),
+                  action: workT("financial.topology.web.action"),
+                },
+                worker: {
+                  label: workT("financial.topology.worker.label"),
+                  title: workT("financial.topology.worker.title"),
+                  description: workT(
+                    "financial.topology.worker.description",
+                  ),
+                  action: workT("financial.topology.worker.action"),
+                },
+              },
+              mediaLabel: workT("financial.mediaLabel"),
+              media: {
+                dashboard: {
+                  label: workT("financial.media.dashboard.label"),
+                  caption: workT("financial.media.dashboard.caption"),
+                  alt: workT("financial.media.dashboard.alt"),
+                },
+                report: {
+                  label: workT("financial.media.report.label"),
+                  caption: workT("financial.media.report.caption"),
+                  alt: workT("financial.media.report.alt"),
+                },
+              },
+              sourceState: workT("financial.sourceState"),
+            },
+            opensNewWindow: workT("opensNewWindow"),
+            imageLoading: workT("imageLoading"),
+            imageUnavailable: workT("imageUnavailable"),
           }}
         />
       </div>

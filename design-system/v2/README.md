@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–03 and Part 04A–04D approved; checkpoint 04E implemented for final review
+> **Status:** Parts 01–04 approved; Part 05 evidence audit resolved and ready for 05A approval
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 04E responsive, accessibility, motion, state, image-transfer, Web Vitals, and Lighthouse finish gate
-> **Implementation status:** Part 04A–04D are committed through `e6985da`; 04E is uncommitted for final review
+> **Detailed scope in this checkpoint:** Part 05 ScholarAI evidence stage, Financial Planning source archive, responsive fallbacks, and phased review gates
+> **Implementation status:** Part 04 is complete through `050f023`; Part 05 implementation has not started
 
 ## Objective
 
@@ -146,14 +146,14 @@ Relevant implementation references:
 | 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                                |
 | 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed                   |
 | 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                                |
-| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | 04A–04D committed; 04E implemented for final review                 |
-| 05   | Supporting projects                             | Desktop/mobile project browsing                           | Not planned in detail                                               |
+| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                                |
+| 05   | ScholarAI evidence + backend archive             | Desktop/mobile evidence browsing and source topology      | Evidence audit resolved; ready for 05A approval                      |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Not planned in detail                                               |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Not planned in detail                                               |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                               |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                               |
 
-Detailed contracts for Parts 01–04 live beside this file. Later parts receive
+Detailed contracts for Parts 01–05 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.
 
 ## Confirmed user inputs

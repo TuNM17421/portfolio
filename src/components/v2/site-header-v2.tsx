@@ -26,6 +26,7 @@ type SiteHeaderV2Props = {
   portraitQuery: string;
   showcaseQuery: string;
   storyQuery: string;
+  workQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   chapterTone: V2ChapterTone;
@@ -46,6 +47,7 @@ export function SiteHeaderV2({
   portraitQuery,
   showcaseQuery,
   storyQuery,
+  workQuery,
   reduceMotion,
   wordmarkHidden,
   chapterTone,
@@ -62,6 +64,7 @@ export function SiteHeaderV2({
   if (portraitQuery) localeParams.set("portrait", portraitQuery);
   if (showcaseQuery) localeParams.set("showcase", showcaseQuery);
   if (storyQuery) localeParams.set("story", storyQuery);
+  if (workQuery) localeParams.set("work", workQuery);
   const localeQuery = localeParams.toString();
   const localeHref = localeQuery ? `/v2?${localeQuery}` : "/v2";
 

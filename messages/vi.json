@@ -481,6 +481,101 @@
       "opensNewWindow": "Mở trong cửa sổ mới",
       "imageLoading": "Đang tải ảnh giao diện",
       "imageUnavailable": "Không tải được ảnh giao diện"
+    },
+    "work": {
+      "eyebrow": "05 / HỆ THỐNG & BẰNG CHỨNG",
+      "axis": "AI HIỆN TẠI → NỀN TẢNG BACKEND",
+      "title": "AI hiện tại. Nền tảng phía sau.",
+      "framing": "ScholarAI cho thấy cách mình tự xây trọn vẹn một sản phẩm AI. Financial Planning lưu lại nền tảng backend dẫn đến công việc hiện tại.",
+      "scholar": {
+        "kicker": "AI RESEARCH SYSTEM",
+        "status": "DỰ ÁN SOLO · PHỤ TRÁCH TOÀN BỘ KỸ THUẬT",
+        "title": "ScholarAI",
+        "subtitle": "Công cụ khám phá và đọc tài liệu học thuật có AI hỗ trợ",
+        "thesis": "Từ tìm đúng paper đến câu trả lời có thể truy nguồn: retrieval, đọc PDF, ghi chú, RAG có trích dẫn và đánh giá được nối trong một workspace.",
+        "scopeLabel": "Một codebase. Toàn bộ vòng lặp.",
+        "scope": {
+          "search": "Dense + BM25 được hợp nhất bằng Qdrant RRF.",
+          "grounding": "Hierarchical RAG, phản hồi SSE và citation dẫn lại đúng trang PDF.",
+          "evaluation": "Bộ kiểm thử LangSmith cho QA, retrieval, faithfulness và refusal."
+        },
+        "evidenceLabel": "BẰNG CHỨNG KỸ THUẬT / 03",
+        "screenLabel": "TÍN HIỆU",
+        "evidence": {
+          "retrieve": {
+            "label": "TRUY XUẤT",
+            "title": "Tìm theo nghĩa lẫn từ khóa.",
+            "caption": "Dense embedding và BM25 cùng đi qua Qdrant RRF, giữ được cả ngữ nghĩa, acronym, tên tác giả và truy vấn khớp chính xác.",
+            "alt": "Giao diện tìm kiếm học thuật kết hợp semantic search và bộ lọc của ScholarAI"
+          },
+          "ground": {
+            "label": "KIỂM CHỨNG",
+            "title": "Câu trả lời quay về nguồn.",
+            "caption": "Hierarchical RAG lấy ngữ cảnh từ PDF, stream câu trả lời và gắn citation có thể mở lại đúng vị trí tài liệu.",
+            "alt": "Giao diện đọc PDF và trò chuyện có trích dẫn của ScholarAI"
+          },
+          "evaluate": {
+            "label": "ĐÁNH GIÁ",
+            "title": "Đo lường thay vì phỏng đoán.",
+            "caption": "Hai bộ chạy LangSmith ghi lại QA và refusal. Số liệu được giữ nguyên như output thí nghiệm, không được chuyển thành tuyên bố cải thiện.",
+            "qaLabel": "QA / RETRIEVAL",
+            "qaCaption": "Theo dõi answer presence, citation accuracy, correctness, faithfulness, retrieval hit rate và latency.",
+            "qaAlt": "Kết quả benchmark QA và retrieval của ScholarAI trên LangSmith",
+            "refusalLabel": "REFUSAL / GUARDRAIL",
+            "refusalCaption": "Kiểm tra khả năng từ chối câu hỏi ngoài phạm vi cùng latency và error rate của từng lần chạy.",
+            "refusalAlt": "Kết quả benchmark refusal guardrail của ScholarAI trên LangSmith"
+          }
+        },
+        "technology": "FastAPI · Qdrant RRF · PostgreSQL · OpenAI · LangSmith",
+        "testingContext": "Đã cho các học viên khác dùng thử trực tiếp · không công bố metric vì không lưu dataset phản hồi.",
+        "sourceState": "Mã nguồn công khai · Không có bản chạy trực tiếp",
+        "sourceAction": "Xem mã nguồn ScholarAI"
+      },
+      "financial": {
+        "eyebrow": "LƯU TRỮ NỀN TẢNG BACKEND",
+        "status": "ĐỒ ÁN TỐT NGHIỆP · TRƯỞNG NHÓM BACKEND · XÂY TRƯỚC THỜI AI HỖ TRỢ LẬP TRÌNH",
+        "title": "Financial Planning",
+        "subtitle": "Hệ thống lập kế hoạch, phê duyệt chi phí và báo cáo tài chính nội bộ",
+        "description": "Mình dẫn dắt backend cho luồng tài chính nhiều vai trò: xác thực, phân quyền, kỳ lập kế hoạch, chi phí, báo cáo và các tác vụ định kỳ.",
+        "topologyLabel": "BA RANH GIỚI TRIỂN KHAI",
+        "topology": {
+          "api": {
+            "label": "API",
+            "title": "Spring Boot · SQL Server",
+            "description": "REST API, nghiệp vụ tài chính và Redis cho OTP, token, user detail cùng authority state.",
+            "action": "Mở source API"
+          },
+          "web": {
+            "label": "WEB",
+            "title": "React · Vite",
+            "description": "Giao diện cho kế hoạch, phê duyệt, master data và báo cáo theo vai trò.",
+            "action": "Mở source Web"
+          },
+          "worker": {
+            "label": "WORKER",
+            "title": "Spring scheduled jobs",
+            "description": "Tách tác vụ định kỳ cho trạng thái kỳ và tổng hợp báo cáo năm.",
+            "action": "Mở source Worker"
+          }
+        },
+        "mediaLabel": "GIAO DIỆN LƯU TRỮ / 02",
+        "media": {
+          "dashboard": {
+            "label": "BẢNG ĐIỀU KHIỂN",
+            "caption": "Tổng quan kỳ, phòng ban và phân bổ chi phí trong dữ liệu demo cũ.",
+            "alt": "Bảng điều khiển lưu trữ của hệ thống Financial Planning"
+          },
+          "report": {
+            "label": "BÁO CÁO TÀI CHÍNH",
+            "caption": "Bề mặt báo cáo nối số liệu kế hoạch với luồng phê duyệt.",
+            "alt": "Giao diện báo cáo lưu trữ của hệ thống Financial Planning"
+          }
+        },
+        "sourceState": "KHO MÃ NGUỒN LƯU TRỮ · KHÔNG CÓ BẢN CHẠY TRỰC TIẾP HOẶC DỮ LIỆU VẬN HÀNH"
+      },
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "imageLoading": "Đang tải ảnh bằng chứng",
+      "imageUnavailable": "Không tải được ảnh bằng chứng"
     }
   },
   "footer": {

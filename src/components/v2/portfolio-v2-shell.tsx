@@ -19,6 +19,10 @@ import {
   VCareerShowcase,
   type VCareerShowcaseCopy,
 } from "@/components/v2/vcareer/vcareer-showcase";
+import {
+  SupportingWork,
+  type SupportingWorkCopy,
+} from "@/components/v2/work/supporting-work";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
@@ -33,6 +37,7 @@ import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
 import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
 import { parseAboutStoryControls } from "@/lib/v2/about-story";
 import { parseVCareerShowcaseControls } from "@/lib/v2/vcareer-showcase";
+import { parseSupportingWorkControls } from "@/lib/v2/supporting-work";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
 import styles from "./portfolio-v2-shell.module.css";
 
@@ -43,11 +48,13 @@ type PortfolioV2ShellProps = {
   portraitQuery: string;
   showcaseQuery: string;
   storyQuery: string;
+  workQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
   aboutCopy: AboutV2Copy;
   vcareerCopy: VCareerShowcaseCopy;
+  workCopy: SupportingWorkCopy;
 };
 
 export function PortfolioV2Shell({
@@ -57,11 +64,13 @@ export function PortfolioV2Shell({
   portraitQuery,
   showcaseQuery,
   storyQuery,
+  workQuery,
   introCopy,
   headerCopy,
   heroCopy,
   aboutCopy,
   vcareerCopy,
+  workCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -82,6 +91,10 @@ export function PortfolioV2Shell({
   const showcaseControls = useMemo(
     () => parseVCareerShowcaseControls(showcaseQuery),
     [showcaseQuery],
+  );
+  const workControls = useMemo(
+    () => parseSupportingWorkControls(workQuery),
+    [workQuery],
   );
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion =
@@ -142,6 +155,7 @@ export function PortfolioV2Shell({
           portraitQuery={portraitQuery}
           showcaseQuery={showcaseQuery}
           storyQuery={storyQuery}
+          workQuery={workQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           chapterTone={chapterTone}
@@ -171,6 +185,11 @@ export function PortfolioV2Shell({
           imageReviewState={showcaseControls.imageState}
           navigationOpen={mobileNavigationOpen}
           relay={vcareerRelay}
+        />
+        <SupportingWork
+          copy={workCopy}
+          imageReviewState={workControls.imageState}
+          navigationOpen={mobileNavigationOpen}
         />
       </div>
 
