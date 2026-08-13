@@ -40,6 +40,7 @@ type V2PageProps = {
     story?: string | string[];
     work?: string | string[];
     career?: string | string[];
+    recognition?: string | string[];
   }>;
 };
 
@@ -71,6 +72,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
     typeof query.showcase === "string" ? query.showcase : "";
   const workQuery = typeof query.work === "string" ? query.work : "";
   const careerQuery = typeof query.career === "string" ? query.career : "";
+  const recognitionQuery =
+    typeof query.recognition === "string" ? query.recognition : "";
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -99,6 +102,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           storyQuery={storyQuery}
           workQuery={workQuery}
           careerQuery={careerQuery}
+          recognitionQuery={recognitionQuery}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),
@@ -367,6 +371,12 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             recognition: {
               eyebrow: careerT("recognition.eyebrow"),
               title: careerT("recognition.title"),
+              documentaryLabel: careerT("recognition.documentaryLabel"),
+              documentaryCaption: careerT("recognition.documentaryCaption"),
+              documentaryAlt: careerT("recognition.documentaryAlt"),
+              imageLoading: careerT("recognition.imageLoading"),
+              imageUnavailable: careerT("recognition.imageUnavailable"),
+              supportingLabel: careerT("recognition.supportingLabel"),
               records: {
                 vcareer: {
                   index: careerT("recognition.records.vcareer.index"),

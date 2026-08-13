@@ -4,12 +4,16 @@ import { useEffect } from "react";
 import { motion } from "motion/react";
 import {
   CAREER_RECORDS,
-  RECOGNITION_RECORDS,
   type CareerRecordKey,
-  type RecognitionRecordKey,
+  type RecognitionImageReviewState,
 } from "@/lib/v2/career-recognition";
 import styles from "./career-recognition.module.css";
 import type { CareerTraceMotionController } from "./career-trace-motion";
+import {
+  RecognitionStage,
+  type RecognitionStageCopy,
+} from "./recognition-stage";
+import type { RecognitionStageMotionController } from "./recognition-stage-motion";
 
 type CareerRecordCopy = {
   index: string;
@@ -22,14 +26,6 @@ type CareerRecordCopy = {
   technology?: string;
 };
 
-type RecognitionRecordCopy = {
-  index: string;
-  project: string;
-  result: string;
-  context: string;
-  date: string;
-};
-
 export type CareerRecognitionCopy = {
   eyebrow: string;
   axis: string;
@@ -39,22 +35,22 @@ export type CareerRecognitionCopy = {
   responsibilitiesLabel: string;
   technologyLabel: string;
   records: Record<CareerRecordKey, CareerRecordCopy>;
-  recognition: {
-    eyebrow: string;
-    title: string;
-    records: Record<RecognitionRecordKey, RecognitionRecordCopy>;
-  };
+  recognition: RecognitionStageCopy;
 };
 
 type CareerRecognitionProps = {
   copy: CareerRecognitionCopy;
+  imageReviewState: RecognitionImageReviewState;
   navigationOpen: boolean;
+  recognitionStage: RecognitionStageMotionController;
   trace: CareerTraceMotionController;
 };
 
 export function CareerRecognition({
   copy,
+  imageReviewState,
   navigationOpen,
+  recognitionStage,
   trace,
 }: CareerRecognitionProps) {
   useEffect(() => {
@@ -270,49 +266,13 @@ export function CareerRecognition({
             </ol>
           </div>
         </section>
-
-        <section
-          id="recognition"
-          className={styles.recognition}
-          aria-labelledby="v2-recognition-title"
-          data-recognition-static
-        >
-          <header className={styles.recognitionHeader}>
-            <p>{copy.recognition.eyebrow}</p>
-            <h2 id="v2-recognition-title">{copy.recognition.title}</h2>
-          </header>
-
-          <ol className={styles.recognitionRecords}>
-            {RECOGNITION_RECORDS.map((record) => {
-              const recordCopy = copy.recognition.records[record.key];
-
-              return (
-                <li
-                  key={record.key}
-                  data-recognition-record={record.key}
-                  data-emphasis={record.emphasis}
-                >
-                  <span className={styles.recognitionIndex}>
-                    {recordCopy.index}
-                  </span>
-                  <strong className={styles.recognitionProject}>
-                    {recordCopy.project}
-                  </strong>
-                  <p className={styles.recognitionResult}>
-                    {recordCopy.result}
-                  </p>
-                  <p className={styles.recognitionContext}>
-                    {recordCopy.context}
-                  </p>
-                  <time className={styles.recognitionDate}>
-                    {recordCopy.date}
-                  </time>
-                </li>
-              );
-            })}
-          </ol>
-        </section>
       </div>
+
+      <RecognitionStage
+        copy={copy.recognition}
+        imageReviewState={imageReviewState}
+        motionController={recognitionStage}
+      />
     </section>
   );
 }

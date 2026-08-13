@@ -620,6 +620,12 @@
       "recognition": {
         "eyebrow": "RECOGNITION INDEX / 03",
         "title": "Recognised outcomes.",
+        "documentaryLabel": "DOCUMENT / VINUNIVERSITY CLOSING CEREMONY",
+        "documentaryCaption": "The VinUniversity closing-ceremony screen recognised Team VCareer and recorded both Codex Community Hackathon Hanoi 2026 results.",
+        "documentaryAlt": "VinUniversity closing-ceremony stage showing Team VCareer as a featured project alongside the VCareer and WonderLens award results.",
+        "imageLoading": "LOADING DOCUMENTARY IMAGE",
+        "imageUnavailable": "DOCUMENTARY IMAGE UNAVAILABLE",
+        "supportingLabel": "RELATED RECOGNITION / 02",
         "records": {
           "vcareer": {
             "index": "01 / FLAGSHIP",

@@ -28,6 +28,7 @@ type SiteHeaderV2Props = {
   storyQuery: string;
   workQuery: string;
   careerQuery: string;
+  recognitionQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   chapterTone: V2ChapterTone;
@@ -50,6 +51,7 @@ export function SiteHeaderV2({
   storyQuery,
   workQuery,
   careerQuery,
+  recognitionQuery,
   reduceMotion,
   wordmarkHidden,
   chapterTone,
@@ -68,8 +70,15 @@ export function SiteHeaderV2({
   if (storyQuery) localeParams.set("story", storyQuery);
   if (workQuery) localeParams.set("work", workQuery);
   if (careerQuery) localeParams.set("career", careerQuery);
+  if (recognitionQuery) localeParams.set("recognition", recognitionQuery);
   const localeQuery = localeParams.toString();
-  const localeHash = careerQuery ? "#career" : workQuery ? "#work" : "";
+  const localeHash = recognitionQuery
+    ? "#recognition"
+    : careerQuery
+      ? "#career"
+      : workQuery
+        ? "#work"
+        : "";
   const localeHref = localeQuery
     ? `/v2?${localeQuery}${localeHash}`
     : `/v2${localeHash}`;

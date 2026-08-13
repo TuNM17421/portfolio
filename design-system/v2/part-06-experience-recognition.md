@@ -1,9 +1,10 @@
 # Part 06 — Experience + recognition
 
-> **Status:** Checkpoint 06A approved and committed; 06B implemented, awaiting owner review
+> **Status:** Checkpoints 06A–06B approved and committed; 06C implemented, awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Review artifact:** `/vi/v2?intro=0#career` and `/en/v2?intro=0#career`
 > **Forced motion states:** `?intro=0&career=education#career`, `?intro=0&career=fpt#career`, `?intro=0&career=ai-program#career`, and `?intro=0&career=static#career`
+> **Recognition review states:** `?intro=0&recognition=transition#recognition`, `?intro=0&recognition=ready#recognition`, `?intro=0&recognition=loading#recognition`, `?intro=0&recognition=error#recognition`, and `?intro=0&recognition=static#recognition`
 > **Internal direction name:** **Career Trace → Recognition Stage** — not rendered as marketing copy
 
 ## Decision summary
@@ -126,6 +127,44 @@ Implementation contract:
 - Transition the light ledger into one short dark documentary stage.
 - Introduce the ceremony image, loading/error treatment, and responsive crop.
 - Keep VCareer primary and WonderLens to one line.
+
+Implementation contract:
+
+- **Screen job:** let a recruiter verify that VCareer was publicly recognised,
+  then scan the two related 2026 outcomes without opening a gallery.
+- **Hierarchy:** the real VinUniversity ceremony photograph is the documentary
+  anchor; VCareer Track 4 and the `$5,000` credit result form the primary proof;
+  WonderLens and the VinUniversity feature remain two terse ledger rows.
+- **Layout:** the light Career sheet ends at a diagonal threshold. A full-width
+  night stage contains one 4:3 evidence field and a stable proof column—never a
+  card carousel. The two secondary records sit beneath as ruled rows.
+- **Signature motion:** the Career Trace resolves into the threshold line; the
+  dark plane rises once, then a single horizontal scan reveals the ceremony
+  photograph. Reverse scroll rewinds the same geometry. There is no sticky
+  wrapper, added dwell, per-line text reveal, or autoplay.
+- **Visual language:** keep the established night, mineral, signal blue, and
+  focus cyan tokens. A restrained cobalt/violet ambient field is sampled from
+  the real stage lighting so the dark scene belongs to this photograph rather
+  than to a generic neon portfolio.
+- **Required states:** `ready`, `loading`, and `error` image states; complete
+  no-JS content; compact/reduced-motion static rendering; VI/EN-equivalent alt
+  text and caption. Error state keeps every recognition fact readable.
+- **Responsive behaviour:** wide screens pair image and primary proof; compact
+  screens place the complete image before the proof and keep both supporting
+  rows concise. No important stage-screen content may be cropped out.
+- **Reference transfer:** Tech Barcelona's stable fact/image separation,
+  Dylan Brouwer's terse recognition ledger, and the approved Swaraj scene
+  concentration. Do not copy their branding, exact composition, or card
+  treatment.
+- **Review states:** `?intro=0&recognition=transition#recognition`,
+  `?intro=0&recognition=ready#recognition`,
+  `?intro=0&recognition=loading#recognition`,
+  `?intro=0&recognition=error#recognition`, and
+  `?intro=0&recognition=static#recognition`.
+- **Acceptance:** `vinuni-ceremony.jpg` is the only 06C photograph; VCareer is
+  visibly primary; WonderLens remains one line; loading/error states have
+  useful labels; mobile and no-JS expose all three records; and the checkpoint
+  adds no photo selector or inert controls reserved for 06D.
 
 ### 06D — Documentary image selector
 

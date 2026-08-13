@@ -27,12 +27,94 @@ export const CAREER_RECORDS = [
 export type CareerRecordKey = (typeof CAREER_RECORDS)[number]["key"];
 
 export const RECOGNITION_RECORDS = [
-  { key: "vcareer", emphasis: "primary" },
-  { key: "wonderlens", emphasis: "compact" },
-  { key: "vinuni", emphasis: "supporting" },
+  { key: "vcareer", emphasis: "primary", dateTime: "2026-06-27" },
+  { key: "wonderlens", emphasis: "compact", dateTime: "2026-06-27" },
+  { key: "vinuni", emphasis: "supporting", dateTime: "2026" },
 ] as const;
 
 export type RecognitionRecordKey = (typeof RECOGNITION_RECORDS)[number]["key"];
+
+export const RECOGNITION_DOCUMENTARY_IMAGE = {
+  src: "/awards/vinuni-ceremony.jpg",
+  width: 2568,
+  height: 1926,
+} as const;
+
+export type RecognitionImageReviewState = "auto" | "loading" | "error";
+export type RecognitionStageMode = "active" | "forced" | "static";
+
+export type RecognitionStageControls = {
+  forceStatic: boolean;
+  forcedProgress: number | null;
+  imageState: RecognitionImageReviewState;
+};
+
+const STATIC_RECOGNITION_VALUES = new Set(["static", "0", "off", "false"]);
+const LOADING_RECOGNITION_VALUES = new Set(["loading", "image-loading"]);
+const ERROR_RECOGNITION_VALUES = new Set([
+  "error",
+  "image-error",
+  "image_error",
+]);
+
+export function parseRecognitionStageControls(
+  value: string,
+): RecognitionStageControls {
+  const normalized = value.trim().toLowerCase();
+
+  if (normalized === "transition" || normalized === "stage") {
+    return {
+      forceStatic: false,
+      forcedProgress: 0.34,
+      imageState: "auto",
+    };
+  }
+
+  if (normalized === "ready" || normalized === "complete") {
+    return {
+      forceStatic: false,
+      forcedProgress: 1,
+      imageState: "auto",
+    };
+  }
+
+  if (LOADING_RECOGNITION_VALUES.has(normalized)) {
+    return {
+      forceStatic: true,
+      forcedProgress: null,
+      imageState: "loading",
+    };
+  }
+
+  if (ERROR_RECOGNITION_VALUES.has(normalized)) {
+    return {
+      forceStatic: true,
+      forcedProgress: null,
+      imageState: "error",
+    };
+  }
+
+  return {
+    forceStatic: STATIC_RECOGNITION_VALUES.has(normalized),
+    forcedProgress: null,
+    imageState: "auto",
+  };
+}
+
+export function resolveRecognitionStageMode({
+  desktop,
+  reduceMotion,
+  forceStatic = false,
+  forcedProgress = null,
+}: {
+  desktop: boolean;
+  reduceMotion: boolean;
+  forceStatic?: boolean;
+  forcedProgress?: number | null;
+}): RecognitionStageMode {
+  if (!desktop || reduceMotion || forceStatic) return "static";
+  return forcedProgress === null ? "active" : "forced";
+}
 
 export const CAREER_TRACE_WINDOWS = {
   education: { enter: 0.06, holdStart: 0.1, holdEnd: 0.29, exit: 0.36 },

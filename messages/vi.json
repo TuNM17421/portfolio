@@ -620,6 +620,12 @@
       "recognition": {
         "eyebrow": "CHỈ MỤC GHI NHẬN / 03",
         "title": "Kết quả được ghi nhận.",
+        "documentaryLabel": "BẰNG CHỨNG / LỄ BẾ GIẢNG VINUNIVERSITY",
+        "documentaryCaption": "Màn hình tại lễ bế giảng VinUniversity tuyên dương team VCareer và ghi lại hai kết quả tại Codex Community Hackathon Hanoi 2026.",
+        "documentaryAlt": "Sân khấu lễ bế giảng VinUniversity hiển thị Team VCareer là dự án nổi bật cùng kết quả giải của VCareer và WonderLens.",
+        "imageLoading": "ĐANG TẢI ẢNH TƯ LIỆU",
+        "imageUnavailable": "ẢNH TƯ LIỆU KHÔNG KHẢ DỤNG",
+        "supportingLabel": "GHI NHẬN LIÊN QUAN / 02",
         "records": {
           "vcareer": {
             "index": "01 / CHỦ LỰC",

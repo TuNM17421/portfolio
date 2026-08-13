@@ -7,10 +7,13 @@ import {
   CAREER_TRACE_RANGE,
   CAREER_TRACE_WINDOWS,
   parseCareerTraceControls,
+  parseRecognitionStageControls,
+  RECOGNITION_DOCUMENTARY_IMAGE,
   RECOGNITION_RECORDS,
   resolveActiveCareerRecord,
   resolveCareerTraceMode,
   resolveCareerTraceProgress,
+  resolveRecognitionStageMode,
 } from "./career-recognition";
 
 describe("portfolio v2 career and recognition foundation", () => {
@@ -28,9 +31,17 @@ describe("portfolio v2 career and recognition foundation", () => {
 
   it("keeps WonderLens as a compact recognition record only", () => {
     expect(RECOGNITION_RECORDS).toEqual([
-      { key: "vcareer", emphasis: "primary" },
-      { key: "wonderlens", emphasis: "compact" },
-      { key: "vinuni", emphasis: "supporting" },
+      {
+        key: "vcareer",
+        emphasis: "primary",
+        dateTime: "2026-06-27",
+      },
+      {
+        key: "wonderlens",
+        emphasis: "compact",
+        dateTime: "2026-06-27",
+      },
+      { key: "vinuni", emphasis: "supporting", dateTime: "2026" },
     ]);
 
     for (const locale of [vi, en]) {
@@ -142,5 +153,70 @@ describe("portfolio v2 career and recognition foundation", () => {
     expect(resolveCareerTraceMode({ desktop: true, reduceMotion: false })).toBe(
       "active",
     );
+  });
+
+  it("uses the real VinUniversity ceremony image as the 06C document", () => {
+    expect(RECOGNITION_DOCUMENTARY_IMAGE).toEqual({
+      src: "/awards/vinuni-ceremony.jpg",
+      width: 2568,
+      height: 1926,
+    });
+
+    for (const locale of [vi, en]) {
+      const recognition = locale.v2.career.recognition;
+
+      expect(recognition.documentaryAlt).toBeTruthy();
+      expect(recognition.documentaryCaption).toBeTruthy();
+      expect(recognition.imageLoading).toBeTruthy();
+      expect(recognition.imageUnavailable).toBeTruthy();
+    }
+  });
+
+  it.each([
+    ["transition", 0.34],
+    ["stage", 0.34],
+    ["ready", 1],
+    ["complete", 1],
+  ] as const)("maps %s to a forced Recognition Stage", (value, progress) => {
+    expect(parseRecognitionStageControls(value)).toEqual({
+      forceStatic: false,
+      forcedProgress: progress,
+      imageState: "auto",
+    });
+  });
+
+  it.each([
+    ["loading", "loading"],
+    ["image-loading", "loading"],
+    ["error", "error"],
+    ["image-error", "error"],
+  ] as const)(
+    "maps %s to the %s documentary image state",
+    (value, imageState) => {
+      expect(parseRecognitionStageControls(value)).toEqual({
+        forceStatic: true,
+        forcedProgress: null,
+        imageState,
+      });
+    },
+  );
+
+  it("keeps compact and reduced-motion Recognition Stages static", () => {
+    expect(
+      resolveRecognitionStageMode({ desktop: false, reduceMotion: false }),
+    ).toBe("static");
+    expect(
+      resolveRecognitionStageMode({ desktop: true, reduceMotion: true }),
+    ).toBe("static");
+    expect(
+      resolveRecognitionStageMode({
+        desktop: true,
+        reduceMotion: false,
+        forcedProgress: 0.34,
+      }),
+    ).toBe("forced");
+    expect(
+      resolveRecognitionStageMode({ desktop: true, reduceMotion: false }),
+    ).toBe("active");
   });
 });
