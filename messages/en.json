@@ -670,6 +670,45 @@
           }
         }
       }
+    },
+    "capabilities": {
+      "eyebrow": "07 / CAPABILITIES & CONTACT",
+      "axis": "SHIPPED SYSTEMS → OPEN CHANNEL",
+      "title": "Capabilities anchored in evidence.",
+      "summary": "Each capability routes back to the project or role that demonstrates it.",
+      "technologyLabel": "TECHNOLOGIES & METHODS",
+      "evidenceLabel": "RELATED EVIDENCE",
+      "proofAction": "Go to evidence",
+      "items": {
+        "backend": {
+          "index": "01 / PRIMARY FOUNDATION",
+          "title": "Backend systems",
+          "description": "APIs, business logic, relational data, asynchronous processing, and scheduled work."
+        },
+        "realtime": {
+          "index": "02 / DIRECT SCOPE",
+          "title": "Realtime AI experiences",
+          "description": "Realtime session foundations for a live AI interview experience."
+        },
+        "retrieval": {
+          "index": "03 / SOLO SYSTEM",
+          "title": "Retrieval & evaluation",
+          "description": "Hybrid retrieval, source-linked citations, and verifiable evaluation loops."
+        },
+        "delivery": {
+          "index": "04 / DELIVERY CAPABILITY",
+          "title": "End-to-end product delivery",
+          "description": "Connecting product workflow, frontend, backend, and a usable delivery path."
+        }
+      },
+      "proofs": {
+        "career": "FPT Software · production role",
+        "financial": "Financial Planning · backend lead",
+        "vcareer": "VCareer · direct scope",
+        "scholar": "ScholarAI · solo project",
+        "scholarDelivery": "ScholarAI · solo end-to-end",
+        "vcareerDelivery": "VCareer · six-week team delivery"
+      }
     }
   },
   "footer": {

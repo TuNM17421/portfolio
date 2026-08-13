@@ -670,6 +670,45 @@
           }
         }
       }
+    },
+    "capabilities": {
+      "eyebrow": "07 / NĂNG LỰC & LIÊN HỆ",
+      "axis": "HỆ THỐNG ĐÃ SHIP → KÊNH TRAO ĐỔI",
+      "title": "Năng lực được neo vào bằng chứng.",
+      "summary": "Mỗi nhóm năng lực dẫn ngược về dự án hoặc vai trò đã chứng minh nó.",
+      "technologyLabel": "CÔNG NGHỆ & PHƯƠNG PHÁP",
+      "evidenceLabel": "BẰNG CHỨNG LIÊN QUAN",
+      "proofAction": "Đi tới phần bằng chứng",
+      "items": {
+        "backend": {
+          "index": "01 / NỀN TẢNG CHÍNH",
+          "title": "Hệ thống backend",
+          "description": "API, business logic, dữ liệu quan hệ, xử lý bất đồng bộ và tác vụ định kỳ."
+        },
+        "realtime": {
+          "index": "02 / PHẠM VI TRỰC TIẾP",
+          "title": "Trải nghiệm AI realtime",
+          "description": "Nền tảng phiên realtime cho trải nghiệm phỏng vấn trực tiếp với AI."
+        },
+        "retrieval": {
+          "index": "03 / HỆ THỐNG SOLO",
+          "title": "Truy xuất & đánh giá",
+          "description": "Truy xuất hybrid, citation quay về nguồn và vòng lặp đánh giá có thể kiểm chứng."
+        },
+        "delivery": {
+          "index": "04 / NĂNG LỰC TRIỂN KHAI",
+          "title": "Phát triển sản phẩm end-to-end",
+          "description": "Nối workflow sản phẩm, frontend, backend và một đường triển khai có thể sử dụng."
+        }
+      },
+      "proofs": {
+        "career": "FPT Software · kinh nghiệm production",
+        "financial": "Financial Planning · backend lead",
+        "vcareer": "VCareer · phạm vi trực tiếp",
+        "scholar": "ScholarAI · dự án solo",
+        "scholarDelivery": "ScholarAI · solo end-to-end",
+        "vcareerDelivery": "VCareer · team phát triển 6 tuần"
+      }
     }
   },
   "footer": {

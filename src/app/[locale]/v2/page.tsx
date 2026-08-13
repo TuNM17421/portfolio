@@ -83,6 +83,10 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   });
   const workT = await getTranslations({ locale, namespace: "v2.work" });
   const careerT = await getTranslations({ locale, namespace: "v2.career" });
+  const capabilitiesT = await getTranslations({
+    locale,
+    namespace: "v2.capabilities",
+  });
 
   return (
     <>
@@ -434,6 +438,45 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                   date: careerT("recognition.records.vinuni.date"),
                 },
               },
+            },
+          }}
+          capabilitiesCopy={{
+            eyebrow: capabilitiesT("eyebrow"),
+            axis: capabilitiesT("axis"),
+            title: capabilitiesT("title"),
+            summary: capabilitiesT("summary"),
+            technologyLabel: capabilitiesT("technologyLabel"),
+            evidenceLabel: capabilitiesT("evidenceLabel"),
+            proofAction: capabilitiesT("proofAction"),
+            items: {
+              backend: {
+                index: capabilitiesT("items.backend.index"),
+                title: capabilitiesT("items.backend.title"),
+                description: capabilitiesT("items.backend.description"),
+              },
+              realtime: {
+                index: capabilitiesT("items.realtime.index"),
+                title: capabilitiesT("items.realtime.title"),
+                description: capabilitiesT("items.realtime.description"),
+              },
+              retrieval: {
+                index: capabilitiesT("items.retrieval.index"),
+                title: capabilitiesT("items.retrieval.title"),
+                description: capabilitiesT("items.retrieval.description"),
+              },
+              delivery: {
+                index: capabilitiesT("items.delivery.index"),
+                title: capabilitiesT("items.delivery.title"),
+                description: capabilitiesT("items.delivery.description"),
+              },
+            },
+            proofs: {
+              career: capabilitiesT("proofs.career"),
+              financial: capabilitiesT("proofs.financial"),
+              vcareer: capabilitiesT("proofs.vcareer"),
+              scholar: capabilitiesT("proofs.scholar"),
+              scholarDelivery: capabilitiesT("proofs.scholarDelivery"),
+              vcareerDelivery: capabilitiesT("proofs.vcareerDelivery"),
             },
           }}
         />

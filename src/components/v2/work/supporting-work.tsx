@@ -362,7 +362,11 @@ export function SupportingWork({
           {copy.eyebrow}
         </h2>
 
-        <article className={styles.scholar} aria-labelledby="v2-scholar-title">
+        <article
+          id="scholarai"
+          className={styles.scholar}
+          aria-labelledby="v2-scholar-title"
+        >
           <header className={styles.scholarHeader}>
             <div className={styles.scholarIdentity}>
               <p className={styles.kicker}>{copy.scholar.kicker}</p>

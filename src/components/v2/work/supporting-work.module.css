@@ -241,6 +241,7 @@
 
 .scholar {
   padding-top: clamp(52px, 6vw, 92px);
+  scroll-margin-top: 76px;
 }
 
 .scholarHeader {
@@ -1873,6 +1874,10 @@
   .scholarFooter {
     display: block;
     padding: 76px 0 132px;
+  }
+
+  .scholar {
+    scroll-margin-top: 68px;
   }
 
   .scholarAction {

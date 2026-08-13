@@ -8,6 +8,9 @@ const CHAPTER_ANCHORS = new Set([
   "work",
   "career",
   "recognition",
+  "skills",
+  "scholarai",
+  "financial-archive",
 ]);
 
 export function useChapterAnchorAlignment(enabled: boolean) {

@@ -21,6 +21,10 @@ import {
   CareerRecognition,
   type CareerRecognitionCopy,
 } from "@/components/v2/career/career-recognition";
+import {
+  CapabilityLedger,
+  type CapabilityLedgerCopy,
+} from "@/components/v2/capabilities/capability-ledger";
 import { useCareerTraceMotion } from "@/components/v2/career/career-trace-motion";
 import { useRecognitionStageMotion } from "@/components/v2/career/recognition-stage-motion";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
@@ -66,6 +70,7 @@ type PortfolioV2ShellProps = {
   vcareerCopy: VCareerShowcaseCopy;
   workCopy: SupportingWorkCopy;
   careerCopy: CareerRecognitionCopy;
+  capabilitiesCopy: CapabilityLedgerCopy;
 };
 
 export function PortfolioV2Shell({
@@ -85,6 +90,7 @@ export function PortfolioV2Shell({
   vcareerCopy,
   workCopy,
   careerCopy,
+  capabilitiesCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -250,6 +256,10 @@ export function PortfolioV2Shell({
           navigationOpen={mobileNavigationOpen}
           recognitionStage={recognitionStage}
           trace={careerTrace}
+        />
+        <CapabilityLedger
+          copy={capabilitiesCopy}
+          navigationOpen={mobileNavigationOpen}
         />
       </div>
 
