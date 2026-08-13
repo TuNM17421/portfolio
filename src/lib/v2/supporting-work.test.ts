@@ -5,18 +5,18 @@ import {
   FINANCIAL_ARCHIVE_IMAGES,
   FINANCIAL_ARCHIVE_REPOSITORIES,
   parseSupportingWorkControls,
+  resolveScholarAIEvidenceStage,
+  resolveSupportingWorkStoryMode,
   SCHOLARAI_EVIDENCE,
   SCHOLARAI_EVIDENCE_KEYS,
+  SCHOLARAI_EVIDENCE_WINDOWS,
   SCHOLARAI_SOURCE_URL,
 } from "./supporting-work";
 
 describe("portfolio v2 supporting work foundation", () => {
   it("keeps ScholarAI focused on retrieval, grounding, and evaluation", () => {
     const imageSources = SCHOLARAI_EVIDENCE.reduce<string[]>(
-      (sources, item) => [
-        ...sources,
-        ...item.images.map((image) => image.src),
-      ],
+      (sources, item) => [...sources, ...item.images.map((image) => image.src)],
       [],
     );
 
@@ -57,9 +57,7 @@ describe("portfolio v2 supporting work foundation", () => {
   });
 
   it("exposes one verified public ScholarAI source action", () => {
-    expect(SCHOLARAI_SOURCE_URL).toBe(
-      "https://github.com/TuNM17421/ScholarAI",
-    );
+    expect(SCHOLARAI_SOURCE_URL).toBe("https://github.com/TuNM17421/ScholarAI");
   });
 
   it.each(["static", "STATIC", "0", "off", "false", " off "])(
@@ -68,6 +66,8 @@ describe("portfolio v2 supporting work foundation", () => {
       expect(parseSupportingWorkControls(value)).toEqual({
         forceStatic: true,
         imageState: "auto",
+        forcedStage: null,
+        forcedBenchmark: null,
       });
     },
   );
@@ -82,7 +82,74 @@ describe("portfolio v2 supporting work foundation", () => {
     expect(parseSupportingWorkControls(value)).toEqual({
       forceStatic: true,
       imageState,
+      forcedStage: null,
+      forcedBenchmark: null,
     });
+  });
+
+  it.each([
+    ["retrieve", "retrieve", null],
+    ["ground", "ground", null],
+    ["evaluate-qa", "evaluate", "qa"],
+    ["evaluate-refusal", "evaluate", "refusal"],
+  ] as const)(
+    "forces the %s ScholarAI review plateau",
+    (value, forcedStage, forcedBenchmark) => {
+      expect(parseSupportingWorkControls(value)).toEqual({
+        forceStatic: false,
+        imageState: "auto",
+        forcedStage,
+        forcedBenchmark,
+      });
+    },
+  );
+
+  it("keeps the default work route scroll-driven", () => {
+    expect(parseSupportingWorkControls("")).toEqual({
+      forceStatic: false,
+      imageState: "auto",
+      forcedStage: null,
+      forcedBenchmark: null,
+    });
+  });
+
+  it("keeps broad evidence plateaus with short transition windows", () => {
+    expect(SCHOLARAI_EVIDENCE_WINDOWS).toEqual({
+      retrieve: { enter: 0, holdStart: 0.035, holdEnd: 0.27, exit: 0.35 },
+      ground: { enter: 0.29, holdStart: 0.37, holdEnd: 0.61, exit: 0.69 },
+      evaluate: { enter: 0.63, holdStart: 0.71, holdEnd: 0.985, exit: 1 },
+    });
+    expect(resolveScholarAIEvidenceStage(0.2)).toBe("retrieve");
+    expect(resolveScholarAIEvidenceStage(0.5)).toBe("ground");
+    expect(resolveScholarAIEvidenceStage(0.82)).toBe("evaluate");
+  });
+
+  it("pins only eligible desktop ScholarAI evidence", () => {
+    expect(
+      resolveSupportingWorkStoryMode({
+        desktop: true,
+        reduceMotion: false,
+      }),
+    ).toBe("active");
+    expect(
+      resolveSupportingWorkStoryMode({
+        desktop: true,
+        reduceMotion: false,
+        forcedStage: "ground",
+      }),
+    ).toBe("forced");
+    expect(
+      resolveSupportingWorkStoryMode({
+        desktop: false,
+        reduceMotion: false,
+      }),
+    ).toBe("static");
+    expect(
+      resolveSupportingWorkStoryMode({
+        desktop: true,
+        reduceMotion: true,
+      }),
+    ).toBe("static");
   });
 
   it("does not invent a metric or live Financial action in localized copy", () => {

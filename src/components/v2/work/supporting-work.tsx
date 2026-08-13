@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useId, useState, type KeyboardEvent } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import {
   FINANCIAL_ARCHIVE_IMAGES,
   FINANCIAL_ARCHIVE_REPOSITORIES,
@@ -10,11 +10,14 @@ import {
   SCHOLARAI_SOURCE_URL,
   type FinancialArchiveImageKey,
   type FinancialArchiveRepositoryKey,
+  type ScholarAIBenchmarkKey,
+  type ScholarAIEvidenceKey,
   type SupportingWorkImage,
   type SupportingWorkImageState,
 } from "@/lib/v2/supporting-work";
 import styles from "./supporting-work.module.css";
 import type { SupportingWorkHandoffController } from "./supporting-work-handoff";
+import type { SupportingWorkStoryController } from "./supporting-work-story";
 
 type EvidenceCopy = {
   label: string;
@@ -90,9 +93,11 @@ export type SupportingWorkCopy = {
 
 type SupportingWorkProps = {
   copy: SupportingWorkCopy;
+  forcedBenchmark: ScholarAIBenchmarkKey | null;
   handoff: SupportingWorkHandoffController;
   imageReviewState: SupportingWorkImageState;
   navigationOpen: boolean;
+  story: SupportingWorkStoryController;
 };
 
 type EvidenceImageProps = SupportingWorkImage & {
@@ -169,9 +174,11 @@ function ExternalWindowHint({ label }: { label: string }) {
 
 export function SupportingWork({
   copy,
+  forcedBenchmark,
   handoff,
   imageReviewState,
   navigationOpen,
+  story,
 }: SupportingWorkProps) {
   const retrieve = SCHOLARAI_EVIDENCE[0];
   const ground = SCHOLARAI_EVIDENCE[1];
@@ -180,6 +187,103 @@ export function SupportingWork({
     { data: retrieve, copy: copy.scholar.evidence.retrieve },
     { data: ground, copy: copy.scholar.evidence.ground },
   ] as const;
+  const benchmarkPanelId = useId();
+  const [lockedBenchmark, setLockedBenchmark] = useState<ScholarAIBenchmarkKey>(
+    forcedBenchmark ?? "qa",
+  );
+  const [previewBenchmark, setPreviewBenchmark] =
+    useState<ScholarAIBenchmarkKey | null>(null);
+  const visibleBenchmark = previewBenchmark ?? lockedBenchmark;
+  const interactiveEvidence = story.mode !== "static";
+  const evidenceCopy = {
+    retrieve: copy.scholar.evidence.retrieve,
+    ground: copy.scholar.evidence.ground,
+    evaluate: copy.scholar.evidence.evaluate,
+  } satisfies Record<ScholarAIEvidenceKey, { label: string; title: string }>;
+  const benchmarkEvidence = {
+    qa: {
+      image: evaluate.images[0],
+      label: copy.scholar.evidence.evaluate.qaLabel,
+      caption: copy.scholar.evidence.evaluate.qaCaption,
+      alt: copy.scholar.evidence.evaluate.qaAlt,
+    },
+    refusal: {
+      image: evaluate.images[1],
+      label: copy.scholar.evidence.evaluate.refusalLabel,
+      caption: copy.scholar.evidence.evaluate.refusalCaption,
+      alt: copy.scholar.evidence.evaluate.refusalAlt,
+    },
+  } satisfies Record<
+    ScholarAIBenchmarkKey,
+    {
+      image: SupportingWorkImage;
+      label: string;
+      caption: string;
+      alt: string;
+    }
+  >;
+  const visibleBenchmarkEvidence = benchmarkEvidence[visibleBenchmark];
+  const forcedProgress = {
+    retrieve: 0.18,
+    ground: 0.52,
+    evaluate: 1,
+  }[story.activeStage];
+
+  useEffect(() => {
+    if (!forcedBenchmark) return;
+    setLockedBenchmark(forcedBenchmark);
+    setPreviewBenchmark(null);
+  }, [forcedBenchmark]);
+
+  const chooseBenchmark = (benchmark: ScholarAIBenchmarkKey) => {
+    setLockedBenchmark(benchmark);
+    setPreviewBenchmark(null);
+  };
+
+  const handleBenchmarkKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    benchmark: ScholarAIBenchmarkKey,
+  ) => {
+    let next: ScholarAIBenchmarkKey | null = null;
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      next = benchmark === "qa" ? "refusal" : "qa";
+    } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      next = benchmark === "qa" ? "refusal" : "qa";
+    } else if (event.key === "Home") {
+      next = "qa";
+    } else if (event.key === "End") {
+      next = "refusal";
+    }
+
+    if (!next) return;
+    event.preventDefault();
+    chooseBenchmark(next);
+    event.currentTarget.parentElement
+      ?.querySelector<HTMLButtonElement>(`[data-benchmark="${next}"]`)
+      ?.focus();
+  };
+
+  const evidencePanelStyle = (stage: ScholarAIEvidenceKey) => {
+    if (story.enabled) return story.stages[stage];
+    if (story.mode === "static") {
+      return {
+        opacity: 1,
+        clipPath: "none",
+        y: 0,
+        visibility: "visible" as const,
+      };
+    }
+
+    return story.activeStage === stage
+      ? { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", y: 0 }
+      : {
+          opacity: 0,
+          clipPath: "inset(0% 12% 0% 0%)",
+          y: 16,
+          visibility: "hidden" as const,
+        };
+  };
 
   return (
     <section
@@ -192,6 +296,7 @@ export function SupportingWork({
       data-work-static
       data-work-handoff={handoff.mode}
       data-work-image-review={imageReviewState}
+      data-work-story={story.mode}
     >
       <div
         className={styles.chapterHandoff}
@@ -283,111 +388,259 @@ export function SupportingWork({
             </ol>
           </section>
 
-          <div className={styles.evidenceHeading}>
-            <p>{copy.scholar.evidenceLabel}</p>
-            <p>{copy.scholar.technology}</p>
-          </div>
-
-          <ol className={styles.evidenceList}>
-            {scholarEvidence.map((evidence, index) => {
-              const image = evidence.data.images[0];
-              const signalNumber = String(index + 1).padStart(2, "0");
-
-              return (
-                <li
-                  key={evidence.data.key}
-                  className={styles.evidenceItem}
-                  data-evidence={evidence.data.key}
-                >
-                  <figure>
-                    <figcaption className={styles.evidenceCopy}>
-                      <p className={styles.evidenceIndex}>
-                        {copy.scholar.screenLabel} {signalNumber} / 03
-                      </p>
-                      <p className={styles.evidenceKind}>
-                        {evidence.copy.label}
-                      </p>
-                      <h4>{evidence.copy.title}</h4>
-                      <p className={styles.evidenceCaption}>
-                        {evidence.copy.caption}
-                      </p>
-                    </figcaption>
-
-                    <div className={styles.evidenceMedia}>
-                      <EvidenceImage
-                        {...image}
-                        alt={evidence.copy.alt}
-                        fallbackLabel={copy.imageUnavailable}
-                        loadingLabel={copy.imageLoading}
-                        name={evidence.copy.label}
-                        reviewState={imageReviewState}
-                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 68vw"
-                        variant="scholar"
-                      />
-                    </div>
-                  </figure>
-                </li>
-              );
-            })}
-
-            <li
-              className={`${styles.evidenceItem} ${styles.evaluateItem}`}
-              data-evidence={evaluate.key}
-            >
-              <header className={styles.evaluateHeader}>
-                <div className={styles.evidenceCopy}>
-                  <p className={styles.evidenceIndex}>
-                    {copy.scholar.screenLabel} 03 / 03
-                  </p>
-                  <p className={styles.evidenceKind}>
-                    {copy.scholar.evidence.evaluate.label}
-                  </p>
-                  <h4>{copy.scholar.evidence.evaluate.title}</h4>
-                </div>
-                <p className={styles.evidenceCaption}>
-                  {copy.scholar.evidence.evaluate.caption}
-                </p>
-              </header>
-
-              <div className={styles.benchmarkGrid}>
-                <figure>
-                  <EvidenceImage
-                    {...evaluate.images[0]}
-                    alt={copy.scholar.evidence.evaluate.qaAlt}
-                    fallbackLabel={copy.imageUnavailable}
-                    loadingLabel={copy.imageLoading}
-                    name={copy.scholar.evidence.evaluate.qaLabel}
-                    reviewState={imageReviewState}
-                    sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 45vw"
-                    variant="scholar"
-                  />
-                  <figcaption>
-                    <strong>{copy.scholar.evidence.evaluate.qaLabel}</strong>
-                    <span>{copy.scholar.evidence.evaluate.qaCaption}</span>
-                  </figcaption>
-                </figure>
-
-                <figure>
-                  <EvidenceImage
-                    {...evaluate.images[1]}
-                    alt={copy.scholar.evidence.evaluate.refusalAlt}
-                    fallbackLabel={copy.imageUnavailable}
-                    loadingLabel={copy.imageLoading}
-                    name={copy.scholar.evidence.evaluate.refusalLabel}
-                    reviewState={imageReviewState}
-                    sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 45vw"
-                    variant="scholar"
-                  />
-                  <figcaption>
-                    <strong>
-                      {copy.scholar.evidence.evaluate.refusalLabel}
-                    </strong>
-                    <span>{copy.scholar.evidence.evaluate.refusalCaption}</span>
-                  </figcaption>
-                </figure>
+          <div
+            ref={story.stageRef}
+            className={styles.evidenceStage}
+            data-scholar-evidence-stage
+            data-scholar-stage-mode={story.mode}
+            data-scholar-active-stage={story.activeStage}
+          >
+            <div className={styles.evidenceSticky}>
+              <div className={styles.evidenceHeading}>
+                <p>{copy.scholar.evidenceLabel}</p>
+                <p>{copy.scholar.technology}</p>
               </div>
-            </li>
-          </ol>
+
+              <div className={styles.evidenceCanvas}>
+                <nav
+                  className={styles.evidenceNavigation}
+                  aria-label={copy.scholar.evidenceLabel}
+                >
+                  <span className={styles.evidenceProgressTrack} aria-hidden>
+                    <motion.span
+                      style={
+                        story.enabled
+                          ? story.progressStyle
+                          : { scaleY: forcedProgress }
+                      }
+                      data-scholar-evidence-progress
+                    />
+                  </span>
+                  <ol className={styles.evidenceRail}>
+                    {SCHOLARAI_EVIDENCE.map((evidence, index) => {
+                      const stageCopy = evidenceCopy[evidence.key];
+                      const active = story.activeStage === evidence.key;
+
+                      return (
+                        <li
+                          key={evidence.key}
+                          data-active={active || undefined}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => story.goToStage(evidence.key)}
+                            aria-current={active ? "step" : undefined}
+                            disabled={story.mode === "forced"}
+                          >
+                            <span aria-hidden>
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span>{stageCopy.label}</span>
+                            <strong>{stageCopy.title}</strong>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </nav>
+
+                <ol className={styles.evidenceList}>
+                  {scholarEvidence.map((evidence, index) => {
+                    const image = evidence.data.images[0];
+                    const signalNumber = String(index + 1).padStart(2, "0");
+                    const active = story.activeStage === evidence.data.key;
+
+                    return (
+                      <motion.li
+                        key={evidence.data.key}
+                        className={styles.evidenceItem}
+                        data-evidence={evidence.data.key}
+                        data-active={active || undefined}
+                        style={evidencePanelStyle(evidence.data.key)}
+                        aria-hidden={
+                          interactiveEvidence && !active ? true : undefined
+                        }
+                        inert={interactiveEvidence && !active}
+                      >
+                        <figure>
+                          <figcaption className={styles.evidenceCopy}>
+                            <p className={styles.evidenceIndex}>
+                              {copy.scholar.screenLabel} {signalNumber} / 03
+                            </p>
+                            <p className={styles.evidenceKind}>
+                              {evidence.copy.label}
+                            </p>
+                            <h4>{evidence.copy.title}</h4>
+                            <p className={styles.evidenceCaption}>
+                              {evidence.copy.caption}
+                            </p>
+                          </figcaption>
+
+                          <div className={styles.evidenceMedia}>
+                            <EvidenceImage
+                              {...image}
+                              alt={evidence.copy.alt}
+                              fallbackLabel={copy.imageUnavailable}
+                              loadingLabel={copy.imageLoading}
+                              name={evidence.copy.label}
+                              reviewState={imageReviewState}
+                              sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 68vw"
+                              variant="scholar"
+                            />
+                          </div>
+                        </figure>
+                      </motion.li>
+                    );
+                  })}
+
+                  <motion.li
+                    className={`${styles.evidenceItem} ${styles.evaluateItem}`}
+                    data-evidence={evaluate.key}
+                    data-active={
+                      story.activeStage === evaluate.key || undefined
+                    }
+                    style={evidencePanelStyle(evaluate.key)}
+                    aria-hidden={
+                      interactiveEvidence && story.activeStage !== evaluate.key
+                        ? true
+                        : undefined
+                    }
+                    inert={
+                      interactiveEvidence && story.activeStage !== evaluate.key
+                    }
+                  >
+                    <header className={styles.evaluateHeader}>
+                      <div className={styles.evidenceCopy}>
+                        <p className={styles.evidenceIndex}>
+                          {copy.scholar.screenLabel} 03 / 03
+                        </p>
+                        <p className={styles.evidenceKind}>
+                          {copy.scholar.evidence.evaluate.label}
+                        </p>
+                        <h4>{copy.scholar.evidence.evaluate.title}</h4>
+                      </div>
+                      <p className={styles.evidenceCaption}>
+                        {copy.scholar.evidence.evaluate.caption}
+                      </p>
+                    </header>
+
+                    {interactiveEvidence ? (
+                      <div className={styles.benchmarkInteractive}>
+                        <div
+                          className={styles.benchmarkTabs}
+                          role="tablist"
+                          aria-label={copy.scholar.evidence.evaluate.label}
+                        >
+                          {(["qa", "refusal"] as const).map((benchmark) => {
+                            const selected = visibleBenchmark === benchmark;
+                            const benchmarkCopy = benchmarkEvidence[benchmark];
+
+                            return (
+                              <button
+                                key={benchmark}
+                                type="button"
+                                role="tab"
+                                aria-selected={selected}
+                                aria-controls={benchmarkPanelId}
+                                tabIndex={selected ? 0 : -1}
+                                data-benchmark={benchmark}
+                                onPointerEnter={() =>
+                                  setPreviewBenchmark(benchmark)
+                                }
+                                onPointerLeave={() => setPreviewBenchmark(null)}
+                                onFocus={() => setPreviewBenchmark(benchmark)}
+                                onBlur={() => setPreviewBenchmark(null)}
+                                onClick={() => chooseBenchmark(benchmark)}
+                                onKeyDown={(event) =>
+                                  handleBenchmarkKeyDown(event, benchmark)
+                                }
+                              >
+                                <span>{benchmarkCopy.label}</span>
+                                <span aria-hidden>
+                                  {benchmark === "qa" ? "01" : "02"}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div
+                          id={benchmarkPanelId}
+                          className={styles.benchmarkViewport}
+                          role="tabpanel"
+                          data-benchmark-current={visibleBenchmark}
+                        >
+                          <AnimatePresence mode="wait" initial={false}>
+                            <motion.figure
+                              key={visibleBenchmark}
+                              initial={{
+                                opacity: 0,
+                                clipPath: "inset(0% 10% 0% 0%)",
+                              }}
+                              animate={{
+                                opacity: 1,
+                                clipPath: "inset(0% 0% 0% 0%)",
+                              }}
+                              exit={{
+                                opacity: 0,
+                                clipPath: "inset(0% 0% 0% 10%)",
+                              }}
+                              transition={{
+                                duration: 0.32,
+                                ease: [0.16, 1, 0.3, 1],
+                              }}
+                            >
+                              <EvidenceImage
+                                {...visibleBenchmarkEvidence.image}
+                                alt={visibleBenchmarkEvidence.alt}
+                                fallbackLabel={copy.imageUnavailable}
+                                loadingLabel={copy.imageLoading}
+                                name={visibleBenchmarkEvidence.label}
+                                reviewState={imageReviewState}
+                                sizes="(min-width: 1024px) 68vw, 64vw"
+                                variant="scholar"
+                              />
+                              <figcaption>
+                                <strong>
+                                  {visibleBenchmarkEvidence.label}
+                                </strong>
+                                <span>{visibleBenchmarkEvidence.caption}</span>
+                              </figcaption>
+                            </motion.figure>
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.benchmarkGrid}>
+                        {(["qa", "refusal"] as const).map((benchmark) => {
+                          const benchmarkCopy = benchmarkEvidence[benchmark];
+
+                          return (
+                            <figure key={benchmark}>
+                              <EvidenceImage
+                                {...benchmarkCopy.image}
+                                alt={benchmarkCopy.alt}
+                                fallbackLabel={copy.imageUnavailable}
+                                loadingLabel={copy.imageLoading}
+                                name={benchmarkCopy.label}
+                                reviewState={imageReviewState}
+                                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 45vw"
+                                variant="scholar"
+                              />
+                              <figcaption>
+                                <strong>{benchmarkCopy.label}</strong>
+                                <span>{benchmarkCopy.caption}</span>
+                              </figcaption>
+                            </figure>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </motion.li>
+                </ol>
+              </div>
+            </div>
+          </div>
 
           <footer className={styles.scholarFooter}>
             <div>

@@ -18,6 +18,7 @@ import {
   type SupportingWorkCopy,
 } from "@/components/v2/work/supporting-work";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
+import { useSupportingWorkStory } from "@/components/v2/work/supporting-work-story";
 import { useAboutStory } from "@/components/v2/about/about-story";
 import { useChapterTone } from "@/components/v2/chapter-tone";
 import { useVCareerChapterHandoff } from "@/components/v2/vcareer/vcareer-chapter-handoff";
@@ -105,6 +106,11 @@ export function PortfolioV2Shell({
     forceStatic: showcaseControls.forceStatic,
   });
   const supportingWorkHandoff = useSupportingWorkHandoff({ reduceMotion });
+  const supportingWorkStory = useSupportingWorkStory({
+    reduceMotion,
+    forceStatic: workControls.forceStatic,
+    forcedStage: workControls.forcedStage,
+  });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
@@ -187,6 +193,8 @@ export function PortfolioV2Shell({
           handoff={supportingWorkHandoff}
           imageReviewState={workControls.imageState}
           navigationOpen={mobileNavigationOpen}
+          story={supportingWorkStory}
+          forcedBenchmark={workControls.forcedBenchmark}
         />
       </div>
 

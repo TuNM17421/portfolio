@@ -4,14 +4,34 @@ export const SCHOLARAI_EVIDENCE_KEYS = [
   "evaluate",
 ] as const;
 
-export type ScholarAIEvidenceKey =
-  (typeof SCHOLARAI_EVIDENCE_KEYS)[number];
+export type ScholarAIEvidenceKey = (typeof SCHOLARAI_EVIDENCE_KEYS)[number];
+
+export type ScholarAIBenchmarkKey = "qa" | "refusal";
+export type SupportingWorkStoryMode = "active" | "forced" | "static";
+
+export type ScholarAIEvidenceWindow = {
+  enter: number;
+  holdStart: number;
+  holdEnd: number;
+  exit: number;
+};
+
+export const SCHOLARAI_EVIDENCE_WINDOWS: Record<
+  ScholarAIEvidenceKey,
+  ScholarAIEvidenceWindow
+> = {
+  retrieve: { enter: 0, holdStart: 0.035, holdEnd: 0.27, exit: 0.35 },
+  ground: { enter: 0.29, holdStart: 0.37, holdEnd: 0.61, exit: 0.69 },
+  evaluate: { enter: 0.63, holdStart: 0.71, holdEnd: 0.985, exit: 1 },
+};
 
 export type SupportingWorkImageState = "auto" | "loading" | "error";
 
 export type SupportingWorkControls = {
   forceStatic: boolean;
   imageState: SupportingWorkImageState;
+  forcedStage: ScholarAIEvidenceKey | null;
+  forcedBenchmark: ScholarAIBenchmarkKey | null;
 };
 
 export type SupportingWorkImage = {
@@ -63,8 +83,7 @@ export const SCHOLARAI_EVIDENCE = [
   },
 ] as const satisfies readonly ScholarAIEvidence[];
 
-export const SCHOLARAI_SOURCE_URL =
-  "https://github.com/TuNM17421/ScholarAI";
+export const SCHOLARAI_SOURCE_URL = "https://github.com/TuNM17421/ScholarAI";
 
 export const FINANCIAL_ARCHIVE_IMAGES = [
   {
@@ -107,8 +126,31 @@ export function parseSupportingWorkControls(
 ): SupportingWorkControls {
   const normalized = value.trim().toLowerCase();
 
+  if (normalized === "retrieve" || normalized === "ground") {
+    return {
+      forceStatic: false,
+      imageState: "auto",
+      forcedStage: normalized,
+      forcedBenchmark: null,
+    };
+  }
+
+  if (normalized === "evaluate-qa" || normalized === "evaluate-refusal") {
+    return {
+      forceStatic: false,
+      imageState: "auto",
+      forcedStage: "evaluate",
+      forcedBenchmark: normalized === "evaluate-refusal" ? "refusal" : "qa",
+    };
+  }
+
   if (normalized === "loading" || normalized === "image-loading") {
-    return { forceStatic: true, imageState: "loading" };
+    return {
+      forceStatic: true,
+      imageState: "loading",
+      forcedStage: null,
+      forcedBenchmark: null,
+    };
   }
 
   if (
@@ -116,11 +158,43 @@ export function parseSupportingWorkControls(
     normalized === "image-error" ||
     normalized === "image_error"
   ) {
-    return { forceStatic: true, imageState: "error" };
+    return {
+      forceStatic: true,
+      imageState: "error",
+      forcedStage: null,
+      forcedBenchmark: null,
+    };
   }
 
   return {
     forceStatic: ["static", "0", "off", "false"].includes(normalized),
     imageState: "auto",
+    forcedStage: null,
+    forcedBenchmark: null,
   };
+}
+
+type ResolveSupportingWorkStoryModeOptions = {
+  desktop: boolean;
+  reduceMotion: boolean;
+  forceStatic?: boolean;
+  forcedStage?: ScholarAIEvidenceKey | null;
+};
+
+export function resolveSupportingWorkStoryMode({
+  desktop,
+  reduceMotion,
+  forceStatic = false,
+  forcedStage = null,
+}: ResolveSupportingWorkStoryModeOptions): SupportingWorkStoryMode {
+  if (!desktop || reduceMotion || forceStatic) return "static";
+  return forcedStage ? "forced" : "active";
+}
+
+export function resolveScholarAIEvidenceStage(
+  progress: number,
+): ScholarAIEvidenceKey {
+  if (progress < 0.35) return "retrieve";
+  if (progress < 0.69) return "ground";
+  return "evaluate";
 }

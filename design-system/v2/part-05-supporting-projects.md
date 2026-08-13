@@ -1,6 +1,6 @@
 # Part 05 — ScholarAI evidence + backend archive
 
-> **Status:** Checkpoints 05A–05B approved; 05C is next
+> **Status:** Checkpoints 05A–05C approved; 05D is next
 > **Branch:** `redesign/portfolio-v2`
 > **Planned review artifact:** `/vi/v2?intro=0#work`, `/en/v2?intro=0#work`, and deterministic `?work=` states listed below
 > **Internal direction name:** **Evidence Relay** — not rendered as marketing copy
@@ -361,6 +361,16 @@ no flash or jump.
 - Add the user-controlled QA/Refusal switch inside Evaluate; pointer, focus,
   click/tap, and keyboard behavior must not fight scroll state.
 - Add `work=retrieve|ground|evaluate-qa|evaluate-refusal` deterministic states.
+
+The 05C implementation uses one `285svh` native-scroll stage at desktop widths,
+with a `100svh` sticky evidence canvas. Retrieve, Ground, and Evaluate retain
+separate dwell plateaus; their rail buttons scroll to the center of the chosen
+plateau instead of mutating the active state independently from page position.
+Evaluate keeps a locally locked QA/Refusal selection across continued scrolling,
+while hover/focus can preview and arrow/Home/End keys move between the two real
+benchmark views. Below `1024px`, with reduced motion, or in static/image-review
+states, the same evidence DOM returns to sequential document flow and clears all
+desktop opacity, clip, and transform values.
 
 **What to review:** a short continued scroll does not immediately erase an
 evidence job; active state is unmistakable; screenshots remain readable during
