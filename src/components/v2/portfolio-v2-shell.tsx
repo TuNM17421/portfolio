@@ -26,6 +26,10 @@ import {
   type CapabilityLedgerCopy,
 } from "@/components/v2/capabilities/capability-ledger";
 import { useCapabilityRoutingMotion } from "@/components/v2/capabilities/capability-routing-motion";
+import {
+  ContactConversion,
+  type ContactConversionCopy,
+} from "@/components/v2/contact/contact-conversion";
 import { useCareerTraceMotion } from "@/components/v2/career/career-trace-motion";
 import { useRecognitionStageMotion } from "@/components/v2/career/recognition-stage-motion";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
@@ -72,6 +76,7 @@ type PortfolioV2ShellProps = {
   workCopy: SupportingWorkCopy;
   careerCopy: CareerRecognitionCopy;
   capabilitiesCopy: CapabilityLedgerCopy;
+  contactCopy: ContactConversionCopy;
 };
 
 export function PortfolioV2Shell({
@@ -92,6 +97,7 @@ export function PortfolioV2Shell({
   workCopy,
   careerCopy,
   capabilitiesCopy,
+  contactCopy,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -263,6 +269,11 @@ export function PortfolioV2Shell({
           copy={capabilitiesCopy}
           navigationOpen={mobileNavigationOpen}
           routing={capabilityRouting}
+        />
+        <ContactConversion
+          copy={contactCopy}
+          navigationOpen={mobileNavigationOpen}
+          reduceMotion={reduceMotion}
         />
       </div>
 

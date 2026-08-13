@@ -709,6 +709,19 @@
         "scholarDelivery": "ScholarAI · solo end-to-end",
         "vcareerDelivery": "VCareer · team phát triển 6 tuần"
       }
+    },
+    "contact": {
+      "eyebrow": "MỞ KÊNH TRAO ĐỔI",
+      "axis": "BẰNG CHỨNG ĐÃ HỘI TỤ → EMAIL",
+      "title": "Có một hệ thống đáng để cùng xây?",
+      "body": "Mình quan tâm tới backend, sản phẩm AI realtime và những bài toán cần biến mô hình thành trải nghiệm thật.",
+      "primaryLabel": "KÊNH TRỰC TIẾP / EMAIL",
+      "emailAction": "Gửi email tới Nguyen Manh Tu",
+      "secondaryLabel": "CÁC KÊNH KHÁC",
+      "downloadCv": "Tải CV",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "Mở trong tab mới"
     }
   },
   "footer": {

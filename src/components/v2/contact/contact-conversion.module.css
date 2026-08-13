@@ -1,0 +1,403 @@
+.contact {
+  --contact-night: #071219;
+  --contact-deep: #0b2738;
+  --contact-mineral: #edf4f5;
+  --contact-focus: #6bd7d0;
+  --contact-signal: #0060f0;
+  --contact-rule: rgba(107, 215, 208, 0.2);
+  position: relative;
+  z-index: 3;
+  overflow: clip;
+  color: var(--contact-mineral);
+  background: var(--contact-night);
+  scroll-margin-top: 0;
+}
+
+.field {
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 0, rgba(0, 96, 240, 0.16), transparent 34%),
+    linear-gradient(105deg, rgba(11, 39, 56, 0.42), transparent 46%),
+    var(--contact-night);
+}
+
+.field::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(107, 215, 208, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 215, 208, 0.035) 1px, transparent 1px);
+  background-position: center top;
+  background-size:
+    100% clamp(76px, 8vw, 122px),
+    clamp(76px, 8vw, 122px) 100%;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
+  opacity: 0.42;
+  content: "";
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: clamp(96px, 9vw, 144px) clamp(22px, 4.6vw, 72px)
+    clamp(92px, 9vw, 142px);
+}
+
+.emailBaseline,
+.emailNode {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.sectionRail,
+.primaryLabel,
+.secondaryLabel {
+  font-family: var(--font-v2-mono), monospace;
+  text-transform: uppercase;
+}
+
+.sectionRail {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--contact-rule);
+  font-size: clamp(0.6rem, 0.7vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.55;
+}
+
+.sectionRail p,
+.introduction h2,
+.introduction p,
+.primaryLabel,
+.secondaryLabel {
+  margin: 0;
+}
+
+.sectionRail p:first-child {
+  color: var(--contact-focus);
+}
+
+.sectionRail p:last-child {
+  color: rgba(237, 244, 245, 0.56);
+  text-align: right;
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: end;
+  padding: clamp(80px, 8vw, 128px) 0 clamp(112px, 11vw, 176px);
+}
+
+.introduction h2 {
+  max-width: 8.5ch;
+  grid-column: 1 / 7;
+  padding: 0.08em 0 0.14em;
+  color: var(--contact-mineral);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(4.5rem, 7.4vw, 7.8rem);
+  font-variation-settings: "wdth" 82;
+  font-weight: 535;
+  letter-spacing: calc(-0.062em + 3px);
+  line-height: 0.88;
+}
+
+.introduction > p {
+  max-width: 38ch;
+  grid-column: 9 / -1;
+  padding-bottom: 0.5em;
+  color: rgba(237, 244, 245, 0.68);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.72;
+}
+
+.emailStage {
+  position: relative;
+  padding: 0 0 clamp(26px, 2.5vw, 38px);
+}
+
+.primaryLabel,
+.secondaryLabel {
+  color: var(--contact-focus);
+  font-size: clamp(0.57rem, 0.65vw, 0.68rem);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  line-height: 1.55;
+}
+
+.primaryLabel {
+  padding-bottom: clamp(34px, 4vw, 64px);
+}
+
+.emailLink {
+  display: block;
+  min-height: 44px;
+  padding: 0.08em 0 0.14em;
+  color: var(--contact-mineral);
+  text-decoration: none;
+}
+
+.emailText {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: baseline;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(4.7rem, 8.5vw, 9rem);
+  font-variation-settings: "wdth" 78;
+  font-weight: 535;
+  letter-spacing: calc(-0.068em + 2px);
+  line-height: 0.88;
+}
+
+.emailLocal {
+  text-align: right;
+}
+
+.emailAt {
+  color: var(--contact-focus);
+}
+
+.emailDomain {
+  text-align: left;
+}
+
+.emailBaseline {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(107, 215, 208, 0.12),
+    var(--contact-signal) 28%,
+    var(--contact-focus) 50%,
+    var(--contact-signal) 72%,
+    rgba(107, 215, 208, 0.12)
+  );
+  box-shadow: 0 0 20px rgba(0, 96, 240, 0.18);
+  transform-origin: center;
+}
+
+.emailNode {
+  bottom: -4px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--contact-night);
+  background: var(--contact-focus);
+  box-shadow:
+    0 0 0 1px var(--contact-focus),
+    0 0 22px 4px rgba(107, 215, 208, 0.18);
+}
+
+.emailLink:is(:hover, :focus-visible) {
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(107, 215, 208, 0.14);
+}
+
+.emailLink:focus-visible {
+  outline: 2px solid var(--contact-focus);
+  outline-offset: 10px;
+}
+
+.emailStage:has(.emailLink:is(:hover, :focus-visible)) .emailBaseline {
+  filter: brightness(1.35);
+  box-shadow: 0 0 28px rgba(107, 215, 208, 0.3);
+}
+
+.secondaryRoutes {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(72px, 7vw, 112px) 0 clamp(68px, 7vw, 108px);
+}
+
+.secondaryLabel {
+  grid-column: 1 / 5;
+  padding-top: 18px;
+}
+
+.secondaryRoutes nav {
+  display: grid;
+  grid-column: 6 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--contact-rule);
+}
+
+.secondaryRoutes a {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px clamp(12px, 1.6vw, 24px);
+  border-bottom: 1px solid var(--contact-rule);
+  color: var(--contact-mineral);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.7rem, 0.8vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+.secondaryRoutes a + a {
+  border-left: 1px solid var(--contact-rule);
+}
+
+.secondaryRoutes a > span:last-child {
+  color: var(--contact-focus);
+  font-size: 0.86rem;
+}
+
+.secondaryRoutes a:is(:hover, :focus-visible) {
+  color: #ffffff;
+  background: rgba(107, 215, 208, 0.07);
+}
+
+.secondaryRoutes a:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--contact-focus);
+  outline-offset: 4px;
+}
+
+.formBoundary {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--contact-rule),
+    rgba(107, 215, 208, 0.05)
+  );
+}
+
+.contact[data-contact-motion="active"] :is(.emailBaseline, .emailNode) {
+  will-change: transform, opacity;
+}
+
+@media (max-width: 767px) {
+  .contact {
+    scroll-margin-top: 68px;
+  }
+
+  .field::before {
+    background-size: 68px 68px;
+    opacity: 0.28;
+  }
+
+  .inner {
+    padding: 84px 20px 86px;
+  }
+
+  .sectionRail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-bottom: 16px;
+  }
+
+  .sectionRail p:last-child {
+    text-align: left;
+  }
+
+  .introduction {
+    display: block;
+    padding: 68px 0 98px;
+  }
+
+  .introduction h2 {
+    max-width: 8.4ch;
+    font-size: clamp(3.35rem, 15vw, 4.8rem);
+    letter-spacing: calc(-0.06em + 2px);
+  }
+
+  .introduction > p {
+    max-width: 31ch;
+    margin-top: 44px;
+    padding-bottom: 0;
+    font-size: 0.98rem;
+  }
+
+  .primaryLabel {
+    padding-bottom: 30px;
+  }
+
+  .emailLink {
+    padding-bottom: 0.2em;
+  }
+
+  .emailText {
+    display: block;
+    font-size: clamp(2.65rem, 13.4vw, 4.2rem);
+    letter-spacing: calc(-0.06em + 1px);
+    line-height: 0.91;
+  }
+
+  .emailLocal,
+  .emailAt,
+  .emailDomain {
+    display: block;
+    text-align: left;
+  }
+
+  .emailAt {
+    display: inline;
+  }
+
+  .emailDomain {
+    display: inline;
+  }
+
+  .secondaryRoutes {
+    display: block;
+    padding: 72px 0 68px;
+  }
+
+  .secondaryLabel {
+    padding: 0 0 28px;
+  }
+
+  .secondaryRoutes nav {
+    display: block;
+  }
+
+  .secondaryRoutes a {
+    min-height: 58px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .secondaryRoutes a + a {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .introduction h2 {
+    font-size: 3.05rem;
+  }
+
+  .emailText {
+    font-size: 2.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emailLink,
+  .secondaryRoutes a {
+    transition-duration: 0ms;
+  }
+}

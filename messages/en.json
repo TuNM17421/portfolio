@@ -709,6 +709,19 @@
         "scholarDelivery": "ScholarAI · solo end-to-end",
         "vcareerDelivery": "VCareer · six-week team delivery"
       }
+    },
+    "contact": {
+      "eyebrow": "OPEN A CHANNEL",
+      "axis": "EVIDENCE CONVERGED → EMAIL",
+      "title": "Have a system worth building?",
+      "body": "I’m interested in reliable backends, realtime AI products, and problems that turn models into real experiences.",
+      "primaryLabel": "DIRECT CHANNEL / EMAIL",
+      "emailAction": "Email Nguyen Manh Tu",
+      "secondaryLabel": "OTHER ROUTES",
+      "downloadCv": "Download CV",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "Opens in a new tab"
     }
   },
   "footer": {

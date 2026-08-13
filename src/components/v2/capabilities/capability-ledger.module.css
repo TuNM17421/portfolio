@@ -50,8 +50,7 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: clamp(88px, 8vw, 126px) clamp(22px, 4.6vw, 72px)
-    clamp(110px, 11vw, 174px);
+  padding: clamp(88px, 8vw, 126px) clamp(22px, 4.6vw, 72px) 0;
 }
 
 .sectionRail,
@@ -362,10 +361,10 @@
 }
 
 .capability:is(
-    [data-route-active="true"],
-    :focus-within,
-    :has(.evidence a:active)
-  ) {
+  [data-route-active="true"],
+  :focus-within,
+  :has(.evidence a:active)
+) {
   background-color: rgba(0, 96, 240, 0.045);
 }
 
@@ -526,7 +525,7 @@
   }
 
   .inner {
-    padding: 78px 20px 108px;
+    padding: 78px 20px 0;
   }
 
   .sectionRail {

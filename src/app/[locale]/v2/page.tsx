@@ -87,6 +87,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
     locale,
     namespace: "v2.capabilities",
   });
+  const contactT = await getTranslations({ locale, namespace: "v2.contact" });
 
   return (
     <>
@@ -407,9 +408,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                   caption: careerT(
                     "recognition.documentaries.careerServices.caption",
                   ),
-                  alt: careerT(
-                    "recognition.documentaries.careerServices.alt",
-                  ),
+                  alt: careerT("recognition.documentaries.careerServices.alt"),
                 },
               },
               imageLoading: careerT("recognition.imageLoading"),
@@ -478,6 +477,19 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
               scholarDelivery: capabilitiesT("proofs.scholarDelivery"),
               vcareerDelivery: capabilitiesT("proofs.vcareerDelivery"),
             },
+          }}
+          contactCopy={{
+            eyebrow: contactT("eyebrow"),
+            axis: contactT("axis"),
+            title: contactT("title"),
+            body: contactT("body"),
+            primaryLabel: contactT("primaryLabel"),
+            emailAction: contactT("emailAction"),
+            secondaryLabel: contactT("secondaryLabel"),
+            downloadCv: contactT("downloadCv"),
+            github: contactT("github"),
+            linkedin: contactT("linkedin"),
+            opensNewTab: contactT("opensNewTab"),
           }}
         />
       </div>

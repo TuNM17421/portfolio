@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–06 complete; Part 07A approved and Part 07B awaiting owner review
+> **Status:** Parts 01–06 complete; Part 07A–07B approved and Part 07C awaiting owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 07 evidence-backed capabilities, contact conversion, and footer plan
-> **Implementation status:** Part 07A is committed at `48577f1`; Part 07B is implemented and intentionally uncommitted for review
+> **Implementation status:** Part 07A is committed at `48577f1`; Part 07B is committed at `7f04705`; Part 07C is implemented and intentionally uncommitted for review
 
 ## Objective
 
@@ -140,18 +140,18 @@ Relevant implementation references:
 
 ## Part roadmap
 
-| Part | Scope                                           | User review artifact                                      | Status                                                         |
-| ---- | ----------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- |
-| 00   | Evidence, direction and contracts               | These documents                                           | Approved                                                       |
-| 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                           |
-| 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed              |
-| 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                           |
-| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                           |
-| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                           |
-| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                           |
-| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | 07A committed; 07B implemented and awaiting owner review      |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                          |
-| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                          |
+| Part | Scope                                           | User review artifact                                      | Status                                                       |
+| ---- | ----------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
+| 00   | Evidence, direction and contracts               | These documents                                           | Approved                                                     |
+| 01   | Cinematic Intro Loader                          | Forced full/fast/error/reduced-motion local URLs          | Approved · `a0687e2`                                         |
+| 02   | Header + full-viewport Hero                     | Desktop/mobile screenshots and live pointer/scroll review | Complete; `ai-tidy` is the default and 02F passed            |
+| 03   | Hero-to-About transition + identity story       | Full first two-scene scroll capture                       | Complete · `37de357`                                         |
+| 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                         |
+| 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                         |
+| 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                         |
+| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | 07A–07B committed; 07C implemented and awaiting owner review |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                        |
+| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                        |
 
 Detailed contracts for Parts 01–07 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.

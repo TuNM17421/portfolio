@@ -105,7 +105,9 @@ export function CapabilityLedger({
                         className={styles.routeNode}
                         style={routing.enabled ? lane.node : undefined}
                       />
-                      <span className={styles.routeIndex}>{itemCopy.index}</span>
+                      <span className={styles.routeIndex}>
+                        {itemCopy.index}
+                      </span>
                     </div>
 
                     <div className={styles.identity}>
