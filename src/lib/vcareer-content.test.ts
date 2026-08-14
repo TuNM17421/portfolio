@@ -54,4 +54,31 @@ describe("VCareer public evidence", () => {
       "không được build từ đầu",
     );
   });
+
+  it("keeps the 08B direct-scope boundary explicit in both locales", () => {
+    for (const messages of [vi, en]) {
+      expect(Object.keys(messages.vcareerCaseStudy.scope.items)).toEqual([
+        "realtime",
+        "matching",
+        "builder",
+      ]);
+      expect(messages.vcareerCaseStudy.scope.intro).toMatch(
+        /không phải toàn bộ|not every component/i,
+      );
+      expect(messages.vcareerCaseStudy.v2.scopeLabels.direct).toBeTruthy();
+      expect(messages.vcareerCaseStudy.v2.scopeLabels.context).toBeTruthy();
+    }
+  });
+
+  it("separates the six-week delivery cycle from post-live recognition", () => {
+    expect(vi.vcareerCaseStudy.timeline.items.discovery.label).toBe("Khảo sát");
+    expect(vi.vcareerCaseStudy.timeline.items.build.label).toBe("Xây dựng");
+    expect(vi.vcareerCaseStudy.timeline.items.pilot.label).toBe("Thử nghiệm");
+    expect(
+      vi.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary,
+    ).toContain("ĐÃ HOẠT ĐỘNG");
+    expect(
+      en.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary,
+    ).toContain("ALREADY LIVE");
+  });
 });

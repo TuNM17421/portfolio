@@ -205,12 +205,12 @@
       "title": "Từ discovery đến pilot với học viên thật",
       "items": {
         "discovery": {
-          "label": "Discovery",
+          "label": "Khảo sát",
           "title": "Lên ý tưởng và phỏng vấn Product Owner",
           "body": "Chu kỳ phát triển sáu tuần của team bắt đầu từ 05/2026 với việc định hình bài toán cùng phòng Hướng nghiệp VinUni."
         },
         "build": {
-          "label": "Build",
+          "label": "Xây dựng",
           "title": "Sáu tuần từ ý tưởng đến sản phẩm",
           "body": "Team bốn người phát triển sản phẩm từ giai đoạn discovery ban đầu đến phiên bản sẵn sàng cho pilot."
         },
@@ -220,7 +220,7 @@
           "body": "VCareer tham gia sự kiện tại Hà Nội ngày 27/06/2026 với tư cách sản phẩm đã live, đúng yêu cầu của Track 4. VCareer không được build từ đầu trong hackathon và nhận $5,000 OpenAI API credits."
         },
         "pilot": {
-          "label": "Pilot",
+          "label": "Thử nghiệm",
           "title": "150+ học viên thật đã trải nghiệm",
           "body": "Survey ghi nhận phản hồi về cảm giác tự tin hơn. Hệ thống đánh giá và chấm điểm CV được Product Owner của phòng Hướng nghiệp VinUni review."
         }
@@ -307,6 +307,20 @@
         "eyebrow": "01 / BẰNG CHỨNG",
         "title": "Ba tín hiệu từ pilot thực tế.",
         "description": "Một con số sử dụng thật, một tín hiệu định tính từ khảo sát và một vòng đánh giá chuyên môn — không biến số minh họa trong sản phẩm thành kết quả của hồ sơ này."
+      },
+      "problemFlow": {
+        "label": "Luồng chuẩn bị nghề nghiệp mà team kết nối",
+        "cv": "CV",
+        "criteria": "Tiêu chí JD",
+        "interview": "Phỏng vấn AI trực tiếp"
+      },
+      "scopeLabels": {
+        "direct": "TÚ / TRỰC TIẾP",
+        "context": "BỐI CẢNH TEAM / SẢN PHẨM RỘNG HƠN"
+      },
+      "deliveryTrace": {
+        "buildWindow": "06 TUẦN / TỪ KHẢO SÁT ĐẾN THỬ NGHIỆM",
+        "recognitionBoundary": "SAU KHI SẢN PHẨM ĐÃ HOẠT ĐỘNG"
       },
       "chapters": {
         "signal": "Bằng chứng",

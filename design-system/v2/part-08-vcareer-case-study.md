@@ -1,10 +1,11 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A approved; 08B authorized; 08C–08F remain planned
+> **Status:** 08A–08B approved; 08C authorized; 08D–08F remain planned
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Implementation status:** 08A completed and approved on 14 August 2026
+> **Implementation status:** 08A committed at `744da4f`; 08B completed and
+> approved on 14 August 2026
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -444,6 +445,19 @@ before the next begins.
 - reverse scroll and reduced motion preserve reading order;
 - mobile does not require precise scroll stopping or horizontal gestures.
 
+**Implemented review behavior**
+
+- the product problem is encoded as the ordered path `CV → JD criteria →
+  live AI interview` rather than another row of cards;
+- the three direct responsibilities sit on one lime-activated vertical trace,
+  while the wider team/product statement is separated by a dashed context
+  boundary;
+- discovery, the six-week build, and the learner pilot form the primary
+  delivery line; Track 4 branches only after the product-live marker;
+- each local reading cluster enters when it reaches the viewport and re-enters
+  on reverse scroll. There is no pinned dwell, no horizontal gesture, and the
+  server/no-JS/reduced-motion render stays fully visible.
+
 ### 08C — Architecture trace and product-state boundary
 
 **Implementation**
@@ -565,5 +579,5 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoint **08A** and authorized implementation of **08B**.
-Later checkpoints remain behind their own preview and approval gates.
+The owner approved checkpoints **08A–08B** and authorized implementation of
+**08C**. Later checkpoints remain behind their own preview and approval gates.

@@ -3,11 +3,13 @@ import { getTranslations } from "next-intl/server";
 import { VCAREER_PROJECT } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
+import { NarrativeMotionSection } from "./narrative-motion-section";
 import styles from "./vcareer-case-study.module.css";
 
 const FACT_KEYS = ["pilot", "confidence", "review"] as const;
+const PROBLEM_FLOW_KEYS = ["cv", "criteria", "interview"] as const;
 const SCOPE_KEYS = ["realtime", "matching", "builder"] as const;
-const TIMELINE_KEYS = ["discovery", "build", "hackathon", "pilot"] as const;
+const DELIVERY_KEYS = ["discovery", "build", "pilot"] as const;
 const ARCHITECTURE_KEYS = [
   "realtime",
   "application",
@@ -210,64 +212,155 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
           </nav>
 
           <div className={styles.caseContent}>
-            <section
+            <NarrativeMotionSection
               id="case-problem"
-              className={styles.caseSection}
-              aria-labelledby="case-problem-title"
+              className={`${styles.caseSection} ${styles.problemSection}`}
+              labelledBy="case-problem-title"
+              kind="problem"
             >
-              <SectionHeading
-                code={t("v2.sectionCodes.problem")}
-                id="case-problem-title"
-                title={t("problem.title")}
-              />
+              <div
+                className={styles.narrativeHeading}
+                data-narrative-reveal="heading"
+              >
+                <SectionHeading
+                  code={t("v2.sectionCodes.problem")}
+                  id="case-problem-title"
+                  title={t("problem.title")}
+                />
+              </div>
+
               <div className={styles.problemGrid}>
-                <p className={styles.leadCopy}>{t("problem.body")}</p>
-                <div className={styles.scopeBlock}>
+                <ol
+                  className={styles.problemFlow}
+                  aria-label={t("v2.problemFlow.label")}
+                  data-narrative-reveal="flow"
+                >
+                  {PROBLEM_FLOW_KEYS.map((key, index) => (
+                    <li key={key}>
+                      <span className={styles.problemFlowIndex} aria-hidden>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong>{t(`v2.problemFlow.${key}`)}</strong>
+                      <span className={styles.problemFlowNode} aria-hidden />
+                    </li>
+                  ))}
+                </ol>
+                <p className={styles.leadCopy} data-narrative-reveal="copy">
+                  {t("problem.body")}
+                </p>
+              </div>
+
+              <div className={styles.scopeFrame}>
+                <header
+                  className={styles.scopeHeader}
+                  data-narrative-reveal="heading"
+                >
                   <p className={styles.subsectionLabel}>{t("scope.eyebrow")}</p>
                   <h3>{t("scope.title")}</h3>
-                  <p>{t("scope.intro")}</p>
+                </header>
+
+                <div
+                  className={styles.scopeTrace}
+                  data-narrative-reveal="trace"
+                >
+                  <span className={styles.scopeTraceLine} aria-hidden />
                   <ol className={styles.scopeList}>
                     {SCOPE_KEYS.map((key, index) => (
-                      <li key={key}>
-                        <span aria-hidden>
+                      <li key={key} data-narrative-reveal="item">
+                        <span className={styles.scopeIndex} aria-hidden>
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <div>
+                        <span className={styles.scopeNode} aria-hidden />
+                        <div className={styles.scopeTitle}>
+                          <p>{t("v2.scopeLabels.direct")}</p>
                           <h4>{t(`scope.items.${key}.title`)}</h4>
-                          <p>{t(`scope.items.${key}.body`)}</p>
                         </div>
+                        <p className={styles.scopeBody}>
+                          {t(`scope.items.${key}.body`)}
+                        </p>
                       </li>
                     ))}
                   </ol>
                 </div>
-              </div>
-            </section>
 
-            <section
+                <aside
+                  className={styles.scopeContext}
+                  data-narrative-reveal="context"
+                >
+                  <p>{t("v2.scopeLabels.context")}</p>
+                  <p>{t("scope.intro")}</p>
+                </aside>
+              </div>
+            </NarrativeMotionSection>
+
+            <NarrativeMotionSection
               id="case-delivery"
-              className={styles.caseSection}
-              aria-labelledby="case-delivery-title"
+              className={`${styles.caseSection} ${styles.deliverySection}`}
+              labelledBy="case-delivery-title"
+              kind="delivery"
             >
-              <SectionHeading
-                code={t("v2.sectionCodes.delivery")}
-                id="case-delivery-title"
-                title={t("timeline.title")}
-              />
-              <ol className={styles.timelineList}>
-                {TIMELINE_KEYS.map((key, index) => (
-                  <li key={key}>
+              <div
+                className={styles.narrativeHeading}
+                data-narrative-reveal="heading"
+              >
+                <SectionHeading
+                  code={t("v2.sectionCodes.delivery")}
+                  id="case-delivery-title"
+                  title={t("timeline.title")}
+                />
+              </div>
+
+              <div
+                className={styles.deliveryTrace}
+                data-narrative-reveal="trace"
+              >
+                <p
+                  className={styles.deliveryWindow}
+                  data-narrative-reveal="label"
+                >
+                  {t("v2.deliveryTrace.buildWindow")}
+                </p>
+                <span className={styles.deliveryLine} aria-hidden />
+                <ol className={styles.timelineList}>
+                  {DELIVERY_KEYS.map((key, index) => (
+                    <li
+                      className={styles.timelineMilestone}
+                      key={key}
+                      data-narrative-reveal="item"
+                    >
+                      <span className={styles.timelineNode} aria-hidden />
+                      <span className={styles.timelineIndex} aria-hidden>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className={styles.timelineLabel}>
+                        {t(`timeline.items.${key}.label`)}
+                      </p>
+                      <h3>{t(`timeline.items.${key}.title`)}</h3>
+                      <p>{t(`timeline.items.${key}.body`)}</p>
+                    </li>
+                  ))}
+
+                  <li
+                    className={styles.recognitionMilestone}
+                    data-narrative-reveal="recognition"
+                  >
+                    <span className={styles.recognitionBranch} aria-hidden />
+                    <span className={styles.timelineNode} aria-hidden />
                     <span className={styles.timelineIndex} aria-hidden>
-                      {String(index + 1).padStart(2, "0")}
+                      04
                     </span>
-                    <p className={styles.timelineLabel}>
-                      {t(`timeline.items.${key}.label`)}
+                    <p className={styles.recognitionBoundary}>
+                      {t("v2.deliveryTrace.recognitionBoundary")}
                     </p>
-                    <h3>{t(`timeline.items.${key}.title`)}</h3>
-                    <p>{t(`timeline.items.${key}.body`)}</p>
+                    <p className={styles.timelineLabel}>
+                      {t("timeline.items.hackathon.label")}
+                    </p>
+                    <h3>{t("timeline.items.hackathon.title")}</h3>
+                    <p>{t("timeline.items.hackathon.body")}</p>
                   </li>
-                ))}
-              </ol>
-            </section>
+                </ol>
+              </div>
+            </NarrativeMotionSection>
 
             <section
               id="case-system"

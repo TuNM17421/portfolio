@@ -650,21 +650,124 @@
   line-height: 1.65;
 }
 
+.problemSection,
+.deliverySection {
+  overflow: clip;
+}
+
+.narrativeHeading {
+  min-width: 0;
+}
+
 .problemGrid {
   display: grid;
-  grid-template-columns: minmax(260px, 0.38fr) minmax(480px, 0.62fr);
-  gap: clamp(42px, 7vw, 112px);
-  align-items: start;
+  grid-template-columns: minmax(440px, 0.62fr) minmax(270px, 0.38fr);
+  gap: clamp(44px, 7vw, 112px);
+  align-items: end;
+}
+
+.problemFlow {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+}
+
+.problemFlow::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--case-blue),
+    var(--case-focus) 68%,
+    var(--case-lime)
+  );
+  content: "";
+}
+
+.problemFlow li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 132px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 clamp(16px, 2vw, 28px) 26px 0;
+}
+
+.problemFlow li + li {
+  padding-left: clamp(16px, 2vw, 28px);
+  border-left: 1px solid var(--case-light-rule);
+}
+
+.problemFlowIndex,
+.scopeIndex {
+  color: var(--case-blue-ink);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+}
+
+.problemFlow strong {
+  max-width: 14ch;
+  color: var(--case-ink);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(1.35rem, 2vw, 2.2rem);
+  font-variation-settings: "wdth" 84;
+  font-weight: 590;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.problemFlowNode {
+  position: absolute;
+  z-index: 1;
+  bottom: -5px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--case-mineral);
+  background: var(--case-blue);
+  box-shadow: 0 0 0 1px var(--case-blue);
+}
+
+.problemFlow li:nth-child(2) .problemFlowNode {
+  background: var(--case-focus);
+  box-shadow: 0 0 0 1px #177d7a;
+}
+
+.problemFlow li:last-child .problemFlowNode {
+  background: var(--case-lime);
+  box-shadow: 0 0 0 1px #507d0d;
 }
 
 .leadCopy {
   margin: 0;
+  padding-left: clamp(20px, 3vw, 42px);
   color: var(--case-muted-light);
+  border-left: 1px solid var(--case-light-rule);
   font-size: clamp(1.05rem, 1.45vw, 1.4rem);
   line-height: 1.65;
 }
 
-.scopeBlock {
+.scopeFrame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(220px, 0.28fr) minmax(0, 0.72fr);
+  gap: clamp(42px, 7vw, 112px);
+  margin-top: clamp(104px, 12vw, 184px);
+  padding-top: clamp(32px, 4vw, 58px);
+  border-top: 2px solid var(--case-ink);
+}
+
+.scopeHeader {
   min-width: 0;
 }
 
@@ -674,7 +777,7 @@
   font-size: 0.65rem;
 }
 
-.scopeBlock > h3,
+.scopeHeader > h3,
 .stateGrid h3,
 .repositoryState h3 {
   margin: 16px 0 0;
@@ -685,40 +788,82 @@
   line-height: 1;
 }
 
-.scopeBlock > h3 {
-  font-size: clamp(2rem, 3.5vw, 4rem);
+.scopeHeader > h3 {
+  max-width: 9ch;
+  font-size: clamp(2.15rem, 3.8vw, 4.45rem);
 }
 
-.scopeBlock > p:not(.subsectionLabel) {
-  max-width: 64ch;
-  margin: 18px 0 0;
-  color: var(--case-muted-light);
-  line-height: 1.65;
+.scopeTrace {
+  position: relative;
+  min-width: 0;
+}
+
+.scopeTraceLine {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 33px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--case-blue),
+    var(--case-focus) 62%,
+    var(--case-lime)
+  );
+  transform-origin: top;
 }
 
 .scopeList {
-  display: grid;
-  margin: clamp(36px, 5vw, 72px) 0 0;
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
   padding: 0;
   border-top: 1px solid var(--case-light-rule);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   list-style: none;
 }
 
 .scopeList li {
+  position: relative;
   display: grid;
   min-width: 0;
-  grid-template-rows: auto 1fr;
-  gap: 30px;
-  padding: 22px clamp(16px, 2vw, 30px) 30px;
+  min-height: 176px;
+  grid-template-columns: 66px minmax(210px, 0.42fr) minmax(250px, 0.58fr);
+  gap: clamp(20px, 3vw, 46px);
+  align-items: start;
+  padding: clamp(28px, 3vw, 42px) 0;
   border-bottom: 1px solid var(--case-light-rule);
 }
 
-.scopeList li + li {
-  border-left: 1px solid var(--case-light-rule);
+.scopeIndex {
+  padding-top: 3px;
 }
 
-.scopeList li > span,
+.scopeNode {
+  position: absolute;
+  z-index: 2;
+  top: clamp(30px, 3vw, 44px);
+  left: 28px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--case-mineral);
+  background: var(--case-lime);
+  box-shadow:
+    0 0 0 1px #507d0d,
+    0 0 18px rgba(168, 240, 60, 0.2);
+}
+
+.scopeTitle > p {
+  margin: 0 0 16px;
+  color: #3d6d00;
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.scopeList li > span:not(.scopeNode),
 .architectureGrid article > span {
   color: var(--case-blue);
   font-family: var(--font-v2-mono), monospace;
@@ -741,45 +886,169 @@
   font-size: clamp(1.25rem, 1.7vw, 1.75rem);
 }
 
-.scopeList p,
+.scopeBody,
 .timelineList li > p:last-child,
 .architectureGrid article > p:last-child {
-  margin: 12px 0 0;
+  margin: 0;
   color: var(--case-muted-light);
   font-size: 0.86rem;
   line-height: 1.62;
 }
 
-.timelineList,
-.architectureGrid {
+.scopeContext {
   display: grid;
+  grid-column: 2;
+  grid-template-columns: minmax(180px, 0.36fr) minmax(260px, 0.64fr);
+  gap: clamp(28px, 4vw, 62px);
+  margin: clamp(34px, 5vw, 68px) 0 0 66px;
+  padding: clamp(22px, 3vw, 34px) 0;
+  border-top: 1px dashed rgba(11, 39, 56, 0.34);
+  border-bottom: 1px dashed rgba(11, 39, 56, 0.34);
+}
+
+.scopeContext p {
   margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--case-light-rule);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.scopeContext p:first-child,
+.deliveryWindow,
+.recognitionBoundary {
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.63rem;
+  font-weight: 550;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.scopeContext p:first-child {
+  color: #006c70;
+}
+
+.scopeContext p:last-child {
+  color: var(--case-muted-light);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.deliveryTrace {
+  position: relative;
+  min-width: 0;
+}
+
+.deliveryWindow {
+  margin: 0 0 48px;
+  color: var(--case-blue-ink);
+}
+
+.deliveryLine {
+  position: absolute;
+  z-index: 0;
+  top: calc(1em + 48px);
+  left: 0;
+  width: 66.666%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--case-blue),
+    var(--case-focus) 72%,
+    var(--case-lime)
+  );
+  transform-origin: left;
 }
 
 .timelineList {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   list-style: none;
 }
 
-.timelineList li,
+.timelineMilestone,
+.recognitionMilestone,
 .architectureGrid article {
   position: relative;
   min-width: 0;
-  padding: clamp(24px, 3vw, 42px);
+}
+
+.timelineMilestone {
+  grid-row: 1;
+  padding: clamp(44px, 5vw, 72px) clamp(24px, 3vw, 46px)
+    clamp(42px, 5vw, 68px) 0;
   border-bottom: 1px solid var(--case-light-rule);
 }
 
-.timelineList li:nth-child(even),
-.architectureGrid article:nth-child(even) {
+.timelineMilestone:nth-child(1) {
+  grid-column: 1 / 5;
+}
+
+.timelineMilestone:nth-child(2) {
+  grid-column: 5 / 9;
+}
+
+.timelineMilestone:nth-child(3) {
+  grid-column: 9 / 13;
+}
+
+.timelineMilestone + .timelineMilestone {
+  padding-left: clamp(20px, 2.6vw, 40px);
   border-left: 1px solid var(--case-light-rule);
 }
 
-.timelineIndex {
+.recognitionMilestone {
+  grid-row: 2;
+  grid-column: 9 / 13;
+  margin-top: clamp(42px, 5vw, 74px);
+  padding: clamp(36px, 4vw, 58px) 0 clamp(18px, 2vw, 28px)
+    clamp(26px, 3vw, 46px);
+  border-left: 1px dashed rgba(11, 39, 56, 0.38);
+  border-bottom: 1px solid var(--case-light-rule);
+}
+
+.recognitionBranch {
   position: absolute;
-  top: clamp(24px, 3vw, 42px);
-  right: clamp(24px, 3vw, 42px);
+  bottom: 100%;
+  left: -1px;
+  width: 1px;
+  height: clamp(42px, 5vw, 74px);
+  border-left: 1px dashed rgba(11, 39, 56, 0.38);
+  transform-origin: bottom;
+}
+
+.timelineNode {
+  position: absolute;
+  z-index: 2;
+  top: -5px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--case-mineral);
+  background: var(--case-blue);
+  box-shadow: 0 0 0 1px var(--case-blue);
+}
+
+.timelineMilestone:nth-child(2) .timelineNode {
+  background: var(--case-focus);
+  box-shadow: 0 0 0 1px #177d7a;
+}
+
+.timelineMilestone:nth-child(3) .timelineNode,
+.recognitionMilestone .timelineNode {
+  background: var(--case-lime);
+  box-shadow: 0 0 0 1px #507d0d;
+}
+
+.recognitionMilestone .timelineNode {
+  top: -6px;
+  left: -6px;
+}
+
+.timelineIndex {
+  display: block;
+  margin-bottom: clamp(30px, 4vw, 54px);
   color: var(--case-blue-ink);
   font-size: 0.64rem;
 }
@@ -791,11 +1060,38 @@
   font-size: 0.63rem;
 }
 
+.recognitionBoundary {
+  max-width: 32ch;
+  margin: 0 0 18px;
+  color: #3d6d00;
+}
+
 .timelineList h3,
 .architectureGrid h3 {
   max-width: 21ch;
   margin-top: clamp(34px, 5vw, 68px);
   font-size: clamp(1.55rem, 2.45vw, 2.8rem);
+}
+
+.timelineList li > p:last-child {
+  margin-top: 14px;
+}
+
+.architectureGrid {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--case-light-rule);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.architectureGrid article {
+  padding: clamp(24px, 3vw, 42px);
+  border-bottom: 1px solid var(--case-light-rule);
+}
+
+.architectureGrid article:nth-child(even) {
+  border-left: 1px solid var(--case-light-rule);
 }
 
 .architectureGrid article > span {
@@ -1030,6 +1326,145 @@
   border: 0 !important;
 }
 
+.caseSection[data-narrative-motion="active"]
+  [data-narrative-reveal]:not([data-narrative-reveal="trace"]) {
+  transition:
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.caseSection[data-narrative-motion="active"]
+  :is(
+    .scopeTraceLine,
+    .deliveryLine,
+    .recognitionBranch,
+    .problemFlowNode,
+    .scopeNode,
+    .timelineNode
+  ) {
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.caseSection[data-narrative-motion="active"]
+  [data-narrative-reveal]:not(
+    [data-narrative-reveal="trace"]
+  ):not([data-narrative-visible="true"]) {
+  opacity: 0;
+  transform: translateY(24px);
+  transition-delay: 0ms;
+}
+
+.caseSection[data-narrative-motion="active"]
+  [data-narrative-reveal]:not([data-narrative-reveal="trace"])[data-narrative-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.caseSection[data-narrative-motion="active"]
+  [data-narrative-reveal]:not([data-narrative-visible="true"])
+  :is(.problemFlowNode, .scopeNode, .timelineNode) {
+  transform: scale(0);
+}
+
+.caseSection[data-narrative-motion="active"]
+  [data-narrative-reveal][data-narrative-visible="true"]
+  :is(.problemFlowNode, .scopeNode, .timelineNode) {
+  transform: scale(1);
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeTrace:not([data-narrative-visible="true"])
+  .scopeTraceLine,
+.deliverySection[data-narrative-motion="active"]
+  .recognitionMilestone:not([data-narrative-visible="true"])
+  .recognitionBranch {
+  transform: scaleY(0);
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeTrace[data-narrative-visible="true"]
+  .scopeTraceLine,
+.deliverySection[data-narrative-motion="active"]
+  .recognitionMilestone[data-narrative-visible="true"]
+  .recognitionBranch {
+  transform: scaleY(1);
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .deliveryTrace:not([data-narrative-visible="true"])
+  .deliveryLine {
+  transform: scaleX(0);
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .deliveryTrace[data-narrative-visible="true"]
+  .deliveryLine {
+  transform: scaleX(1);
+}
+
+.problemSection[data-narrative-motion="active"]
+  .problemFlow[data-narrative-visible="true"] {
+  transition-delay: 90ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .leadCopy[data-narrative-visible="true"] {
+  transition-delay: 150ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeHeader[data-narrative-visible="true"] {
+  transition-delay: 180ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeList
+  li:nth-child(1)[data-narrative-visible="true"] {
+  transition-delay: 230ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeList
+  li:nth-child(2)[data-narrative-visible="true"] {
+  transition-delay: 310ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeList
+  li:nth-child(3)[data-narrative-visible="true"] {
+  transition-delay: 390ms;
+}
+
+.problemSection[data-narrative-motion="active"]
+  .scopeContext[data-narrative-visible="true"] {
+  transition-delay: 450ms;
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .deliveryWindow[data-narrative-visible="true"] {
+  transition-delay: 90ms;
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .timelineMilestone:nth-child(1)[data-narrative-visible="true"] {
+  transition-delay: 150ms;
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .timelineMilestone:nth-child(2)[data-narrative-visible="true"] {
+  transition-delay: 240ms;
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .timelineMilestone:nth-child(3)[data-narrative-visible="true"] {
+  transition-delay: 330ms;
+}
+
+.deliverySection[data-narrative-motion="active"]
+  .recognitionMilestone[data-narrative-visible="true"] {
+  transition-delay: 440ms;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .localeLink,
   .returnLink,
@@ -1157,17 +1592,17 @@
     grid-row: auto;
   }
 
-  .scopeList {
+  .scopeFrame {
     grid-template-columns: 1fr;
+    gap: 56px;
   }
 
-  .scopeList li {
-    grid-template-columns: 34px 1fr;
-    grid-template-rows: auto;
+  .scopeHeader > h3 {
+    max-width: 13ch;
   }
 
-  .scopeList li + li {
-    border-left: 0;
+  .scopeContext {
+    grid-column: auto;
   }
 
   .repositoryState {
@@ -1422,43 +1857,187 @@
     gap: 58px;
   }
 
+  .problemFlow {
+    display: block;
+    padding-left: 32px;
+  }
+
+  .problemFlow::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 5px;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(
+      to bottom,
+      var(--case-blue),
+      var(--case-focus) 68%,
+      var(--case-lime)
+    );
+  }
+
+  .problemFlow li,
+  .problemFlow li + li {
+    min-height: 0;
+    gap: 14px;
+    padding: 10px 0 28px;
+    border-left: 0;
+  }
+
+  .problemFlow strong {
+    max-width: 18ch;
+    font-size: 1.75rem;
+  }
+
+  .problemFlowNode {
+    top: 14px;
+    bottom: auto;
+    left: -32px;
+  }
+
   .leadCopy {
+    padding: 28px 0 0;
+    border-top: 1px solid var(--case-light-rule);
+    border-left: 0;
     font-size: 1rem;
   }
 
-  .scopeBlock > h3 {
+  .scopeFrame {
+    display: block;
+    margin-top: 96px;
+    padding-top: 32px;
+  }
+
+  .scopeHeader > h3 {
     font-size: 2.3rem;
   }
 
-  .scopeList li {
-    gap: 14px;
-    padding-inline: 0;
+  .scopeTrace {
+    margin-top: 48px;
   }
 
-  .timelineList,
+  .scopeTraceLine {
+    left: 25px;
+  }
+
+  .scopeList li {
+    min-height: 0;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px 14px;
+    padding: 28px 0 32px;
+  }
+
+  .scopeNode {
+    top: 31px;
+    left: 20px;
+  }
+
+  .scopeBody {
+    grid-column: 2;
+  }
+
+  .scopeContext {
+    display: block;
+    margin: 34px 0 0 52px;
+  }
+
+  .scopeContext p:last-child {
+    margin-top: 18px;
+  }
+
+  .deliveryWindow {
+    margin-bottom: 42px;
+  }
+
+  .deliveryLine {
+    top: calc(1em + 42px);
+    right: auto;
+    bottom: 48px;
+    left: 5px;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(
+      to bottom,
+      var(--case-blue),
+      var(--case-focus) 62%,
+      var(--case-lime)
+    );
+    transform-origin: top;
+  }
+
+  .deliverySection[data-narrative-motion="active"]
+    .deliveryTrace:not([data-narrative-visible="true"])
+    .deliveryLine {
+    transform: scaleY(0);
+  }
+
+  .deliverySection[data-narrative-motion="active"]
+    .deliveryTrace[data-narrative-visible="true"]
+    .deliveryLine {
+    transform: scaleY(1);
+  }
+
+  .timelineList {
+    display: block;
+    padding-left: 36px;
+  }
+
+  .timelineMilestone,
+  .timelineMilestone + .timelineMilestone,
+  .recognitionMilestone {
+    display: block;
+    margin: 0;
+    padding: 30px 0 44px;
+    border-bottom: 1px solid var(--case-light-rule);
+    border-left: 0;
+  }
+
+  .recognitionMilestone {
+    margin-top: 18px;
+    padding-top: 38px;
+    border-top: 1px dashed rgba(11, 39, 56, 0.38);
+  }
+
+  .recognitionBranch {
+    display: none;
+  }
+
+  .timelineNode,
+  .recognitionMilestone .timelineNode {
+    top: 32px;
+    left: -36px;
+  }
+
+  .timelineIndex {
+    margin-bottom: 28px;
+  }
+
   .architectureGrid,
   .evidenceGrid,
   .stateGrid {
     grid-template-columns: 1fr;
   }
 
-  .timelineList li,
   .architectureGrid article {
     padding: 24px 0 34px;
   }
 
-  .timelineList li:nth-child(even),
   .architectureGrid article:nth-child(even) {
     border-left: 0;
   }
 
-  .timelineIndex,
   .architectureGrid article > span {
     top: 24px;
     right: 0;
   }
 
-  .timelineList h3,
+  .timelineList h3 {
+    max-width: 20ch;
+    margin-top: 28px;
+    font-size: 1.85rem;
+  }
+
   .architectureGrid h3 {
     max-width: 18ch;
     margin-top: 42px;
@@ -1531,5 +2110,18 @@
   .secondaryAction,
   .caseFooter a {
     transition: none;
+  }
+
+  .caseSection
+    :is(
+      [data-narrative-reveal],
+      .scopeTraceLine,
+      .deliveryLine,
+      .recognitionBranch,
+      .problemFlowNode,
+      .scopeNode,
+      .timelineNode
+    ) {
+    transition: none !important;
   }
 }

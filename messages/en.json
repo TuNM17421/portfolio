@@ -308,6 +308,20 @@
         "title": "Three signals from the real pilot.",
         "description": "One real-use count, one qualitative survey signal, and one expert review loop — without turning product placeholders into portfolio outcomes."
       },
+      "problemFlow": {
+        "label": "The career-preparation path the team connected",
+        "cv": "CV",
+        "criteria": "JD criteria",
+        "interview": "Live AI interview"
+      },
+      "scopeLabels": {
+        "direct": "TU / DIRECT",
+        "context": "TEAM CONTEXT / WIDER PRODUCT"
+      },
+      "deliveryTrace": {
+        "buildWindow": "06 WEEKS / DISCOVERY TO PILOT",
+        "recognitionBoundary": "AFTER THE PRODUCT WAS ALREADY LIVE"
+      },
       "chapters": {
         "signal": "Evidence",
         "problem": "Problem",
