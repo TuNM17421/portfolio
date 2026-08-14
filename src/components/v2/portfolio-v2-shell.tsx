@@ -30,6 +30,7 @@ import {
   ContactConversion,
   type ContactConversionCopy,
 } from "@/components/v2/contact/contact-conversion";
+import { useContactConversionMotion } from "@/components/v2/contact/contact-conversion-motion";
 import { useCareerTraceMotion } from "@/components/v2/career/career-trace-motion";
 import { useRecognitionStageMotion } from "@/components/v2/career/recognition-stage-motion";
 import { useSupportingWorkHandoff } from "@/components/v2/work/supporting-work-handoff";
@@ -69,6 +70,7 @@ type PortfolioV2ShellProps = {
   workQuery: string;
   careerQuery: string;
   recognitionQuery: string;
+  contactQuery: string;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
@@ -92,6 +94,7 @@ export function PortfolioV2Shell({
   workQuery,
   careerQuery,
   recognitionQuery,
+  contactQuery,
   introCopy,
   headerCopy,
   heroCopy,
@@ -171,12 +174,15 @@ export function PortfolioV2Shell({
     forcedProgress: recognitionControls.forcedProgress,
   });
   const capabilityRouting = useCapabilityRoutingMotion({ reduceMotion });
+  const contactMotion = useContactConversionMotion({ reduceMotion });
   const chapterTone = useChapterTone({
     aboutSectionRef: aboutStory.sectionRef,
     vcareerSectionRef: vcareerHandoff.sectionRef,
     workSectionRef: supportingWorkHandoff.surfaceRef,
     careerSectionRef: careerTrace.sectionRef,
     recognitionSectionRef: recognitionStage.stageRef,
+    skillsSectionRef: capabilityRouting.sectionRef,
+    contactSectionRef: contactMotion.sectionRef,
     reduceMotion,
   });
   const [phase, setPhase] = useState<IntroPhase>("complete");
@@ -223,6 +229,7 @@ export function PortfolioV2Shell({
           workQuery={workQuery}
           careerQuery={careerQuery}
           recognitionQuery={recognitionQuery}
+          contactQuery={contactQuery}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           chapterTone={chapterTone}
@@ -281,6 +288,7 @@ export function PortfolioV2Shell({
           reduceMotion={reduceMotion}
           deliveryEnabled={contactDeliveryEnabled}
           reviewState={contactReviewState}
+          motionController={contactMotion}
         />
       </div>
 

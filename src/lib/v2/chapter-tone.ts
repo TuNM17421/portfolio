@@ -7,13 +7,17 @@ export function resolveChapterPhase(
   workEntryProgress = 0,
   careerEntryProgress = 0,
   recognitionEntryProgress = 0,
+  skillsEntryProgress = 0,
+  contactEntryProgress = 0,
 ) {
   return (
     clampChapterProgress(aboutEntryProgress) +
     clampChapterProgress(vcareerEntryProgress) +
     clampChapterProgress(workEntryProgress) +
     clampChapterProgress(careerEntryProgress) +
-    clampChapterProgress(recognitionEntryProgress)
+    clampChapterProgress(recognitionEntryProgress) +
+    clampChapterProgress(skillsEntryProgress) +
+    clampChapterProgress(contactEntryProgress)
   );
 }
 
@@ -23,7 +27,9 @@ export type V2Chapter =
   | "vcareer"
   | "work"
   | "career"
-  | "recognition";
+  | "recognition"
+  | "skills"
+  | "contact";
 
 export type V2NavigationChapter = "work" | "career" | null;
 
@@ -78,9 +84,25 @@ const CHAPTER_TONES: Record<V2Chapter, V2ChapterToneTokens> = {
     textShadow: "0 2px 18px rgba(7, 18, 25, 0.7)",
     layerOpacity: 0,
   },
+  skills: {
+    color: "rgb(7, 18, 25)",
+    accent: "rgb(23, 111, 107)",
+    border: "rgba(23, 111, 107, 0.2)",
+    textShadow: "0 2px 16px rgba(7, 18, 25, 0.08)",
+    layerOpacity: 1,
+  },
+  contact: {
+    color: "rgb(237, 244, 245)",
+    accent: "rgb(107, 215, 208)",
+    border: "rgba(107, 215, 208, 0.24)",
+    textShadow: "0 2px 18px rgba(7, 18, 25, 0.7)",
+    layerOpacity: 0,
+  },
 };
 
 export function resolveChapterName(phase: number): V2Chapter {
+  if (phase >= 6.5) return "contact";
+  if (phase >= 5.5) return "skills";
   if (phase >= 4.5) return "recognition";
   if (phase >= 3.5) return "career";
   if (phase >= 2.5) return "work";
@@ -113,11 +135,25 @@ export function resolveChapterTraceScale(
 
   if (chapter === "career") {
     if (phase <= workToCareerStart) return 0;
-    if (phase >= workToCareerEnd) return 1;
-    return resolveHandoffProgress(
-      phase,
-      workToCareerStart,
-      workToCareerEnd,
+    if (phase < workToCareerEnd) {
+      return resolveHandoffProgress(
+        phase,
+        workToCareerStart,
+        workToCareerEnd,
+      );
+    }
+
+    const recognitionToSkillsStart = 5.35;
+    const recognitionToSkillsEnd = 5.65;
+    if (phase <= recognitionToSkillsStart) return 1;
+    if (phase >= recognitionToSkillsEnd) return 0;
+    return (
+      1 -
+      resolveHandoffProgress(
+        phase,
+        recognitionToSkillsStart,
+        recognitionToSkillsEnd,
+      )
     );
   }
 

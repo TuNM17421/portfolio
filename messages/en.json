@@ -760,6 +760,10 @@
           "unavailable": "SECONDARY CHANNEL PAUSED / 503",
           "static": "STATIC MODE / EMAIL"
         }
+      },
+      "footer": {
+        "backToTop": "Back to top",
+        "copyright": "© 2026 Nguyen Manh Tu"
       }
     }
   },

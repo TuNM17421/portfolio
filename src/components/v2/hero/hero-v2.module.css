@@ -4,6 +4,15 @@
   background: var(--v2-night);
 }
 
+.heroHold:focus {
+  outline: none;
+}
+
+.heroHold:focus-visible {
+  outline: 2px solid var(--v2-focus);
+  outline-offset: -2px;
+}
+
 .heroHold[data-hold="off"],
 .heroHold[data-hold="reduced"] {
   min-height: max(100svh, 700px);

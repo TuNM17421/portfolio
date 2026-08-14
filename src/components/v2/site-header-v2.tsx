@@ -31,6 +31,7 @@ type SiteHeaderV2Props = {
   workQuery: string;
   careerQuery: string;
   recognitionQuery: string;
+  contactQuery: string;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   chapterTone: V2ChapterTone;
@@ -54,6 +55,7 @@ export function SiteHeaderV2({
   workQuery,
   careerQuery,
   recognitionQuery,
+  contactQuery,
   reduceMotion,
   wordmarkHidden,
   chapterTone,
@@ -65,6 +67,7 @@ export function SiteHeaderV2({
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const workMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const careerMenuLinkRef = useRef<HTMLAnchorElement>(null);
+  const contactMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const localeParams = new URLSearchParams();
   if (introQuery) localeParams.set("intro", introQuery);
   if (holdQuery) localeParams.set("hold", holdQuery);
@@ -74,22 +77,25 @@ export function SiteHeaderV2({
   if (workQuery) localeParams.set("work", workQuery);
   if (careerQuery) localeParams.set("career", careerQuery);
   if (recognitionQuery) localeParams.set("recognition", recognitionQuery);
+  if (contactQuery) localeParams.set("contact", contactQuery);
   const localeQuery = localeParams.toString();
   const activeChapterHash =
     chapterTone.activeChapter === "hero"
       ? ""
       : `#${chapterTone.activeChapter}`;
-  const localeHash = recognitionQuery
-    ? "#recognition"
-    : careerQuery
-      ? "#career"
-      : workQuery
-        ? "#work"
-        : showcaseQuery
-          ? "#vcareer"
-          : storyQuery
-            ? "#about"
-            : activeChapterHash;
+  const localeHash = contactQuery
+    ? "#contact"
+    : recognitionQuery
+      ? "#recognition"
+      : careerQuery
+        ? "#career"
+        : workQuery
+          ? "#work"
+          : showcaseQuery
+            ? "#vcareer"
+            : storyQuery
+              ? "#about"
+              : activeChapterHash;
   const localeHref = localeQuery
     ? `/v2?${localeQuery}${localeHash}`
     : `/v2${localeHash}`;
@@ -172,7 +178,9 @@ export function SiteHeaderV2({
     const header = headerRef.current;
     const focusFrame = window.requestAnimationFrame(() => {
       const initialLink =
-        chapterTone.activeNavigation === "career"
+        chapterTone.activeChapter === "contact"
+          ? contactMenuLinkRef.current
+          : chapterTone.activeNavigation === "career"
           ? careerMenuLinkRef.current
           : workMenuLinkRef.current;
       initialLink?.focus();
@@ -218,7 +226,12 @@ export function SiteHeaderV2({
       window.cancelAnimationFrame(focusFrame);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [chapterTone.activeNavigation, closeMenu, menuOpen]);
+  }, [
+    chapterTone.activeChapter,
+    chapterTone.activeNavigation,
+    closeMenu,
+    menuOpen,
+  ]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -313,6 +326,7 @@ export function SiteHeaderV2({
               <motion.span
                 className={styles.chapterTrace}
                 style={chapterTone.workTrace}
+                data-header-trace="work"
                 aria-hidden
               />
             </a>
@@ -341,6 +355,7 @@ export function SiteHeaderV2({
               <motion.span
                 className={styles.chapterTrace}
                 style={chapterTone.careerTrace}
+                data-header-trace="career"
                 aria-hidden
               />
             </a>
@@ -510,6 +525,7 @@ export function SiteHeaderV2({
                   </li>
                   <li className={styles.menuItem}>
                     <a
+                      ref={contactMenuLinkRef}
                       href="mailto:tunm17421@gmail.com"
                       className={styles.menuLink}
                       onClick={() => closeMenu()}

@@ -34,4 +34,24 @@ describe("portfolio v2 contact conversion field", () => {
       );
     }
   });
+
+  it("closes V2 with one short utility rail instead of repeated identity copy", () => {
+    expect(vi.v2.contact.footer).toMatchObject({
+      backToTop: "Về đầu trang",
+      copyright: "© 2026 Nguyen Manh Tu",
+    });
+    expect(en.v2.contact.footer).toMatchObject({
+      backToTop: "Back to top",
+      copyright: "© 2026 Nguyen Manh Tu",
+    });
+
+    for (const locale of [vi, en]) {
+      const footerCopy = JSON.stringify(locale.v2.contact.footer);
+      expect(Object.keys(locale.v2.contact.footer).sort()).toEqual([
+        "backToTop",
+        "copyright",
+      ]);
+      expect(footerCopy).not.toMatch(/Next\.js|Tailwind|GitHub|LinkedIn/i);
+    }
+  });
 });

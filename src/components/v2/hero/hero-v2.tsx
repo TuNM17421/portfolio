@@ -67,6 +67,8 @@ export function HeroV2({
   return (
     <section
       ref={depth.holdRef}
+      id="top"
+      tabIndex={-1}
       className={styles.heroHold}
       data-hold={holdState}
       data-entry-phase={introPhase}

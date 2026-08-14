@@ -44,7 +44,7 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: clamp(96px, 9vw, 144px) clamp(22px, 4.6vw, 72px)
-    clamp(92px, 9vw, 142px);
+    clamp(44px, 4.6vw, 72px);
 }
 
 .emailBaseline,
@@ -290,7 +290,7 @@
   }
 
   .inner {
-    padding: 84px 20px 86px;
+    padding: 84px 20px 42px;
   }
 
   .sectionRail {

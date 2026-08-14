@@ -1,12 +1,12 @@
 # Part 07 — Evidence routing, contact, and footer
 
-> **Status:** 07A–07C approved and committed; 07D implemented for owner review
+> **Status:** 07A–07D approved and committed; 07E implemented for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 07A committed at `48577f1`; 07B committed at
-> `7f04705`; 07C is committed at `021d3cc`; 07D is implemented and
-> intentionally uncommitted; 07E has not started
+> `7f04705`; 07C is committed at `021d3cc`; 07D is committed at `4e53081`;
+> 07E is implemented and intentionally uncommitted
 >
 > **Scope:** Final homepage chapter only. Part 08 case-study migration remains
 > separate.
@@ -89,6 +89,13 @@ not palette, typography, copy, or brand identity.
 | [Workable — UIZZE capture](https://singapore.objective.company/design-media/96/960717840968496d1355543971654cc1df7cd341b39d1b761ba300c4135fd023.webp)                                                          | A capability statement is immediately paired with contextual evidence rather than shown as an isolated score. | It supports the decision to route every capability back to a project or professional record.            | Recruiting-agent UI, candidate cards, fit percentages, purple palette, or SaaS chrome.                |
 | [GitHub — UIZZE capture](https://singapore.objective.company/design-media/dc/dc2fa8b45abe046ab3ddae3c270bad25128e65bac9d223f8ee32663e7d1a5575.webp) · [official homepage](https://github.com/home/)            | One primary conversion action sits beside a clearly secondary route.                                          | Direct email can dominate while GitHub, LinkedIn, and the form remain useful without competing equally. | Mascots, galaxy treatment, signup copy, green CTA, product navigation, or exact centered composition. |
 | [Active Theory — UIZZE capture](https://singapore.objective.company/design-media/41/4153da6aee4fd22caf121a96c9b8fbdf232e32e81b972fd8eb8264b344386ea5.webp)                                                     | One central system event receives the motion budget while Work and Contact navigation stay restrained.        | The routing-to-email convergence can be the memorable event without adding unrelated ambient loops.     | WebGL object, particles, black palette, pill navigation, or its interaction model.                    |
+
+The 07E evidence refresh on 14 August 2026 re-opened the public UIZZE
+catalogue plus the Dylan Brouwer and GitHub source sites. It preserved the
+accepted closing hierarchy: one dominant contact action, one short utility
+rail, and no repeated identity or sitemap. Current Motion documentation still supports
+element-targeted reversible progress through `useScroll`; MDN confirms the
+same-document `scrollIntoView` and History API path used by Back to top.
 
 Motion follows the existing Motion for React stack. The official `useScroll`
 contract supports an element-targeted, reversible progress range; `useTransform`
@@ -250,15 +257,12 @@ V2-specific wording issue. Email remains visible beside every error state.
 ### Footer
 
 ```text
-Nguyen Manh Tu
-Software Engineer · AI Engineer
-Hanoi, Vietnam
-
-GitHub ↗   LinkedIn ↗   Back to top ↑
-© 2026 Nguyen Manh Tu
+© 2026 Nguyen Manh Tu                         Back to top ↑
 ```
 
 - Remove `Built with Next.js & Tailwind CSS`.
+- Do not repeat the large name, role, or location block after Contact; those
+  facts are already established earlier in the page.
 - `Back to top` targets the existing document, does not reload the route, and
   does not replay the Intro.
 - Do not duplicate a technology list, navigation sitemap, or availability
@@ -482,7 +486,7 @@ Acceptance:
 - forced review states never call `/api/contact`;
 - form state changes do not move the footer unpredictably.
 
-Implementation record (awaiting owner review):
+Implementation record (approved and committed at `4e53081`):
 
 - the real form remains visually secondary to the oversized direct-email
   action and reuses the existing `/api/contact` endpoint plus the shared Zod
@@ -515,7 +519,7 @@ Implementation record (awaiting owner review):
 
 Complete the page close and integration:
 
-- replace the V1-style footer copy with the quiet V2 identity row;
+- replace the V1-style footer copy with one short V2 utility row;
 - add Back to top without route reload or Intro replay;
 - extend chapter tone and locale/hash preservation through Skills and Contact;
 - retire active Work/Career traces after Recognition;
@@ -538,6 +542,47 @@ Acceptance:
 - all visible controls meet 44px target and contrast requirements;
 - keyboard order, focus visibility, reduced motion, no-JS, CLS, image requests,
   route bundle, tests, lint, type check, and production build are recorded.
+
+Implementation record (awaiting owner review):
+
+- Contact now closes inside the existing night-glass surface with one short
+  utility rail containing copyright and Back to top. The large repeated name,
+  role, and location block was removed after owner review; GitHub, LinkedIn,
+  CV, and email are not repeated in the footer;
+- Back to top preserves the active locale and raw query, retains the existing
+  History state, focuses `#top`, and completes without route reload or Intro
+  replay; normal motion uses native smooth scrolling while reduced motion uses
+  an immediate scroll;
+- chapter tracking now continues through `skills` and `contact`: Recognition
+  keeps the dark Career tone, Skills changes the Header to its light treatment,
+  and Contact returns it to dark; the Work/Career active traces retire before
+  Skills and remain retired in Contact in both scroll directions;
+- VI/EN switching preserves the forced Contact review query and final-chapter
+  hash; the mobile navigation opens on the real Contact mail action when the
+  Contact chapter is active, then restores focus and scroll state on Escape;
+- `#top`, `#skills`, and `#contact` exist in server HTML; the no-JS path renders
+  all page sections, keeps the footer Back-to-top fallback functional, and has
+  no horizontal overflow;
+- the 16-case VI/EN responsive matrix at 320, 375, 768, 899, 900, 1024, 1440,
+  and 1920px reports no overflow, duplicate footer routes, undersized Back-to-
+  top target, or chapter-tone mismatch; all 18 localized forced-form fixtures
+  render without contacting `/api/contact`;
+- keyboard focus visibly reaches Back to top; touch exposes the same identity
+  and return action; live reduced-motion removes the arrow transition and
+  changes the captured `scrollIntoView` behavior from `smooth` to `auto`;
+- scoped axe checks report no WCAG A/AA violations for Header, Skills, or
+  Contact/Footer in VI/EN at desktop and mobile widths. Lighthouse on the
+  canonical `?intro=0` route records desktop `97/100/100/100` and mobile
+  `61/100/100/100` for Performance/Accessibility/Best Practices/SEO, with
+  `CLS = 0` in both runs;
+- the forward/reverse Recognition → Skills → Contact browser sample records
+  `CLS = 0.00142`, with no failed or 4xx/5xx image/page request. Eight closing-
+  screen review captures cover VI/EN compact, tablet, desktop, and short-height
+  desktop viewports;
+- TypeScript, scoped lint, `155` tests, `git diff --check`, and production build
+  pass. The V2 route is `90.4 kB` / `214 kB` First Load JS: `+0.6 kB` /
+  no First Load increase from 07D and `+5.4 kB` / `+18 kB` from the Part 06
+  baseline.
 
 ## Finish gate
 

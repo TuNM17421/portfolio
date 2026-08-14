@@ -114,6 +114,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           workQuery={workQuery}
           careerQuery={careerQuery}
           recognitionQuery={recognitionQuery}
+          contactQuery={contactQuery}
           contactReviewState={contactReviewState}
           contactDeliveryEnabled={contactDeliveryEnabled}
           introCopy={{
@@ -536,6 +537,10 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                 unavailable: contactT("form.stateLabels.unavailable"),
                 static: contactT("form.stateLabels.static"),
               },
+            },
+            footer: {
+              backToTop: contactT("footer.backToTop"),
+              copyright: contactT("footer.copyright"),
             },
           }}
         />

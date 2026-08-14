@@ -3,12 +3,14 @@
 import { useEffect } from "react";
 
 const CHAPTER_ANCHORS = new Set([
+  "top",
   "about",
   "vcareer",
   "work",
   "career",
   "recognition",
   "skills",
+  "contact",
   "scholarai",
   "financial-archive",
 ]);

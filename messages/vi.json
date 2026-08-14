@@ -760,6 +760,10 @@
           "unavailable": "KÊNH PHỤ TẠM DỪNG / 503",
           "static": "CHẾ ĐỘ TĨNH / EMAIL"
         }
+      },
+      "footer": {
+        "backToTop": "Về đầu trang",
+        "copyright": "© 2026 Nguyen Manh Tu"
       }
     }
   },

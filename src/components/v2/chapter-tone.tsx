@@ -24,6 +24,8 @@ type ChapterToneOptions = {
   workSectionRef: RefObject<HTMLElement | null>;
   careerSectionRef: RefObject<HTMLElement | null>;
   recognitionSectionRef: RefObject<HTMLElement | null>;
+  skillsSectionRef: RefObject<HTMLElement | null>;
+  contactSectionRef: RefObject<HTMLElement | null>;
   reduceMotion: boolean;
 };
 
@@ -42,6 +44,8 @@ export function useChapterTone({
   workSectionRef,
   careerSectionRef,
   recognitionSectionRef,
+  skillsSectionRef,
+  contactSectionRef,
   reduceMotion,
 }: ChapterToneOptions): V2ChapterTone {
   const [activeChapter, setActiveChapter] = useState<V2Chapter>("hero");
@@ -63,6 +67,14 @@ export function useChapterTone({
   });
   const { scrollYProgress: recognitionEntryProgress } = useScroll({
     target: recognitionSectionRef,
+    offset: ["start 112px", "start 40px"],
+  });
+  const { scrollYProgress: skillsEntryProgress } = useScroll({
+    target: skillsSectionRef,
+    offset: ["start 112px", "start 40px"],
+  });
+  const { scrollYProgress: contactEntryProgress } = useScroll({
+    target: contactSectionRef,
     offset: ["start 112px", "start 40px"],
   });
   const aboutEntrySpring = useSpring(aboutEntryProgress, {
@@ -95,6 +107,18 @@ export function useChapterTone({
     mass: 0.22,
     restDelta: 0.001,
   });
+  const skillsEntrySpring = useSpring(skillsEntryProgress, {
+    stiffness: 190,
+    damping: 32,
+    mass: 0.22,
+    restDelta: 0.001,
+  });
+  const contactEntrySpring = useSpring(contactEntryProgress, {
+    stiffness: 190,
+    damping: 32,
+    mass: 0.22,
+    restDelta: 0.001,
+  });
   const aboutSource = reduceMotion ? aboutEntryProgress : aboutEntrySpring;
   const vcareerSource = reduceMotion
     ? vcareerEntryProgress
@@ -106,6 +130,10 @@ export function useChapterTone({
   const recognitionSource = reduceMotion
     ? recognitionEntryProgress
     : recognitionEntrySpring;
+  const skillsSource = reduceMotion ? skillsEntryProgress : skillsEntrySpring;
+  const contactSource = reduceMotion
+    ? contactEntryProgress
+    : contactEntrySpring;
   const chapterPhase = useTransform(
     [
       aboutSource,
@@ -113,14 +141,26 @@ export function useChapterTone({
       workSource,
       careerSource,
       recognitionSource,
+      skillsSource,
+      contactSource,
     ],
-    ([aboutValue, vcareerValue, workValue, careerValue, recognitionValue]) =>
+    ([
+      aboutValue,
+      vcareerValue,
+      workValue,
+      careerValue,
+      recognitionValue,
+      skillsValue,
+      contactValue,
+    ]) =>
       resolveChapterPhase(
         Number(aboutValue),
         Number(vcareerValue),
         Number(workValue),
         Number(careerValue),
         Number(recognitionValue),
+        Number(skillsValue),
+        Number(contactValue),
       ),
   );
   const headerColor = useTransform(

@@ -8,7 +8,7 @@ import {
 } from "./chapter-tone";
 
 describe("V2 chapter tone relay", () => {
-  it("maps the full journey from Hero through Recognition", () => {
+  it("maps the full journey from Hero through Contact", () => {
     expect(resolveChapterName(resolveChapterPhase(0, 0, 0, 0, 0))).toBe(
       "hero",
     );
@@ -27,6 +27,12 @@ describe("V2 chapter tone relay", () => {
     expect(resolveChapterName(resolveChapterPhase(1, 1, 1, 1, 1))).toBe(
       "recognition",
     );
+    expect(resolveChapterName(resolveChapterPhase(1, 1, 1, 1, 1, 1))).toBe(
+      "skills",
+    );
+    expect(
+      resolveChapterName(resolveChapterPhase(1, 1, 1, 1, 1, 1, 1)),
+    ).toBe("contact");
   });
 
   it("derives reverse scroll from position without stale direction state", () => {
@@ -37,8 +43,12 @@ describe("V2 chapter tone relay", () => {
       resolveChapterPhase(1, 1, 1),
       resolveChapterPhase(1, 1, 1, 1),
       resolveChapterPhase(1, 1, 1, 1, 1),
+      resolveChapterPhase(1, 1, 1, 1, 1, 1),
+      resolveChapterPhase(1, 1, 1, 1, 1, 1, 1),
     ];
     const reverse = [
+      resolveChapterPhase(1, 1, 1, 1, 1, 1, 1),
+      resolveChapterPhase(1, 1, 1, 1, 1, 1),
       resolveChapterPhase(1, 1, 1, 1, 1),
       resolveChapterPhase(1, 1, 1, 1),
       resolveChapterPhase(1, 1, 1),
@@ -52,7 +62,7 @@ describe("V2 chapter tone relay", () => {
 
   it("clamps observer overshoot before composing the chapter phase", () => {
     expect(resolveChapterPhase(-0.2, 1.4, -0.1, 0, 0)).toBe(1);
-    expect(resolveChapterPhase(1.3, 1.2, 1.8, 1.4, 1.1)).toBe(5);
+    expect(resolveChapterPhase(1.3, 1.2, 1.8, 1.4, 1.1, 1.3, 1.7)).toBe(7);
   });
 
   it("switches foreground and surface as one accessible chapter cut", () => {
@@ -91,6 +101,16 @@ describe("V2 chapter tone relay", () => {
       accent: "rgb(107, 215, 208)",
       layerOpacity: 0,
     });
+    expect(resolveChapterTone(5.5)).toMatchObject({
+      color: "rgb(7, 18, 25)",
+      accent: "rgb(23, 111, 107)",
+      layerOpacity: 1,
+    });
+    expect(resolveChapterTone(6.5)).toMatchObject({
+      color: "rgb(237, 244, 245)",
+      accent: "rgb(107, 215, 208)",
+      layerOpacity: 0,
+    });
   });
 
   it("hands the active trace from Work to Career", () => {
@@ -104,6 +124,9 @@ describe("V2 chapter tone relay", () => {
     expect(resolveChapterTraceScale(3.5, "career")).toBeCloseTo(0.5);
     expect(resolveChapterTraceScale(4, "career")).toBe(1);
     expect(resolveChapterTraceScale(5, "career")).toBe(1);
+    expect(resolveChapterTraceScale(5.5, "career")).toBeCloseTo(0.5);
+    expect(resolveChapterTraceScale(6, "career")).toBe(0);
+    expect(resolveChapterTraceScale(7, "career")).toBe(0);
   });
 
   it("maps chapters to the two visible content routes", () => {
@@ -113,5 +136,7 @@ describe("V2 chapter tone relay", () => {
     expect(resolveActiveNavigation("work")).toBe("work");
     expect(resolveActiveNavigation("career")).toBe("career");
     expect(resolveActiveNavigation("recognition")).toBe("career");
+    expect(resolveActiveNavigation("skills")).toBeNull();
+    expect(resolveActiveNavigation("contact")).toBeNull();
   });
 });
