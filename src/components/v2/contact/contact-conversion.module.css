@@ -275,15 +275,6 @@
   outline-offset: 4px;
 }
 
-.formBoundary {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--contact-rule),
-    rgba(107, 215, 208, 0.05)
-  );
-}
-
 .contact[data-contact-motion="active"] :is(.emailBaseline, .emailNode) {
   will-change: transform, opacity;
 }

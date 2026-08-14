@@ -1,12 +1,12 @@
 # Part 07 — Evidence routing, contact, and footer
 
-> **Status:** 07A–07B approved and committed; 07C implemented for owner review
+> **Status:** 07A–07C approved and committed; 07D implemented for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 07A committed at `48577f1`; 07B committed at
-> `7f04705`; 07C is implemented and intentionally uncommitted; 07D–07E have
-> not started
+> `7f04705`; 07C is committed at `021d3cc`; 07D is implemented and
+> intentionally uncommitted; 07E has not started
 >
 > **Scope:** Final homepage chapter only. Part 08 case-study migration remains
 > separate.
@@ -433,7 +433,7 @@ Acceptance:
 - external socials identify new-tab behavior;
 - no availability or response-time claim is invented.
 
-Implementation record (awaiting owner review):
+Implementation record (approved and committed at `021d3cc`):
 
 - the capability routes reconverge and stop at the centre node inside Skills;
   the mineral-to-night chapter boundary has no stem, falling node, or repeated
@@ -481,6 +481,35 @@ Acceptance:
 - fields retain labels, autocomplete, required state, and error association;
 - forced review states never call `/api/contact`;
 - form state changes do not move the footer unpredictably.
+
+Implementation record (awaiting owner review):
+
+- the real form remains visually secondary to the oversized direct-email
+  action and reuses the existing `/api/contact` endpoint plus the shared Zod
+  schema;
+- normal mode reports success only for `202`; validation, `429`, `502`/other
+  provider failures, `503`, and network failure remain distinct, localized
+  states with a direct-email escape path;
+- one UUID is reused while retrying an unchanged submission, duplicate submits
+  are blocked while sending, and editing any field starts a new submission;
+- the first invalid field receives focus and every input keeps its visible
+  label, required state, autocomplete hint, invalid state, and associated error
+  text;
+- deterministic `?contact=` fixtures cover ready, validation, sending,
+  success, rate-limit, error, offline, unavailable, and static states without
+  calling the endpoint;
+- server-rendered submit remains disabled until hydration, while `<noscript>`
+  exposes the real mail address; an unconfigured Resend environment truthfully
+  locks the form and keeps direct email available;
+- field-error rows and the status region reserve their space, so switching
+  states does not unpredictably shift the page close;
+- the VI/EN state matrix passes at 320, 375, 768, 899, 900, 1024, 1440, and
+  1920px with no horizontal overflow, no forced-state API request, at least
+  44px controls, and no state-driven height movement beyond sub-pixel rounding;
+- new form labels, status copy, placeholders, and required text meet normal
+  text contrast against their rendered dark surfaces;
+- TypeScript, scoped lint, `154` tests, `git diff --check`, and production build
+  pass. The V2 route is `89.8 kB` / `214 kB` First Load JS in this build.
 
 ### 07E — Footer, orientation, and finish gate
 

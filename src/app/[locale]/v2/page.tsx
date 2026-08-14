@@ -4,6 +4,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PortfolioV2Shell } from "@/components/v2/portfolio-v2-shell";
 import { isSupportedLocale } from "@/i18n/routing";
+import { isContactDeliveryConfigured } from "@/lib/contact-delivery-config";
+import { parseContactReviewState } from "@/lib/v2/contact-form";
 
 const anybody = Anybody({
   weight: "variable",
@@ -41,6 +43,7 @@ type V2PageProps = {
     work?: string | string[];
     career?: string | string[];
     recognition?: string | string[];
+    contact?: string | string[];
   }>;
 };
 
@@ -74,6 +77,9 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   const careerQuery = typeof query.career === "string" ? query.career : "";
   const recognitionQuery =
     typeof query.recognition === "string" ? query.recognition : "";
+  const contactQuery = typeof query.contact === "string" ? query.contact : "";
+  const contactReviewState = parseContactReviewState(contactQuery);
+  const contactDeliveryEnabled = isContactDeliveryConfigured();
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -108,6 +114,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
           workQuery={workQuery}
           careerQuery={careerQuery}
           recognitionQuery={recognitionQuery}
+          contactReviewState={contactReviewState}
+          contactDeliveryEnabled={contactDeliveryEnabled}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),
@@ -490,6 +498,45 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
             github: contactT("github"),
             linkedin: contactT("linkedin"),
             opensNewTab: contactT("opensNewTab"),
+            form: {
+              label: contactT("form.label"),
+              title: contactT("form.title"),
+              body: contactT("form.body"),
+              required: contactT("form.required"),
+              name: contactT("form.name"),
+              namePlaceholder: contactT("form.namePlaceholder"),
+              email: contactT("form.email"),
+              emailPlaceholder: contactT("form.emailPlaceholder"),
+              message: contactT("form.message"),
+              messagePlaceholder: contactT("form.messagePlaceholder"),
+              submit: contactT("form.submit"),
+              retry: contactT("form.retry"),
+              sending: contactT("form.sending"),
+              directEmail: contactT("form.directEmail"),
+              validationSummary: contactT("form.validationSummary"),
+              success: contactT("form.success"),
+              rateLimit: contactT("form.rateLimit"),
+              error: contactT("form.error"),
+              offline: contactT("form.offline"),
+              unavailable: contactT("form.unavailable"),
+              staticFallback: contactT("form.staticFallback"),
+              errors: {
+                name: contactT("form.errors.name"),
+                email: contactT("form.errors.email"),
+                message: contactT("form.errors.message"),
+              },
+              stateLabels: {
+                ready: contactT("form.stateLabels.ready"),
+                validation: contactT("form.stateLabels.validation"),
+                sending: contactT("form.stateLabels.sending"),
+                success: contactT("form.stateLabels.success"),
+                "rate-limit": contactT("form.stateLabels.rateLimit"),
+                error: contactT("form.stateLabels.error"),
+                offline: contactT("form.stateLabels.offline"),
+                unavailable: contactT("form.stateLabels.unavailable"),
+                static: contactT("form.stateLabels.static"),
+              },
+            },
           }}
         />
       </div>

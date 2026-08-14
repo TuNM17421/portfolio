@@ -721,7 +721,46 @@
       "downloadCv": "Download CV",
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "opensNewTab": "Opens in a new tab"
+      "opensNewTab": "Opens in a new tab",
+      "form": {
+        "label": "OR SEND IT HERE",
+        "title": "A short message is enough.",
+        "body": "This form uses the same email channel above. It reports success only after the delivery service accepts the message.",
+        "required": "Required",
+        "name": "Full name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "email@example.com",
+        "message": "Message",
+        "messagePlaceholder": "What would you like to discuss?",
+        "submit": "Send message",
+        "retry": "Try again",
+        "sending": "Sending…",
+        "directEmail": "Email directly",
+        "validationSummary": "Check the marked fields.",
+        "success": "Your message was accepted for email delivery.",
+        "rateLimit": "This channel is rate-limited. Please try again later.",
+        "error": "The delivery service did not accept the message. Please retry.",
+        "offline": "The delivery service could not be reached. Check your connection.",
+        "unavailable": "The message form is currently unavailable.",
+        "staticFallback": "The form requires JavaScript to send safely.",
+        "errors": {
+          "name": "Enter a name (100 characters max).",
+          "email": "Enter a valid email.",
+          "message": "Use 10–5,000 characters."
+        },
+        "stateLabels": {
+          "ready": "READY",
+          "validation": "CHECK FIELDS",
+          "sending": "SENDING",
+          "success": "ACCEPTED / 202",
+          "rateLimit": "RATE LIMITED / 429",
+          "error": "NOT DELIVERED / 502",
+          "offline": "CONNECTION LOST",
+          "unavailable": "SECONDARY CHANNEL PAUSED / 503",
+          "static": "STATIC MODE / EMAIL"
+        }
+      }
     }
   },
   "footer": {

@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { ContactReviewState } from "@/lib/v2/contact-form";
 import { V2_CONTACT_DESTINATIONS } from "@/lib/v2/contact-conversion";
+import { ContactForm, type ContactFormCopy } from "./contact-form";
 import { useContactConversionMotion } from "./contact-conversion-motion";
 import styles from "./contact-conversion.module.css";
 
@@ -17,18 +19,23 @@ export type ContactConversionCopy = {
   github: string;
   linkedin: string;
   opensNewTab: string;
+  form: ContactFormCopy;
 };
 
 type ContactConversionProps = {
   copy: ContactConversionCopy;
   navigationOpen: boolean;
   reduceMotion: boolean;
+  deliveryEnabled: boolean;
+  reviewState: ContactReviewState | null;
 };
 
 export function ContactConversion({
   copy,
   navigationOpen,
   reduceMotion,
+  deliveryEnabled,
+  reviewState,
 }: ContactConversionProps) {
   const motionController = useContactConversionMotion({ reduceMotion });
   const destinations = V2_CONTACT_DESTINATIONS;
@@ -123,10 +130,10 @@ export function ContactConversion({
             </nav>
           </div>
 
-          <div
-            className={styles.formBoundary}
-            data-contact-form-boundary
-            aria-hidden
+          <ContactForm
+            copy={copy.form}
+            deliveryEnabled={deliveryEnabled}
+            reviewState={reviewState}
           />
         </div>
       </div>

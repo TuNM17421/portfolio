@@ -721,7 +721,46 @@
       "downloadCv": "Tải CV",
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "opensNewTab": "Mở trong tab mới"
+      "opensNewTab": "Mở trong tab mới",
+      "form": {
+        "label": "HOẶC GỬI TẠI ĐÂY",
+        "title": "Một lời nhắn ngắn là đủ.",
+        "body": "Form này dùng cùng kênh email phía trên. Nội dung chỉ được báo thành công khi dịch vụ gửi tin đã tiếp nhận.",
+        "required": "Bắt buộc",
+        "name": "Họ tên",
+        "namePlaceholder": "Tên của bạn",
+        "email": "Email",
+        "emailPlaceholder": "email@example.com",
+        "message": "Nội dung",
+        "messagePlaceholder": "Bạn muốn trao đổi điều gì?",
+        "submit": "Gửi lời nhắn",
+        "retry": "Thử gửi lại",
+        "sending": "Đang gửi…",
+        "directEmail": "Email trực tiếp",
+        "validationSummary": "Kiểm tra các trường được đánh dấu.",
+        "success": "Tin nhắn đã được tiếp nhận để gửi tới email của mình.",
+        "rateLimit": "Kênh gửi tin đang giới hạn tần suất. Vui lòng thử lại sau.",
+        "error": "Dịch vụ chưa tiếp nhận lời nhắn. Bạn có thể thử lại.",
+        "offline": "Không thể kết nối dịch vụ. Kiểm tra mạng rồi thử lại.",
+        "unavailable": "Form gửi tin hiện chưa khả dụng.",
+        "staticFallback": "Form cần JavaScript để gửi an toàn.",
+        "errors": {
+          "name": "Nhập họ tên (tối đa 100 ký tự).",
+          "email": "Nhập email hợp lệ.",
+          "message": "Nhập từ 10 đến 5.000 ký tự."
+        },
+        "stateLabels": {
+          "ready": "SẴN SÀNG",
+          "validation": "CẦN KIỂM TRA",
+          "sending": "ĐANG GỬI",
+          "success": "ĐÃ TIẾP NHẬN / 202",
+          "rateLimit": "TẠM GIỚI HẠN / 429",
+          "error": "CHƯA GỬI ĐƯỢC / 502",
+          "offline": "MẤT KẾT NỐI",
+          "unavailable": "KÊNH PHỤ TẠM DỪNG / 503",
+          "static": "CHẾ ĐỘ TĨNH / EMAIL"
+        }
+      }
     }
   },
   "footer": {

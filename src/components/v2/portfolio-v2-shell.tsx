@@ -56,6 +56,7 @@ import {
   parseRecognitionStageControls,
 } from "@/lib/v2/career-recognition";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
+import type { ContactReviewState } from "@/lib/v2/contact-form";
 import styles from "./portfolio-v2-shell.module.css";
 
 type PortfolioV2ShellProps = {
@@ -77,6 +78,8 @@ type PortfolioV2ShellProps = {
   careerCopy: CareerRecognitionCopy;
   capabilitiesCopy: CapabilityLedgerCopy;
   contactCopy: ContactConversionCopy;
+  contactReviewState: ContactReviewState | null;
+  contactDeliveryEnabled: boolean;
 };
 
 export function PortfolioV2Shell({
@@ -98,6 +101,8 @@ export function PortfolioV2Shell({
   careerCopy,
   capabilitiesCopy,
   contactCopy,
+  contactReviewState,
+  contactDeliveryEnabled,
 }: PortfolioV2ShellProps) {
   const controls = useMemo(
     () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
@@ -274,6 +279,8 @@ export function PortfolioV2Shell({
           copy={contactCopy}
           navigationOpen={mobileNavigationOpen}
           reduceMotion={reduceMotion}
+          deliveryEnabled={contactDeliveryEnabled}
+          reviewState={contactReviewState}
         />
       </div>
 
