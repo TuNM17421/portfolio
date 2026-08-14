@@ -322,6 +322,38 @@
         "buildWindow": "06 TUẦN / TỪ KHẢO SÁT ĐẾN THỬ NGHIỆM",
         "recognitionBoundary": "SAU KHI SẢN PHẨM ĐÃ HOẠT ĐỘNG"
       },
+      "architectureTrace": {
+        "pathLabel": "CHÚ GIẢI PHẠM VI + TRẠNG THÁI",
+        "labels": {
+          "context": "BỐI CẢNH SẢN PHẨM",
+          "direct": "TÚ / TRỰC TIẾP",
+          "current": "MÔI TRƯỜNG HIỆN TẠI",
+          "pending": "ĐÍCH ĐẾN / CHƯA CHUYỂN NGƯỜI DÙNG"
+        },
+        "browser": {
+          "title": "Trình duyệt + TalkingHead",
+          "body": "TalkingHead vẫn được dùng trong trải nghiệm phỏng vấn trực tiếp; đây là thành phần thuộc bối cảnh sản phẩm rộng hơn."
+        },
+        "workflows": {
+          "title": "Luồng phân tích và cấu trúc CV/JD"
+        },
+        "deployment": {
+          "title": "HAI NHÁNH TRIỂN KHAI",
+          "current": {
+            "title": "Vercel / môi trường hiện tại",
+            "body": "Người dùng thật hiện truy cập phiên bản đang hoạt động trên Vercel."
+          },
+          "pending": {
+            "title": "AWS Singapore / đích đến đã kiểm chứng",
+            "body": "Kiến trúc đích đã được dựng và kiểm tra; việc chuyển người dùng thật vẫn đang chờ."
+          }
+        },
+        "report": {
+          "label": "BÁO CÁO KIẾN TRÚC / BỐI CẢNH TOÀN HỆ THỐNG",
+          "body": "Báo cáo công khai mô tả kiến trúc rộng hơn của nhóm và sản phẩm; nó không mở rộng phạm vi Tú trực tiếp phụ trách.",
+          "linkLabel": "Mở báo cáo đầy đủ"
+        }
+      },
       "chapters": {
         "signal": "Bằng chứng",
         "problem": "Bài toán",
@@ -340,6 +372,9 @@
       "stateLabels": {
         "shipped": "SẢN PHẨM HIỆN TẠI",
         "roadmap": "LỘ TRÌNH / CHỜ FUNDING"
+      },
+      "stateBoundary": {
+        "rootLabel": "RANH GIỚI TRẠNG THÁI SẢN PHẨM"
       },
       "footer": {
         "caseLabel": "VCareer / HỒ SƠ 01",

@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–07 and 08A–08B complete; Part 08C authorized
+> **Status:** Parts 01–07 and 08A–08B complete; Part 08C implemented for owner review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 08B VCareer problem, direct-scope trace, six-week delivery, and post-live recognition boundary
-> **Implementation status:** Part 08A is committed at `744da4f`; Part 08B was approved on 14 August 2026
+> **Detailed scope in this checkpoint:** Part 08C VCareer semantic architecture trace and product-state boundary
+> **Implementation status:** Part 08A is committed at `744da4f`; Part 08B is committed at `88312aa`; Part 08C awaits owner approval
 
 ## Objective
 
@@ -150,7 +150,7 @@ Relevant implementation references:
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                         |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                         |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                         |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A complete · `744da4f`; 08B approved; 08C authorized     |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A · `744da4f`; 08B · `88312aa`; 08C awaiting review        |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                        |
 
 Detailed contracts for Parts 01–08 live beside this file. Later parts receive

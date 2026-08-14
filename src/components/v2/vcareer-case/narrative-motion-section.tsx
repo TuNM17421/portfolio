@@ -7,7 +7,7 @@ type NarrativeMotionSectionProps = {
   children: ReactNode;
   className: string;
   id: string;
-  kind: "problem" | "delivery";
+  kind: "problem" | "delivery" | "state";
   labelledBy: string;
 };
 

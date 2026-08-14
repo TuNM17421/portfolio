@@ -322,6 +322,38 @@
         "buildWindow": "06 WEEKS / DISCOVERY TO PILOT",
         "recognitionBoundary": "AFTER THE PRODUCT WAS ALREADY LIVE"
       },
+      "architectureTrace": {
+        "pathLabel": "SCOPE + STATE LEGEND",
+        "labels": {
+          "context": "PRODUCT CONTEXT",
+          "direct": "TU / DIRECT",
+          "current": "CURRENT ENVIRONMENT",
+          "pending": "TARGET / USER CUTOVER PENDING"
+        },
+        "browser": {
+          "title": "Browser + TalkingHead",
+          "body": "TalkingHead remains part of the live interview experience; it belongs to the wider product context."
+        },
+        "workflows": {
+          "title": "CV/JD analysis and structuring workflows"
+        },
+        "deployment": {
+          "title": "TWO DEPLOYMENT BRANCHES",
+          "current": {
+            "title": "Vercel / current environment",
+            "body": "Real users currently access the production version running on Vercel."
+          },
+          "pending": {
+            "title": "AWS Singapore / verified target",
+            "body": "The target architecture has been built and verified; real-user cutover remains pending."
+          }
+        },
+        "report": {
+          "label": "ARCHITECTURE REPORT / WIDER SYSTEM CONTEXT",
+          "body": "The public report describes the wider team and product architecture; it does not expand Tu's direct ownership.",
+          "linkLabel": "Open the full report"
+        }
+      },
       "chapters": {
         "signal": "Evidence",
         "problem": "Problem",
@@ -340,6 +372,9 @@
       "stateLabels": {
         "shipped": "SHIPPED / CURRENT",
         "roadmap": "PENDING FUNDING"
+      },
+      "stateBoundary": {
+        "rootLabel": "PRODUCT STATE BOUNDARY"
       },
       "footer": {
         "caseLabel": "VCareer / CASE 01",

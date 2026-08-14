@@ -467,7 +467,6 @@
 .factIndex,
 .timelineIndex,
 .timelineLabel,
-.architectureLabel,
 .stateLabel {
   font-family: var(--font-v2-mono), monospace;
   font-weight: 500;
@@ -515,8 +514,7 @@
 .fact {
   position: relative;
   min-width: 0;
-  padding: clamp(26px, 3vw, 48px) clamp(20px, 3vw, 46px)
-    clamp(30px, 4vw, 60px);
+  padding: clamp(26px, 3vw, 48px) clamp(20px, 3vw, 46px) clamp(30px, 4vw, 60px);
 }
 
 .fact + .fact {
@@ -777,9 +775,7 @@
   font-size: 0.65rem;
 }
 
-.scopeHeader > h3,
-.stateGrid h3,
-.repositoryState h3 {
+.scopeHeader > h3 {
   margin: 16px 0 0;
   font-family: var(--font-v2-display), sans-serif;
   font-variation-settings: "wdth" 86;
@@ -863,8 +859,7 @@
   letter-spacing: 0.12em;
 }
 
-.scopeList li > span:not(.scopeNode),
-.architectureGrid article > span {
+.scopeList li > span:not(.scopeNode) {
   color: var(--case-blue);
   font-family: var(--font-v2-mono), monospace;
   font-size: 0.64rem;
@@ -872,8 +867,7 @@
 }
 
 .scopeList h4,
-.timelineList h3,
-.architectureGrid h3 {
+.timelineList h3 {
   margin: 0;
   font-family: var(--font-v2-display), sans-serif;
   font-variation-settings: "wdth" 90;
@@ -887,8 +881,7 @@
 }
 
 .scopeBody,
-.timelineList li > p:last-child,
-.architectureGrid article > p:last-child {
+.timelineList li > p:last-child {
   margin: 0;
   color: var(--case-muted-light);
   font-size: 0.86rem;
@@ -968,16 +961,15 @@
 }
 
 .timelineMilestone,
-.recognitionMilestone,
-.architectureGrid article {
+.recognitionMilestone {
   position: relative;
   min-width: 0;
 }
 
 .timelineMilestone {
   grid-row: 1;
-  padding: clamp(44px, 5vw, 72px) clamp(24px, 3vw, 46px)
-    clamp(42px, 5vw, 68px) 0;
+  padding: clamp(44px, 5vw, 72px) clamp(24px, 3vw, 46px) clamp(42px, 5vw, 68px)
+    0;
   border-bottom: 1px solid var(--case-light-rule);
 }
 
@@ -1053,8 +1045,7 @@
   font-size: 0.64rem;
 }
 
-.timelineLabel,
-.architectureLabel {
+.timelineLabel {
   margin: 0;
   color: #006c70;
   font-size: 0.63rem;
@@ -1066,8 +1057,7 @@
   color: #3d6d00;
 }
 
-.timelineList h3,
-.architectureGrid h3 {
+.timelineList h3 {
   max-width: 21ch;
   margin-top: clamp(34px, 5vw, 68px);
   font-size: clamp(1.55rem, 2.45vw, 2.8rem);
@@ -1077,53 +1067,418 @@
   margin-top: 14px;
 }
 
-.architectureGrid {
+.systemSection {
+  overflow: clip;
+}
+
+.architectureTrace {
+  min-width: 0;
+}
+
+.architectureLegend {
   display: grid;
-  margin: 0;
-  padding: 0;
+  grid-template-columns: minmax(170px, 0.3fr) minmax(0, 0.7fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+  padding-block: 22px;
   border-top: 1px solid var(--case-light-rule);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.architectureGrid article {
-  padding: clamp(24px, 3vw, 42px);
   border-bottom: 1px solid var(--case-light-rule);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.61rem;
+  font-weight: 550;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
-.architectureGrid article:nth-child(even) {
-  border-left: 1px solid var(--case-light-rule);
+.architectureLegend > p,
+.architectureLegend ul {
+  margin: 0;
 }
 
-.architectureGrid article > span {
-  position: absolute;
-  top: clamp(24px, 3vw, 42px);
-  right: clamp(24px, 3vw, 42px);
+.architectureLegend > p {
+  color: #006c70;
 }
 
-.technologyList {
+.architectureLegend ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
-  margin: clamp(42px, 6vw, 84px) 0 0;
+  gap: 14px clamp(22px, 3vw, 46px);
+  justify-content: flex-end;
   padding: 0;
-  border-top: 1px solid var(--case-light-rule);
-  border-bottom: 1px solid var(--case-light-rule);
+  color: var(--case-muted-light);
   list-style: none;
 }
 
-.technologyList li {
-  position: relative;
-  padding: 14px 20px 14px 0;
-  color: var(--case-muted-light);
-  font-family: var(--font-v2-mono), monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.06em;
+.architectureLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 }
 
-.technologyList li:not(:last-child)::after {
-  margin-left: 20px;
+.contextLegendMark,
+.directLegendMark,
+.currentLegendMark,
+.pendingLegendMark {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+}
+
+.contextLegendMark {
+  border: 1px solid #177d7a;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.directLegendMark {
+  border: 1px solid #507d0d;
+  background: var(--case-lime);
+}
+
+.currentLegendMark {
+  border: 1px solid var(--case-blue);
+  background: var(--case-blue);
+}
+
+.pendingLegendMark {
+  border: 1px dashed var(--case-blue);
+  background: transparent;
+  transform: rotate(45deg) scale(0.78);
+}
+
+.architectureRoute {
+  position: relative;
+  min-width: 0;
+  margin-top: clamp(56px, 7vw, 100px);
+}
+
+.architectureSpineBase,
+.architectureSpineProgress {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  pointer-events: none;
+  content: "";
+}
+
+.architectureSpineBase {
+  background: rgba(11, 39, 56, 0.18);
+}
+
+.architectureSpineProgress {
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    var(--case-focus),
+    var(--case-lime) 38%,
+    var(--case-blue) 78%,
+    var(--case-blue)
+  );
+  transform-origin: top;
+}
+
+.architectureStages {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.architectureStage {
+  position: relative;
+  display: grid;
+  min-height: clamp(232px, 23vw, 340px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  padding-block: 44px;
+}
+
+.traceNode {
+  position: relative;
+  min-width: 0;
+  padding: clamp(22px, 3vw, 38px) 0 clamp(28px, 4vw, 52px);
+  background: var(--case-mineral);
+}
+
+.traceNodeLeft {
+  grid-column: 1;
+  margin-right: clamp(44px, 5vw, 72px);
+}
+
+.traceNodeRight {
+  grid-column: 2;
+  margin-left: clamp(44px, 5vw, 72px);
+}
+
+.contextNode {
+  border-top: 1px solid #177d7a;
+}
+
+.directNode {
+  border-top: 2px solid #70a719;
+}
+
+.currentNode {
+  border-top: 2px solid var(--case-blue);
+}
+
+.pendingNode {
+  border-top: 1px dashed var(--case-blue);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 96, 240, 0.024) 0,
+    rgba(0, 96, 240, 0.024) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.traceNodeMeta {
+  display: flex;
+  min-height: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0;
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.traceNodeMeta span:first-child {
+  color: var(--case-blue-ink);
+}
+
+.contextNode .traceNodeMeta span:last-child {
+  color: #006c70;
+}
+
+.directNode .traceNodeMeta span:last-child {
+  color: #3d6d00;
+}
+
+.currentNode .traceNodeMeta span:last-child,
+.pendingNode .traceNodeMeta span:last-child {
+  color: var(--case-blue-ink);
+}
+
+.traceNode h3,
+.traceNode h4 {
+  margin: 0;
+  font-family: var(--font-v2-display), sans-serif;
+  font-variation-settings: "wdth" 88;
+  font-weight: 590;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+}
+
+.traceNode h3 {
+  max-width: 18ch;
+  margin-top: clamp(28px, 4vw, 52px);
+  font-size: clamp(1.7rem, 2.75vw, 3.15rem);
+}
+
+.traceNode > p:last-child,
+.workflowList p {
+  max-width: 52ch;
+  margin: 16px 0 0;
+  color: var(--case-muted-light);
+  font-size: 0.86rem;
+  line-height: 1.64;
+}
+
+.architectureBranch {
+  position: absolute;
+  z-index: 1;
+  top: 44px;
+  height: 1px;
+  pointer-events: none;
+  background: currentColor;
+}
+
+.branchLeft {
+  right: 50%;
+  width: clamp(44px, 5vw, 72px);
+  color: #177d7a;
+  transform-origin: right;
+}
+
+.branchRight {
+  left: 50%;
+  width: clamp(44px, 5vw, 72px);
+  color: #70a719;
+  transform-origin: left;
+}
+
+.branchBoth {
+  left: calc(50% - clamp(44px, 5vw, 72px));
+  width: calc(clamp(44px, 5vw, 72px) * 2);
+  color: var(--case-focus);
+  transform-origin: center;
+}
+
+.architectureMarker {
+  position: absolute;
+  z-index: 3;
+  top: 38px;
+  left: 50%;
+  display: grid;
+  width: 13px;
+  height: 13px;
+  place-items: center;
+  transform: translateX(-50%);
+}
+
+.architectureMarkerCore {
+  display: block;
+  width: 11px;
+  height: 11px;
+  background: var(--case-mineral);
+}
+
+.contextMarker {
+  border: 1px solid #177d7a;
+  border-radius: 50%;
+}
+
+.directMarker {
+  border: 2px solid var(--case-mineral);
+  background: var(--case-lime);
+  box-shadow: 0 0 0 1px #507d0d;
+}
+
+.currentMarker {
+  border: 2px solid var(--case-mineral);
+  background: var(--case-blue);
+  box-shadow: 0 0 0 1px var(--case-blue);
+}
+
+.pendingMarker {
+  border: 1px dashed var(--case-blue);
+  transform: rotate(45deg);
+}
+
+.workflowStage {
+  min-height: clamp(390px, 34vw, 520px);
+}
+
+.workflowNode h3 {
+  max-width: 15ch;
+}
+
+.workflowList {
+  display: grid;
+  gap: 0;
+  margin-top: clamp(30px, 4vw, 48px);
+  border-top: 1px solid var(--case-light-rule);
+}
+
+.workflowList article {
+  padding-block: 22px;
+  border-bottom: 1px solid var(--case-light-rule);
+}
+
+.workflowList h4 {
+  font-size: clamp(1.2rem, 1.65vw, 1.65rem);
+}
+
+.workflowList p {
+  margin-top: 10px;
+  font-size: 0.82rem;
+}
+
+.deploymentStage {
+  padding-top: 96px;
+}
+
+.deploymentStage .architectureBranch {
+  top: 96px;
+}
+
+.deploymentStage .architectureMarker {
+  top: 90px;
+}
+
+.deploymentLabel {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  margin: 0;
+  color: #006c70;
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.deploymentBranch {
   color: var(--case-blue);
-  content: "/";
+}
+
+.architectureReport {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(30px, 5vw, 82px);
+  align-items: end;
+  margin-top: clamp(42px, 6vw, 86px);
+  padding-block: clamp(28px, 4vw, 48px);
+  border-top: 1px dashed rgba(11, 39, 56, 0.42);
+  border-bottom: 1px dashed rgba(11, 39, 56, 0.42);
+}
+
+.architectureReport p {
+  margin: 0;
+}
+
+.architectureReport div > p:first-child {
+  color: #006c70;
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+}
+
+.architectureReport div > p:last-child {
+  max-width: 66ch;
+  margin-top: 16px;
+  color: var(--case-muted-light);
+  font-size: 0.88rem;
+  line-height: 1.64;
+}
+
+.architectureReport a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 0 16px;
+  color: var(--case-ink);
+  border: 1px solid var(--case-ink);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.architectureReport a > span:nth-child(2) {
+  color: var(--case-blue);
 }
 
 .evidenceGrid {
@@ -1161,20 +1516,86 @@
   color: var(--case-blue-ink);
 }
 
-.stateGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--case-light-rule);
-  border-bottom: 1px solid var(--case-light-rule);
+.stateSection {
+  overflow: clip;
 }
 
-.shippedState,
-.roadmapState {
-  padding: clamp(28px, 4vw, 58px);
+.stateBoundary {
+  position: relative;
+  min-width: 0;
+}
+
+.stateBoundaryRoot {
+  position: relative;
+  display: flex;
+  min-height: 82px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  color: #006c70;
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.stateBoundaryRoot p {
+  margin: 0;
+}
+
+.stateBoundaryRoot span {
+  position: absolute;
+  top: 34px;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--case-blue);
+  transform-origin: top;
+}
+
+.stateBoundaryRoot span::after {
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--case-mineral);
+  background: var(--case-blue);
+  box-shadow: 0 0 0 1px var(--case-blue);
+  content: "";
+}
+
+.stateBranches {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+}
+
+.stateBranch {
+  position: relative;
+  min-width: 0;
+  padding: clamp(38px, 5vw, 68px);
+}
+
+.stateBranchRule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--case-blue);
 }
 
 .shippedState {
   border-right: 1px solid var(--case-light-rule);
+}
+
+.shippedState .stateBranchRule {
+  background: linear-gradient(90deg, var(--case-lime), var(--case-blue));
+  transform-origin: right;
 }
 
 .roadmapState {
@@ -1187,6 +1608,16 @@
   );
 }
 
+.roadmapState .stateBranchRule {
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--case-blue) 0 8px,
+    transparent 8px 15px
+  );
+  transform-origin: left;
+}
+
 .stateLabel {
   margin: 0;
   color: #006c70;
@@ -1197,18 +1628,24 @@
   color: #3d6d00;
 }
 
-.stateGrid h3 {
+.stateBranch h3 {
+  margin: 16px 0 0;
+  font-family: var(--font-v2-display), sans-serif;
   font-size: clamp(1.9rem, 3vw, 3.3rem);
+  font-variation-settings: "wdth" 86;
+  font-weight: 590;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-.stateGrid ul {
+.stateBranch ul {
   margin: clamp(30px, 4vw, 56px) 0 0;
   padding: 0;
   border-top: 1px solid var(--case-light-rule);
   list-style: none;
 }
 
-.stateGrid li {
+.stateBranch li {
   position: relative;
   padding: 16px 0 16px 24px;
   border-bottom: 1px solid var(--case-light-rule);
@@ -1217,7 +1654,7 @@
   line-height: 1.55;
 }
 
-.stateGrid li::before {
+.stateBranch li::before {
   position: absolute;
   top: 1.38em;
   left: 0;
@@ -1245,21 +1682,30 @@
   line-height: 1.55;
 }
 
-.repositoryState {
+.repositoryTerminal {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(130px, 0.2fr) minmax(220px, 0.3fr) minmax(
-      300px,
-      0.5fr
-    );
+  grid-template-columns: minmax(150px, 0.24fr) minmax(0, 0.76fr);
   gap: clamp(24px, 4vw, 62px);
   align-items: start;
   margin-top: clamp(54px, 7vw, 100px);
-  padding-block: clamp(30px, 4vw, 52px);
+  padding: clamp(30px, 4vw, 52px) 0 clamp(30px, 4vw, 52px)
+    clamp(34px, 4vw, 60px);
   border-top: 1px solid var(--case-light-rule);
   border-bottom: 1px solid var(--case-light-rule);
 }
 
-.repositoryState > p:first-child {
+.repositoryTerminalNode {
+  position: absolute;
+  top: clamp(34px, 4vw, 56px);
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--case-blue);
+  background: transparent;
+}
+
+.repositoryTerminal > p {
   margin: 0;
   color: #006c70;
   font-family: var(--font-v2-mono), monospace;
@@ -1268,12 +1714,19 @@
   text-transform: uppercase;
 }
 
-.repositoryState h3 {
+.repositoryTerminal h3 {
+  margin: 0;
+  font-family: var(--font-v2-display), sans-serif;
   font-size: clamp(1.55rem, 2.4vw, 2.6rem);
+  font-variation-settings: "wdth" 86;
+  font-weight: 590;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-.repositoryState > p:last-child {
-  margin: 0;
+.repositoryTerminal div > p {
+  max-width: 72ch;
+  margin: 18px 0 0;
   color: var(--case-muted-light);
   font-size: 0.9rem;
   line-height: 1.65;
@@ -1340,22 +1793,26 @@
     .recognitionBranch,
     .problemFlowNode,
     .scopeNode,
-    .timelineNode
+    .timelineNode,
+    .stateBoundaryRoot span,
+    .stateBranchRule
   ) {
   transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .caseSection[data-narrative-motion="active"]
-  [data-narrative-reveal]:not(
-    [data-narrative-reveal="trace"]
-  ):not([data-narrative-visible="true"]) {
+  [data-narrative-reveal]:not([data-narrative-reveal="trace"]):not(
+    [data-narrative-visible="true"]
+  ) {
   opacity: 0;
   transform: translateY(24px);
   transition-delay: 0ms;
 }
 
 .caseSection[data-narrative-motion="active"]
-  [data-narrative-reveal]:not([data-narrative-reveal="trace"])[data-narrative-visible="true"] {
+  [data-narrative-reveal]:not(
+    [data-narrative-reveal="trace"]
+  )[data-narrative-visible="true"] {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1400,6 +1857,39 @@
   .deliveryTrace[data-narrative-visible="true"]
   .deliveryLine {
   transform: scaleX(1);
+}
+
+.stateSection[data-narrative-motion="active"]
+  .stateBoundaryRoot:not([data-narrative-visible="true"])
+  span {
+  transform: scaleY(0);
+}
+
+.stateSection[data-narrative-motion="active"]
+  .stateBoundaryRoot[data-narrative-visible="true"]
+  span {
+  transform: scaleY(1);
+}
+
+.stateSection[data-narrative-motion="active"]
+  .stateBranch:not([data-narrative-visible="true"])
+  .stateBranchRule {
+  transform: scaleX(0);
+}
+
+.stateSection[data-narrative-motion="active"]
+  .stateBranch[data-narrative-visible="true"]
+  .stateBranchRule {
+  transform: scaleX(1);
+}
+
+.architectureTrace[data-architecture-motion="active"]
+  :is(
+    .architectureSpineProgress,
+    .architectureBranch,
+    .architectureMarkerCore
+  ) {
+  will-change: transform;
 }
 
 .problemSection[data-narrative-motion="active"]
@@ -1465,11 +1955,32 @@
   transition-delay: 440ms;
 }
 
+.stateSection[data-narrative-motion="active"]
+  .stateBoundaryRoot[data-narrative-visible="true"] {
+  transition-delay: 90ms;
+}
+
+.stateSection[data-narrative-motion="active"]
+  .shippedState[data-narrative-visible="true"] {
+  transition-delay: 160ms;
+}
+
+.stateSection[data-narrative-motion="active"]
+  .roadmapState[data-narrative-visible="true"] {
+  transition-delay: 240ms;
+}
+
+.stateSection[data-narrative-motion="active"]
+  .repositoryTerminal[data-narrative-visible="true"] {
+  transition-delay: 320ms;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .localeLink,
   .returnLink,
   .chapterNavigation a,
   .secondaryAction,
+  .architectureReport a,
   .caseFooter a {
     transition:
       color 180ms ease,
@@ -1491,6 +2002,11 @@
   .secondaryAction:hover {
     color: var(--case-lime);
     border-color: var(--case-lime);
+  }
+
+  .architectureReport a:hover {
+    color: var(--case-blue);
+    border-color: var(--case-blue);
   }
 }
 
@@ -1605,12 +2121,21 @@
     grid-column: auto;
   }
 
-  .repositoryState {
-    grid-template-columns: 1fr 1fr;
+  .architectureLegend {
+    grid-template-columns: 1fr;
   }
 
-  .repositoryState > p:last-child {
-    grid-column: 1 / -1;
+  .architectureLegend ul {
+    justify-content: flex-start;
+  }
+
+  .architectureReport {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .architectureReport a {
+    width: fit-content;
   }
 }
 
@@ -2013,53 +2538,129 @@
     margin-bottom: 28px;
   }
 
-  .architectureGrid,
-  .evidenceGrid,
-  .stateGrid {
+  .evidenceGrid {
     grid-template-columns: 1fr;
   }
 
-  .architectureGrid article {
-    padding: 24px 0 34px;
+  .architectureLegend {
+    display: block;
+    padding-block: 18px;
   }
 
-  .architectureGrid article:nth-child(even) {
-    border-left: 0;
+  .architectureLegend ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 18px;
   }
 
-  .architectureGrid article > span {
-    top: 24px;
-    right: 0;
+  .architectureRoute {
+    margin-top: 48px;
   }
 
-  .timelineList h3 {
-    max-width: 20ch;
+  .architectureSpineBase,
+  .architectureSpineProgress {
+    left: 8px;
+  }
+
+  .architectureStage,
+  .workflowStage,
+  .deploymentStage {
+    display: block;
+    min-height: 0;
+    padding: 30px 0 58px 42px;
+  }
+
+  .traceNodeLeft,
+  .traceNodeRight {
+    margin: 0;
+  }
+
+  .architectureStage > .traceNode + .traceNode,
+  .architectureStage > .traceNode + .workflowNode,
+  .workflowStage > .workflowNode {
+    margin-top: 34px;
+  }
+
+  .traceNode {
+    padding: 22px 0 32px;
+  }
+
+  .traceNodeMeta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  .traceNodeMeta span:last-child {
+    text-align: right;
+  }
+
+  .traceNode h3 {
     margin-top: 28px;
     font-size: 1.85rem;
   }
 
-  .architectureGrid h3 {
-    max-width: 18ch;
-    margin-top: 42px;
-    font-size: 1.85rem;
+  .workflowList {
+    margin-top: 30px;
   }
 
-  .technologyList li {
-    padding-block: 12px;
-    font-size: 0.59rem;
+  .architectureBranch,
+  .branchLeft,
+  .branchRight,
+  .branchBoth,
+  .deploymentStage .architectureBranch {
+    top: 30px;
+    right: auto;
+    left: 8px;
+    width: 34px;
+    transform-origin: left;
+  }
+
+  .architectureMarker,
+  .deploymentStage .architectureMarker {
+    top: 24px;
+    left: 8px;
+  }
+
+  .deploymentLabel {
+    position: static;
+    margin: 0 0 28px;
+    transform: none;
+    white-space: normal;
+  }
+
+  .architectureReport {
+    display: block;
+    margin-top: 28px;
+    padding-block: 28px;
+  }
+
+  .architectureReport a {
+    width: 100%;
+    margin-top: 28px;
   }
 
   .evidenceFigure:first-child {
     grid-column: auto;
   }
 
-  .stateGrid {
-    border-bottom: 0;
+  .stateBoundaryRoot {
+    min-height: 66px;
+    align-items: flex-start;
+    text-align: left;
   }
 
-  .shippedState,
-  .roadmapState {
-    padding: 32px 0 48px;
+  .stateBoundaryRoot span {
+    top: 30px;
+    left: 5px;
+  }
+
+  .stateBranches {
+    display: block;
+  }
+
+  .stateBranch {
+    padding: 34px 0 52px 26px;
   }
 
   .shippedState {
@@ -2068,16 +2669,26 @@
   }
 
   .roadmapState {
-    padding-inline: 18px;
+    padding-right: 16px;
   }
 
-  .repositoryState {
+  .repositoryTerminal {
     display: block;
+    padding-left: 28px;
   }
 
-  .repositoryState h3,
-  .repositoryState > p:last-child {
+  .repositoryTerminalNode {
+    top: 34px;
+  }
+
+  .repositoryTerminal > div {
     margin-top: 24px;
+  }
+
+  .timelineList h3 {
+    max-width: 20ch;
+    margin-top: 28px;
+    font-size: 1.85rem;
   }
 
   .caseFooter {
@@ -2108,6 +2719,7 @@
   .returnLink,
   .chapterNavigation a,
   .secondaryAction,
+  .architectureReport a,
   .caseFooter a {
     transition: none;
   }
@@ -2120,7 +2732,12 @@
       .recognitionBranch,
       .problemFlowNode,
       .scopeNode,
-      .timelineNode
+      .timelineNode,
+      .stateBoundaryRoot span,
+      .stateBranchRule,
+      .architectureSpineProgress,
+      .architectureBranch,
+      .architectureMarkerCore
     ) {
     transition: none !important;
   }

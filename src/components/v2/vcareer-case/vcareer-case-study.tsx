@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { VCAREER_PROJECT } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
+import { ArchitectureTrace } from "./architecture-trace";
 import { NarrativeMotionSection } from "./narrative-motion-section";
 import styles from "./vcareer-case-study.module.css";
 
@@ -10,12 +11,6 @@ const FACT_KEYS = ["pilot", "confidence", "review"] as const;
 const PROBLEM_FLOW_KEYS = ["cv", "criteria", "interview"] as const;
 const SCOPE_KEYS = ["realtime", "matching", "builder"] as const;
 const DELIVERY_KEYS = ["discovery", "build", "pilot"] as const;
-const ARCHITECTURE_KEYS = [
-  "realtime",
-  "application",
-  "storage",
-  "deployment",
-] as const;
 const SHIPPED_KEYS = ["interview", "cv", "jd", "feedback"] as const;
 const ROADMAP_KEYS = ["mentor", "progress", "jobs"] as const;
 const CHAPTERS = [
@@ -93,10 +88,7 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
               </Link>
             </nav>
 
-            <Link
-              href="/v2?intro=0#vcareer"
-              className={styles.returnLink}
-            >
+            <Link href="/v2?intro=0#vcareer" className={styles.returnLink}>
               <span aria-hidden>←</span>
               <span className={styles.returnText}>{t("v2.returnLabel")}</span>
             </Link>
@@ -186,7 +178,9 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
                 </span>
                 <dt>{t(`facts.${key}.value`)}</dt>
                 <dd className={styles.factLabel}>{t(`facts.${key}.label`)}</dd>
-                <dd className={styles.factDetail}>{t(`facts.${key}.detail`)}</dd>
+                <dd className={styles.factDetail}>
+                  {t(`facts.${key}.detail`)}
+                </dd>
               </div>
             ))}
           </dl>
@@ -364,7 +358,7 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
 
             <section
               id="case-system"
-              className={styles.caseSection}
+              className={`${styles.caseSection} ${styles.systemSection}`}
               aria-labelledby="case-system-title"
             >
               <SectionHeading
@@ -373,28 +367,60 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
                 title={t("architecture.title")}
                 description={t("architecture.disclaimer")}
               />
-              <div className={styles.architectureGrid}>
-                {ARCHITECTURE_KEYS.map((key, index) => (
-                  <article key={key}>
-                    <span aria-hidden>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className={styles.architectureLabel}>
-                      {t(`architecture.items.${key}.label`)}
-                    </p>
-                    <h3>{t(`architecture.items.${key}.title`)}</h3>
-                    <p>{t(`architecture.items.${key}.body`)}</p>
-                  </article>
-                ))}
-              </div>
-              <ul
-                className={styles.technologyList}
-                aria-label={t("v2.technologyLabel")}
-              >
-                {VCAREER_PROJECT.tech.map((technology) => (
-                  <li key={technology}>{technology}</li>
-                ))}
-              </ul>
+              <ArchitectureTrace
+                labels={{
+                  path: t("v2.architectureTrace.pathLabel"),
+                  context: t("v2.architectureTrace.labels.context"),
+                  direct: t("v2.architectureTrace.labels.direct"),
+                  current: t("v2.architectureTrace.labels.current"),
+                  pending: t("v2.architectureTrace.labels.pending"),
+                }}
+                browser={{
+                  title: t("v2.architectureTrace.browser.title"),
+                  body: t("v2.architectureTrace.browser.body"),
+                }}
+                realtime={{
+                  title: t("scope.items.realtime.title"),
+                  body: t("scope.items.realtime.body"),
+                }}
+                application={{
+                  title: t("architecture.items.application.title"),
+                  body: t("architecture.items.application.body"),
+                }}
+                workflows={{
+                  title: t("v2.architectureTrace.workflows.title"),
+                  matching: {
+                    title: t("scope.items.matching.title"),
+                    body: t("scope.items.matching.body"),
+                  },
+                  builder: {
+                    title: t("scope.items.builder.title"),
+                    body: t("scope.items.builder.body"),
+                  },
+                }}
+                storage={{
+                  title: t("architecture.items.storage.title"),
+                  body: t("architecture.items.storage.body"),
+                }}
+                deployment={{
+                  title: t("v2.architectureTrace.deployment.title"),
+                  current: {
+                    title: t("v2.architectureTrace.deployment.current.title"),
+                    body: t("v2.architectureTrace.deployment.current.body"),
+                  },
+                  pending: {
+                    title: t("v2.architectureTrace.deployment.pending.title"),
+                    body: t("v2.architectureTrace.deployment.pending.body"),
+                  },
+                }}
+                report={{
+                  label: t("v2.architectureTrace.report.label"),
+                  body: t("v2.architectureTrace.report.body"),
+                  href: VCAREER_PROJECT.architectureUrl,
+                  linkLabel: t("v2.architectureTrace.report.linkLabel"),
+                  newWindowLabel: t("v2.opensNewWindow"),
+                }}
+              />
             </section>
 
             <section
@@ -430,50 +456,78 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
               </div>
             </section>
 
-            <section
+            <NarrativeMotionSection
               id="case-state"
-              className={styles.caseSection}
-              aria-labelledby="case-state-title"
+              className={`${styles.caseSection} ${styles.stateSection}`}
+              labelledBy="case-state-title"
+              kind="state"
             >
-              <SectionHeading
-                code={t("v2.sectionCodes.state")}
-                id="case-state-title"
-                title={t("delivery.title")}
-              />
-              <div className={styles.stateGrid}>
-                <section className={styles.shippedState}>
-                  <p className={styles.stateLabel}>
-                    {t("v2.stateLabels.shipped")}
-                  </p>
-                  <h3>{t("delivery.shipped.title")}</h3>
-                  <ul>
-                    {SHIPPED_KEYS.map((key) => (
-                      <li key={key}>{t(`delivery.shipped.items.${key}`)}</li>
-                    ))}
-                  </ul>
-                </section>
-                <section className={styles.roadmapState}>
-                  <p className={styles.stateLabel}>
-                    {t("v2.stateLabels.roadmap")}
-                  </p>
-                  <h3>{t("delivery.roadmap.title")}</h3>
-                  <p className={styles.roadmapNotice}>
-                    {t("delivery.roadmap.status")}
-                  </p>
-                  <ul>
-                    {ROADMAP_KEYS.map((key) => (
-                      <li key={key}>{t(`delivery.roadmap.items.${key}`)}</li>
-                    ))}
-                  </ul>
-                </section>
+              <div data-narrative-reveal="heading">
+                <SectionHeading
+                  code={t("v2.sectionCodes.state")}
+                  id="case-state-title"
+                  title={t("delivery.title")}
+                />
               </div>
 
-              <aside className={styles.repositoryState}>
+              <div className={styles.stateBoundary}>
+                <header
+                  className={styles.stateBoundaryRoot}
+                  data-narrative-reveal="root"
+                >
+                  <p>{t("v2.stateBoundary.rootLabel")}</p>
+                  <span aria-hidden />
+                </header>
+
+                <div className={styles.stateBranches}>
+                  <section
+                    className={`${styles.stateBranch} ${styles.shippedState}`}
+                    data-narrative-reveal="branch"
+                  >
+                    <span className={styles.stateBranchRule} aria-hidden />
+                    <p className={styles.stateLabel}>
+                      {t("v2.stateLabels.shipped")}
+                    </p>
+                    <h3>{t("delivery.shipped.title")}</h3>
+                    <ul>
+                      {SHIPPED_KEYS.map((key) => (
+                        <li key={key}>{t(`delivery.shipped.items.${key}`)}</li>
+                      ))}
+                    </ul>
+                  </section>
+                  <section
+                    className={`${styles.stateBranch} ${styles.roadmapState}`}
+                    data-narrative-reveal="branch"
+                  >
+                    <span className={styles.stateBranchRule} aria-hidden />
+                    <p className={styles.stateLabel}>
+                      {t("v2.stateLabels.roadmap")}
+                    </p>
+                    <h3>{t("delivery.roadmap.title")}</h3>
+                    <p className={styles.roadmapNotice}>
+                      {t("delivery.roadmap.status")}
+                    </p>
+                    <ul>
+                      {ROADMAP_KEYS.map((key) => (
+                        <li key={key}>{t(`delivery.roadmap.items.${key}`)}</li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+              </div>
+
+              <aside
+                className={styles.repositoryTerminal}
+                data-narrative-reveal="source"
+              >
+                <span className={styles.repositoryTerminalNode} aria-hidden />
                 <p>{t("links.eyebrow")}</p>
-                <h3>{t("links.repoTitle")}</h3>
-                <p>{t("links.repoBody")}</p>
+                <div>
+                  <h3>{t("links.repoTitle")}</h3>
+                  <p>{t("links.repoBody")}</p>
+                </div>
               </aside>
-            </section>
+            </NarrativeMotionSection>
           </div>
         </div>
       </article>

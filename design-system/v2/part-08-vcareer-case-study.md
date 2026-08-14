@@ -1,11 +1,11 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A–08B approved; 08C authorized; 08D–08F remain planned
+> **Status:** 08A–08B approved; 08C implemented for owner review; 08D–08F remain planned
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Implementation status:** 08A committed at `744da4f`; 08B completed and
-> approved on 14 August 2026
+> **Implementation status:** 08A committed at `744da4f`; 08B committed at
+> `88312aa`; 08C remains uncommitted pending approval
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -484,6 +484,26 @@ before the next begins.
 - the static and reduced-motion path communicates the same meaning without
   color alone.
 
+**Implemented review behavior**
+
+- one semantic spine replaces the former four-card architecture grid and draws
+  forward or backward with scroll while all node copy stays continuously
+  readable;
+- circle, filled-square, solid-line, and dashed-diamond encodings repeat the
+  visible context/direct/current/pending labels, so color is never the only
+  state signal;
+- `Cloudflare R2 + Amazon S3` remains one coexistence node; deployment splits
+  into a solid Vercel-current branch and a dashed AWS-target branch whose copy
+  keeps real-user cutover pending;
+- the public architecture report sits behind an explicit wider-system context
+  boundary instead of implying broader direct ownership;
+- current product capability and pending-funding roadmap split from one state
+  root into solid and dashed branches; the university-owned private source is
+  a separate contract terminal;
+- mobile moves the spine to the left and stacks the same reading order without
+  a horizontal gesture. No-JS and reduced-motion modes show the full static
+  topology immediately.
+
 ### 08D — Six-screen evidence archive and full-resolution viewer
 
 **Implementation**
@@ -579,5 +599,6 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoints **08A–08B** and authorized implementation of
-**08C**. Later checkpoints remain behind their own preview and approval gates.
+The owner approved checkpoints **08A–08B**. Checkpoint **08C** is implemented
+and awaiting owner review. Later checkpoints remain behind their own preview
+and approval gates.

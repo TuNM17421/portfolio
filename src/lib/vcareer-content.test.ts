@@ -74,11 +74,52 @@ describe("VCareer public evidence", () => {
     expect(vi.vcareerCaseStudy.timeline.items.discovery.label).toBe("Khảo sát");
     expect(vi.vcareerCaseStudy.timeline.items.build.label).toBe("Xây dựng");
     expect(vi.vcareerCaseStudy.timeline.items.pilot.label).toBe("Thử nghiệm");
-    expect(
-      vi.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary,
-    ).toContain("ĐÃ HOẠT ĐỘNG");
-    expect(
-      en.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary,
-    ).toContain("ALREADY LIVE");
+    expect(vi.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary).toContain(
+      "ĐÃ HOẠT ĐỘNG",
+    );
+    expect(en.vcareerCaseStudy.v2.deliveryTrace.recognitionBoundary).toContain(
+      "ALREADY LIVE",
+    );
+  });
+
+  it("keeps the 08C architecture scope and deployment states explicit", () => {
+    for (const messages of [vi, en]) {
+      const architecture = messages.vcareerCaseStudy;
+      const trace = architecture.v2.architectureTrace;
+
+      expect(architecture.architecture.items.storage.title).toMatch(
+        /Cloudflare R2.*Amazon S3/i,
+      );
+      expect(architecture.architecture.items.storage.body).toMatch(
+        /giữ cả hai|both object-storage paths are retained/i,
+      );
+      expect(trace.labels.direct).toMatch(/TÚ|TU/);
+      expect(trace.labels.context).toMatch(/BỐI CẢNH|CONTEXT/i);
+      expect(trace.deployment.current.title).toContain("Vercel");
+      expect(trace.deployment.pending.title).toContain("AWS Singapore");
+      expect(trace.deployment.pending.body).toMatch(
+        /vẫn đang chờ|remains pending/i,
+      );
+      expect(trace.report.body).toMatch(
+        /không mở rộng phạm vi|does not expand/i,
+      );
+    }
+  });
+
+  it("keeps shipped work separate from the pending-funding roadmap", () => {
+    for (const messages of [vi, en]) {
+      const caseStudy = messages.vcareerCaseStudy;
+
+      expect(caseStudy.v2.stateLabels.shipped).toBeTruthy();
+      expect(caseStudy.v2.stateLabels.roadmap).toMatch(/FUNDING/i);
+      expect(caseStudy.delivery.roadmap.status).toMatch(
+        /chưa phải tính năng đã ship|not shipped capabilities/i,
+      );
+      expect(Object.keys(caseStudy.delivery.roadmap.items)).toEqual([
+        "mentor",
+        "progress",
+        "jobs",
+      ]);
+    }
   });
 });
