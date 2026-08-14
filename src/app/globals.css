@@ -103,17 +103,21 @@ html {
 /* The V2 preview owns the complete viewport while it is reviewed in isolation.
    The existing portfolio chrome stays untouched for every other route. */
 body:has(.portfolio-v2-route) > .bg-fx,
-body:has(.portfolio-v2-route) [data-site-shell="v1"] {
+body:has(.portfolio-v2-case-route) > .bg-fx,
+body:has(.portfolio-v2-route) [data-site-shell="v1"],
+body:has(.portfolio-v2-case-route) [data-site-shell="v1"] {
   display: none;
 }
 
-body:has(.portfolio-v2-route) {
+body:has(.portfolio-v2-route),
+body:has(.portfolio-v2-case-route) {
   overflow-x: clip;
   background: #071219;
   scrollbar-width: none;
 }
 
-html:has(.portfolio-v2-route) {
+html:has(.portfolio-v2-route),
+html:has(.portfolio-v2-case-route) {
   /* V2 sections own their individual header clearance. */
   scroll-behavior: auto;
   scroll-padding-top: 0;
@@ -121,13 +125,16 @@ html:has(.portfolio-v2-route) {
 }
 
 html:has(.portfolio-v2-route)::-webkit-scrollbar,
-body:has(.portfolio-v2-route)::-webkit-scrollbar {
+body:has(.portfolio-v2-route)::-webkit-scrollbar,
+html:has(.portfolio-v2-case-route)::-webkit-scrollbar,
+body:has(.portfolio-v2-case-route)::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
 }
 
-body:has(.portfolio-v2-route) > main {
+body:has(.portfolio-v2-route) > main,
+body:has(.portfolio-v2-case-route) > main {
   min-height: 100svh;
 }
 

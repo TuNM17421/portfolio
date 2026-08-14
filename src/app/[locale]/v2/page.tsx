@@ -1,33 +1,11 @@
 import type { Metadata } from "next";
-import { Anybody, Be_Vietnam_Pro, IBM_Plex_Mono } from "next/font/google";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PortfolioV2Shell } from "@/components/v2/portfolio-v2-shell";
 import { isSupportedLocale } from "@/i18n/routing";
 import { isContactDeliveryConfigured } from "@/lib/contact-delivery-config";
 import { parseContactReviewState } from "@/lib/v2/contact-form";
-
-const anybody = Anybody({
-  weight: "variable",
-  subsets: ["latin", "vietnamese"],
-  axes: ["wdth"],
-  variable: "--font-v2-display",
-  display: "swap",
-});
-
-const beVietnamPro = Be_Vietnam_Pro({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-v2-body",
-  display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  weight: ["400", "500", "600"],
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-v2-mono",
-  display: "swap",
-});
+import { v2FontVariables } from "@/lib/v2/fonts";
 
 const INTRO_BOOTSTRAP = `(function(){try{delete document.documentElement.dataset.introDirect;var value=new URLSearchParams(window.location.search).get('intro');var bypass=value==='0'||value==='off'||value==='skip';if(bypass){document.documentElement.dataset.intro='skipped';document.documentElement.dataset.introDirect='true';return;}document.documentElement.dataset.intro='pending';window.__portfolioV2IntroFallback=window.setTimeout(function(){document.documentElement.dataset.intro='complete';},8000);}catch(error){document.documentElement.dataset.intro='complete';}})();`;
 const NO_SCRIPT_HEADER_STYLE = `.portfolio-v2-route [data-v2-header]{color:#edf4f5!important}.portfolio-v2-route [data-v2-header-rail]{border-bottom:1px solid rgba(107,215,208,.2);background:rgba(7,18,25,.94);backdrop-filter:blur(16px)}`;
@@ -101,9 +79,7 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
       <noscript>
         <style dangerouslySetInnerHTML={{ __html: NO_SCRIPT_HEADER_STYLE }} />
       </noscript>
-      <div
-        className={`portfolio-v2-route ${anybody.variable} ${beVietnamPro.variable} ${ibmPlexMono.variable}`}
-      >
+      <div className={`portfolio-v2-route ${v2FontVariables}`}>
         <PortfolioV2Shell
           locale={locale}
           introQuery={introQuery}

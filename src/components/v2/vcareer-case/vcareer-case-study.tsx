@@ -1,0 +1,445 @@
+import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import { VCAREER_PROJECT } from "@/data/projects";
+import type { Locale } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
+import styles from "./vcareer-case-study.module.css";
+
+const FACT_KEYS = ["pilot", "confidence", "review"] as const;
+const SCOPE_KEYS = ["realtime", "matching", "builder"] as const;
+const TIMELINE_KEYS = ["discovery", "build", "hackathon", "pilot"] as const;
+const ARCHITECTURE_KEYS = [
+  "realtime",
+  "application",
+  "storage",
+  "deployment",
+] as const;
+const SHIPPED_KEYS = ["interview", "cv", "jd", "feedback"] as const;
+const ROADMAP_KEYS = ["mentor", "progress", "jobs"] as const;
+const CHAPTERS = [
+  { key: "signal", href: "#case-signal" },
+  { key: "problem", href: "#case-problem" },
+  { key: "delivery", href: "#case-delivery" },
+  { key: "system", href: "#case-system" },
+  { key: "screens", href: "#case-screens" },
+  { key: "state", href: "#case-state" },
+] as const;
+
+type VCareerCaseStudyProps = {
+  locale: Locale;
+};
+
+export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
+  const t = await getTranslations({ locale, namespace: "vcareerCaseStudy" });
+  const projectT = await getTranslations({
+    locale,
+    namespace: "projects.items.vcareer",
+  });
+  const alternateLocale = locale === "vi" ? "en" : "vi";
+  const heroImage = VCAREER_PROJECT.images.find(
+    (image) => image.shot === "interviewDemo",
+  );
+
+  if (!heroImage) {
+    throw new Error("VCareer interview evidence is missing");
+  }
+
+  const evidenceImages = VCAREER_PROJECT.images.filter(
+    (image) => image.shot !== heroImage.shot,
+  );
+
+  return (
+    <div className={styles.root}>
+      <a className={styles.skipLink} href="#case-signal">
+        {t("v2.skipToContent")}
+      </a>
+
+      <header className={styles.siteHeader}>
+        <div className={styles.headerRail}>
+          <Link
+            href="/v2?intro=0"
+            className={styles.wordmark}
+            aria-label={`Nguyen Manh Tu — ${t("v2.portfolioHome")}`}
+          >
+            Nguyen Manh Tu
+          </Link>
+
+          <p className={styles.caseIndex}>{t("v2.caseIndex")}</p>
+
+          <div className={styles.headerActions}>
+            <nav
+              className={styles.localeSwitch}
+              aria-label={t("v2.localeLabel")}
+            >
+              <span className={styles.activeLocale} aria-current="page">
+                {locale.toUpperCase()}
+              </span>
+              <span className={styles.localeDivider} aria-hidden>
+                /
+              </span>
+              <Link
+                href="/projects/vcareer"
+                locale={alternateLocale}
+                className={styles.localeLink}
+                aria-label={
+                  alternateLocale === "en"
+                    ? t("v2.switchToEnglish")
+                    : t("v2.switchToVietnamese")
+                }
+              >
+                {alternateLocale.toUpperCase()}
+              </Link>
+            </nav>
+
+            <Link
+              href="/v2?intro=0#vcareer"
+              className={styles.returnLink}
+            >
+              <span aria-hidden>←</span>
+              <span className={styles.returnText}>{t("v2.returnLabel")}</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <article>
+        <header className={styles.cover}>
+          <div className={styles.coverTopline}>
+            <p>{t("v2.cover.caseLabel")}</p>
+            <p>{t("v2.cover.timeline")}</p>
+          </div>
+
+          <div className={styles.coverTitleBlock}>
+            <h1>{t("title")}</h1>
+            <div className={styles.coverMarker} aria-hidden>
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div className={styles.coverNarrative}>
+            <div className={styles.coverIdentity}>
+              <p className={styles.coverSubtitle}>{t("subtitle")}</p>
+              <p className={styles.coverStatus}>
+                <span aria-hidden />
+                {t("v2.cover.statusLabel")}
+              </p>
+            </div>
+
+            <div className={styles.coverCopy}>
+              <p>{t("summary")}</p>
+              <div className={styles.coverActions}>
+                <ExternalAction
+                  href={VCAREER_PROJECT.liveUrl}
+                  label={t("actions.live")}
+                  newWindowLabel={t("v2.opensNewWindow")}
+                  primary
+                />
+                <ExternalAction
+                  href={VCAREER_PROJECT.architectureUrl}
+                  label={t("actions.architecture")}
+                  newWindowLabel={t("v2.opensNewWindow")}
+                />
+              </div>
+            </div>
+          </div>
+
+          <figure className={styles.coverFigure}>
+            <div className={styles.coverImageFrame}>
+              <Image
+                src={heroImage.src}
+                alt={projectT(`shots.${heroImage.shot}`)}
+                width={heroImage.width ?? 1920}
+                height={heroImage.height ?? 908}
+                priority
+                sizes="(max-width: 768px) 94vw, (max-width: 1440px) 86vw, 1280px"
+                className={styles.coverImage}
+              />
+            </div>
+            <figcaption className={styles.coverCaption}>
+              <span>{t("v2.cover.screenLabel")}</span>
+              <span>{t("v2.cover.screenContext")}</span>
+              <span>{projectT(`shots.${heroImage.shot}`)}</span>
+            </figcaption>
+          </figure>
+        </header>
+
+        <section
+          id="case-signal"
+          className={styles.signalSheet}
+          aria-labelledby="case-signal-title"
+          tabIndex={-1}
+        >
+          <div className={styles.signalHeading}>
+            <p className={styles.sectionCode}>{t("v2.signal.eyebrow")}</p>
+            <h2 id="case-signal-title">{t("v2.signal.title")}</h2>
+            <p>{t("v2.signal.description")}</p>
+          </div>
+
+          <dl className={styles.factLedger}>
+            {FACT_KEYS.map((key, index) => (
+              <div className={styles.fact} key={key}>
+                <span className={styles.factIndex} aria-hidden>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <dt>{t(`facts.${key}.value`)}</dt>
+                <dd className={styles.factLabel}>{t(`facts.${key}.label`)}</dd>
+                <dd className={styles.factDetail}>{t(`facts.${key}.detail`)}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <div className={styles.caseDocument}>
+          <nav
+            className={styles.chapterNavigation}
+            aria-label={t("v2.caseNavigation")}
+          >
+            <ol>
+              {CHAPTERS.map((chapter, index) => (
+                <li key={chapter.key}>
+                  <a href={chapter.href}>
+                    <span aria-hidden>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {t(`v2.chapters.${chapter.key}`)}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          <div className={styles.caseContent}>
+            <section
+              id="case-problem"
+              className={styles.caseSection}
+              aria-labelledby="case-problem-title"
+            >
+              <SectionHeading
+                code={t("v2.sectionCodes.problem")}
+                id="case-problem-title"
+                title={t("problem.title")}
+              />
+              <div className={styles.problemGrid}>
+                <p className={styles.leadCopy}>{t("problem.body")}</p>
+                <div className={styles.scopeBlock}>
+                  <p className={styles.subsectionLabel}>{t("scope.eyebrow")}</p>
+                  <h3>{t("scope.title")}</h3>
+                  <p>{t("scope.intro")}</p>
+                  <ol className={styles.scopeList}>
+                    {SCOPE_KEYS.map((key, index) => (
+                      <li key={key}>
+                        <span aria-hidden>
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <h4>{t(`scope.items.${key}.title`)}</h4>
+                          <p>{t(`scope.items.${key}.body`)}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            </section>
+
+            <section
+              id="case-delivery"
+              className={styles.caseSection}
+              aria-labelledby="case-delivery-title"
+            >
+              <SectionHeading
+                code={t("v2.sectionCodes.delivery")}
+                id="case-delivery-title"
+                title={t("timeline.title")}
+              />
+              <ol className={styles.timelineList}>
+                {TIMELINE_KEYS.map((key, index) => (
+                  <li key={key}>
+                    <span className={styles.timelineIndex} aria-hidden>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className={styles.timelineLabel}>
+                      {t(`timeline.items.${key}.label`)}
+                    </p>
+                    <h3>{t(`timeline.items.${key}.title`)}</h3>
+                    <p>{t(`timeline.items.${key}.body`)}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section
+              id="case-system"
+              className={styles.caseSection}
+              aria-labelledby="case-system-title"
+            >
+              <SectionHeading
+                code={t("v2.sectionCodes.system")}
+                id="case-system-title"
+                title={t("architecture.title")}
+                description={t("architecture.disclaimer")}
+              />
+              <div className={styles.architectureGrid}>
+                {ARCHITECTURE_KEYS.map((key, index) => (
+                  <article key={key}>
+                    <span aria-hidden>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className={styles.architectureLabel}>
+                      {t(`architecture.items.${key}.label`)}
+                    </p>
+                    <h3>{t(`architecture.items.${key}.title`)}</h3>
+                    <p>{t(`architecture.items.${key}.body`)}</p>
+                  </article>
+                ))}
+              </div>
+              <ul
+                className={styles.technologyList}
+                aria-label={t("v2.technologyLabel")}
+              >
+                {VCAREER_PROJECT.tech.map((technology) => (
+                  <li key={technology}>{technology}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section
+              id="case-screens"
+              className={styles.caseSection}
+              aria-labelledby="case-screens-title"
+            >
+              <SectionHeading
+                code={t("v2.sectionCodes.screens")}
+                id="case-screens-title"
+                title={t("evidence.title")}
+                description={t("evidence.description")}
+              />
+              <div className={styles.evidenceGrid}>
+                {evidenceImages.map((image, index) => (
+                  <figure className={styles.evidenceFigure} key={image.src}>
+                    <Image
+                      src={image.src}
+                      alt={projectT(`shots.${image.shot}`)}
+                      width={image.width ?? 1920}
+                      height={image.height ?? 914}
+                      sizes="(max-width: 767px) 92vw, (max-width: 1199px) 78vw, 52vw"
+                      className={styles.evidenceImage}
+                    />
+                    <figcaption>
+                      <span aria-hidden>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span>{projectT(`shots.${image.shot}`)}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+
+            <section
+              id="case-state"
+              className={styles.caseSection}
+              aria-labelledby="case-state-title"
+            >
+              <SectionHeading
+                code={t("v2.sectionCodes.state")}
+                id="case-state-title"
+                title={t("delivery.title")}
+              />
+              <div className={styles.stateGrid}>
+                <section className={styles.shippedState}>
+                  <p className={styles.stateLabel}>
+                    {t("v2.stateLabels.shipped")}
+                  </p>
+                  <h3>{t("delivery.shipped.title")}</h3>
+                  <ul>
+                    {SHIPPED_KEYS.map((key) => (
+                      <li key={key}>{t(`delivery.shipped.items.${key}`)}</li>
+                    ))}
+                  </ul>
+                </section>
+                <section className={styles.roadmapState}>
+                  <p className={styles.stateLabel}>
+                    {t("v2.stateLabels.roadmap")}
+                  </p>
+                  <h3>{t("delivery.roadmap.title")}</h3>
+                  <p className={styles.roadmapNotice}>
+                    {t("delivery.roadmap.status")}
+                  </p>
+                  <ul>
+                    {ROADMAP_KEYS.map((key) => (
+                      <li key={key}>{t(`delivery.roadmap.items.${key}`)}</li>
+                    ))}
+                  </ul>
+                </section>
+              </div>
+
+              <aside className={styles.repositoryState}>
+                <p>{t("links.eyebrow")}</p>
+                <h3>{t("links.repoTitle")}</h3>
+                <p>{t("links.repoBody")}</p>
+              </aside>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <footer className={styles.caseFooter}>
+        <p>{t("v2.footer.caseLabel")}</p>
+        <p>© 2026 Nguyen Manh Tu</p>
+        <Link href="/v2?intro=0#vcareer">
+          {t("v2.footer.return")}
+          <span aria-hidden> ↑</span>
+        </Link>
+      </footer>
+    </div>
+  );
+}
+
+function SectionHeading({
+  code,
+  description,
+  id,
+  title,
+}: {
+  code: string;
+  description?: string;
+  id: string;
+  title: string;
+}) {
+  return (
+    <header className={styles.sectionHeading}>
+      <p className={styles.sectionCode}>{code}</p>
+      <h2 id={id}>{title}</h2>
+      {description ? <p>{description}</p> : null}
+    </header>
+  );
+}
+
+function ExternalAction({
+  href,
+  label,
+  newWindowLabel,
+  primary = false,
+}: {
+  href?: string;
+  label: string;
+  newWindowLabel: string;
+  primary?: boolean;
+}) {
+  if (!href) return null;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={primary ? styles.primaryAction : styles.secondaryAction}
+    >
+      <span>{label}</span>
+      <span aria-hidden>↗</span>
+      <span className={styles.visuallyHidden}>{newWindowLabel}</span>
+    </a>
+  );
+}

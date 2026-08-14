@@ -284,6 +284,53 @@
       "eyebrow": "Link state",
       "repoTitle": "Private source repository",
       "repoBody": "The repository cannot be shared because the source code is owned under the university contract. The live product and public architecture report are available above."
+    },
+    "v2": {
+      "skipToContent": "Skip to case-study content",
+      "portfolioHome": "V2 portfolio home",
+      "caseIndex": "CASE 01 / 01",
+      "localeLabel": "Choose language",
+      "switchToEnglish": "Switch to English",
+      "switchToVietnamese": "Switch to Vietnamese",
+      "returnLabel": "Return to VCareer",
+      "opensNewWindow": "Opens in a new window",
+      "caseNavigation": "Case-study contents",
+      "technologyLabel": "Technology in the VCareer system",
+      "cover": {
+        "caseLabel": "TECHNICAL CASE FILE / AI PRODUCT",
+        "timeline": "05/2026 — PRESENT",
+        "statusLabel": "LIVE / DEVELOPMENT PENDING",
+        "screenLabel": "SCREEN 04 / 06",
+        "screenContext": "REALTIME AI INTERVIEW · TALKINGHEAD"
+      },
+      "signal": {
+        "eyebrow": "01 / EVIDENCE",
+        "title": "Three signals from the real pilot.",
+        "description": "One real-use count, one qualitative survey signal, and one expert review loop — without turning product placeholders into portfolio outcomes."
+      },
+      "chapters": {
+        "signal": "Evidence",
+        "problem": "Problem",
+        "delivery": "Delivery",
+        "system": "System",
+        "screens": "Screens",
+        "state": "State"
+      },
+      "sectionCodes": {
+        "problem": "02 / PROBLEM + SCOPE",
+        "delivery": "03 / DELIVERY",
+        "system": "04 / SYSTEM",
+        "screens": "05 / SCREENS",
+        "state": "06 / STATE"
+      },
+      "stateLabels": {
+        "shipped": "SHIPPED / CURRENT",
+        "roadmap": "PENDING FUNDING"
+      },
+      "footer": {
+        "caseLabel": "VCareer / CASE 01",
+        "return": "Return to portfolio"
+      }
     }
   },
   "skills": {

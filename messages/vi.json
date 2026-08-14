@@ -284,6 +284,53 @@
       "eyebrow": "Trạng thái liên kết",
       "repoTitle": "Source code ở chế độ private",
       "repoBody": "Repository không thể chia sẻ do source code thuộc sở hữu theo hợp đồng với nhà trường. Sản phẩm live và báo cáo kiến trúc công khai có thể truy cập ở phía trên."
+    },
+    "v2": {
+      "skipToContent": "Bỏ qua đến nội dung case study",
+      "portfolioHome": "Trang portfolio V2",
+      "caseIndex": "HỒ SƠ 01 / 01",
+      "localeLabel": "Chọn ngôn ngữ",
+      "switchToEnglish": "Chuyển sang tiếng Anh",
+      "switchToVietnamese": "Chuyển sang tiếng Việt",
+      "returnLabel": "Trở lại VCareer",
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "caseNavigation": "Mục lục case study",
+      "technologyLabel": "Công nghệ trong hệ thống VCareer",
+      "cover": {
+        "caseLabel": "HỒ SƠ KỸ THUẬT / SẢN PHẨM AI",
+        "timeline": "05/2026 — HIỆN TẠI",
+        "statusLabel": "ĐANG LIVE / CHỜ FUNDING",
+        "screenLabel": "MÀN HÌNH 04 / 06",
+        "screenContext": "PHỎNG VẤN AI REALTIME · TALKINGHEAD"
+      },
+      "signal": {
+        "eyebrow": "01 / BẰNG CHỨNG",
+        "title": "Ba tín hiệu từ pilot thực tế.",
+        "description": "Một con số sử dụng thật, một tín hiệu định tính từ khảo sát và một vòng đánh giá chuyên môn — không biến số minh họa trong sản phẩm thành kết quả của hồ sơ này."
+      },
+      "chapters": {
+        "signal": "Bằng chứng",
+        "problem": "Bài toán",
+        "delivery": "Triển khai",
+        "system": "Hệ thống",
+        "screens": "Màn hình",
+        "state": "Trạng thái"
+      },
+      "sectionCodes": {
+        "problem": "02 / BÀI TOÁN + PHẠM VI",
+        "delivery": "03 / TRIỂN KHAI",
+        "system": "04 / HỆ THỐNG",
+        "screens": "05 / MÀN HÌNH",
+        "state": "06 / TRẠNG THÁI"
+      },
+      "stateLabels": {
+        "shipped": "SẢN PHẨM HIỆN TẠI",
+        "roadmap": "LỘ TRÌNH / CHỜ FUNDING"
+      },
+      "footer": {
+        "caseLabel": "VCareer / HỒ SƠ 01",
+        "return": "Trở lại portfolio"
+      }
     }
   },
   "skills": {

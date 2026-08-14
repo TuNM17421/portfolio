@@ -4,6 +4,10 @@ export type ProjectImage = {
   src: string;
   // Caption key resolved via `projects.items.<project>.shots.<shot>`.
   shot: string;
+  // Optional intrinsic dimensions let evidence-heavy routes reserve the exact
+  // source aspect ratio before Next Image finishes loading.
+  width?: number;
+  height?: number;
 };
 
 export type Project = {
@@ -22,12 +26,42 @@ export type Project = {
 export const VCAREER_PROJECT = {
   key: "vcareer",
   images: [
-    { src: "/projects/vcareer/landing_page.PNG", shot: "landing" },
-    { src: "/projects/vcareer/cv_builder.PNG", shot: "cvBuilder" },
-    { src: "/projects/vcareer/match_cv_with_job.PNG", shot: "match" },
-    { src: "/projects/vcareer/interview_demo.PNG", shot: "interviewDemo" },
-    { src: "/projects/vcareer/interview_review.PNG", shot: "interviewReview" },
-    { src: "/projects/vcareer/user_dashboard.PNG", shot: "dashboard" },
+    {
+      src: "/projects/vcareer/landing_page.PNG",
+      shot: "landing",
+      width: 1902,
+      height: 914,
+    },
+    {
+      src: "/projects/vcareer/cv_builder.PNG",
+      shot: "cvBuilder",
+      width: 1920,
+      height: 914,
+    },
+    {
+      src: "/projects/vcareer/match_cv_with_job.PNG",
+      shot: "match",
+      width: 1920,
+      height: 911,
+    },
+    {
+      src: "/projects/vcareer/interview_demo.PNG",
+      shot: "interviewDemo",
+      width: 1920,
+      height: 908,
+    },
+    {
+      src: "/projects/vcareer/interview_review.PNG",
+      shot: "interviewReview",
+      width: 1920,
+      height: 913,
+    },
+    {
+      src: "/projects/vcareer/user_dashboard.PNG",
+      shot: "dashboard",
+      width: 1903,
+      height: 915,
+    },
   ],
   featured: true,
   caseStudyPath: "/projects/vcareer",

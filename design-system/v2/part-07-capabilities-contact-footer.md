@@ -1,12 +1,12 @@
 # Part 07 — Evidence routing, contact, and footer
 
-> **Status:** 07A–07D approved and committed; 07E implemented for owner review
+> **Status:** Complete; 07A–07E approved and committed
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 07A committed at `48577f1`; 07B committed at
 > `7f04705`; 07C is committed at `021d3cc`; 07D is committed at `4e53081`;
-> 07E is implemented and intentionally uncommitted
+> 07E is committed at `a084836`
 >
 > **Scope:** Final homepage chapter only. Part 08 case-study migration remains
 > separate.

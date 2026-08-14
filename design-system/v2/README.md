@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–06 complete; Part 07A–07D approved and Part 07E in implementation review
+> **Status:** Parts 01–07 complete; Part 08A implemented for owner review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 07 evidence-backed capabilities, contact conversion, and footer plan
-> **Implementation status:** Part 07A is committed at `48577f1`; Part 07B is committed at `7f04705`; Part 07C is committed at `021d3cc`; Part 07D is committed at `4e53081`; Part 07E is implemented and intentionally uncommitted for review
+> **Detailed scope in this checkpoint:** Part 08A VCareer route shell, case cover, evidence ledger, and semantic skeleton
+> **Implementation status:** Part 07E is committed at `a084836`; Part 08A is intentionally uncommitted pending visual approval
 
 ## Objective
 
@@ -149,11 +149,11 @@ Relevant implementation references:
 | 04   | VCareer flagship showcase                       | Project transition and evidence hierarchy                 | Complete · `050f023`                                         |
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                         |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                         |
-| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | 07A–07D committed; 07E implemented and awaiting owner review |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Not planned in detail                                        |
+| 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                         |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A implemented and awaiting owner review                      |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                        |
 
-Detailed contracts for Parts 01–07 live beside this file. Later parts receive
+Detailed contracts for Parts 01–08 live beside this file. Later parts receive
 the same research/contract treatment only after the preceding part is accepted.
 
 ## Confirmed user inputs
