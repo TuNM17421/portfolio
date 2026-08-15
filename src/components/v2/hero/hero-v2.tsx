@@ -102,7 +102,6 @@ export function HeroV2({
             </div>
             <ArtDirectedPortrait
               alt={copy.portraitAlt}
-              highPriority={!introWillRun}
               onLoad={onPortraitLoad}
               onError={onPortraitError}
             />
@@ -181,7 +180,6 @@ export function HeroV2({
 
 type ArtDirectedPortraitProps = {
   alt: string;
-  highPriority: boolean;
   onLoad: () => void;
   onError: () => void;
 };
@@ -195,7 +193,6 @@ const ART_DIRECTED_PORTRAIT = {
 
 function ArtDirectedPortrait({
   alt,
-  highPriority,
   onLoad,
   onError,
 }: ArtDirectedPortraitProps) {
@@ -230,19 +227,37 @@ function ArtDirectedPortrait({
   }, [onError, onLoad]);
 
   return (
-    <picture>
-      <source media="(min-width: 900px)" srcSet={desktopSrcSet} sizes="40vw" />
-      <source media="(max-width: 899px)" srcSet={mobileSrcSet} sizes="100vw" />
-      <img
-        {...mobileImageProps}
-        ref={imageRef}
-        alt={alt}
-        className={styles.portraitImage}
-        fetchPriority={highPriority ? "high" : undefined}
-        loading={highPriority ? "eager" : mobileImageProps.loading}
-        onLoad={onLoad}
-        onError={onError}
+    <>
+      <link
+        rel="preload"
+        as="image"
+        media="(min-width: 900px)"
+        imageSrcSet={desktopSrcSet}
+        imageSizes="40vw"
+        fetchPriority="high"
       />
-    </picture>
+      <link
+        rel="preload"
+        as="image"
+        media="(max-width: 899px)"
+        imageSrcSet={mobileSrcSet}
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
+      <picture>
+        <source media="(min-width: 900px)" srcSet={desktopSrcSet} sizes="40vw" />
+        <source media="(max-width: 899px)" srcSet={mobileSrcSet} sizes="100vw" />
+        <img
+          {...mobileImageProps}
+          ref={imageRef}
+          alt={alt}
+          className={styles.portraitImage}
+          fetchPriority="high"
+          loading="eager"
+          onLoad={onLoad}
+          onError={onError}
+        />
+      </picture>
+    </>
   );
 }

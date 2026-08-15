@@ -126,12 +126,15 @@
   justify-content: center;
   font-family: var(--font-v2-display), sans-serif;
   font-size: clamp(4.35rem, 9.35vw, 9.6rem);
-  font-variation-settings: "wdth" 78;
+  font-variation-settings: "wdth" 124;
   font-weight: 570;
   letter-spacing: -0.082em;
   line-height: 0.77;
   text-align: center;
+  transform: scaleX(0.6290322581);
+  transform-origin: center;
   white-space: nowrap;
+  will-change: transform;
 }
 
 .wordmarkText {
@@ -368,6 +371,7 @@
 .intro[data-mode="quick"] .wordmark {
   font-size: clamp(3.6rem, 9vw, 8rem);
   font-variation-settings: "wdth" 112;
+  transform: none;
 }
 
 .intro[data-mode="quick"] .progressArea {
@@ -394,6 +398,7 @@
 
 .intro[data-reduced="true"] .wordmark {
   font-variation-settings: "wdth" 112;
+  transform: none;
 }
 
 .intro[data-reduced="true"] .specialties,
@@ -517,6 +522,7 @@
 
   .wordmark {
     font-variation-settings: "wdth" 112;
+    transform: none;
   }
 
   .fieldPlaneOne,

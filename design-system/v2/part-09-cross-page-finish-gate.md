@@ -1,10 +1,10 @@
 # Part 09 — Cross-page release finish gate
 
-> **Status:** 09A committed at `5cc5264`; 09B implemented and uncommitted for owner review
+> **Status:** 09A `5cc5264`; 09B `1c77886`; 09C implemented and uncommitted for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Accepted baseline:** Parts 01–08 through commit `24d5c8c`; 09A at `5cc5264`
+> **Accepted baseline:** Parts 01–08 through `24d5c8c`; 09A `5cc5264`; 09B `1c77886`
 >
 > **Current review routes:** `/vi`, `/en`, `/vi/projects/vcareer`, and
 > `/en/projects/vcareer`; `/[locale]/v2` is compatibility-only
@@ -273,6 +273,49 @@ deployment identify `https://tunm-dev.vercel.app` as the stable portfolio
 origin. Deployments can override it through `SITE_URL` without changing source.
 
 ### 09C — Intro, LCP, CLS, and runtime stabilization
+
+**Implementation status — 15 August 2026**
+
+- The art-directed Hero portrait is now eager, `fetchpriority=high`, and
+  preloaded through mutually exclusive desktop/mobile media queries. A clean
+  mobile request loads only the `750w` mobile crop; desktop loads only the
+  `640w` desktop crop.
+- The Intro wordmark still expands visually from width 78 to 124, but its
+  document geometry remains fixed at the final width while Motion animates a
+  compositor transform. The accepted wordmark timing, mobile line breaks, exit
+  mask, and handoff target remain unchanged.
+- Intro readiness now tracks its ceremony portrait independently from the Hero
+  image and waits only for the four fonts used by the critical Intro/Hero scene,
+  rather than every font face used below the fold.
+- The progress rail and number update their DOM presentation from one Motion
+  value without scheduling a React render for every animation frame.
+- The portrait fallback reserves stable monogram and message geometry. Existing
+  hidden-scrollbar and Intro lock behavior remains unchanged.
+
+**Measured verification evidence**
+
+| Production scenario | Performance | FCP | LCP | TBT | CLS | Transfer |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Mobile full Intro, pre-09C recorded baseline | 76 | 1.7s | 5.2s | 180ms | 0.092 | 656 KiB |
+| Mobile full Intro, 09C three-run median | 88 | 2.3s | 3.5s | 90ms | 0.009 | 656 KiB |
+| Mobile repeat, 09C two-run result | 86 / 86 | 2.4s | 3.6–3.8s | 54–93ms | 0.005 | 639 KiB |
+| Desktop repeat, 09C | 99 | 0.7s | 0.9s | 0ms | 0.004 | 803 KiB |
+
+- Lighthouse reports all three LCP discovery checks as passing: the image is
+  initial-document discoverable, eagerly loaded, and priority hinted.
+- First Load JS remains `216 kB`; the preload contract adds under `0.5 KiB` to
+  the initial transfer and causes no duplicate desktop/mobile portrait request.
+- The remaining `365ms` initial-document task is Style/Layout for the accepted
+  long-form server-rendered page. After that initial layout/hydration boundary,
+  the longest recorded task is `124ms`; TBT remains at most `111ms` in the
+  three full-Intro runs.
+- Lighthouse Accessibility and Best Practices remain 100 in every recorded
+  mobile/desktop run. No-JavaScript still exposes all seven anchors and the
+  single Hero `h1`; native reduced motion keeps About and VCareer static and
+  the Hero hold reduced.
+- Filmstrip inspection confirms the mobile wordmark still follows the approved
+  identify-to-expanded composition without layout reflow. The static Hero and
+  desktop role composition remain unchanged.
 
 **Implementation**
 

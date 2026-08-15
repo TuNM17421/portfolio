@@ -65,6 +65,13 @@ type IntroWindow = Window & {
 };
 
 const FAIL_SAFE_COMMIT_MS = INTRO_TIMINGS.failSafeMs - 1_300;
+const INTRO_WORDMARK_START_SCALE = 78 / 124;
+const CRITICAL_FONT_SELECTORS = [
+  "[data-intro-wordmark]",
+  "[data-intro-meta]",
+  "[data-hero-role-heading]",
+  "[data-hero-positioning]",
+] as const;
 
 function wait(duration: number) {
   return new Promise<void>((resolve) => window.setTimeout(resolve, duration));
@@ -109,10 +116,14 @@ export function IntroSequence({
   const [phase, setLocalPhase] = useState<IntroPhase>("boot");
   const [mountedAndMeasured, setMountedAndMeasured] = useState(false);
   const [fontsReady, setFontsReady] = useState(false);
+  const [introPortraitOutcome, setIntroPortraitOutcome] =
+    useState<PortraitOutcome>("pending");
   const [fallbackUsed, setFallbackUsed] = useState(false);
   const [forceProgressComplete, setForceProgressComplete] = useState(false);
-  const [displayedProgress, setDisplayedProgress] = useState(0);
   const progressValue = useMotionValue(0);
+  const progressNumberRef = useRef<HTMLSpanElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const progressFillRef = useRef<HTMLSpanElement>(null);
   const runToken = useRef(0);
   const readinessRef = useRef<CriticalReadiness>({
     mounted: false,
@@ -120,7 +131,8 @@ export function IntroSequence({
     portrait: false,
   });
 
-  const portraitResolved = portraitOutcome !== "pending";
+  const portraitResolved =
+    portraitOutcome !== "pending" && introPortraitOutcome !== "pending";
   const readiness = useMemo<CriticalReadiness>(
     () => ({
       mounted: mountedAndMeasured,
@@ -151,7 +163,17 @@ export function IntroSequence({
   );
 
   useMotionValueEvent(progressValue, "change", (latest) => {
-    setDisplayedProgress(Math.max(0, Math.min(100, Math.round(latest))));
+    const progress = Math.max(0, Math.min(100, Math.round(latest)));
+    if (progressNumberRef.current) {
+      progressNumberRef.current.textContent = progress
+        .toString()
+        .padStart(2, "0");
+    }
+    progressBarRef.current?.setAttribute("aria-valuenow", progress.toString());
+    progressFillRef.current?.style.setProperty(
+      "transform",
+      `scaleX(${progress / 100})`,
+    );
   });
 
   useEffect(() => {
@@ -178,11 +200,22 @@ export function IntroSequence({
       setFontsReady(true);
     };
 
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(resolveFonts, resolveFonts);
-    } else {
+    if (!document.fonts?.load) {
       resolveFonts();
+      return () => {
+        cancelled = true;
+      };
     }
+
+    const criticalFontRequests = CRITICAL_FONT_SELECTORS.flatMap((selector) => {
+      const element = document.querySelector<HTMLElement>(selector);
+      if (!element) return [];
+      const style = window.getComputedStyle(element);
+      const shorthand = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      return [document.fonts.load(shorthand, element.textContent ?? "Nguyen")];
+    });
+
+    Promise.all(criticalFontRequests).then(resolveFonts, resolveFonts);
 
     return () => {
       cancelled = true;
@@ -313,7 +346,12 @@ export function IntroSequence({
         ),
         play(
           "[data-intro-wordmark]",
-          { fontVariationSettings: ['"wdth" 78', '"wdth" 124'] },
+          {
+            transform: [
+              `scaleX(${INTRO_WORDMARK_START_SCALE})`,
+              "scaleX(1)",
+            ],
+          },
           { duration: 1.08, ease: [0.16, 1, 0.3, 1] },
         ),
       ]);
@@ -533,20 +571,24 @@ export function IntroSequence({
           <div className={styles.progressArea} data-intro-static>
             <div className={styles.progressHeader}>
               <span aria-live="polite">{statusMessage}</span>
-              <span aria-hidden>{displayedProgress.toString().padStart(2, "0")}</span>
+              <span ref={progressNumberRef} aria-hidden>
+                00
+              </span>
             </div>
             <div
+              ref={progressBarRef}
               className={styles.progressTrack}
               role="progressbar"
               aria-label={statusMessage}
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-valuenow={displayedProgress}
+              aria-valuenow={0}
             >
               <span data-intro-rail className={styles.railBase} />
               <span
+                ref={progressFillRef}
                 className={styles.progressFill}
-                style={{ transform: `scaleX(${displayedProgress / 100})` }}
+                style={{ transform: "scaleX(0)" }}
               />
               <span data-intro-ready-flash className={styles.readyFlash} />
             </div>
@@ -558,7 +600,7 @@ export function IntroSequence({
           </div>
 
           <div data-intro-portrait className={styles.portraitEcho} aria-hidden>
-            {portraitOutcome === "error" ? (
+            {introPortraitOutcome === "error" ? (
               <div className={styles.portraitEchoFallback} />
             ) : (
               <Image
@@ -567,6 +609,8 @@ export function IntroSequence({
                 fill
                 sizes="(max-width: 767px) 84vw, 44vw"
                 className={styles.portraitEchoImage}
+                onLoad={() => setIntroPortraitOutcome("ready")}
+                onError={() => setIntroPortraitOutcome("error")}
               />
             )}
             <div className={styles.portraitEchoGrade} />

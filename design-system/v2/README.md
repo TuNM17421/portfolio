@@ -1,11 +1,12 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–08 and 09A complete; Part 09B implemented for owner review
+> **Status:** Parts 01–08 and 09A–09B complete; Part 09C implemented for owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 09 cross-page release finish gate
 > **Implementation status:** Part 08F is committed at `24d5c8c`; the Part 09
 > contract is committed at `9f1eaa9`; 09A is committed at `5cc5264`; 09B is
-> implemented and intentionally uncommitted pending owner approval
+> committed at `1c77886`; 09C is implemented and intentionally uncommitted
+> pending owner approval
 
 ## Objective
 
@@ -153,7 +154,7 @@ Relevant implementation references:
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                                                                           |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                                                                           |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Complete · 08F `24d5c8c`                                                                                      |
-| 09   | Cross-page finish gate                          | Canonical root preview plus full release audit             | 09A `5cc5264`; 09B implemented and uncommitted for owner review                                                 |
+| 09   | Cross-page finish gate                          | Canonical root preview plus full release audit             | 09A `5cc5264`; 09B `1c77886`; 09C implemented and uncommitted for owner review                                  |
 
 Detailed contracts for Parts 01–09 live beside this file. Every Part 09
 checkpoint remains uncommitted until its own owner preview is approved.
