@@ -1,9 +1,10 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–07 and 08A–08E complete; Part 08F is implemented for owner review
+> **Status:** Parts 01–08 complete; Part 09 contract is proposed for owner review
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 08F VCareer case-study finish gate
-> **Implementation status:** Part 08A is committed at `744da4f`; Part 08B is committed at `88312aa`; Part 08C is committed at `38ad0ba`; Part 08D is committed at `45d5c69`; Part 08E is committed at `321d66c`; Part 08F is uncommitted for owner review
+> **Detailed scope in this checkpoint:** Part 09 cross-page release finish gate
+> **Implementation status:** Part 08F is committed at `24d5c8c`; Part 09
+> implementation has not started
 
 ## Objective
 
@@ -150,11 +151,11 @@ Relevant implementation references:
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                                                                           |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                                                                           |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                                                                           |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A · `744da4f`; 08B · `88312aa`; 08C · `38ad0ba`; 08D · `45d5c69`; 08E · `321d66c`; 08F awaiting owner review |
-| 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                                                                          |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Complete · 08F `24d5c8c`                                                                                      |
+| 09   | Cross-page finish gate                          | Canonical root preview plus full release audit             | Contract proposed; implementation awaiting owner approval                                                      |
 
-Detailed contracts for Parts 01–08 live beside this file. Later parts receive
-the same research/contract treatment only after the preceding part is accepted.
+Detailed contracts for Parts 01–09 live beside this file. Every Part 09
+checkpoint remains uncommitted until its own owner preview is approved.
 
 ## Confirmed user inputs
 

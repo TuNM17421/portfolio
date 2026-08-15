@@ -1,12 +1,12 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A–08E approved; 08F implemented for owner review
+> **Status:** Complete; 08A–08F approved
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 08A committed at `744da4f`; 08B committed at
 > `88312aa`; 08C committed at `38ad0ba`; 08D committed at `45d5c69`; 08E
-> committed at `321d66c`; 08F remains uncommitted for owner review
+> committed at `321d66c`; 08F committed at `24d5c8c`
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -695,5 +695,5 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoints **08A–08E**. Checkpoint 08F is implemented and
-remains uncommitted behind its own preview and approval gate.
+The owner approved checkpoints **08A–08F**. Part 08 is complete at `24d5c8c`;
+the portfolio-wide release audit continues in Part 09.
