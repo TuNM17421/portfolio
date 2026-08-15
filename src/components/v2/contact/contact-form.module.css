@@ -255,6 +255,9 @@
 
 .statusMessage a,
 .noScriptFallback a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--contact-focus);
   font-weight: 600;
   text-underline-offset: 4px;

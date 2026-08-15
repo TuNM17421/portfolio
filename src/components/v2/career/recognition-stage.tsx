@@ -13,6 +13,7 @@ import {
   DEFAULT_RECOGNITION_DOCUMENTARY_KEY,
   RECOGNITION_DOCUMENTARY_IMAGES,
   RECOGNITION_RECORDS,
+  recognitionDocumentarySlug,
   resolveRecognitionDocumentaryDirection,
   resolveRecognitionDocumentaryNavigation,
   type RecognitionDocumentaryKey,
@@ -54,6 +55,7 @@ type RecognitionStageProps = {
   copy: RecognitionStageCopy;
   initialDocumentary: RecognitionDocumentaryKey | null;
   motionController: RecognitionStageMotionController;
+  onDocumentaryChange: (documentary: RecognitionDocumentaryKey) => void;
 };
 
 type DocumentaryMaskCustom = {
@@ -85,10 +87,12 @@ function DocumentaryRegister({
   copy,
   initialDocumentary,
   motionController,
+  onDocumentaryChange,
 }: {
   copy: RecognitionStageCopy;
   initialDocumentary: RecognitionDocumentaryKey | null;
   motionController: RecognitionStageMotionController;
+  onDocumentaryChange: (documentary: RecognitionDocumentaryKey) => void;
 }) {
   const reduceMotion = Boolean(useReducedMotion());
   const resolvedInitialDocumentary =
@@ -124,6 +128,17 @@ function DocumentaryRegister({
     setDirection(nextDirection);
     selectedKeyRef.current = nextKey;
     setSelectedKey(nextKey);
+    onDocumentaryChange(nextKey);
+
+    const params = new URLSearchParams({
+      intro: "0",
+      recognition: recognitionDocumentarySlug(nextKey),
+    });
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}?${params.toString()}#recognition`,
+    );
   };
 
   useEffect(() => {
@@ -168,11 +183,11 @@ function DocumentaryRegister({
     if (!nextKey) return;
 
     event.preventDefault();
-    selectDocumentary(nextKey);
     const nextIndex = RECOGNITION_DOCUMENTARY_IMAGES.findIndex(
       (documentary) => documentary.key === nextKey,
     );
-    window.requestAnimationFrame(() => linkRefs.current[nextIndex]?.focus());
+    linkRefs.current[nextIndex]?.focus();
+    selectDocumentary(nextKey);
   };
 
   return (
@@ -323,6 +338,7 @@ export function RecognitionStage({
   copy,
   initialDocumentary,
   motionController,
+  onDocumentaryChange,
 }: RecognitionStageProps) {
   const primary = copy.records.vcareer;
   const primaryRecord = RECOGNITION_RECORDS[0];
@@ -377,6 +393,7 @@ export function RecognitionStage({
             copy={copy}
             initialDocumentary={initialDocumentary}
             motionController={motionController}
+            onDocumentaryChange={onDocumentaryChange}
           />
 
           <motion.article

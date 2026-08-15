@@ -41,6 +41,7 @@ type CareerRecognitionProps = {
   copy: CareerRecognitionCopy;
   initialDocumentary: RecognitionDocumentaryKey | null;
   navigationOpen: boolean;
+  onDocumentaryChange: (documentary: RecognitionDocumentaryKey) => void;
   recognitionStage: RecognitionStageMotionController;
   trace: CareerTraceMotionController;
 };
@@ -49,6 +50,7 @@ export function CareerRecognition({
   copy,
   initialDocumentary,
   navigationOpen,
+  onDocumentaryChange,
   recognitionStage,
   trace,
 }: CareerRecognitionProps) {
@@ -215,6 +217,7 @@ export function CareerRecognition({
         copy={copy.recognition}
         initialDocumentary={initialDocumentary}
         motionController={recognitionStage}
+        onDocumentaryChange={onDocumentaryChange}
       />
     </section>
   );

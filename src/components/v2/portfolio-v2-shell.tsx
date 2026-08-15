@@ -112,6 +112,10 @@ export function PortfolioV2Shell({
   const [wordmarkTransitionActive, setWordmarkTransitionActive] =
     useState(false);
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
+  const [activeRecognitionDocumentary, setActiveRecognitionDocumentary] =
+    useState<RecognitionDocumentaryKey | null>(
+      initialRecognitionDocumentary,
+    );
 
   const handlePortraitLoad = useCallback(() => {
     setPortraitOutcome("ready");
@@ -140,7 +144,7 @@ export function PortfolioV2Shell({
           copy={headerCopy}
           locale={locale}
           skipIntro={skipIntro}
-          initialRecognitionDocumentary={initialRecognitionDocumentary}
+          recognitionDocumentary={activeRecognitionDocumentary}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           chapterTone={chapterTone}
@@ -177,8 +181,9 @@ export function PortfolioV2Shell({
         />
         <CareerRecognition
           copy={careerCopy}
-          initialDocumentary={initialRecognitionDocumentary}
+          initialDocumentary={activeRecognitionDocumentary}
           navigationOpen={mobileNavigationOpen}
+          onDocumentaryChange={setActiveRecognitionDocumentary}
           recognitionStage={recognitionStage}
           trace={careerTrace}
         />

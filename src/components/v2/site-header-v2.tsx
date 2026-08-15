@@ -28,7 +28,7 @@ type SiteHeaderV2Props = {
   copy: SiteHeaderV2Copy;
   locale: "vi" | "en";
   skipIntro: boolean;
-  initialRecognitionDocumentary: RecognitionDocumentaryKey | null;
+  recognitionDocumentary: RecognitionDocumentaryKey | null;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   chapterTone: V2ChapterTone;
@@ -45,7 +45,7 @@ export function SiteHeaderV2({
   copy,
   locale,
   skipIntro,
-  initialRecognitionDocumentary,
+  recognitionDocumentary,
   reduceMotion,
   wordmarkHidden,
   chapterTone,
@@ -60,10 +60,10 @@ export function SiteHeaderV2({
   const contactMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const localeParams = new URLSearchParams();
   if (skipIntro) localeParams.set("intro", "0");
-  if (initialRecognitionDocumentary) {
+  if (recognitionDocumentary) {
     localeParams.set(
       "recognition",
-      recognitionDocumentarySlug(initialRecognitionDocumentary),
+      recognitionDocumentarySlug(recognitionDocumentary),
     );
   }
   const localeQuery = localeParams.toString();
@@ -71,7 +71,7 @@ export function SiteHeaderV2({
     chapterTone.activeChapter === "hero"
       ? ""
       : `#${chapterTone.activeChapter}`;
-  const localeHash = initialRecognitionDocumentary
+  const localeHash = recognitionDocumentary
     ? "#recognition"
     : activeChapterHash;
   const localeHref = localeQuery

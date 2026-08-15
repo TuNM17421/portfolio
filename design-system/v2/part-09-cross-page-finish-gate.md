@@ -1,10 +1,10 @@
 # Part 09 — Cross-page release finish gate
 
-> **Status:** 09A `5cc5264`; 09B `1c77886`; 09C implemented and uncommitted for owner review
+> **Status:** 09A `5cc5264`; 09B `1c77886`; 09C `88d121e`; 09D implemented and uncommitted for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Accepted baseline:** Parts 01–08 through `24d5c8c`; 09A `5cc5264`; 09B `1c77886`
+> **Accepted baseline:** Parts 01–08 through `24d5c8c`; 09A `5cc5264`; 09B `1c77886`; 09C `88d121e`
 >
 > **Current review routes:** `/vi`, `/en`, `/vi/projects/vcareer`, and
 > `/en/projects/vcareer`; `/[locale]/v2` is compatibility-only
@@ -350,6 +350,49 @@ origin. Deployments can override it through `SITE_URL` without changing source.
 - no signature motion, readable content, or reduced-motion path regresses.
 
 ### 09D — Cross-page interaction and progressive-enhancement matrix
+
+**Implementation status — 15 August 2026**
+
+- A production-browser matrix now covers the VI/EN homepage and VCareer case
+  study at 320, 375, 768, 1024, and 1440px plus 667×375 and 812×375
+  landscape. All 28 route/viewport combinations have one `h1`, zero
+  horizontal overflow, zero broken loaded images, and zero console/page
+  errors.
+- axe reports zero violations on both locales and both public routes at 375px
+  and 1440px. The matrix found two undersized targets: the contact fallback
+  email link and the 43.9px English `Work` control. Both now expose a real
+  minimum 44×44px hit area; a repeated matrix reports no undersized visible
+  controls.
+- Intro Escape, mobile-menu focus containment/background close/Escape/focus
+  return, body locking, VCareer forward/return handoff, browser Back/Forward,
+  archive keyboard navigation, dialog containment, and thumbnail focus return
+  all pass. Every lock is released after the interaction ends.
+- Recognition Arrow navigation now moves DOM focus with the selected
+  documentary. Pointer and keyboard selection replace the current URL with the
+  supported documentary state, and the locale link carries that live selection
+  into the other language without replaying Intro.
+- Native no-JavaScript runs keep the complete VI/EN homepage and all six direct
+  VCareer evidence links readable. Native reduced motion resolves Intro quickly
+  and makes About, VCareer, supporting work, recognition, and contact static.
+- Aborted homepage, recognition, archive, and viewer image requests retain an
+  accessible fallback, caption, destination, and close/focus behavior. A
+  delayed real image request exposes `aria-busy`, keeps its caption/action, and
+  clears the busy state only after load.
+- A localized Systems-in-Focus 404 now returns a real `404` and automatic
+  `noindex` for VI and EN. It uses Next's global-not-found path because the app
+  has a top-level dynamic locale segment; the response remains fully rendered,
+  localized, and navigable with JavaScript disabled.
+- The local CV returns `200 application/pdf`. Every public GitHub, VCareer live,
+  and architecture destination returns 200. LinkedIn returns its automated
+  client protection status `999` and remains a normal-browser owner check.
+- Without a Resend credential, a valid contact POST truthfully returns `503`
+  and invalid content returns `422`; the direct mail route stays active. A real
+  provider-accepted `202` remains credential-gated and is not claimed.
+- TypeScript, ESLint, `git diff --check`, 23 test files / 112 tests, and the
+  production build pass. Lighthouse Accessibility is 100 on the canonical
+  homepage and VCareer case; the true 404 is verified separately with zero axe
+  violations because Lighthouse aborts category scoring on a non-success
+  document response.
 
 **Implementation**
 

@@ -878,6 +878,18 @@
         "backToTop": "Về đầu trang",
         "copyright": "© 2026 Nguyen Manh Tu"
       }
+    },
+    "notFound": {
+      "metaTitle": "Không tìm thấy trang — Nguyen Manh Tu",
+      "eyebrow": "TUYẾN KHÔNG XÁC ĐỊNH / 404",
+      "status": "ROUTE NOT MAPPED",
+      "title": "Tín hiệu kết thúc tại đây.",
+      "body": "Đường dẫn này không nối tới một phần đang hoạt động trong portfolio. Bạn có thể quay về hệ thống chính hoặc đi thẳng tới case study VCareer.",
+      "navigationLabel": "Điều hướng từ trang không tìm thấy",
+      "home": "Về trang giới thiệu",
+      "caseStudy": "Mở case study VCareer",
+      "switchLocale": "View in English",
+      "systemLabel": "SYSTEMS IN FOCUS"
     }
   },
   "footer": {

@@ -878,6 +878,18 @@
         "backToTop": "Back to top",
         "copyright": "© 2026 Nguyen Manh Tu"
       }
+    },
+    "notFound": {
+      "metaTitle": "Page not found — Nguyen Manh Tu",
+      "eyebrow": "UNRESOLVED ROUTE / 404",
+      "status": "ROUTE NOT MAPPED",
+      "title": "The signal ends here.",
+      "body": "This path does not connect to an active part of the portfolio. Return to the main system or move directly into the VCareer case study.",
+      "navigationLabel": "Navigation from the not-found page",
+      "home": "Return to the portfolio",
+      "caseStudy": "Open the VCareer case study",
+      "switchLocale": "Xem bằng tiếng Việt",
+      "systemLabel": "SYSTEMS IN FOCUS"
     }
   },
   "footer": {
