@@ -88,10 +88,12 @@ describe("VCareer route handoff", () => {
     expect(
       isVCareerHandoffDestination("/en/projects/vcareer/", "forward"),
     ).toBe(true);
-    expect(isVCareerHandoffDestination("/vi/v2", "return")).toBe(true);
+    expect(isVCareerHandoffDestination("/vi", "return")).toBe(true);
+    expect(isVCareerHandoffDestination("/en/", "return")).toBe(true);
     expect(isVCareerHandoffDestination("/vi/projects/vcareer", "return")).toBe(
       false,
     );
-    expect(isVCareerHandoffDestination("/vi/v2", "forward")).toBe(false);
+    expect(isVCareerHandoffDestination("/vi/v2", "return")).toBe(false);
+    expect(isVCareerHandoffDestination("/vi", "forward")).toBe(false);
   });
 });

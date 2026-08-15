@@ -71,7 +71,7 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
       <header className={styles.siteHeader}>
         <div className={styles.headerRail}>
           <Link
-            href="/v2?intro=0"
+            href="/?intro=0"
             className={styles.wordmark}
             aria-label={`Nguyen Manh Tu — ${t("v2.portfolioHome")}`}
           >
@@ -106,7 +106,7 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
             </nav>
 
             <VCareerRouteHandoffLink
-              href="/v2?intro=0#vcareer"
+              href="/?intro=0#vcareer"
               direction="return"
               source="return"
               className={styles.returnLink}
@@ -557,7 +557,7 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
         <p>{t("v2.footer.caseLabel")}</p>
         <p>© 2026 Nguyen Manh Tu</p>
         <VCareerRouteHandoffLink
-          href="/v2?intro=0#vcareer"
+          href="/?intro=0#vcareer"
           direction="return"
           source="return"
         >

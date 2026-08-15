@@ -1,16 +1,13 @@
 # Part 09 — Cross-page release finish gate
 
-> **Status:** 09A implemented and uncommitted for owner review
+> **Status:** 09A committed at `5cc5264`; 09B implemented and uncommitted for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
-> **Accepted baseline:** Parts 01–08 through commit `24d5c8c`
+> **Accepted baseline:** Parts 01–08 through commit `24d5c8c`; 09A at `5cc5264`
 >
-> **Current review routes:** `/vi/v2`, `/en/v2`,
-> `/vi/projects/vcareer`, and `/en/projects/vcareer`
->
-> **Planned canonical routes:** `/vi`, `/en`,
-> `/vi/projects/vcareer`, and `/en/projects/vcareer`
+> **Current review routes:** `/vi`, `/en`, `/vi/projects/vcareer`, and
+> `/en/projects/vcareer`; `/[locale]/v2` is compatibility-only
 
 ## Outcome
 
@@ -210,6 +207,40 @@ begins.
 
 ### 09B — Canonical root cutover, shell isolation, and discovery metadata
 
+**Implementation status — 15 August 2026**
+
+- The accepted V2 homepage now renders directly at `/vi` and `/en`; the former
+  `/[locale]/v2` page issues a permanent redirect and preserves only exact
+  `intro=0` plus a valid recognition documentary selection.
+- Homepage, case-study, locale, wordmark, and route-handoff links now use the
+  canonical root. Back/Forward and the case-study return preserve the intended
+  chapter without leaving a stale body lock.
+- The localized layout now contains only the internationalization provider,
+  VCareer route handoff, and page content. V1 header/footer, theme bootstrap,
+  reveal observer, background FX, and Inter preload are absent from the public
+  runtime while their source remains recoverable.
+- `https://tunm-dev.vercel.app` is the default production origin, with
+  `SITE_URL` available as an explicit deployment override.
+- VI/EN homepage and VCareer metadata now publish canonical, language alternate,
+  Open Graph, Twitter, and dedicated 1200 x 630 share-image data. `robots.txt`
+  and `sitemap.xml` expose only the four canonical localized pages and never
+  index `/v2` as a duplicate homepage.
+
+**Verification evidence**
+
+- TypeScript, ESLint, unit tests, `git diff --check`, and the production build
+  pass. The production route report keeps `/[locale]/v2` as a 138 B redirect
+  while the canonical homepage and case study retain their V2 bundles.
+- VI and EN rendered without V1 chrome, broken loaded images, duplicate `h1`,
+  or horizontal overflow across 320, 375, 768, 1024, and 1440px, plus 667x375
+  and 812x375 landscape checks.
+- A 375px no-JavaScript pass retained all six homepage chapters, all three
+  documentary destinations, and the canonical case-study link.
+- Direct root refresh, locale switch, VCareer forward/return, browser
+  Back/Forward, and a legacy redirect carrying supported state all passed.
+- Generated VI/EN metadata uses the production origin. Both dedicated social
+  images return PNG at exactly 1200 x 630; robots and sitemap contain no `/v2`.
+
 **Implementation**
 
 - make the accepted V2 page the implementation behind `/vi` and `/en`;
@@ -237,8 +268,9 @@ begins.
 - no unused V1 font or shell request appears on a clean navigation;
 - no indexable duplicate homepage remains.
 
-**Required owner input before 09B:** the stable public portfolio origin used for
-canonical, sitemap, and social URLs.
+**Resolved owner input:** the repository's published homepage and live
+deployment identify `https://tunm-dev.vercel.app` as the stable portfolio
+origin. Deployments can override it through `SITE_URL` without changing source.
 
 ### 09C — Intro, LCP, CLS, and runtime stabilization
 
@@ -356,8 +388,9 @@ canonical, sitemap, and social URLs.
 
 1. The plan assumes the V2 homepage replaces V1 at `/vi` and `/en` during
    09B, while `/[locale]/v2` becomes compatibility-only.
-2. The stable public origin is still unknown and is required before canonical,
-   sitemap, and social metadata can be finalized in 09B.
+2. The canonical production origin is `https://tunm-dev.vercel.app`; it is
+   centralized behind the `SITE_URL` environment variable for a future domain
+   change.
 3. A real Resend success test in 09D requires the owner-provided API key in a
    local environment file. No credential belongs in chat or Git.
 4. LinkedIn should be opened once by the owner in a normal browser because its

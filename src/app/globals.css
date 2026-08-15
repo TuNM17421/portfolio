@@ -81,60 +81,35 @@
   --color-destructive: var(--destructive);
   --color-ring: var(--ring);
   --color-online: #22c55e;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code",
     "Cascadia Code", monospace;
 }
 
 body {
-  background: var(--background);
+  overflow-x: clip;
+  background: #071219;
   color: var(--foreground);
   font-family: var(--font-sans);
+  scrollbar-width: none;
   -webkit-font-smoothing: antialiased;
 }
 
 html {
-  scroll-behavior: smooth;
-  /* Keep anchored sections clear of the sticky 68px header. */
-  scroll-padding-top: 5.5rem;
-}
-
-/* The V2 preview owns the complete viewport while it is reviewed in isolation.
-   The existing portfolio chrome stays untouched for every other route. */
-body:has(.portfolio-v2-route) > .bg-fx,
-body:has(.portfolio-v2-case-route) > .bg-fx,
-body:has(.portfolio-v2-route) [data-site-shell="v1"],
-body:has(.portfolio-v2-case-route) [data-site-shell="v1"] {
-  display: none;
-}
-
-body:has(.portfolio-v2-route),
-body:has(.portfolio-v2-case-route) {
-  overflow-x: clip;
-  background: #071219;
-  scrollbar-width: none;
-}
-
-html:has(.portfolio-v2-route),
-html:has(.portfolio-v2-case-route) {
-  /* V2 sections own their individual header clearance. */
   scroll-behavior: auto;
   scroll-padding-top: 0;
   scrollbar-width: none;
 }
 
-html:has(.portfolio-v2-route)::-webkit-scrollbar,
-body:has(.portfolio-v2-route)::-webkit-scrollbar,
-html:has(.portfolio-v2-case-route)::-webkit-scrollbar,
-body:has(.portfolio-v2-case-route)::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
 }
 
-body:has(.portfolio-v2-route) > main,
-body:has(.portfolio-v2-case-route) > main {
+body > main {
   min-height: 100svh;
 }
 

@@ -82,5 +82,5 @@ export function isVCareerHandoffDestination(
 
   return direction === "forward"
     ? normalized.endsWith("/projects/vcareer")
-    : normalized.endsWith("/v2");
+    : /^\/(vi|en)$/.test(normalized);
 }

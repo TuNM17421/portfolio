@@ -75,8 +75,8 @@ export function SiteHeaderV2({
     ? "#recognition"
     : activeChapterHash;
   const localeHref = localeQuery
-    ? `/v2?${localeQuery}${localeHash}`
-    : `/v2${localeHash}`;
+    ? `/?${localeQuery}${localeHash}`
+    : `/${localeHash}`;
 
   const closeMenu = useCallback((restoreFocus = true) => {
     setMenuOpen(false);
@@ -270,7 +270,7 @@ export function SiteHeaderV2({
           aria-hidden
         />
         <Link
-          href="/v2"
+          href="/"
           className={styles.wordmarkLink}
           data-wordmark-hidden={wordmarkHidden ? "true" : undefined}
           aria-label={`${copy.wordmark} — ${copy.homeLabel}`}
