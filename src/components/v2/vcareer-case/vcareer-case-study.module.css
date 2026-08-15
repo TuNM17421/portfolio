@@ -2250,9 +2250,7 @@
 
 .caseSection[data-narrative-motion="active"]
   [data-narrative-reveal]:not([data-narrative-reveal="trace"]) {
-  transition:
-    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .caseSection[data-narrative-motion="active"]
@@ -2273,7 +2271,6 @@
   [data-narrative-reveal]:not([data-narrative-reveal="trace"]):not(
     [data-narrative-visible="true"]
   ) {
-  opacity: 0;
   transform: translateY(24px);
   transition-delay: 0ms;
 }
@@ -2282,7 +2279,6 @@
   [data-narrative-reveal]:not(
     [data-narrative-reveal="trace"]
   )[data-narrative-visible="true"] {
-  opacity: 1;
   transform: translateY(0);
 }
 

@@ -95,11 +95,11 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
                 href="/projects/vcareer"
                 locale={alternateLocale}
                 className={styles.localeLink}
-                aria-label={
+                aria-label={`${alternateLocale.toUpperCase()} — ${
                   alternateLocale === "en"
                     ? t("v2.switchToEnglish")
                     : t("v2.switchToVietnamese")
-                }
+                }`}
               >
                 {alternateLocale.toUpperCase()}
               </Link>

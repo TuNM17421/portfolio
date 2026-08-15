@@ -11,11 +11,7 @@ import {
 } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
-import {
-  moveVCareerEvidenceIndex,
-  parseVCareerCaseEvidenceReviewState,
-  type VCareerCaseEvidenceReviewState,
-} from "@/lib/v2/vcareer-case-evidence";
+import { moveVCareerEvidenceIndex } from "@/lib/v2/vcareer-case-evidence";
 import styles from "./vcareer-case-study.module.css";
 
 export type VCareerCaseEvidenceItem = {
@@ -51,16 +47,11 @@ type RuntimeImageState = "error" | "loading" | "ready";
 
 export function EvidenceArchive({ copy, images }: EvidenceArchiveProps) {
   const [mounted, setMounted] = useState(false);
-  const [reviewState, setReviewState] =
-    useState<VCareerCaseEvidenceReviewState>("auto");
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<-1 | 1>(1);
   const returnFocusRef = useRef<HTMLAnchorElement | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    setReviewState(parseVCareerCaseEvidenceReviewState(window.location.search));
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   const openViewer = useCallback(
     (event: ReactMouseEvent<HTMLAnchorElement>, index: number) => {
@@ -97,7 +88,7 @@ export function EvidenceArchive({ copy, images }: EvidenceArchiveProps) {
 
   return (
     <>
-      <ol className={styles.evidenceArchive} data-evidence-review={reviewState}>
+      <ol className={styles.evidenceArchive}>
         {images.map((image, index) => (
           <li
             className={styles.evidenceArchiveItem}
@@ -114,15 +105,10 @@ export function EvidenceArchive({ copy, images }: EvidenceArchiveProps) {
               <a
                 href={image.src}
                 className={styles.evidenceMediaLink}
-                aria-label={`${copy.inspect}: ${image.caption}`}
                 onClick={(event) => openViewer(event, index)}
               >
-                <EvidenceImage
-                  copy={copy}
-                  enhanced={mounted}
-                  image={image}
-                  reviewState={reviewState}
-                />
+                <span className={styles.visuallyHidden}>{copy.inspect}</span>
+                <EvidenceImage copy={copy} enhanced={mounted} image={image} />
               </a>
 
               <figcaption className={styles.evidenceRecordCaption}>
@@ -149,7 +135,6 @@ export function EvidenceArchive({ copy, images }: EvidenceArchiveProps) {
                   onClose={closeViewer}
                   onMove={moveViewer}
                   returnFocus={returnFocusRef.current}
-                  reviewState={reviewState}
                 />
               ) : null}
             </AnimatePresence>,
@@ -164,18 +149,16 @@ function EvidenceImage({
   copy,
   enhanced,
   image,
-  reviewState,
 }: {
   copy: VCareerCaseEvidenceCopy;
   enhanced: boolean;
   image: VCareerCaseEvidenceItem;
-  reviewState: VCareerCaseEvidenceReviewState;
 }) {
   const [runtimeState, setRuntimeState] =
     useState<RuntimeImageState>("loading");
-  const imageState = reviewState === "auto" ? runtimeState : reviewState;
-  const renderImage = reviewState === "auto" && runtimeState !== "error";
-  const unavailableLabel = `${copy.unavailable}: ${image.caption}`;
+  const imageState = runtimeState;
+  const renderImage = runtimeState !== "error";
+  const unavailableLabel = `${image.indexLabel}: ${image.caption}. ${copy.unavailable}`;
 
   return (
     <span
@@ -189,7 +172,7 @@ function EvidenceImage({
         className={styles.evidenceImageFallback}
         role={imageState === "error" ? "img" : undefined}
         aria-label={imageState === "error" ? unavailableLabel : undefined}
-        aria-hidden={imageState === "error" ? undefined : true}
+        aria-hidden={imageState === "ready" ? true : undefined}
       >
         <span>{image.indexLabel}</span>
         <strong>{image.caption}</strong>
@@ -221,7 +204,6 @@ function EvidenceViewer({
   onClose,
   onMove,
   returnFocus,
-  reviewState,
 }: {
   copy: VCareerCaseEvidenceCopy;
   direction: -1 | 1;
@@ -230,7 +212,6 @@ function EvidenceViewer({
   onClose: () => void;
   onMove: (direction: -1 | 1) => void;
   returnFocus: HTMLElement | null;
-  reviewState: VCareerCaseEvidenceReviewState;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -241,18 +222,16 @@ function EvidenceViewer({
   const count = images.length;
   const atFirst = index === 0;
   const atLast = index === count - 1;
-  const imageState = reviewState === "auto" ? runtimeState : reviewState;
-  const renderImage = reviewState === "auto" && runtimeState !== "error";
+  const imageState = runtimeState;
+  const renderImage = runtimeState !== "error";
 
-  useEffect(() => setRuntimeState("loading"), [index, reviewState]);
+  useEffect(() => setRuntimeState("loading"), [index]);
 
   useEffect(() => {
-    if (reviewState !== "auto") return;
-
     for (const neighbor of [images[index - 1], images[index + 1]]) {
       if (neighbor) new window.Image().src = neighbor.src;
     }
-  }, [images, index, reviewState]);
+  }, [images, index]);
 
   useEffect(() => {
     const caseRoot = document.querySelector<HTMLElement>(

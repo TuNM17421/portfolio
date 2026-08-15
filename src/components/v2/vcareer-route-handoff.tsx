@@ -216,14 +216,6 @@ function captureArrivalTarget(direction: VCareerHandoffDirection) {
   };
 }
 
-function isForcedReducedHandoff() {
-  const search = new URLSearchParams(window.location.search);
-  return (
-    search.get("intro")?.toLowerCase() === "reduced" ||
-    search.get("handoff")?.toLowerCase() === "reduced"
-  );
-}
-
 export function VCareerRouteHandoffProvider({
   children,
 }: {
@@ -323,7 +315,7 @@ export function VCareerRouteHandoffProvider({
       resolvedHref,
       source,
     }: StartHandoffOptions) => {
-      if (handoffRef.current || reduceMotion || isForcedReducedHandoff()) {
+      if (handoffRef.current || reduceMotion) {
         return false;
       }
 

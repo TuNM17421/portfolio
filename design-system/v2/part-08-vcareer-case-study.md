@@ -1,12 +1,12 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A–08E approved; 08F planned
+> **Status:** 08A–08E approved; 08F implemented for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 08A committed at `744da4f`; 08B committed at
-> `88312aa`; 08C committed at `38ad0ba`; 08D committed at `45d5c69`; 08E is
-> the current approved checkpoint
+> `88312aa`; 08C committed at `38ad0ba`; 08D committed at `45d5c69`; 08E
+> committed at `321d66c`; 08F remains uncommitted for owner review
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -61,25 +61,25 @@ The route already contains useful content. The migration should preserve that
 truth layer and replace its presentation rather than rewrite the project from
 memory.
 
-| Existing source | Reusable truth | Current limitation |
-| --- | --- | --- |
+| Existing source                              | Reusable truth                                                                                                                                       | Current limitation                                                                                                                                                            |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src/app/[locale]/projects/vcareer/page.tsx` | One `h1`, six ordered `h2` sections, direct scope, six-week timeline, architecture context, six figures, shipped/roadmap states, and external links. | It renders as a V1 Tailwind/Inter page with rounded cards, gradient accents, the V1 global header/theme behavior, and the generic `Built with Next.js & Tailwind CSS` footer. |
-| `design-system/pages/vcareer.md` | Active public-claims contract and explicit forbidden claims. | It is a content contract, not the V2 visual or motion contract. |
-| `src/data/projects.ts` | Canonical six screenshot paths, live product URL, architecture URL, private-repository state, and current technology list. | The page must keep reading this source instead of duplicating URLs or filenames. |
-| `messages/vi.json` and `messages/en.json` | Existing localized case-study narrative and image descriptions. | Part 08 may refine hierarchy labels, but cannot silently replace verified meaning. |
-| `src/components/v2/vcareer/*` | Accepted VCareer palette, screenshot order, workflow model, ownership labels, and homepage evidence language. | The homepage relay is intentionally compressed and should not be copied as another long pinned sequence. |
-| `src/app/[locale]/layout.tsx` | Locale, messages, V1 shell, and global progressive enhancement. | The parent layout always renders V1 chrome; the case route needs a scoped V2 root marker, as `/v2` already does, rather than a global layout rewrite. |
+| `design-system/pages/vcareer.md`             | Active public-claims contract and explicit forbidden claims.                                                                                         | It is a content contract, not the V2 visual or motion contract.                                                                                                               |
+| `src/data/projects.ts`                       | Canonical six screenshot paths, live product URL, architecture URL, private-repository state, and current technology list.                           | The page must keep reading this source instead of duplicating URLs or filenames.                                                                                              |
+| `messages/vi.json` and `messages/en.json`    | Existing localized case-study narrative and image descriptions.                                                                                      | Part 08 may refine hierarchy labels, but cannot silently replace verified meaning.                                                                                            |
+| `src/components/v2/vcareer/*`                | Accepted VCareer palette, screenshot order, workflow model, ownership labels, and homepage evidence language.                                        | The homepage relay is intentionally compressed and should not be copied as another long pinned sequence.                                                                      |
+| `src/app/[locale]/layout.tsx`                | Locale, messages, V1 shell, and global progressive enhancement.                                                                                      | The parent layout always renders V1 chrome; the case route needs a scoped V2 root marker, as `/v2` already does, rather than a global layout rewrite.                         |
 
 ### Rendered baseline — 14 August 2026
 
 The current production build was inspected at 1440×900 and 375×812.
 
-| Check | Desktop | Mobile |
-| --- | ---: | ---: |
-| Document height | 5,213px | 7,876px |
-| Horizontal overflow | none | none |
-| Semantic structure | 1 `h1`, 6 `h2`, 6 figures | 1 `h1`, 6 `h2`, 6 figures |
-| axe violations | none in sampled desktop state | 30 contrast nodes in the sampled mobile state |
+| Check               |                                            Desktop |                                             Mobile |
+| ------------------- | -------------------------------------------------: | -------------------------------------------------: |
+| Document height     |                                            5,213px |                                            7,876px |
+| Horizontal overflow |                                               none |                                               none |
+| Semantic structure  |                          1 `h1`, 6 `h2`, 6 figures |                          1 `h1`, 6 `h2`, 6 figures |
+| axe violations      |                      none in sampled desktop state |      30 contrast nodes in the sampled mobile state |
 | JavaScript disabled | full narrative and all six figures remain readable | full narrative and all six figures remain readable |
 
 The six approved PNG files are approximately 1,900×910px each and total about
@@ -121,13 +121,13 @@ UIZZE's public Web catalogue was inspected on 14 August 2026. The references
 below transfer hierarchy and interaction principles only; VCareer's accepted
 palette, typography, copy, imagery, and identity remain original.
 
-| Reference | Transfer | Why it fits Part 08 | Do not copy |
-| --- | --- | --- | --- |
-| [Dylan Brouwer — UIZZE capture](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) · [official site](https://www.dylanbrouwer.design/) | Typography acts as page architecture; one media object carries each major scene; project media is proof rather than decoration. | The case-study cover can make `VCareer` and one literal product screen the dominant objects without a generic card shell. | Monitor mockup, orange accent, exact monochrome treatment, wording, or type composition. |
-| [Zellerfeld — UIZZE capture](https://singapore.objective.company/design-media/5b/5b601f7677593817a37752922ba6f381043e3c21836e31f6a904d0fcb2941a65.webp) · [official site](https://www.zellerfeld.com/) | The real product remains the primary object while metadata stays tightly anchored to it. | Screenshot number, ownership state, and caption can behave as one evidence unit. | Ecommerce cards, shoe catalogue, ranking numerals, cobalt branding, or commerce interactions. |
-| [Slite — UIZZE capture](https://singapore.objective.company/design-media/dc/dc74ad9f3d1f54e892260e5956332e0e16c8f766b795f6840a28ff5ff36a6e36.webp) · [official site](https://slite.com/) | Long-form product content reads as one continuous document; working-state screenshots support the argument directly. | VCareer needs a coherent engineering narrative rather than six detached gallery cards. | Cream/serif identity, scribbles, rounded marketing cards, or exact product copy. |
-| [GitHub — UIZZE capture](https://singapore.objective.company/design-media/dc/dc2fa8b45abe046ab3ddae3c270bad25128e65bac9d223f8ee32663e7d1a5575.webp) · [official site](https://github.com/) | A mono metadata layer can structure dense technical evidence while one action remains primary. | Direct scope, product context, architecture state, and source visibility need precise labels. | Mascot, space gradients, glass-card grid, green brand color, or signup hierarchy. |
-| [OpenAI — UIZZE capture](https://singapore.objective.company/design-media/cc/cc8e81273d389cea7258c567f028c9cd9960e10f41801783cc4243a74c358c83.webp) · [official site](https://openai.com/) | Editorial hierarchy and whitespace can create chapter anchors without colored containers around every paragraph. | The case study should feel like a considered technical document inside the cinematic V2 system. | Monochrome brand, pill navigation, exact article grid, or corporate footer. |
+| Reference                                                                                                                                                                                                      | Transfer                                                                                                                        | Why it fits Part 08                                                                                                       | Do not copy                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [Dylan Brouwer — UIZZE capture](https://singapore.objective.company/design-media/e3/e384ab8122d78f72aee5b0119f87f916bafef2cffcd4e70eb2e63b5b608bd7a3.webp) · [official site](https://www.dylanbrouwer.design/) | Typography acts as page architecture; one media object carries each major scene; project media is proof rather than decoration. | The case-study cover can make `VCareer` and one literal product screen the dominant objects without a generic card shell. | Monitor mockup, orange accent, exact monochrome treatment, wording, or type composition.      |
+| [Zellerfeld — UIZZE capture](https://singapore.objective.company/design-media/5b/5b601f7677593817a37752922ba6f381043e3c21836e31f6a904d0fcb2941a65.webp) · [official site](https://www.zellerfeld.com/)         | The real product remains the primary object while metadata stays tightly anchored to it.                                        | Screenshot number, ownership state, and caption can behave as one evidence unit.                                          | Ecommerce cards, shoe catalogue, ranking numerals, cobalt branding, or commerce interactions. |
+| [Slite — UIZZE capture](https://singapore.objective.company/design-media/dc/dc74ad9f3d1f54e892260e5956332e0e16c8f766b795f6840a28ff5ff36a6e36.webp) · [official site](https://slite.com/)                       | Long-form product content reads as one continuous document; working-state screenshots support the argument directly.            | VCareer needs a coherent engineering narrative rather than six detached gallery cards.                                    | Cream/serif identity, scribbles, rounded marketing cards, or exact product copy.              |
+| [GitHub — UIZZE capture](https://singapore.objective.company/design-media/dc/dc2fa8b45abe046ab3ddae3c270bad25128e65bac9d223f8ee32663e7d1a5575.webp) · [official site](https://github.com/)                     | A mono metadata layer can structure dense technical evidence while one action remains primary.                                  | Direct scope, product context, architecture state, and source visibility need precise labels.                             | Mascot, space gradients, glass-card grid, green brand color, or signup hierarchy.             |
+| [OpenAI — UIZZE capture](https://singapore.objective.company/design-media/cc/cc8e81273d389cea7258c567f028c9cd9960e10f41801783cc4243a74c358c83.webp) · [official site](https://openai.com/)                     | Editorial hierarchy and whitespace can create chapter anchors without colored containers around every paragraph.                | The case study should feel like a considered technical document inside the cinematic V2 system.                           | Monochrome brand, pill navigation, exact article grid, or corporate footer.                   |
 
 ### Technical evidence
 
@@ -153,12 +153,12 @@ palette, typography, copy, imagery, and identity remain original.
 
 ## Directions considered
 
-| Direction | Strength | Failure mode | Decision |
-| --- | --- | --- | --- |
-| SaaS launch page | Fast to compose with a hero, stat cards, feature grid, and CTA. | Repeats VCareer's own marketing site, obscures Tu's ownership boundary, and reads as a reusable template. | Reject. |
-| Pinned six-screen sequel | Creates a cinematic continuation of the homepage relay. | Repeats the exact Part 04 interaction, makes mobile unnecessarily long, and adds motion without adding evidence. | Reject. |
-| Architecture dashboard | Can make the engineering work feel technical. | Encourages invented packets, live metrics, equal technology cards, and visual ownership of the whole product. | Reject. |
-| Case File / Product Trace | Uses an editorial case file, chapter orientation, literal product evidence, and one verified system trace. | Can become too dense or museum-like if the rail and metadata overpower the screenshots. | Select, with the safeguards below. |
+| Direction                 | Strength                                                                                                   | Failure mode                                                                                                     | Decision                           |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| SaaS launch page          | Fast to compose with a hero, stat cards, feature grid, and CTA.                                            | Repeats VCareer's own marketing site, obscures Tu's ownership boundary, and reads as a reusable template.        | Reject.                            |
+| Pinned six-screen sequel  | Creates a cinematic continuation of the homepage relay.                                                    | Repeats the exact Part 04 interaction, makes mobile unnecessarily long, and adds motion without adding evidence. | Reject.                            |
+| Architecture dashboard    | Can make the engineering work feel technical.                                                              | Encourages invented packets, live metrics, equal technology cards, and visual ownership of the whole product.    | Reject.                            |
+| Case File / Product Trace | Uses an editorial case file, chapter orientation, literal product evidence, and one verified system trace. | Can become too dense or museum-like if the rail and metadata overpower the screenshots.                          | Select, with the safeguards below. |
 
 ### Self-critique of the selected direction
 
@@ -177,22 +177,22 @@ palette, typography, copy, imagery, and identity remain original.
 
 ## Design contract
 
-| Field | Decision |
-| --- | --- |
-| Screen job | Prove Tu's direct contribution to VCareer within the wider shipped product, then expose the original evidence and public destinations. |
-| Primary user | Recruiter, engineering manager, technical founder, or interviewer who opened the flagship proof from the homepage. |
-| Primary action | Inspect the six real product screens and understand their relationship to Tu's direct scope. |
-| Secondary actions | Open the live product, read the architecture report, return to the V2 VCareer chapter, or contact Tu through the homepage. |
-| Hierarchy | Case cover → verified evidence ledger → problem/direct scope → six-week delivery → architecture trace → screenshot archive/viewer → shipped versus pending → public links/return. |
-| Visual direction | A technical case file inside the accepted `Systems in Focus` identity: night cover, mineral reading sheets, VCareer blue/lime state signals, edge-aligned media, and hairline metadata. |
-| Type system | Shared V2 `Anybody`, `Be Vietnam Pro`, and `IBM Plex Mono`; no additional family. |
-| Palette | Existing V2 night/mineral/focus tokens plus the accepted VCareer blue, lime, sky, and deep product ink from Part 04. |
-| Signature | The homepage VCareer trace becomes a full-viewport case-file cover, then resolves into a persistent product trace that marks real chapters and evidence states. |
-| Aesthetic risk | Let one large product screenshot partially cross the dark-cover/mineral-document boundary. It remains readable and literal, with no fake device frame. |
-| Motion | One route handoff, one chapter progress trace, one architecture draw, and one viewer transition. Text content does not all reveal at once and nothing auto-loops. |
-| Progressive enhancement | Server-render every section, figure, caption, and link. Without JavaScript, skip the route choreography and open screenshots as ordinary image links. |
-| Accessibility | Sequential headings, skip link, 44px targets, visible focus, landmark/section labels, truthful alt/captions, reduced motion, contrast gate, and complete modal focus behavior. |
-| Forbidden defaults | Equal stat cards, bento grid, rounded browser/device frames, technology chip wall, autoplay carousel, fake terminal, decorative telemetry, all-caps body copy, or a generic `Next project` card. |
+| Field                   | Decision                                                                                                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Screen job              | Prove Tu's direct contribution to VCareer within the wider shipped product, then expose the original evidence and public destinations.                                                           |
+| Primary user            | Recruiter, engineering manager, technical founder, or interviewer who opened the flagship proof from the homepage.                                                                               |
+| Primary action          | Inspect the six real product screens and understand their relationship to Tu's direct scope.                                                                                                     |
+| Secondary actions       | Open the live product, read the architecture report, return to the V2 VCareer chapter, or contact Tu through the homepage.                                                                       |
+| Hierarchy               | Case cover → verified evidence ledger → problem/direct scope → six-week delivery → architecture trace → screenshot archive/viewer → shipped versus pending → public links/return.                |
+| Visual direction        | A technical case file inside the accepted `Systems in Focus` identity: night cover, mineral reading sheets, VCareer blue/lime state signals, edge-aligned media, and hairline metadata.          |
+| Type system             | Shared V2 `Anybody`, `Be Vietnam Pro`, and `IBM Plex Mono`; no additional family.                                                                                                                |
+| Palette                 | Existing V2 night/mineral/focus tokens plus the accepted VCareer blue, lime, sky, and deep product ink from Part 04.                                                                             |
+| Signature               | The homepage VCareer trace becomes a full-viewport case-file cover, then resolves into a persistent product trace that marks real chapters and evidence states.                                  |
+| Aesthetic risk          | Let one large product screenshot partially cross the dark-cover/mineral-document boundary. It remains readable and literal, with no fake device frame.                                           |
+| Motion                  | One route handoff, one chapter progress trace, one architecture draw, and one viewer transition. Text content does not all reveal at once and nothing auto-loops.                                |
+| Progressive enhancement | Server-render every section, figure, caption, and link. Without JavaScript, skip the route choreography and open screenshots as ordinary image links.                                            |
+| Accessibility           | Sequential headings, skip link, 44px targets, visible focus, landmark/section labels, truthful alt/captions, reduced motion, contrast gate, and complete modal focus behavior.                   |
+| Forbidden defaults      | Equal stat cards, bento grid, rounded browser/device frames, technology chip wall, autoplay carousel, fake terminal, decorative telemetry, all-caps body copy, or a generic `Next project` card. |
 
 ## Information architecture
 
@@ -211,14 +211,14 @@ CASE COVER
 
 Suggested localized rail labels:
 
-| ID | Vietnamese | English |
-| --- | --- | --- |
-| `signal` | `Bằng chứng` | `Evidence` |
-| `problem` | `Bài toán` | `Problem` |
+| ID         | Vietnamese   | English    |
+| ---------- | ------------ | ---------- |
+| `signal`   | `Bằng chứng` | `Evidence` |
+| `problem`  | `Bài toán`   | `Problem`  |
 | `delivery` | `Triển khai` | `Delivery` |
-| `system` | `Hệ thống` | `System` |
-| `evidence` | `Màn hình` | `Screens` |
-| `state` | `Trạng thái` | `State` |
+| `system`   | `Hệ thống`   | `System`   |
+| `evidence` | `Màn hình`   | `Screens`  |
+| `state`    | `Trạng thái` | `State`    |
 
 The labels orient the reader; they do not replace descriptive `h2` copy.
 
@@ -372,17 +372,17 @@ waiting for a nonexistent source animation.
 The exact module split may adjust during implementation, but ownership remains
 deliberate:
 
-| Area | Planned module responsibility |
-| --- | --- |
-| Server route | `src/app/[locale]/projects/vcareer/page.tsx` resolves locale, canonical data, translations, metadata, and fully rendered content. |
-| Shared V2 fonts | Extract or share the current V2 font declarations so homepage and case study use identical generated font variables without a second visual definition. |
-| Case shell | `src/components/v2/vcareer-case/vcareer-case-study.tsx` owns semantic chapter composition and server-rendered content. |
-| Case styles | One scoped CSS module owns cover, reading sheets, rail, archive, state ledger, and responsive behavior; no V1 utility-card inheritance. |
-| Chapter controller | A small client module observes stable section IDs and maps page progress to the rail without hiding content before hydration. |
-| Architecture motion | A focused client module maps section progress to SVG/CSS trace values; the semantic path remains visible without it. |
-| Evidence viewer | A client-enhanced dialog owns selected image, navigation, focus lifecycle, and viewer enter/exit. Canonical image data stays in `src/data/projects.ts`. |
-| Route handoff | One V2-only link/overlay controller is shared by the Part 04 case-study entry and the explicit case-study return paths. The Hero CTA and unrelated V1 navigation remain ordinary links. |
-| Copy | Reuse `vcareerCaseStudy` messages; add only V2 shell/rail/viewer/status labels that do not duplicate factual prose. |
+| Area                | Planned module responsibility                                                                                                                                                           |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Server route        | `src/app/[locale]/projects/vcareer/page.tsx` resolves locale, canonical data, translations, metadata, and fully rendered content.                                                       |
+| Shared V2 fonts     | Extract or share the current V2 font declarations so homepage and case study use identical generated font variables without a second visual definition.                                 |
+| Case shell          | `src/components/v2/vcareer-case/vcareer-case-study.tsx` owns semantic chapter composition and server-rendered content.                                                                  |
+| Case styles         | One scoped CSS module owns cover, reading sheets, rail, archive, state ledger, and responsive behavior; no V1 utility-card inheritance.                                                 |
+| Chapter controller  | A small client module observes stable section IDs and maps page progress to the rail without hiding content before hydration.                                                           |
+| Architecture motion | A focused client module maps section progress to SVG/CSS trace values; the semantic path remains visible without it.                                                                    |
+| Evidence viewer     | A client-enhanced dialog owns selected image, navigation, focus lifecycle, and viewer enter/exit. Canonical image data stays in `src/data/projects.ts`.                                 |
+| Route handoff       | One V2-only link/overlay controller is shared by the Part 04 case-study entry and the explicit case-study return paths. The Hero CTA and unrelated V1 navigation remain ordinary links. |
+| Copy                | Reuse `vcareerCaseStudy` messages; add only V2 shell/rail/viewer/status labels that do not duplicate factual prose.                                                                     |
 
 Client boundaries stay narrow. The case-study narrative remains a Server
 Component and must not become one route-sized `"use client"` component merely
@@ -449,7 +449,7 @@ before the next begins.
 **Implemented review behavior**
 
 - the product problem is encoded as the ordered path `CV → JD criteria →
-  live AI interview` rather than another row of cards;
+live AI interview` rather than another row of cards;
 - the three direct responsibilities sit on one lime-activated vertical trace,
   while the wider team/product statement is separated by a dashed context
   boundary;
@@ -512,7 +512,7 @@ before the next begins.
 - build the editorial contact sheet for all six approved screenshots;
 - add localized index, caption, and ownership-context labels;
 - implement the enhanced full-resolution viewer and its local enter/exit;
-- add forced image-error and loading review states without changing originals.
+- expose honest loading and image-error fallbacks without changing originals.
 
 **Owner review**
 
@@ -552,10 +552,9 @@ before the next begins.
 - compact layouts become one column and retain 48px viewer controls. No-JS
   keeps all six figures visible, while reduced motion replaces clipping and
   translation with a short opacity-only transition;
-- forced review states are available at
-  `/vi/projects/vcareer?evidence=loading#case-screens` and
-  `/vi/projects/vcareer?evidence=image-error#case-screens` without modifying
-  any original asset.
+- loading and error states now follow real image requests. The finish gate
+  verifies them by delaying or aborting the original request; production does
+  not retain an `evidence` debug query or replace an original asset.
 
 ### 08E — Homepage/case-study matched route handoff
 
@@ -599,8 +598,8 @@ before the next begins.
 - the Hero, chapter, header-return, and footer-return controls remain localized
   links. Modified click/new tab, direct load, refresh, locale switch, native
   Back, and no-JS bypass or preserve normal browser navigation;
-- operating-system reduced motion and the `handoff=reduced` review state
-  navigate immediately without the fixed layer;
+- operating-system reduced motion navigates immediately without the fixed
+  layer; production does not retain a handoff debug query;
 - one-time session intent is validated with a short TTL and consumed on
   arrival. Slow routes hold the completed cover, while second activation,
   hash/history interruption, document exit, and hard-navigation fallback all
@@ -632,18 +631,63 @@ before the next begins.
 - production build and relevant unit/component tests pass;
 - Part 09 remains responsible for the final whole-portfolio cross-page audit.
 
+**Implemented finish-gate behavior**
+
+- narrative copy no longer fades to transparent while entering the viewport.
+  It remains readable at full contrast and moves only `24px`; topology lines,
+  branches, and nodes retain the accepted reversible system motion;
+- the evidence and locale controls now keep their visible text inside their
+  accessible names. Loading fallbacks are announced only while active, while
+  error fallbacks retain the screen index, localized caption, and original
+  file action;
+- temporary case-evidence and route-handoff review queries were removed. Real
+  runtime latency/failure, operating-system reduced motion, no-JS, direct load,
+  and route interruption are the production verification paths;
+- the three V2 font families keep their accepted visual definitions but no
+  longer preload every subset and weight on initial navigation.
+
+**Measured verification**
+
+- VI and EN render one `h1`, six sequential `h2` chapters, seven figures, and
+  no horizontal overflow at 375, 768, 1024, or 1440px. The same gate passes at
+  320px and at 667×375 / 812×375 landscape sizes;
+- no-JS VI and EN retain the complete article, six real original-image links,
+  localized return/locale links, and zero hidden narrative records;
+- axe reports zero violations for VI/EN at 375 and 1440px and for the open
+  viewer. Lighthouse Accessibility is 100 with zero contrast or
+  label/content-name failures;
+- production Lighthouse Performance is 100 desktop and has a median of 86
+  mobile across three post-fix runs (88, 86, 85). Desktop LCP is `0.7s`; mobile
+  median LCP is `3.9s`; TBT is `0ms` desktop and `40ms` in the final mobile
+  runs;
+- direct-load Lighthouse CLS is `0` mobile and `0.002` desktop. Forward/return
+  route handoffs peak at `0.0406`, below the `0.05` gate, and always release
+  the temporary body lock;
+- initial navigation requests only the eager `interview_demo.PNG` cover, not
+  the other five archive originals. Mobile transfer is 609 KiB in Lighthouse;
+- keyboard and touch viewer flows pass at the first and last boundaries, with
+  focus containment/return, background inertness, scroll restoration, and
+  48px compact / 52px wide controls;
+- Chromium records no long task over 50ms during the viewer or matched-route
+  interactions in the production build;
+- direct scrolling and viewer use produce no console, page, or request errors.
+  The matched route flow produces no console/page error; Chromium records one
+  expected cancelled Next.js `_rsc` prefetch while the App Router replaces the
+  prefetched navigation;
+- all 165 unit tests, TypeScript, scoped lint, and the production build pass.
+
 ## Verification matrix
 
-| Area | Required checks |
-| --- | --- |
-| Content | Verified claims only; all six images/captions; direct scope before architecture context; current/roadmap/private-source boundary. |
-| Semantics | One `h1`; sequential `h2`/`h3`; article/header/nav/main/footer landmarks; figures and captions; external-link context. |
-| Responsive | VI/EN at 375, 768, 1024, 1440; portrait and landscape mobile; no crop or horizontal overflow. |
-| Motion | Forward/reverse scroll, direct load, route forward/back, interrupted transition, reduced motion, no orphaned overlay or style. |
-| Viewer | Mouse, keyboard, touch, Escape, arrows, focus containment/return, background inertness, scroll lock, loading/error, 1/6 and 6/6 boundaries. |
-| Progressive enhancement | Full article and ordinary links with JavaScript disabled; direct image destinations remain usable. |
-| Performance | Production build; JS/chunk delta; image request timing; Next image `sizes`; CLS; Lighthouse desktop/mobile; long-task inspection during route and viewer transitions. |
-| Accessibility | axe, Lighthouse, contrast for both surfaces, visible focus, 44px targets, reduced motion, zoom/reflow, captions and status announcements. |
+| Area                    | Required checks                                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Content                 | Verified claims only; all six images/captions; direct scope before architecture context; current/roadmap/private-source boundary.                                     |
+| Semantics               | One `h1`; sequential `h2`/`h3`; article/header/nav/main/footer landmarks; figures and captions; external-link context.                                                |
+| Responsive              | VI/EN at 375, 768, 1024, 1440; portrait and landscape mobile; no crop or horizontal overflow.                                                                         |
+| Motion                  | Forward/reverse scroll, direct load, route forward/back, interrupted transition, reduced motion, no orphaned overlay or style.                                        |
+| Viewer                  | Mouse, keyboard, touch, Escape, arrows, focus containment/return, background inertness, scroll lock, loading/error, 1/6 and 6/6 boundaries.                           |
+| Progressive enhancement | Full article and ordinary links with JavaScript disabled; direct image destinations remain usable.                                                                    |
+| Performance             | Production build; JS/chunk delta; image request timing; Next image `sizes`; CLS; Lighthouse desktop/mobile; long-task inspection during route and viewer transitions. |
+| Accessibility           | axe, Lighthouse, contrast for both surfaces, visible focus, 44px targets, reduced motion, zoom/reflow, captions and status announcements.                             |
 
 ## Owner decision required before implementation
 
@@ -651,5 +695,5 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoints **08A–08E**. Checkpoint 08F remains behind its
-own preview and approval gate.
+The owner approved checkpoints **08A–08E**. Checkpoint 08F is implemented and
+remains uncommitted behind its own preview and approval gate.
