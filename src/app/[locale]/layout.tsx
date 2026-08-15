@@ -12,10 +12,15 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ThemeSync } from "@/components/theme-sync";
+import { VCareerRouteHandoffProvider } from "@/components/v2/vcareer-route-handoff";
 import "../globals.css";
 
 // Inter drives --font-sans (see globals.css). display:swap => no invisible text / CLS.
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 // Applies the persisted theme before first paint to avoid a flash.
 // Defaults to dark (the design is dark-first).
@@ -54,20 +59,18 @@ export default async function LocaleLayout({
   // choice survives client-side navigations (e.g. switching locale). Setting it
   // as a JSX prop would make React reset it to a fixed value on every nav.
   return (
-    <html
-      lang={locale}
-      className={inter.variable}
-      suppressHydrationWarning
-    >
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground">
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <ThemeSync />
         <div className="bg-fx" aria-hidden />
         <NextIntlClientProvider messages={messages}>
-          <ScrollReveal />
-          <SiteHeader />
-          <main>{children}</main>
-          <SiteFooter />
+          <VCareerRouteHandoffProvider>
+            <ScrollReveal />
+            <SiteHeader />
+            <main>{children}</main>
+            <SiteFooter />
+          </VCareerRouteHandoffProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Link } from "@/i18n/navigation";
+import { VCareerRouteHandoffLink } from "@/components/v2/vcareer-route-handoff";
 import { VCAREER_PROJECT } from "@/data/projects";
 import {
   VCAREER_SHOWCASE_STAGES,
@@ -189,11 +189,8 @@ export function VCareerShowcase({
     T extends keyof VCareerChapterHandoffController["styles"],
   >(
     key: T,
-  ) =>
-    handoff.enabled ? handoff.styles[key] : STATIC_HANDOFF_STYLES[key];
-  const relayStyle = <
-    T extends keyof VCareerEvidenceRelayController["styles"],
-  >(
+  ) => (handoff.enabled ? handoff.styles[key] : STATIC_HANDOFF_STYLES[key]);
+  const relayStyle = <T extends keyof VCareerEvidenceRelayController["styles"]>(
     key: T,
   ) => (relay.enabled ? relay.styles[key] : STATIC_RELAY_STYLES[key]);
 
@@ -252,6 +249,8 @@ export function VCareerShowcase({
               id="v2-vcareer-title"
               className={styles.title}
               style={relayStyle("introTitle")}
+              data-vcareer-route-title-source
+              data-vcareer-route-target="home-title"
             >
               {copy.title}
             </motion.h2>
@@ -341,6 +340,8 @@ export function VCareerShowcase({
                   data-evidence={stage.evidence}
                   data-layout={stage.layout}
                   data-vcareer-stage={stage.key}
+                  data-vcareer-route-stage={stage.key}
+                  data-vcareer-route-stage-index={`${stageNumber} / 06`}
                   style={
                     relay.enabled
                       ? relay.stages[stage.key].stage
@@ -370,7 +371,10 @@ export function VCareerShowcase({
                       <p className={styles.stageCaption}>{stageCopy.caption}</p>
                     </motion.figcaption>
 
-                    <div className={styles.stageMedia}>
+                    <div
+                      className={styles.stageMedia}
+                      data-vcareer-route-stage-visual
+                    >
                       <EvidenceImage
                         alt={stageCopy.alt}
                         fallbackLabel={copy.imageUnavailable}
@@ -436,13 +440,15 @@ export function VCareerShowcase({
           <p className={styles.repositoryState}>{copy.repositoryState}</p>
 
           <div className={styles.actions}>
-            <Link
+            <VCareerRouteHandoffLink
               href={VCAREER_PROJECT.caseStudyPath}
+              direction="forward"
+              source="chapter"
               className={styles.primaryAction}
             >
               <span>{copy.primaryAction}</span>
               <span aria-hidden>↗</span>
-            </Link>
+            </VCareerRouteHandoffLink>
 
             <div className={styles.utilityActions}>
               <a

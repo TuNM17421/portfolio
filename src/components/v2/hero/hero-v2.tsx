@@ -57,11 +57,7 @@ export function HeroV2({
     reduceMotion,
   });
   const depth = useHeroDepth({ holdEnabled, reduceMotion });
-  const holdState = reduceMotion
-    ? "reduced"
-    : holdEnabled
-      ? "active"
-      : "off";
+  const holdState = reduceMotion ? "reduced" : holdEnabled ? "active" : "off";
   const [engineerRole, aiRole] = copy.role.split(" · ");
 
   return (
@@ -151,10 +147,7 @@ export function HeroV2({
           aria-hidden
         />
 
-        <motion.div
-          className={styles.identityDepth}
-          style={depth.styles.role}
-        >
+        <motion.div className={styles.identityDepth} style={depth.styles.role}>
           <div className={styles.identityBlock}>
             <h1
               id="v2-hero-role"
@@ -190,10 +183,7 @@ export function HeroV2({
           </div>
         </motion.div>
 
-        <motion.div
-          className={styles.projectDepth}
-          style={depth.styles.detail}
-        >
+        <motion.div className={styles.projectDepth} style={depth.styles.detail}>
           <div className={styles.projectProof} data-hero-proof>
             <Link href="/projects/vcareer" className={styles.projectLink}>
               <span>{copy.primaryAction}</span>

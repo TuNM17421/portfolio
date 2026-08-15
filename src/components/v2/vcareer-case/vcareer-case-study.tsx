@@ -4,6 +4,7 @@ import { VCAREER_PROJECT } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { VCAREER_SHOWCASE_STAGES } from "@/lib/v2/vcareer-showcase";
+import { VCareerRouteHandoffLink } from "@/components/v2/vcareer-route-handoff";
 import { ArchitectureTrace } from "./architecture-trace";
 import { EvidenceArchive } from "./evidence-archive";
 import { NarrativeMotionSection } from "./narrative-motion-section";
@@ -104,10 +105,15 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
               </Link>
             </nav>
 
-            <Link href="/v2?intro=0#vcareer" className={styles.returnLink}>
+            <VCareerRouteHandoffLink
+              href="/v2?intro=0#vcareer"
+              direction="return"
+              source="return"
+              className={styles.returnLink}
+            >
               <span aria-hidden>←</span>
               <span className={styles.returnText}>{t("v2.returnLabel")}</span>
-            </Link>
+            </VCareerRouteHandoffLink>
           </div>
         </div>
       </header>
@@ -120,7 +126,12 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
           </div>
 
           <div className={styles.coverTitleBlock}>
-            <h1>{t("title")}</h1>
+            <h1
+              data-vcareer-route-title-source
+              data-vcareer-route-target="case-title"
+            >
+              {t("title")}
+            </h1>
             <div className={styles.coverMarker} aria-hidden>
               <span />
               <span />
@@ -545,10 +556,14 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
       <footer className={styles.caseFooter}>
         <p>{t("v2.footer.caseLabel")}</p>
         <p>© 2026 Nguyen Manh Tu</p>
-        <Link href="/v2?intro=0#vcareer">
+        <VCareerRouteHandoffLink
+          href="/v2?intro=0#vcareer"
+          direction="return"
+          source="return"
+        >
           {t("v2.footer.return")}
           <span aria-hidden> ↑</span>
-        </Link>
+        </VCareerRouteHandoffLink>
       </footer>
     </div>
   );

@@ -1,9 +1,9 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–07 and 08A–08D complete; Part 08E remains planned
+> **Status:** Parts 01–07 and 08A–08E complete; Part 08F remains planned
 > **Branch:** `redesign/portfolio-v2`
-> **Detailed scope in this checkpoint:** Part 08D VCareer six-screen evidence archive and full-resolution viewer
-> **Implementation status:** Part 08A is committed at `744da4f`; Part 08B is committed at `88312aa`; Part 08C is committed at `38ad0ba`; Part 08D is the current approved checkpoint
+> **Detailed scope in this checkpoint:** Part 08E homepage/case-study matched route handoff
+> **Implementation status:** Part 08A is committed at `744da4f`; Part 08B is committed at `88312aa`; Part 08C is committed at `38ad0ba`; Part 08D is committed at `45d5c69`; Part 08E is the current approved checkpoint
 
 ## Objective
 
@@ -150,7 +150,7 @@ Relevant implementation references:
 | 05   | ScholarAI evidence + backend archive            | Desktop/mobile evidence browsing and source topology      | Complete · `274358b`                                         |
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                         |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                         |
-| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A · `744da4f`; 08B · `88312aa`; 08C · `38ad0ba`; 08D approved |
+| 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | 08A · `744da4f`; 08B · `88312aa`; 08C · `38ad0ba`; 08D · `45d5c69`; 08E approved |
 | 09   | Cross-page finish gate                          | Full responsive, accessibility and motion audit           | Not planned in detail                                        |
 
 Detailed contracts for Parts 01–08 live beside this file. Later parts receive

@@ -1,11 +1,12 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A–08D approved; 08E–08F remain planned
+> **Status:** 08A–08E approved; 08F planned
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 08A committed at `744da4f`; 08B committed at
-> `88312aa`; 08C committed at `38ad0ba`; 08D is the current approved checkpoint
+> `88312aa`; 08C committed at `38ad0ba`; 08D committed at `45d5c69`; 08E is
+> the current approved checkpoint
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -380,7 +381,7 @@ deliberate:
 | Chapter controller | A small client module observes stable section IDs and maps page progress to the rail without hiding content before hydration. |
 | Architecture motion | A focused client module maps section progress to SVG/CSS trace values; the semantic path remains visible without it. |
 | Evidence viewer | A client-enhanced dialog owns selected image, navigation, focus lifecycle, and viewer enter/exit. Canonical image data stays in `src/data/projects.ts`. |
-| Route handoff | One V2-only link/overlay controller is shared by the Hero and Part 04 case-study entry points. It does not wrap unrelated V1 navigation. |
+| Route handoff | One V2-only link/overlay controller is shared by the Part 04 case-study entry and the explicit case-study return paths. The Hero CTA and unrelated V1 navigation remain ordinary links. |
 | Copy | Reuse `vcareerCaseStudy` messages; add only V2 shell/rail/viewer/status labels that do not duplicate factual prose. |
 
 Client boundaries stay narrow. The case-study narrative remains a Server
@@ -560,7 +561,8 @@ before the next begins.
 
 **Implementation**
 
-- introduce one V2-only handoff link for the Hero and Part 04 case-study CTAs;
+- introduce one V2-only handoff link for the Part 04 case-study CTA and explicit
+  case-study return controls; keep the Hero CTA as an ordinary localized link;
 - build the outgoing cover, matching destination arrival, and one-time intent;
 - add explicit return-to-VCareer behavior without replaying the Intro;
 - handle direct load, refresh, locale, modified clicks, slow navigation,
@@ -569,7 +571,6 @@ before the next begins.
 **Owner review**
 
 - full scroll from Part 04 CTA into the case cover;
-- Hero CTA entry as a shorter alternative source;
 - browser Back versus explicit return;
 - perceived continuity at normal and throttled network speed.
 
@@ -580,6 +581,30 @@ before the next begins.
 - direct route loads do not wait for a handoff;
 - reduced motion is immediate or opacity-only;
 - return lands at `#vcareer` with the homepage Intro skipped.
+
+**Implemented review behavior**
+
+- one persistent V2-only provider lives above the localized route content, so
+  the handoff survives the App Router swap without becoming a generic
+  portfolio-wide transition;
+- the Part 04 entry starts from the currently readable VCareer stage and carries
+  its stage number; after the outcomes stage has resolved, the handoff correctly
+  reports `06 / 06`. The Hero CTA intentionally navigates without a handoff;
+- a lime source trace completes first, then the VCareer night/blue product plane
+  expands from the captured geometry. The approved live-interview screenshot,
+  product grid, stage marker, and `VCareer` title bridge into the case cover;
+- explicit return uses a shorter full-plane reversal and resolves the title at
+  the homepage VCareer heading. Its real destination remains
+  `/[locale]/v2?intro=0#vcareer`, so the Intro does not replay;
+- the Hero, chapter, header-return, and footer-return controls remain localized
+  links. Modified click/new tab, direct load, refresh, locale switch, native
+  Back, and no-JS bypass or preserve normal browser navigation;
+- operating-system reduced motion and the `handoff=reduced` review state
+  navigate immediately without the fixed layer;
+- one-time session intent is validated with a short TTL and consumed on
+  arrival. Slow routes hold the completed cover, while second activation,
+  hash/history interruption, document exit, and hard-navigation fallback all
+  clear timers, intent, overlay state, and the temporary body scroll lock.
 
 ### 08F — Page finish gate
 
@@ -626,5 +651,5 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoints **08A–08D**. Later checkpoints remain behind
-their own preview and approval gates.
+The owner approved checkpoints **08A–08E**. Checkpoint 08F remains behind its
+own preview and approval gate.
