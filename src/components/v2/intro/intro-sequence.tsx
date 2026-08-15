@@ -24,7 +24,6 @@ import {
   readinessProgress,
   resolveIntroMode,
   type CriticalReadiness,
-  type IntroControls,
   type IntroMode,
 } from "@/lib/v2/intro-readiness";
 import styles from "./intro-sequence.module.css";
@@ -51,12 +50,12 @@ export type IntroCopy = {
 };
 
 type IntroSequenceProps = {
-  controls: IntroControls;
   copy: IntroCopy;
   locale: "vi" | "en";
   portraitOutcome: PortraitOutcome;
   portraitSrc: string;
   reduceMotion: boolean;
+  skipIntro: boolean;
   wordmarkHidden: boolean;
   onPhaseChange: (phase: IntroPhase) => void;
 };
@@ -96,12 +95,12 @@ function clearBootstrapFailSafe() {
 }
 
 export function IntroSequence({
-  controls,
   copy,
   locale,
   portraitOutcome,
   portraitSrc,
   reduceMotion,
+  skipIntro,
   wordmarkHidden,
   onPhaseChange,
 }: IntroSequenceProps) {
@@ -110,9 +109,6 @@ export function IntroSequence({
   const [phase, setLocalPhase] = useState<IntroPhase>("boot");
   const [mountedAndMeasured, setMountedAndMeasured] = useState(false);
   const [fontsReady, setFontsReady] = useState(false);
-  const [slowPortraitGateOpen, setSlowPortraitGateOpen] = useState(
-    controls.debugState !== "slow",
-  );
   const [fallbackUsed, setFallbackUsed] = useState(false);
   const [forceProgressComplete, setForceProgressComplete] = useState(false);
   const [displayedProgress, setDisplayedProgress] = useState(0);
@@ -124,8 +120,7 @@ export function IntroSequence({
     portrait: false,
   });
 
-  const portraitResolved =
-    portraitOutcome !== "pending" && slowPortraitGateOpen;
+  const portraitResolved = portraitOutcome !== "pending";
   const readiness = useMemo<CriticalReadiness>(
     () => ({
       mounted: mountedAndMeasured,
@@ -177,16 +172,9 @@ export function IntroSequence({
 
   useEffect(() => {
     let cancelled = false;
-    let slowTimer = 0;
 
     const resolveFonts = () => {
       if (cancelled) return;
-      if (controls.debugState === "slow") {
-        slowTimer = window.setTimeout(() => {
-          if (!cancelled) setFontsReady(true);
-        }, 4_850);
-        return;
-      }
       setFontsReady(true);
     };
 
@@ -198,25 +186,13 @@ export function IntroSequence({
 
     return () => {
       cancelled = true;
-      window.clearTimeout(slowTimer);
     };
-  }, [controls.debugState]);
-
-  useEffect(() => {
-    if (controls.debugState !== "slow") {
-      setSlowPortraitGateOpen(true);
-      return;
-    }
-
-    setSlowPortraitGateOpen(false);
-    const timer = window.setTimeout(() => setSlowPortraitGateOpen(true), 5_550);
-    return () => window.clearTimeout(timer);
-  }, [controls.debugState]);
+  }, []);
 
   useEffect(() => {
     const seenInSession = safeSessionHasRun();
-    setMode(resolveIntroMode({ controls, seenInSession }));
-  }, [controls]);
+    setMode(resolveIntroMode({ skipIntro, seenInSession }));
+  }, [skipIntro]);
 
   const rawProgress = readinessProgress(readiness);
   const progressTarget = (() => {

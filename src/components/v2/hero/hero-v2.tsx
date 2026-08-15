@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image, { getImageProps } from "next/image";
+import { getImageProps } from "next/image";
 import { motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
-import type { HeroPortraitVariant } from "@/lib/v2/hero-portrait";
 import type {
   IntroPhase,
   PortraitOutcome,
@@ -30,8 +29,6 @@ type HeroV2Props = {
   introPhase: IntroPhase;
   introWillRun: boolean;
   reduceMotion: boolean;
-  holdEnabled: boolean;
-  portraitVariant: HeroPortraitVariant;
   navigationOpen: boolean;
   nextChapterTone: "dark" | "light";
   onPortraitLoad: () => void;
@@ -44,8 +41,6 @@ export function HeroV2({
   introPhase,
   introWillRun,
   reduceMotion,
-  holdEnabled,
-  portraitVariant,
   navigationOpen,
   nextChapterTone,
   onPortraitLoad,
@@ -56,8 +51,8 @@ export function HeroV2({
     introWillRun,
     reduceMotion,
   });
-  const depth = useHeroDepth({ holdEnabled, reduceMotion });
-  const holdState = reduceMotion ? "reduced" : holdEnabled ? "active" : "off";
+  const depth = useHeroDepth({ reduceMotion });
+  const holdState = reduceMotion ? "reduced" : "active";
   const [engineerRole, aiRole] = copy.role.split(" · ");
 
   return (
@@ -78,7 +73,6 @@ export function HeroV2({
         data-portrait={portraitOutcome}
         data-entry-phase={introPhase}
         data-pointer-depth={depth.pointerEnabled ? "enabled" : "disabled"}
-        data-portrait-variant={portraitVariant}
         data-next-chapter={nextChapterTone}
         onPointerMove={depth.handlePointerMove}
         onPointerLeave={depth.resetPointer}
@@ -106,26 +100,12 @@ export function HeroV2({
                 {copy.portraitFallback}
               </span>
             </div>
-            {portraitVariant === "original" ? (
-              <Image
-                src="/avatar.jpg"
-                alt={copy.portraitAlt}
-                fill
-                priority={!introWillRun}
-                sizes="(max-width: 899px) 100vw, 40vw"
-                className={styles.portraitImage}
-                onLoad={onPortraitLoad}
-                onError={onPortraitError}
-              />
-            ) : (
-              <ArtDirectedPortrait
-                variant={portraitVariant}
-                alt={copy.portraitAlt}
-                highPriority={!introWillRun}
-                onLoad={onPortraitLoad}
-                onError={onPortraitError}
-              />
-            )}
+            <ArtDirectedPortrait
+              alt={copy.portraitAlt}
+              highPriority={!introWillRun}
+              onLoad={onPortraitLoad}
+              onError={onPortraitError}
+            />
             <div className={styles.portraitGrade} aria-hidden />
             <div className={styles.portraitEdge} aria-hidden />
           </div>
@@ -200,43 +180,27 @@ export function HeroV2({
 }
 
 type ArtDirectedPortraitProps = {
-  variant: Exclude<HeroPortraitVariant, "original">;
   alt: string;
   highPriority: boolean;
   onLoad: () => void;
   onError: () => void;
 };
 
-const ART_DIRECTED_PORTRAITS = {
-  grade: {
-    desktop: "/v2/hero/avatar-hero-desktop-grade-v1.webp",
-    mobile: "/v2/hero/avatar-hero-mobile-grade-v1.webp",
-    desktopSize: { width: 960, height: 1440 },
-    mobileSize: { width: 1000, height: 1250 },
-  },
-  ai: {
-    desktop: "/v2/hero/avatar-hero-desktop-ai-v1.webp",
-    mobile: "/v2/hero/avatar-hero-mobile-ai-v1.webp",
-    desktopSize: { width: 1024, height: 1536 },
-    mobileSize: { width: 1000, height: 1250 },
-  },
-  "ai-tidy": {
-    desktop: "/v2/hero/avatar-hero-desktop-ai-tidy-v2.webp",
-    mobile: "/v2/hero/avatar-hero-mobile-ai-tidy-v2.webp",
-    desktopSize: { width: 1024, height: 1536 },
-    mobileSize: { width: 1000, height: 1250 },
-  },
+const ART_DIRECTED_PORTRAIT = {
+  desktop: "/v2/hero/avatar-hero-desktop-ai-tidy-v2.webp",
+  mobile: "/v2/hero/avatar-hero-mobile-ai-tidy-v2.webp",
+  desktopSize: { width: 1024, height: 1536 },
+  mobileSize: { width: 1000, height: 1250 },
 } as const;
 
 function ArtDirectedPortrait({
-  variant,
   alt,
   highPriority,
   onLoad,
   onError,
 }: ArtDirectedPortraitProps) {
   const imageRef = useRef<HTMLImageElement>(null);
-  const source = ART_DIRECTED_PORTRAITS[variant];
+  const source = ART_DIRECTED_PORTRAIT;
   const {
     props: { srcSet: desktopSrcSet },
   } = getImageProps({
@@ -263,7 +227,7 @@ function ArtDirectedPortrait({
     if (!image?.complete) return;
     if (image.naturalWidth > 0) onLoad();
     else onError();
-  }, [onError, onLoad, variant]);
+  }, [onError, onLoad]);
 
   return (
     <picture>

@@ -13,7 +13,6 @@
   outline-offset: -2px;
 }
 
-.heroHold[data-hold="off"],
 .heroHold[data-hold="reduced"] {
   min-height: max(100svh, 700px);
 }
@@ -29,7 +28,6 @@
     linear-gradient(128deg, #071219 0%, #091a25 48%, #050d12 100%);
 }
 
-.heroHold[data-hold="off"] .hero,
 .heroHold[data-hold="reduced"] .hero {
   position: relative;
 }
@@ -81,7 +79,6 @@
   display: none;
 }
 
-.heroHold[data-hold="off"] .nextBoundary,
 .heroHold[data-hold="reduced"] .nextBoundary {
   display: none;
 }
@@ -154,35 +151,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 80% 49%;
-  filter: saturate(0.9) contrast(1.035) brightness(0.88);
-  transform: scale(1.04);
-  transform-origin: 80% 48%;
-}
-
-.hero[data-portrait-variant="grade"] .portraitImage,
-.hero[data-portrait-variant="ai"] .portraitImage,
-.hero[data-portrait-variant="ai-tidy"] .portraitImage {
   object-position: 50% 48%;
   filter: saturate(0.96) contrast(1.025) brightness(0.96);
   transform: scale(1.012);
   transform-origin: 50% 48%;
 }
 
-.hero[data-portrait-variant="grade"] .portraitGrade {
-  opacity: 0.38;
-}
-
-.hero[data-portrait-variant="ai"] .portraitGrade,
-.hero[data-portrait-variant="ai-tidy"] .portraitGrade {
-  opacity: 0.3;
-}
-
 .portraitGrade {
   position: absolute;
   z-index: 2;
   inset: 0;
-  opacity: 0.5;
+  opacity: 0.3;
   background:
     linear-gradient(to bottom, rgba(7, 18, 25, 0.46), transparent 22%, transparent 68%, rgba(7, 18, 25, 0.74)),
     linear-gradient(90deg, rgba(7, 18, 25, 0.92) 0%, rgba(7, 18, 25, 0.2) 27%, transparent 55%),
@@ -507,7 +486,6 @@
     min-height: max(128svh, 920px);
   }
 
-  .heroHold[data-hold="off"],
   .heroHold[data-hold="reduced"] {
     min-height: max(100svh, 720px);
   }

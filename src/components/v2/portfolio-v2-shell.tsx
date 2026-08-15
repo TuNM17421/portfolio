@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   IntroSequence,
   type IntroCopy,
@@ -46,31 +46,14 @@ import {
   type SiteHeaderV2Copy,
 } from "@/components/v2/site-header-v2";
 import { WordmarkHandoff } from "@/components/v2/wordmark-handoff";
-import { parseIntroControls } from "@/lib/v2/intro-readiness";
-import { parseHeroDepthControls } from "@/lib/v2/hero-depth";
-import { parseHeroPortraitVariant } from "@/lib/v2/hero-portrait";
-import { parseAboutStoryControls } from "@/lib/v2/about-story";
-import { parseVCareerShowcaseControls } from "@/lib/v2/vcareer-showcase";
-import { parseSupportingWorkControls } from "@/lib/v2/supporting-work";
-import {
-  parseCareerTraceControls,
-  parseRecognitionStageControls,
-} from "@/lib/v2/career-recognition";
+import type { RecognitionDocumentaryKey } from "@/lib/v2/career-recognition";
 import { usePrefersReducedMotion } from "@/lib/v2/use-prefers-reduced-motion";
-import type { ContactReviewState } from "@/lib/v2/contact-form";
 import styles from "./portfolio-v2-shell.module.css";
 
 type PortfolioV2ShellProps = {
   locale: "vi" | "en";
-  introQuery: string;
-  holdQuery: string;
-  portraitQuery: string;
-  showcaseQuery: string;
-  storyQuery: string;
-  workQuery: string;
-  careerQuery: string;
-  recognitionQuery: string;
-  contactQuery: string;
+  skipIntro: boolean;
+  initialRecognitionDocumentary: RecognitionDocumentaryKey | null;
   introCopy: IntroCopy;
   headerCopy: SiteHeaderV2Copy;
   heroCopy: HeroV2Copy;
@@ -80,21 +63,13 @@ type PortfolioV2ShellProps = {
   careerCopy: CareerRecognitionCopy;
   capabilitiesCopy: CapabilityLedgerCopy;
   contactCopy: ContactConversionCopy;
-  contactReviewState: ContactReviewState | null;
   contactDeliveryEnabled: boolean;
 };
 
 export function PortfolioV2Shell({
   locale,
-  introQuery,
-  holdQuery,
-  portraitQuery,
-  showcaseQuery,
-  storyQuery,
-  workQuery,
-  careerQuery,
-  recognitionQuery,
-  contactQuery,
+  skipIntro,
+  initialRecognitionDocumentary,
   introCopy,
   headerCopy,
   heroCopy,
@@ -104,75 +79,21 @@ export function PortfolioV2Shell({
   careerCopy,
   capabilitiesCopy,
   contactCopy,
-  contactReviewState,
   contactDeliveryEnabled,
 }: PortfolioV2ShellProps) {
-  const controls = useMemo(
-    () => parseIntroControls(`intro=${encodeURIComponent(introQuery)}`),
-    [introQuery],
-  );
-  const depthControls = useMemo(
-    () => parseHeroDepthControls(holdQuery),
-    [holdQuery],
-  );
-  const portraitVariant = useMemo(
-    () => parseHeroPortraitVariant(portraitQuery),
-    [portraitQuery],
-  );
-  const storyControls = useMemo(
-    () => parseAboutStoryControls(storyQuery),
-    [storyQuery],
-  );
-  const showcaseControls = useMemo(
-    () => parseVCareerShowcaseControls(showcaseQuery),
-    [showcaseQuery],
-  );
-  const workControls = useMemo(
-    () => parseSupportingWorkControls(workQuery),
-    [workQuery],
-  );
-  const careerControls = useMemo(
-    () => parseCareerTraceControls(careerQuery),
-    [careerQuery],
-  );
-  const recognitionControls = useMemo(
-    () => parseRecognitionStageControls(recognitionQuery),
-    [recognitionQuery],
-  );
   const prefersReducedMotion = usePrefersReducedMotion();
-  const reduceMotion =
-    controls.debugState === "reduced" || Boolean(prefersReducedMotion);
-  const aboutStory = useAboutStory({
-    reduceMotion,
-    forceStatic: storyControls.forceStatic,
-  });
+  const reduceMotion = Boolean(prefersReducedMotion);
+  const aboutStory = useAboutStory({ reduceMotion });
   const vcareerHandoff = useVCareerChapterHandoff({ reduceMotion });
   const vcareerRelay = useVCareerEvidenceRelay({
     sectionRef: vcareerHandoff.sectionRef,
     reduceMotion,
-    forceStatic: showcaseControls.forceStatic,
   });
   const supportingWorkHandoff = useSupportingWorkHandoff({ reduceMotion });
-  const supportingWorkStory = useSupportingWorkStory({
-    reduceMotion,
-    forceStatic: workControls.forceStatic,
-    forcedStage: workControls.forcedStage,
-  });
-  const financialArchive = useFinancialArchiveMotion({
-    reduceMotion,
-    forceStatic: workControls.forceStatic,
-    focusArchive: workControls.focusFinancial,
-  });
-  const careerTrace = useCareerTraceMotion({
-    reduceMotion,
-    forceStatic: careerControls.forceStatic,
-    forcedRecord: careerControls.forcedRecord,
-  });
-  const recognitionStage = useRecognitionStageMotion({
-    reduceMotion,
-    forceStatic: recognitionControls.forceStatic,
-    forcedProgress: recognitionControls.forcedProgress,
-  });
+  const supportingWorkStory = useSupportingWorkStory({ reduceMotion });
+  const financialArchive = useFinancialArchiveMotion({ reduceMotion });
+  const careerTrace = useCareerTraceMotion({ reduceMotion });
+  const recognitionStage = useRecognitionStageMotion({ reduceMotion });
   const capabilityRouting = useCapabilityRoutingMotion({ reduceMotion });
   const contactMotion = useContactConversionMotion({ reduceMotion });
   const chapterTone = useChapterTone({
@@ -192,9 +113,6 @@ export function PortfolioV2Shell({
     useState(false);
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
 
-  const effectivePortraitOutcome =
-    controls.debugState === "image-error" ? "error" : portraitOutcome;
-
   const handlePortraitLoad = useCallback(() => {
     setPortraitOutcome("ready");
   }, []);
@@ -211,7 +129,7 @@ export function PortfolioV2Shell({
     <div
       className={styles.root}
       data-intro-phase={phase}
-      data-portrait={effectivePortraitOutcome}
+      data-portrait={portraitOutcome}
     >
       <div
         className={styles.scene}
@@ -221,15 +139,8 @@ export function PortfolioV2Shell({
         <SiteHeaderV2
           copy={headerCopy}
           locale={locale}
-          introQuery={introQuery}
-          holdQuery={holdQuery}
-          portraitQuery={portraitQuery}
-          showcaseQuery={showcaseQuery}
-          storyQuery={storyQuery}
-          workQuery={workQuery}
-          careerQuery={careerQuery}
-          recognitionQuery={recognitionQuery}
-          contactQuery={contactQuery}
+          skipIntro={skipIntro}
+          initialRecognitionDocumentary={initialRecognitionDocumentary}
           reduceMotion={reduceMotion}
           wordmarkHidden={headerWordmarkHidden}
           chapterTone={chapterTone}
@@ -237,12 +148,10 @@ export function PortfolioV2Shell({
         />
         <HeroV2
           copy={heroCopy}
-          portraitOutcome={effectivePortraitOutcome}
+          portraitOutcome={portraitOutcome}
           introPhase={phase}
-          introWillRun={controls.forcedMode !== "skip"}
+          introWillRun={!skipIntro}
           reduceMotion={reduceMotion}
-          holdEnabled={depthControls.holdEnabled}
-          portraitVariant={portraitVariant}
           navigationOpen={mobileNavigationOpen}
           nextChapterTone={reduceMotion ? "dark" : "light"}
           onPortraitLoad={handlePortraitLoad}
@@ -256,7 +165,6 @@ export function PortfolioV2Shell({
         <VCareerShowcase
           copy={vcareerCopy}
           handoff={vcareerHandoff}
-          imageReviewState={showcaseControls.imageState}
           navigationOpen={mobileNavigationOpen}
           relay={vcareerRelay}
         />
@@ -264,15 +172,12 @@ export function PortfolioV2Shell({
           archive={financialArchive}
           copy={workCopy}
           handoff={supportingWorkHandoff}
-          imageReviewState={workControls.imageState}
           navigationOpen={mobileNavigationOpen}
           story={supportingWorkStory}
-          forcedBenchmark={workControls.forcedBenchmark}
         />
         <CareerRecognition
           copy={careerCopy}
-          forcedDocumentary={recognitionControls.forcedDocumentary}
-          imageReviewState={recognitionControls.imageState}
+          initialDocumentary={initialRecognitionDocumentary}
           navigationOpen={mobileNavigationOpen}
           recognitionStage={recognitionStage}
           trace={careerTrace}
@@ -287,18 +192,17 @@ export function PortfolioV2Shell({
           navigationOpen={mobileNavigationOpen}
           reduceMotion={reduceMotion}
           deliveryEnabled={contactDeliveryEnabled}
-          reviewState={contactReviewState}
           motionController={contactMotion}
         />
       </div>
 
       <IntroSequence
-        controls={controls}
         copy={introCopy}
         locale={locale}
-        portraitOutcome={effectivePortraitOutcome}
+        portraitOutcome={portraitOutcome}
         portraitSrc="/avatar-graduation.jpg"
         reduceMotion={reduceMotion}
+        skipIntro={skipIntro}
         wordmarkHidden={wordmarkTransitionActive}
         onPhaseChange={setPhase}
       />

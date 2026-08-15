@@ -363,7 +363,7 @@
     0 0 18px rgba(0, 96, 240, 0.2);
 }
 
-.career:is([data-career-motion="active"], [data-career-motion="forced"])
+.career[data-career-motion="active"]
   :is(
     .handoffStem,
     .handoffNode,
@@ -378,7 +378,7 @@
   will-change: transform, opacity, background-color, box-shadow;
 }
 
-.career:is([data-career-motion="active"], [data-career-motion="forced"])
+.career[data-career-motion="active"]
   .careerRecord[data-active="true"]
   .recordTime
   strong {

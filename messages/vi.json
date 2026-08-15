@@ -871,8 +871,7 @@
           "rateLimit": "TẠM GIỚI HẠN / 429",
           "error": "CHƯA GỬI ĐƯỢC / 502",
           "offline": "MẤT KẾT NỐI",
-          "unavailable": "KÊNH PHỤ TẠM DỪNG / 503",
-          "static": "CHẾ ĐỘ TĨNH / EMAIL"
+          "unavailable": "KÊNH PHỤ TẠM DỪNG / 503"
         }
       },
       "footer": {

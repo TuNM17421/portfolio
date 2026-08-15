@@ -544,10 +544,7 @@
   text-align: right;
 }
 
-.stage:is(
-    [data-recognition-motion="active"],
-    [data-recognition-motion="forced"]
-  )
+.stage[data-recognition-motion="active"]
   :is(
     .ambient,
     .threshold,

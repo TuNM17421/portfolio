@@ -1011,12 +1011,7 @@
     height: 285svh;
   }
 
-  .work[data-work-story="forced"] .evidenceStage {
-    min-height: max(760px, 100svh);
-  }
-
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceSticky {
+  .work[data-work-story="active"] .evidenceSticky {
     z-index: 2;
     display: grid;
     height: 100svh;
@@ -1034,21 +1029,18 @@
     top: 0;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceHeading {
+  .work[data-work-story="active"] .evidenceHeading {
     padding-bottom: clamp(18px, 2.4svh, 26px);
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceCanvas {
+  .work[data-work-story="active"] .evidenceCanvas {
     display: grid;
     min-height: 0;
     grid-template-columns: minmax(220px, 0.27fr) minmax(0, 0.73fr);
     gap: clamp(34px, 5vw, 78px);
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceNavigation {
+  .work[data-work-story="active"] .evidenceNavigation {
     position: relative;
     display: block;
     min-width: 0;
@@ -1177,16 +1169,14 @@
     outline-offset: 5px;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceList {
+  .work[data-work-story="active"] .evidenceList {
     position: relative;
     min-width: 0;
     min-height: 0;
     overflow: hidden;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem {
+  .work[data-work-story="active"] .evidenceItem {
     position: absolute;
     z-index: 1;
     inset: 0;
@@ -1198,19 +1188,16 @@
     will-change: opacity, clip-path, transform;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem[data-active] {
+  .work[data-work-story="active"] .evidenceItem[data-active] {
     z-index: 2;
     pointer-events: auto;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem::before {
+  .work[data-work-story="active"] .evidenceItem::before {
     display: none;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem
+  .work[data-work-story="active"] .evidenceItem
     figure {
     display: grid;
     height: 100%;
@@ -1221,8 +1208,7 @@
     align-items: start;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceCopy {
+  .work[data-work-story="active"] .evidenceCopy {
     display: grid;
     grid-column: auto;
     grid-template-columns: minmax(210px, 0.44fr) minmax(0, 0.56fr);
@@ -1231,62 +1217,53 @@
     align-content: end;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceCopy
+  .work[data-work-story="active"] .evidenceCopy
     h4 {
     grid-column: 1;
     font-size: clamp(2rem, 3.2vw, 3.4rem);
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceCopy
+  .work[data-work-story="active"] .evidenceCopy
     .evidenceCaption {
     grid-column: 2;
     grid-row: 1 / -1;
     align-self: end;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem:nth-child(2)
+  .work[data-work-story="active"] .evidenceItem:nth-child(2)
     .evidenceCopy,
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceItem:nth-child(2)
+  .work[data-work-story="active"] .evidenceItem:nth-child(2)
     .evidenceMedia {
     grid-column: auto;
     grid-row: auto;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceMedia {
+  .work[data-work-story="active"] .evidenceMedia {
     min-height: 0;
     grid-column: auto;
     align-self: start;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evidenceMedia::before {
+  .work[data-work-story="active"] .evidenceMedia::before {
     top: 10px;
     right: -10px;
     bottom: -10px;
     left: 10px;
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evaluateHeader {
+  .work[data-work-story="active"] .evaluateHeader {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
     margin-bottom: clamp(16px, 2svh, 24px);
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evaluateHeader
+  .work[data-work-story="active"] .evaluateHeader
     .evidenceCopy {
     grid-template-columns: minmax(210px, 0.44fr) minmax(0, 0.56fr);
   }
 
-  .work:is([data-work-story="active"], [data-work-story="forced"])
-    .evaluateHeader
+  .work[data-work-story="active"] .evaluateHeader
     > .evidenceCaption {
     display: none;
   }

@@ -5,7 +5,6 @@ import {
   FINANCIAL_ARCHIVE_IMAGES,
   FINANCIAL_ARCHIVE_REPOSITORIES,
   FINANCIAL_TOPOLOGY_TIMELINE,
-  parseSupportingWorkControls,
   resolveScholarAIEvidenceStage,
   resolveSupportingWorkStoryMode,
   SCHOLARAI_EVIDENCE,
@@ -76,76 +75,6 @@ describe("portfolio v2 supporting work foundation", () => {
     expect(SCHOLARAI_SOURCE_URL).toBe("https://github.com/TuNM17421/ScholarAI");
   });
 
-  it.each(["static", "STATIC", "0", "off", "false", " off "])(
-    "recognizes the static review state %s",
-    (value) => {
-      expect(parseSupportingWorkControls(value)).toEqual({
-        focusFinancial: false,
-        forceStatic: true,
-        imageState: "auto",
-        forcedStage: null,
-        forcedBenchmark: null,
-      });
-    },
-  );
-
-  it.each([
-    ["loading", "loading"],
-    ["image-loading", "loading"],
-    ["error", "error"],
-    ["image-error", "error"],
-    ["image_error", "error"],
-  ] as const)("maps %s to the %s media state", (value, imageState) => {
-    expect(parseSupportingWorkControls(value)).toEqual({
-      focusFinancial: false,
-      forceStatic: true,
-      imageState,
-      forcedStage: null,
-      forcedBenchmark: null,
-    });
-  });
-
-  it.each([
-    ["retrieve", "retrieve", null],
-    ["ground", "ground", null],
-    ["evaluate-qa", "evaluate", "qa"],
-    ["evaluate-refusal", "evaluate", "refusal"],
-  ] as const)(
-    "forces the %s ScholarAI review plateau",
-    (value, forcedStage, forcedBenchmark) => {
-      expect(parseSupportingWorkControls(value)).toEqual({
-        focusFinancial: false,
-        forceStatic: false,
-        imageState: "auto",
-        forcedStage,
-        forcedBenchmark,
-      });
-    },
-  );
-
-  it("keeps the default work route scroll-driven", () => {
-    expect(parseSupportingWorkControls("")).toEqual({
-      focusFinancial: false,
-      forceStatic: false,
-      imageState: "auto",
-      forcedStage: null,
-      forcedBenchmark: null,
-    });
-  });
-
-  it.each(["finplanning", "financial", " FINPLANNING "])(
-    "opens the %s review state directly on the static Financial archive",
-    (value) => {
-      expect(parseSupportingWorkControls(value)).toEqual({
-        focusFinancial: true,
-        forceStatic: true,
-        imageState: "auto",
-        forcedStage: null,
-        forcedBenchmark: null,
-      });
-    },
-  );
-
   it("keeps broad evidence plateaus with short transition windows", () => {
     expect(SCHOLARAI_EVIDENCE_WINDOWS).toEqual({
       retrieve: { enter: 0, holdStart: 0.035, holdEnd: 0.27, exit: 0.35 },
@@ -164,13 +93,6 @@ describe("portfolio v2 supporting work foundation", () => {
         reduceMotion: false,
       }),
     ).toBe("active");
-    expect(
-      resolveSupportingWorkStoryMode({
-        desktop: true,
-        reduceMotion: false,
-        forcedStage: "ground",
-      }),
-    ).toBe("forced");
     expect(
       resolveSupportingWorkStoryMode({
         desktop: false,

@@ -4,6 +4,10 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link } from "@/i18n/navigation";
 import type { V2ChapterTone } from "@/components/v2/chapter-tone";
+import {
+  recognitionDocumentarySlug,
+  type RecognitionDocumentaryKey,
+} from "@/lib/v2/career-recognition";
 import styles from "./site-header-v2.module.css";
 
 export type SiteHeaderV2Copy = {
@@ -23,15 +27,8 @@ export type SiteHeaderV2Copy = {
 type SiteHeaderV2Props = {
   copy: SiteHeaderV2Copy;
   locale: "vi" | "en";
-  introQuery: string;
-  holdQuery: string;
-  portraitQuery: string;
-  showcaseQuery: string;
-  storyQuery: string;
-  workQuery: string;
-  careerQuery: string;
-  recognitionQuery: string;
-  contactQuery: string;
+  skipIntro: boolean;
+  initialRecognitionDocumentary: RecognitionDocumentaryKey | null;
   reduceMotion: boolean;
   wordmarkHidden: boolean;
   chapterTone: V2ChapterTone;
@@ -47,15 +44,8 @@ const FOCUSABLE_SELECTOR = [
 export function SiteHeaderV2({
   copy,
   locale,
-  introQuery,
-  holdQuery,
-  portraitQuery,
-  showcaseQuery,
-  storyQuery,
-  workQuery,
-  careerQuery,
-  recognitionQuery,
-  contactQuery,
+  skipIntro,
+  initialRecognitionDocumentary,
   reduceMotion,
   wordmarkHidden,
   chapterTone,
@@ -69,33 +59,21 @@ export function SiteHeaderV2({
   const careerMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const contactMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const localeParams = new URLSearchParams();
-  if (introQuery) localeParams.set("intro", introQuery);
-  if (holdQuery) localeParams.set("hold", holdQuery);
-  if (portraitQuery) localeParams.set("portrait", portraitQuery);
-  if (showcaseQuery) localeParams.set("showcase", showcaseQuery);
-  if (storyQuery) localeParams.set("story", storyQuery);
-  if (workQuery) localeParams.set("work", workQuery);
-  if (careerQuery) localeParams.set("career", careerQuery);
-  if (recognitionQuery) localeParams.set("recognition", recognitionQuery);
-  if (contactQuery) localeParams.set("contact", contactQuery);
+  if (skipIntro) localeParams.set("intro", "0");
+  if (initialRecognitionDocumentary) {
+    localeParams.set(
+      "recognition",
+      recognitionDocumentarySlug(initialRecognitionDocumentary),
+    );
+  }
   const localeQuery = localeParams.toString();
   const activeChapterHash =
     chapterTone.activeChapter === "hero"
       ? ""
       : `#${chapterTone.activeChapter}`;
-  const localeHash = contactQuery
-    ? "#contact"
-    : recognitionQuery
-      ? "#recognition"
-      : careerQuery
-        ? "#career"
-        : workQuery
-          ? "#work"
-          : showcaseQuery
-            ? "#vcareer"
-            : storyQuery
-              ? "#about"
-              : activeChapterHash;
+  const localeHash = initialRecognitionDocumentary
+    ? "#recognition"
+    : activeChapterHash;
   const localeHref = localeQuery
     ? `/v2?${localeQuery}${localeHash}`
     : `/v2${localeHash}`;

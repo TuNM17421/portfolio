@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useId, useState, type KeyboardEvent } from "react";
+import { useId, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   FINANCIAL_ARCHIVE_IMAGES,
@@ -13,7 +13,6 @@ import {
   type ScholarAIBenchmarkKey,
   type ScholarAIEvidenceKey,
   type SupportingWorkImage,
-  type SupportingWorkImageState,
 } from "@/lib/v2/supporting-work";
 import styles from "./supporting-work.module.css";
 import type { FinancialArchiveMotionController } from "./financial-archive-motion";
@@ -94,9 +93,7 @@ export type SupportingWorkCopy = {
 type SupportingWorkProps = {
   archive: FinancialArchiveMotionController;
   copy: SupportingWorkCopy;
-  forcedBenchmark: ScholarAIBenchmarkKey | null;
   handoff: SupportingWorkHandoffController;
-  imageReviewState: SupportingWorkImageState;
   navigationOpen: boolean;
   story: SupportingWorkStoryController;
 };
@@ -106,7 +103,6 @@ type EvidenceImageProps = SupportingWorkImage & {
   fallbackLabel: string;
   loadingLabel: string;
   name: string;
-  reviewState: SupportingWorkImageState;
   sizes: string;
   variant: "scholar" | "archive";
 };
@@ -119,7 +115,6 @@ function EvidenceImage({
   height,
   loadingLabel,
   name,
-  reviewState,
   sizes,
   src,
   variant,
@@ -127,9 +122,9 @@ function EvidenceImage({
 }: EvidenceImageProps) {
   const [runtimeState, setRuntimeState] =
     useState<EvidenceRuntimeState>("loading");
-  const imageState = reviewState === "auto" ? runtimeState : reviewState;
+  const imageState = runtimeState;
   const imageFailed = imageState === "error";
-  const renderImage = reviewState === "auto" && runtimeState !== "error";
+  const renderImage = runtimeState !== "error";
 
   return (
     <div
@@ -176,9 +171,7 @@ function ExternalWindowHint({ label }: { label: string }) {
 export function SupportingWork({
   archive,
   copy,
-  forcedBenchmark,
   handoff,
-  imageReviewState,
   navigationOpen,
   story,
 }: SupportingWorkProps) {
@@ -190,9 +183,8 @@ export function SupportingWork({
     { data: ground, copy: copy.scholar.evidence.ground },
   ] as const;
   const benchmarkPanelId = useId();
-  const [lockedBenchmark, setLockedBenchmark] = useState<ScholarAIBenchmarkKey>(
-    forcedBenchmark ?? "qa",
-  );
+  const [lockedBenchmark, setLockedBenchmark] =
+    useState<ScholarAIBenchmarkKey>("qa");
   const [previewBenchmark, setPreviewBenchmark] =
     useState<ScholarAIBenchmarkKey | null>(null);
   const visibleBenchmark = previewBenchmark ?? lockedBenchmark;
@@ -226,17 +218,11 @@ export function SupportingWork({
     }
   >;
   const visibleBenchmarkEvidence = benchmarkEvidence[visibleBenchmark];
-  const forcedProgress = {
+  const staticProgress = {
     retrieve: 0.18,
     ground: 0.52,
     evaluate: 1,
   }[story.activeStage];
-
-  useEffect(() => {
-    if (!forcedBenchmark) return;
-    setLockedBenchmark(forcedBenchmark);
-    setPreviewBenchmark(null);
-  }, [forcedBenchmark]);
 
   const chooseBenchmark = (benchmark: ScholarAIBenchmarkKey) => {
     setLockedBenchmark(benchmark);
@@ -291,14 +277,13 @@ export function SupportingWork({
   return (
     <section
       ref={handoff.sectionRef}
-      id={archive.focusArchive ? "work-story" : "work"}
+      id="work"
       className={styles.work}
       aria-labelledby="v2-work-title"
       aria-hidden={navigationOpen || undefined}
       inert={navigationOpen}
       data-work-static
       data-work-handoff={handoff.mode}
-      data-work-image-review={imageReviewState}
       data-work-story={story.mode}
       data-work-compact-enhanced={story.compactEnhanced || undefined}
     >
@@ -418,7 +403,7 @@ export function SupportingWork({
                       style={
                         story.enabled
                           ? story.progressStyle
-                          : { scaleY: forcedProgress }
+                          : { scaleY: staticProgress }
                       }
                       data-scholar-evidence-progress
                     />
@@ -437,7 +422,6 @@ export function SupportingWork({
                             type="button"
                             onClick={() => story.goToStage(evidence.key)}
                             aria-current={active ? "step" : undefined}
-                            disabled={story.mode === "forced"}
                           >
                             <span aria-hidden>
                               {String(index + 1).padStart(2, "0")}
@@ -490,7 +474,6 @@ export function SupportingWork({
                               fallbackLabel={copy.imageUnavailable}
                               loadingLabel={copy.imageLoading}
                               name={evidence.copy.label}
-                              reviewState={imageReviewState}
                               sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 68vw"
                               variant="scholar"
                             />
@@ -605,7 +588,6 @@ export function SupportingWork({
                                 fallbackLabel={copy.imageUnavailable}
                                 loadingLabel={copy.imageLoading}
                                 name={visibleBenchmarkEvidence.label}
-                                reviewState={imageReviewState}
                                 sizes="(min-width: 1024px) 68vw, (min-width: 768px) 77vw, calc(100vw - 40px)"
                                 variant="scholar"
                               />
@@ -632,7 +614,6 @@ export function SupportingWork({
                                 fallbackLabel={copy.imageUnavailable}
                                 loadingLabel={copy.imageLoading}
                                 name={benchmarkCopy.label}
-                                reviewState={imageReviewState}
                                 sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 64vw, 45vw"
                                 variant="scholar"
                               />
@@ -671,7 +652,7 @@ export function SupportingWork({
 
         <article
           ref={archive.sectionRef}
-          id={archive.focusArchive ? "work" : "financial-archive"}
+          id="financial-archive"
           className={styles.financial}
           aria-labelledby="v2-financial-title"
           data-financial-archive
@@ -891,7 +872,6 @@ export function SupportingWork({
                       fallbackLabel={copy.imageUnavailable}
                       loadingLabel={copy.imageLoading}
                       name={mediaCopy.label}
-                      reviewState={imageReviewState}
                       sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 48vw, 42vw"
                       variant="archive"
                     />

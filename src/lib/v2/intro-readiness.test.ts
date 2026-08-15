@@ -1,39 +1,36 @@
 import { describe, expect, it } from "vitest";
 import {
   isCriticalSceneReady,
-  parseIntroControls,
   readinessProgress,
   resolveIntroMode,
+  shouldSkipIntro,
 } from "@/lib/v2/intro-readiness";
 
-describe("V2 intro controls", () => {
-  it("forces a full replay for the documented review query", () => {
-    const controls = parseIntroControls("?intro=1");
-
-    expect(controls).toEqual({ forcedMode: "full", debugState: "normal" });
-    expect(resolveIntroMode({ controls, seenInSession: true })).toBe("full");
+describe("V2 public intro contract", () => {
+  it("accepts only the case-return skip value", () => {
+    expect(shouldSkipIntro("0")).toBe(true);
+    expect(shouldSkipIntro(undefined)).toBe(false);
+    expect(shouldSkipIntro("off")).toBe(false);
+    expect(shouldSkipIntro("skip")).toBe(false);
+    expect(shouldSkipIntro("1")).toBe(false);
+    expect(shouldSkipIntro("slow")).toBe(false);
+    expect(shouldSkipIntro("image-error")).toBe(false);
+    expect(shouldSkipIntro("reduced")).toBe(false);
   });
 
-  it("bypasses the intro for content and performance review", () => {
-    const controls = parseIntroControls("?intro=0");
-
-    expect(resolveIntroMode({ controls, seenInSession: false })).toBe("skip");
+  it("bypasses the intro only for an explicit case return", () => {
+    expect(resolveIntroMode({ skipIntro: true, seenInSession: false })).toBe(
+      "skip",
+    );
   });
-
-  it.each(["slow", "image-error", "reduced"] as const)(
-    "exposes the %s state as a full replay",
-    (debugState) => {
-      const controls = parseIntroControls(`?intro=${debugState}`);
-
-      expect(controls).toEqual({ forcedMode: "full", debugState });
-    },
-  );
 
   it("uses a quick wipe only after the full intro has run in this tab", () => {
-    const controls = parseIntroControls("");
-
-    expect(resolveIntroMode({ controls, seenInSession: false })).toBe("full");
-    expect(resolveIntroMode({ controls, seenInSession: true })).toBe("quick");
+    expect(resolveIntroMode({ skipIntro: false, seenInSession: false })).toBe(
+      "full",
+    );
+    expect(resolveIntroMode({ skipIntro: false, seenInSession: true })).toBe(
+      "quick",
+    );
   });
 });
 

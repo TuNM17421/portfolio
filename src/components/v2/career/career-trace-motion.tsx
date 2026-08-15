@@ -15,7 +15,6 @@ import {
   CAREER_TRACE_WINDOWS,
   resolveActiveCareerRecord,
   resolveCareerTraceMode,
-  resolveCareerTraceProgress,
   type CareerRecordKey,
   type CareerTraceMode,
 } from "@/lib/v2/career-recognition";
@@ -23,8 +22,6 @@ import {
 const DESKTOP_CAREER_QUERY = "(min-width: 1024px)";
 
 type CareerTraceMotionOptions = {
-  forceStatic: boolean;
-  forcedRecord: CareerRecordKey | null;
   reduceMotion: boolean;
 };
 
@@ -97,21 +94,16 @@ function useNodeContact(
 }
 
 export function useCareerTraceMotion({
-  forceStatic,
-  forcedRecord,
   reduceMotion,
 }: CareerTraceMotionOptions): CareerTraceMotionController {
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLElement>(null);
   const [desktop, setDesktop] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const [activeRecord, setActiveRecord] = useState<CareerRecordKey>(
-    forcedRecord ?? "education",
-  );
+  const [activeRecord, setActiveRecord] =
+    useState<CareerRecordKey>("education");
   const effectiveEntry = useMotionValue(1);
-  const effectiveProgress = useMotionValue(
-    forcedRecord ? resolveCareerTraceProgress(forcedRecord) : 1,
-  );
+  const effectiveProgress = useMotionValue(1);
   const { scrollYProgress: entryScrollProgress } = useScroll({
     target: sectionRef,
     offset: ["start 102%", "start 42%"],
@@ -148,23 +140,13 @@ export function useCareerTraceMotion({
   const mode = resolveCareerTraceMode({
     desktop,
     reduceMotion,
-    forceStatic,
-    forcedRecord,
   });
 
   useEffect(() => {
-    if (mode === "forced") {
-      const forcedProgress = resolveCareerTraceProgress(forcedRecord);
-      effectiveEntry.set(1);
-      effectiveProgress.set(forcedProgress);
-      if (forcedRecord) setActiveRecord(forcedRecord);
-      return;
-    }
-
     if (mode === "static") {
       effectiveEntry.set(1);
       effectiveProgress.set(1);
-      setActiveRecord(forcedRecord ?? "aiProgram");
+      setActiveRecord("aiProgram");
       return;
     }
 
@@ -175,7 +157,6 @@ export function useCareerTraceMotion({
     effectiveEntry,
     effectiveProgress,
     entryProgress,
-    forcedRecord,
     mode,
     timelineProgress,
   ]);

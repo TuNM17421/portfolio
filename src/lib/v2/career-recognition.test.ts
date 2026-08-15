@@ -7,13 +7,11 @@ import {
   CAREER_TRACE_RANGE,
   CAREER_TRACE_WINDOWS,
   DEFAULT_RECOGNITION_DOCUMENTARY_KEY,
-  parseCareerTraceControls,
-  parseRecognitionStageControls,
+  parseRecognitionDocumentary,
   RECOGNITION_DOCUMENTARY_IMAGES,
   RECOGNITION_RECORDS,
   resolveActiveCareerRecord,
   resolveCareerTraceMode,
-  resolveCareerTraceProgress,
   resolveRecognitionDocumentaryDirection,
   resolveRecognitionDocumentaryNavigation,
   resolveRecognitionStageMode,
@@ -108,31 +106,6 @@ describe("portfolio v2 career and recognition foundation", () => {
     );
   });
 
-  it.each([
-    ["education", "education"],
-    ["foundation", "education"],
-    ["fpt", "fpt"],
-    ["experience", "fpt"],
-    ["ai", "aiProgram"],
-    ["ai-program", "aiProgram"],
-  ] as const)("forces the %s Career Trace review state", (value, record) => {
-    expect(parseCareerTraceControls(value)).toEqual({
-      forceStatic: false,
-      forcedRecord: record,
-    });
-    expect(resolveCareerTraceProgress(record)).toBeGreaterThan(0);
-  });
-
-  it.each(["static", "0", "off", "false"])(
-    "recognizes the %s static Career Trace state",
-    (value) => {
-      expect(parseCareerTraceControls(value)).toEqual({
-        forceStatic: true,
-        forcedRecord: null,
-      });
-    },
-  );
-
   it("activates career records in chronological order", () => {
     expect(resolveActiveCareerRecord(0.12)).toBe("education");
     expect(resolveActiveCareerRecord(0.5)).toBe("fpt");
@@ -146,13 +119,6 @@ describe("portfolio v2 career and recognition foundation", () => {
     expect(resolveCareerTraceMode({ desktop: true, reduceMotion: true })).toBe(
       "static",
     );
-    expect(
-      resolveCareerTraceMode({
-        desktop: true,
-        reduceMotion: false,
-        forcedRecord: "fpt",
-      }),
-    ).toBe("forced");
     expect(resolveCareerTraceMode({ desktop: true, reduceMotion: false })).toBe(
       "active",
     );
@@ -163,7 +129,7 @@ describe("portfolio v2 career and recognition foundation", () => {
     expect(RECOGNITION_DOCUMENTARY_IMAGES).toEqual([
       {
         key: "ceremony",
-        reviewValue: "ceremony",
+        slug: "ceremony",
         src: "/awards/vinuni-ceremony.jpg",
         width: 2568,
         height: 1926,
@@ -171,7 +137,7 @@ describe("portfolio v2 career and recognition foundation", () => {
       },
       {
         key: "hackathon",
-        reviewValue: "hackathon",
+        slug: "hackathon",
         src: "/awards/hackathon.jpg",
         width: 2560,
         height: 1920,
@@ -179,7 +145,7 @@ describe("portfolio v2 career and recognition foundation", () => {
       },
       {
         key: "careerServices",
-        reviewValue: "career-services",
+        slug: "career-services",
         src: "/awards/stakeholder-congrats-2.jpg",
         width: 1920,
         height: 2560,
@@ -210,51 +176,25 @@ describe("portfolio v2 career and recognition foundation", () => {
   });
 
   it.each([
-    ["transition", 0.34],
-    ["stage", 0.34],
-    ["ready", 1],
-    ["complete", 1],
-  ] as const)("maps %s to a forced Recognition Stage", (value, progress) => {
-    expect(parseRecognitionStageControls(value)).toEqual({
-      forceStatic: false,
-      forcedProgress: progress,
-      imageState: "auto",
-      forcedDocumentary: null,
-    });
-  });
-
-  it.each([
     ["ceremony", "ceremony"],
-    ["vinuni", "ceremony"],
     ["hackathon", "hackathon"],
-    ["organisers", "hackathon"],
     ["career-services", "careerServices"],
-    ["stakeholder", "careerServices"],
-  ] as const)("maps %s to the %s documentary", (value, documentary) => {
-    expect(parseRecognitionStageControls(value)).toEqual({
-      forceStatic: false,
-      forcedProgress: 1,
-      imageState: "auto",
-      forcedDocumentary: documentary,
-    });
+  ] as const)("accepts the public %s documentary slug", (value, documentary) => {
+    expect(parseRecognitionDocumentary(value)).toBe(documentary);
   });
 
   it.each([
-    ["loading", "loading"],
-    ["image-loading", "loading"],
-    ["error", "error"],
-    ["image-error", "error"],
-  ] as const)(
-    "maps %s to the %s documentary image state",
-    (value, imageState) => {
-      expect(parseRecognitionStageControls(value)).toEqual({
-        forceStatic: true,
-        forcedProgress: null,
-        imageState,
-        forcedDocumentary: null,
-      });
-    },
-  );
+    undefined,
+    "",
+    "vinuni",
+    "organisers",
+    "stakeholder",
+    "transition",
+    "loading",
+    "image-error",
+  ])("rejects the review-only documentary value %s", (value) => {
+    expect(parseRecognitionDocumentary(value)).toBeNull();
+  });
 
   it("resolves directional masks and keyboard navigation from register order", () => {
     expect(
@@ -291,13 +231,6 @@ describe("portfolio v2 career and recognition foundation", () => {
     expect(
       resolveRecognitionStageMode({ desktop: true, reduceMotion: true }),
     ).toBe("static");
-    expect(
-      resolveRecognitionStageMode({
-        desktop: true,
-        reduceMotion: false,
-        forcedProgress: 0.34,
-      }),
-    ).toBe("forced");
     expect(
       resolveRecognitionStageMode({ desktop: true, reduceMotion: false }),
     ).toBe("active");

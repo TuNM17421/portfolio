@@ -16,7 +16,6 @@ import {
 const DESKTOP_STORY_QUERY = "(min-width: 900px)";
 type AboutStoryOptions = {
   reduceMotion: boolean;
-  forceStatic: boolean;
 };
 
 export type AboutStoryController = {
@@ -44,7 +43,6 @@ export type AboutStoryController = {
 
 export function useAboutStory({
   reduceMotion,
-  forceStatic,
 }: AboutStoryOptions): AboutStoryController {
   const sectionRef = useRef<HTMLElement>(null);
   const [desktop, setDesktop] = useState(false);
@@ -72,7 +70,6 @@ export function useAboutStory({
   const mode = resolveAboutStoryMode({
     desktop,
     reduceMotion,
-    forceStatic,
   });
 
   const foundationFrameOpacity = useTransform(

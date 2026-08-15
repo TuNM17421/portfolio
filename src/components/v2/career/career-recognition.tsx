@@ -5,7 +5,6 @@ import {
   CAREER_RECORDS,
   type CareerRecordKey,
   type RecognitionDocumentaryKey,
-  type RecognitionImageReviewState,
 } from "@/lib/v2/career-recognition";
 import styles from "./career-recognition.module.css";
 import type { CareerTraceMotionController } from "./career-trace-motion";
@@ -40,8 +39,7 @@ export type CareerRecognitionCopy = {
 
 type CareerRecognitionProps = {
   copy: CareerRecognitionCopy;
-  forcedDocumentary: RecognitionDocumentaryKey | null;
-  imageReviewState: RecognitionImageReviewState;
+  initialDocumentary: RecognitionDocumentaryKey | null;
   navigationOpen: boolean;
   recognitionStage: RecognitionStageMotionController;
   trace: CareerTraceMotionController;
@@ -49,8 +47,7 @@ type CareerRecognitionProps = {
 
 export function CareerRecognition({
   copy,
-  forcedDocumentary,
-  imageReviewState,
+  initialDocumentary,
   navigationOpen,
   recognitionStage,
   trace,
@@ -216,8 +213,7 @@ export function CareerRecognition({
 
       <RecognitionStage
         copy={copy.recognition}
-        forcedDocumentary={forcedDocumentary}
-        imageReviewState={imageReviewState}
+        initialDocumentary={initialDocumentary}
         motionController={recognitionStage}
       />
     </section>

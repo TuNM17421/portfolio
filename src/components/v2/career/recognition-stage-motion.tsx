@@ -17,8 +17,6 @@ import {
 const DESKTOP_RECOGNITION_QUERY = "(min-width: 1024px)";
 
 type RecognitionStageMotionOptions = {
-  forceStatic: boolean;
-  forcedProgress: number | null;
   reduceMotion: boolean;
 };
 
@@ -39,14 +37,12 @@ export type RecognitionStageMotionController = {
 };
 
 export function useRecognitionStageMotion({
-  forceStatic,
-  forcedProgress,
   reduceMotion,
 }: RecognitionStageMotionOptions): RecognitionStageMotionController {
   const stageRef = useRef<HTMLElement>(null);
   const [desktop, setDesktop] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const effectiveProgress = useMotionValue(forcedProgress ?? 1);
+  const effectiveProgress = useMotionValue(1);
   const { scrollYProgress } = useScroll({
     target: stageRef,
     offset: ["start 98%", "start 18%"],
@@ -73,23 +69,16 @@ export function useRecognitionStageMotion({
   const mode = resolveRecognitionStageMode({
     desktop,
     reduceMotion,
-    forceStatic,
-    forcedProgress,
   });
 
   useEffect(() => {
-    if (mode === "forced") {
-      effectiveProgress.set(forcedProgress ?? 1);
-      return;
-    }
-
     if (mode === "static") {
       effectiveProgress.set(1);
       return;
     }
 
     effectiveProgress.set(stageProgress.get());
-  }, [effectiveProgress, forcedProgress, mode, stageProgress]);
+  }, [effectiveProgress, mode, stageProgress]);
 
   useMotionValueEvent(stageProgress, "change", (latest) => {
     if (mode === "active") effectiveProgress.set(latest);

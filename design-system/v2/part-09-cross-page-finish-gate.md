@@ -1,6 +1,6 @@
 # Part 09 — Cross-page release finish gate
 
-> **Status:** Research and contract proposed; implementation not started
+> **Status:** 09A implemented and uncommitted for owner review
 >
 > **Branch:** `redesign/portfolio-v2`
 >
@@ -148,6 +148,40 @@ preview. It is committed only after explicit approval, then the next checkpoint
 begins.
 
 ### 09A — Production state and route-source cleanup
+
+**Implementation status — 15 August 2026**
+
+- Homepage server props now accept only exact `intro=0` and the documentary
+  slugs `ceremony`, `hackathon`, and `career-services`.
+- Accepted review outcomes are ordinary product defaults: the `ai-tidy`
+  portrait, Hero hold, and desktop story choreography no longer need query
+  fixtures.
+- Intro, section motion, portrait, evidence, recognition, supporting-work, and
+  contact review parsers/branches/data attributes have been removed.
+- Locale switching carries only supported continuity/documentary state. Unknown
+  and former debug query parameters remain inert and are not propagated.
+- Image loading/failure and contact delivery states are driven only by actual
+  browser requests and API responses. No production URL can force success.
+- Regression coverage now tests the supported public values and rejects former
+  aliases instead of preserving a parallel review API.
+
+**Verification evidence**
+
+- TypeScript, lint, `git diff --check`, 19 test files / 98 tests, and the
+  production build pass.
+- At 1440px, a URL containing every former debug parameter still renders the
+  approved active choreography, `ai-tidy` portrait, ordinary documentary, and
+  honest unconfigured contact state with zero horizontal overflow.
+- The three documentary links select the intended record and survive a locale
+  switch; the former `stakeholder` alias falls back to the first record and is
+  removed from the locale URL.
+- At 375px without JavaScript, all six homepage chapters and all three
+  documentary links remain present with zero horizontal overflow.
+- Native reduced-motion emulation selects the static path for every scroll
+  scene and the reduced Hero path. Aborting a real VCareer image request
+  produces the accessible evidence fallback without a debug query.
+- With no Resend credential in the local environment, a valid contact POST
+  returns the truthful `503 Contact delivery is unavailable` response.
 
 **Implementation**
 

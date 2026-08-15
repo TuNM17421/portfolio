@@ -871,8 +871,7 @@
           "rateLimit": "RATE LIMITED / 429",
           "error": "NOT DELIVERED / 502",
           "offline": "CONNECTION LOST",
-          "unavailable": "SECONDARY CHANNEL PAUSED / 503",
-          "static": "STATIC MODE / EMAIL"
+          "unavailable": "SECONDARY CHANNEL PAUSED / 503"
         }
       },
       "footer": {

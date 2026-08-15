@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import type { ContactReviewState } from "@/lib/v2/contact-form";
 import { V2_CONTACT_DESTINATIONS } from "@/lib/v2/contact-conversion";
 import type { ContactConversionMotionController } from "./contact-conversion-motion";
 import { ContactFooter, type ContactFooterCopy } from "./contact-footer";
@@ -29,7 +28,6 @@ type ContactConversionProps = {
   navigationOpen: boolean;
   reduceMotion: boolean;
   deliveryEnabled: boolean;
-  reviewState: ContactReviewState | null;
   motionController: ContactConversionMotionController;
 };
 
@@ -38,7 +36,6 @@ export function ContactConversion({
   navigationOpen,
   reduceMotion,
   deliveryEnabled,
-  reviewState,
   motionController,
 }: ContactConversionProps) {
   const destinations = V2_CONTACT_DESTINATIONS;
@@ -136,7 +133,6 @@ export function ContactConversion({
           <ContactForm
             copy={copy.form}
             deliveryEnabled={deliveryEnabled}
-            reviewState={reviewState}
           />
 
           <ContactFooter copy={copy.footer} reduceMotion={reduceMotion} />

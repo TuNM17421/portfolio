@@ -3,7 +3,6 @@ import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
 import { VCAREER_PROJECT } from "@/data/projects";
 import {
-  parseVCareerShowcaseControls,
   resolveVCareerShowcaseMode,
   VCAREER_SHOWCASE_STAGES,
   VCAREER_STAGE_KEYS,
@@ -107,41 +106,5 @@ describe("portfolio v2 VCareer showcase", () => {
     expect(
       resolveVCareerShowcaseMode({ desktop: true, reduceMotion: true }),
     ).toBe("static");
-  });
-
-  it.each(["static", "STATIC", "0", "off", "false", " off "])(
-    "recognizes the static showcase review control %s",
-    (value) => {
-      expect(parseVCareerShowcaseControls(value)).toEqual({
-        forceStatic: true,
-        imageState: "auto",
-      });
-    },
-  );
-
-  it.each([
-    ["loading", "loading"],
-    ["image-loading", "loading"],
-    ["error", "error"],
-    ["image-error", "error"],
-  ] as const)(
-    "exposes the %s image review state through the static showcase",
-    (value, imageState) => {
-      expect(parseVCareerShowcaseControls(value)).toEqual({
-        forceStatic: true,
-        imageState,
-      });
-    },
-  );
-
-  it("does not force static showcase mode for unknown controls", () => {
-    expect(parseVCareerShowcaseControls("")).toEqual({
-      forceStatic: false,
-      imageState: "auto",
-    });
-    expect(parseVCareerShowcaseControls("active")).toEqual({
-      forceStatic: false,
-      imageState: "auto",
-    });
   });
 });

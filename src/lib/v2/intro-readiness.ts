@@ -14,12 +14,6 @@ export const READINESS_WEIGHTS = {
 } as const;
 
 export type IntroMode = "full" | "quick" | "skip";
-export type IntroDebugState = "normal" | "slow" | "image-error" | "reduced";
-
-export type IntroControls = {
-  forcedMode: "full" | "skip" | null;
-  debugState: IntroDebugState;
-};
 
 export type CriticalReadiness = {
   mounted: boolean;
@@ -27,32 +21,18 @@ export type CriticalReadiness = {
   portrait: boolean;
 };
 
-export function parseIntroControls(search: string): IntroControls {
-  const value = new URLSearchParams(search).get("intro")?.toLowerCase();
-
-  if (value === "1" || value === "full") {
-    return { forcedMode: "full", debugState: "normal" };
-  }
-
-  if (value === "0" || value === "off" || value === "skip") {
-    return { forcedMode: "skip", debugState: "normal" };
-  }
-
-  if (value === "slow" || value === "image-error" || value === "reduced") {
-    return { forcedMode: "full", debugState: value };
-  }
-
-  return { forcedMode: null, debugState: "normal" };
+export function shouldSkipIntro(value: string | undefined) {
+  return value === "0";
 }
 
 export function resolveIntroMode({
-  controls,
+  skipIntro,
   seenInSession,
 }: {
-  controls: IntroControls;
+  skipIntro: boolean;
   seenInSession: boolean;
 }): IntroMode {
-  if (controls.forcedMode) return controls.forcedMode;
+  if (skipIntro) return "skip";
   return seenInSession ? "quick" : "full";
 }
 

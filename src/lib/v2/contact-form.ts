@@ -1,17 +1,3 @@
-export const CONTACT_REVIEW_STATES = [
-  "ready",
-  "validation",
-  "sending",
-  "success",
-  "rate-limit",
-  "error",
-  "offline",
-  "unavailable",
-  "static",
-] as const;
-
-export type ContactReviewState = (typeof CONTACT_REVIEW_STATES)[number];
-
 export type ContactFormStatus =
   | "ready"
   | "validation"
@@ -20,23 +6,11 @@ export type ContactFormStatus =
   | "rate-limit"
   | "error"
   | "offline"
-  | "unavailable"
-  | "static";
+  | "unavailable";
 
-export function parseContactReviewState(
-  value: string,
-): ContactReviewState | null {
-  return CONTACT_REVIEW_STATES.find((state) => state === value) ?? null;
-}
-
-export function resolveInitialContactStatus({
-  deliveryEnabled,
-  reviewState,
-}: {
-  deliveryEnabled: boolean;
-  reviewState: ContactReviewState | null;
-}): ContactFormStatus {
-  if (reviewState) return reviewState;
+export function resolveInitialContactStatus(
+  deliveryEnabled: boolean,
+): ContactFormStatus {
   return deliveryEnabled ? "ready" : "unavailable";
 }
 
@@ -60,5 +34,5 @@ export function contactStatusIsError(status: ContactFormStatus) {
 }
 
 export function contactStatusLocksFields(status: ContactFormStatus) {
-  return ["sending", "unavailable", "static"].includes(status);
+  return ["sending", "unavailable"].includes(status);
 }

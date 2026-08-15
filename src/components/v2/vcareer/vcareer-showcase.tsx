@@ -9,7 +9,6 @@ import {
   VCAREER_SHOWCASE_STAGES,
   type VCareerEvidenceKind,
   type VCareerEvidenceQualifier,
-  type VCareerImageReviewState,
   type VCareerStageKey,
 } from "@/lib/v2/vcareer-showcase";
 import type { VCareerChapterHandoffController } from "./vcareer-chapter-handoff";
@@ -63,7 +62,6 @@ type VCareerShowcaseProps = {
   handoff: VCareerChapterHandoffController;
   navigationOpen: boolean;
   relay: VCareerEvidenceRelayController;
-  imageReviewState: VCareerImageReviewState;
 };
 
 type EvidenceImageProps = {
@@ -72,7 +70,6 @@ type EvidenceImageProps = {
   height: number;
   loadingLabel: string;
   name: string;
-  reviewState: VCareerImageReviewState;
   sizes: string;
   src: string;
   stageNumber: string;
@@ -87,7 +84,6 @@ function EvidenceImage({
   height,
   loadingLabel,
   name,
-  reviewState,
   sizes,
   src,
   stageNumber,
@@ -95,9 +91,9 @@ function EvidenceImage({
 }: EvidenceImageProps) {
   const [runtimeState, setRuntimeState] =
     useState<EvidenceRuntimeState>("loading");
-  const imageState = reviewState === "auto" ? runtimeState : reviewState;
+  const imageState = runtimeState;
   const imageFailed = imageState === "error";
-  const renderImage = reviewState === "auto" && runtimeState !== "error";
+  const renderImage = runtimeState !== "error";
 
   return (
     <div
@@ -181,7 +177,6 @@ function evidenceLabel(
 export function VCareerShowcase({
   copy,
   handoff,
-  imageReviewState,
   navigationOpen,
   relay,
 }: VCareerShowcaseProps) {
@@ -204,7 +199,6 @@ export function VCareerShowcase({
       inert={navigationOpen}
       data-vcareer-static
       data-vcareer-handoff={handoff.mode}
-      data-vcareer-image-review={imageReviewState}
       data-vcareer-story={relay.mode}
     >
       <motion.div
@@ -381,7 +375,6 @@ export function VCareerShowcase({
                         height={stage.height}
                         loadingLabel={copy.imageLoading}
                         name={stageCopy.name}
-                        reviewState={imageReviewState}
                         sizes={
                           isBookend
                             ? "(max-width: 767px) 78vw, (max-width: 1023px) 45vw, 58vw"

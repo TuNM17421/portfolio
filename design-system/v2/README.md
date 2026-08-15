@@ -1,10 +1,11 @@
 # Portfolio V2 — Motion-forward redesign
 
-> **Status:** Parts 01–08 complete; Part 09 contract is proposed for owner review
+> **Status:** Parts 01–08 complete; Part 09A implemented for owner review
 > **Branch:** `redesign/portfolio-v2`
 > **Detailed scope in this checkpoint:** Part 09 cross-page release finish gate
-> **Implementation status:** Part 08F is committed at `24d5c8c`; Part 09
-> implementation has not started
+> **Implementation status:** Part 08F is committed at `24d5c8c`; the Part 09
+> contract is committed at `9f1eaa9`; 09A is implemented and intentionally
+> uncommitted pending owner approval
 
 ## Objective
 
@@ -39,7 +40,7 @@ The redesign is intentionally split into reviewable parts.
 1. Write and approve the part-specific contract.
 2. Implement only that part on this branch.
 3. Run its automated and rendered finish gate.
-4. Start a local preview with forced states for user review.
+4. Start a local preview using real runtime states and supported public URLs.
 5. Refine the same part until the user explicitly approves it.
 6. Commit the completed part and only then begin the next part.
 
@@ -152,7 +153,7 @@ Relevant implementation references:
 | 06   | Experience + Awards                             | Timeline and event-gallery sequence                       | Complete · `8940bf7`                                                                                           |
 | 07   | Skills + Contact + Footer                       | Final conversion flow                                     | Complete · `a084836`                                                                                           |
 | 08   | Case-study visual migration + route transitions | Homepage-to-case-study continuity                         | Complete · 08F `24d5c8c`                                                                                      |
-| 09   | Cross-page finish gate                          | Canonical root preview plus full release audit             | Contract proposed; implementation awaiting owner approval                                                      |
+| 09   | Cross-page finish gate                          | Canonical root preview plus full release audit             | 09A implemented and uncommitted for owner review                                                               |
 
 Detailed contracts for Parts 01–09 live beside this file. Every Part 09
 checkpoint remains uncommitted until its own owner preview is approved.
@@ -166,5 +167,6 @@ checkpoint remains uncommitted until its own owner preview is approved.
 ## Confirmed design decisions
 
 1. Use one art-directed dark V2 palette and remove the theme toggle from V2.
-2. Play the full intro once per browser tab/session; use a short transition on
-   repeat navigation, with `?intro=1` available to force the full sequence.
+2. Play the full intro once per browser tab/session and use the short repeat
+   transition afterward. Exact `?intro=0` remains an internal continuity link
+   for case-study return; production URLs expose no Intro review controls.

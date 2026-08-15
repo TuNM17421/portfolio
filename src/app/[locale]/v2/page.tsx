@@ -4,24 +4,18 @@ import { notFound } from "next/navigation";
 import { PortfolioV2Shell } from "@/components/v2/portfolio-v2-shell";
 import { isSupportedLocale } from "@/i18n/routing";
 import { isContactDeliveryConfigured } from "@/lib/contact-delivery-config";
-import { parseContactReviewState } from "@/lib/v2/contact-form";
+import { parseRecognitionDocumentary } from "@/lib/v2/career-recognition";
 import { v2FontVariables } from "@/lib/v2/fonts";
+import { shouldSkipIntro } from "@/lib/v2/intro-readiness";
 
-const INTRO_BOOTSTRAP = `(function(){try{delete document.documentElement.dataset.introDirect;var value=new URLSearchParams(window.location.search).get('intro');var bypass=value==='0'||value==='off'||value==='skip';if(bypass){document.documentElement.dataset.intro='skipped';document.documentElement.dataset.introDirect='true';return;}document.documentElement.dataset.intro='pending';window.__portfolioV2IntroFallback=window.setTimeout(function(){document.documentElement.dataset.intro='complete';},8000);}catch(error){document.documentElement.dataset.intro='complete';}})();`;
+const INTRO_BOOTSTRAP = `(function(){try{delete document.documentElement.dataset.introDirect;var bypass=new URLSearchParams(window.location.search).get('intro')==='0';if(bypass){document.documentElement.dataset.intro='skipped';document.documentElement.dataset.introDirect='true';return;}document.documentElement.dataset.intro='pending';window.__portfolioV2IntroFallback=window.setTimeout(function(){document.documentElement.dataset.intro='complete';},8000);}catch(error){document.documentElement.dataset.intro='complete';}})();`;
 const NO_SCRIPT_HEADER_STYLE = `.portfolio-v2-route [data-v2-header]{color:#edf4f5!important}.portfolio-v2-route [data-v2-header-rail]{border-bottom:1px solid rgba(107,215,208,.2);background:rgba(7,18,25,.94);backdrop-filter:blur(16px)}`;
 
 type V2PageProps = {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{
     intro?: string | string[];
-    hold?: string | string[];
-    portrait?: string | string[];
-    showcase?: string | string[];
-    story?: string | string[];
-    work?: string | string[];
-    career?: string | string[];
     recognition?: string | string[];
-    contact?: string | string[];
   }>;
 };
 
@@ -44,19 +38,12 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
   setRequestLocale(locale);
 
   const query = await searchParams;
-  const introQuery = typeof query.intro === "string" ? query.intro : "";
-  const holdQuery = typeof query.hold === "string" ? query.hold : "";
-  const portraitQuery =
-    typeof query.portrait === "string" ? query.portrait : "";
-  const storyQuery = typeof query.story === "string" ? query.story : "";
-  const showcaseQuery =
-    typeof query.showcase === "string" ? query.showcase : "";
-  const workQuery = typeof query.work === "string" ? query.work : "";
-  const careerQuery = typeof query.career === "string" ? query.career : "";
-  const recognitionQuery =
-    typeof query.recognition === "string" ? query.recognition : "";
-  const contactQuery = typeof query.contact === "string" ? query.contact : "";
-  const contactReviewState = parseContactReviewState(contactQuery);
+  const introValue = typeof query.intro === "string" ? query.intro : undefined;
+  const recognitionValue =
+    typeof query.recognition === "string" ? query.recognition : undefined;
+  const skipIntro = shouldSkipIntro(introValue);
+  const initialRecognitionDocumentary =
+    parseRecognitionDocumentary(recognitionValue);
   const contactDeliveryEnabled = isContactDeliveryConfigured();
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
@@ -82,16 +69,8 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
       <div className={`portfolio-v2-route ${v2FontVariables}`}>
         <PortfolioV2Shell
           locale={locale}
-          introQuery={introQuery}
-          holdQuery={holdQuery}
-          portraitQuery={portraitQuery}
-          showcaseQuery={showcaseQuery}
-          storyQuery={storyQuery}
-          workQuery={workQuery}
-          careerQuery={careerQuery}
-          recognitionQuery={recognitionQuery}
-          contactQuery={contactQuery}
-          contactReviewState={contactReviewState}
+          skipIntro={skipIntro}
+          initialRecognitionDocumentary={initialRecognitionDocumentary}
           contactDeliveryEnabled={contactDeliveryEnabled}
           introCopy={{
             introLabel: introT("introLabel"),
@@ -511,7 +490,6 @@ export default async function V2Page({ params, searchParams }: V2PageProps) {
                 error: contactT("form.stateLabels.error"),
                 offline: contactT("form.stateLabels.offline"),
                 unavailable: contactT("form.stateLabels.unavailable"),
-                static: contactT("form.stateLabels.static"),
               },
             },
             footer: {

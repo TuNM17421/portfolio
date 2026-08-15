@@ -21,7 +21,6 @@ const DESKTOP_RELAY_QUERY = "(min-width: 1024px)";
 type VCareerEvidenceRelayOptions = {
   sectionRef: RefObject<HTMLElement | null>;
   reduceMotion: boolean;
-  forceStatic: boolean;
 };
 
 type StageMotion = {
@@ -126,7 +125,6 @@ function useStageMotion(
 export function useVCareerEvidenceRelay({
   sectionRef,
   reduceMotion,
-  forceStatic,
 }: VCareerEvidenceRelayOptions): VCareerEvidenceRelayController {
   const [desktop, setDesktop] = useState(false);
   const { scrollYProgress } = useScroll({
@@ -153,7 +151,6 @@ export function useVCareerEvidenceRelay({
   const mode = resolveVCareerShowcaseMode({
     desktop,
     reduceMotion,
-    forceStatic,
   });
   const introOpacity = useTransform(
     progress,

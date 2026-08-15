@@ -7,7 +7,7 @@ export const SCHOLARAI_EVIDENCE_KEYS = [
 export type ScholarAIEvidenceKey = (typeof SCHOLARAI_EVIDENCE_KEYS)[number];
 
 export type ScholarAIBenchmarkKey = "qa" | "refusal";
-export type SupportingWorkStoryMode = "active" | "forced" | "static";
+export type SupportingWorkStoryMode = "active" | "static";
 
 export type ScholarAIEvidenceWindow = {
   enter: number;
@@ -23,16 +23,6 @@ export const SCHOLARAI_EVIDENCE_WINDOWS: Record<
   retrieve: { enter: 0, holdStart: 0.035, holdEnd: 0.27, exit: 0.35 },
   ground: { enter: 0.29, holdStart: 0.37, holdEnd: 0.61, exit: 0.69 },
   evaluate: { enter: 0.63, holdStart: 0.71, holdEnd: 0.985, exit: 1 },
-};
-
-export type SupportingWorkImageState = "auto" | "loading" | "error";
-
-export type SupportingWorkControls = {
-  focusFinancial: boolean;
-  forceStatic: boolean;
-  imageState: SupportingWorkImageState;
-  forcedStage: ScholarAIEvidenceKey | null;
-  forcedBenchmark: ScholarAIBenchmarkKey | null;
 };
 
 export type SupportingWorkImage = {
@@ -129,89 +119,16 @@ export const FINANCIAL_TOPOLOGY_TIMELINE = {
   contacts: { start: 0.78, end: 0.94 },
 } as const;
 
-export function parseSupportingWorkControls(
-  value: string,
-): SupportingWorkControls {
-  const normalized = value.trim().toLowerCase();
-
-  if (normalized === "retrieve" || normalized === "ground") {
-    return {
-      focusFinancial: false,
-      forceStatic: false,
-      imageState: "auto",
-      forcedStage: normalized,
-      forcedBenchmark: null,
-    };
-  }
-
-  if (normalized === "evaluate-qa" || normalized === "evaluate-refusal") {
-    return {
-      focusFinancial: false,
-      forceStatic: false,
-      imageState: "auto",
-      forcedStage: "evaluate",
-      forcedBenchmark: normalized === "evaluate-refusal" ? "refusal" : "qa",
-    };
-  }
-
-  if (normalized === "loading" || normalized === "image-loading") {
-    return {
-      focusFinancial: false,
-      forceStatic: true,
-      imageState: "loading",
-      forcedStage: null,
-      forcedBenchmark: null,
-    };
-  }
-
-  if (
-    normalized === "error" ||
-    normalized === "image-error" ||
-    normalized === "image_error"
-  ) {
-    return {
-      focusFinancial: false,
-      forceStatic: true,
-      imageState: "error",
-      forcedStage: null,
-      forcedBenchmark: null,
-    };
-  }
-
-  if (normalized === "finplanning" || normalized === "financial") {
-    return {
-      focusFinancial: true,
-      forceStatic: true,
-      imageState: "auto",
-      forcedStage: null,
-      forcedBenchmark: null,
-    };
-  }
-
-  return {
-    focusFinancial: false,
-    forceStatic: ["static", "0", "off", "false"].includes(normalized),
-    imageState: "auto",
-    forcedStage: null,
-    forcedBenchmark: null,
-  };
-}
-
 type ResolveSupportingWorkStoryModeOptions = {
   desktop: boolean;
   reduceMotion: boolean;
-  forceStatic?: boolean;
-  forcedStage?: ScholarAIEvidenceKey | null;
 };
 
 export function resolveSupportingWorkStoryMode({
   desktop,
   reduceMotion,
-  forceStatic = false,
-  forcedStage = null,
 }: ResolveSupportingWorkStoryModeOptions): SupportingWorkStoryMode {
-  if (!desktop || reduceMotion || forceStatic) return "static";
-  return forcedStage ? "forced" : "active";
+  return desktop && !reduceMotion ? "active" : "static";
 }
 
 export function resolveScholarAIEvidenceStage(

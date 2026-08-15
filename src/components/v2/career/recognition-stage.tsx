@@ -16,7 +16,6 @@ import {
   resolveRecognitionDocumentaryDirection,
   resolveRecognitionDocumentaryNavigation,
   type RecognitionDocumentaryKey,
-  type RecognitionImageReviewState,
   type RecognitionRecordKey,
 } from "@/lib/v2/career-recognition";
 import type { RecognitionStageMotionController } from "./recognition-stage-motion";
@@ -53,8 +52,7 @@ export type RecognitionStageCopy = {
 
 type RecognitionStageProps = {
   copy: RecognitionStageCopy;
-  forcedDocumentary: RecognitionDocumentaryKey | null;
-  imageReviewState: RecognitionImageReviewState;
+  initialDocumentary: RecognitionDocumentaryKey | null;
   motionController: RecognitionStageMotionController;
 };
 
@@ -85,20 +83,18 @@ const documentaryMaskVariants = {
 
 function DocumentaryRegister({
   copy,
-  forcedDocumentary,
-  reviewState,
+  initialDocumentary,
   motionController,
 }: {
   copy: RecognitionStageCopy;
-  forcedDocumentary: RecognitionDocumentaryKey | null;
-  reviewState: RecognitionImageReviewState;
+  initialDocumentary: RecognitionDocumentaryKey | null;
   motionController: RecognitionStageMotionController;
 }) {
   const reduceMotion = Boolean(useReducedMotion());
-  const initialDocumentary =
-    forcedDocumentary ?? DEFAULT_RECOGNITION_DOCUMENTARY_KEY;
+  const resolvedInitialDocumentary =
+    initialDocumentary ?? DEFAULT_RECOGNITION_DOCUMENTARY_KEY;
   const [selectedKey, setSelectedKey] =
-    useState<RecognitionDocumentaryKey>(initialDocumentary);
+    useState<RecognitionDocumentaryKey>(resolvedInitialDocumentary);
   const selectedKeyRef = useRef(selectedKey);
   const [direction, setDirection] = useState<-1 | 0 | 1>(1);
   const [loadedKeys, setLoadedKeys] = useState<RecognitionDocumentaryKey[]>([]);
@@ -114,10 +110,9 @@ function DocumentaryRegister({
     : loadedKeys.includes(selectedKey)
       ? "ready"
       : "loading";
-  const imageState = reviewState === "auto" ? runtimeState : reviewState;
+  const imageState = runtimeState;
   const imageFailed = imageState === "error";
-  const renderImage =
-    reviewState === "auto" && !failedKeys.includes(selectedKey);
+  const renderImage = !failedKeys.includes(selectedKey);
 
   const selectDocumentary = (nextKey: RecognitionDocumentaryKey) => {
     const nextDirection = resolveRecognitionDocumentaryDirection(
@@ -132,17 +127,17 @@ function DocumentaryRegister({
   };
 
   useEffect(() => {
-    if (!forcedDocumentary) return;
+    if (!initialDocumentary) return;
     const nextDirection = resolveRecognitionDocumentaryDirection(
       selectedKeyRef.current,
-      forcedDocumentary,
+      initialDocumentary,
     );
     if (nextDirection === 0) return;
 
     setDirection(nextDirection);
-    selectedKeyRef.current = forcedDocumentary;
-    setSelectedKey(forcedDocumentary);
-  }, [forcedDocumentary]);
+    selectedKeyRef.current = initialDocumentary;
+    setSelectedKey(initialDocumentary);
+  }, [initialDocumentary]);
 
   const handleDocumentaryClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -301,7 +296,7 @@ function DocumentaryRegister({
                   ref={(node) => {
                     linkRefs.current[index] = node;
                   }}
-                  href={`?intro=0&recognition=${documentary.reviewValue}#recognition`}
+                  href={`?intro=0&recognition=${documentary.slug}#recognition`}
                   data-documentary-key={documentary.key}
                   data-selected={selected || undefined}
                   aria-current={selected ? "true" : undefined}
@@ -326,8 +321,7 @@ function DocumentaryRegister({
 
 export function RecognitionStage({
   copy,
-  forcedDocumentary,
-  imageReviewState,
+  initialDocumentary,
   motionController,
 }: RecognitionStageProps) {
   const primary = copy.records.vcareer;
@@ -344,7 +338,6 @@ export function RecognitionStage({
       aria-labelledby="v2-recognition-title"
       data-recognition-static
       data-recognition-motion={motionController.mode}
-      data-recognition-image-review={imageReviewState}
       style={
         motionController.enabled ? motionController.styles.stage : undefined
       }
@@ -382,8 +375,7 @@ export function RecognitionStage({
         <div className={styles.proofGrid}>
           <DocumentaryRegister
             copy={copy}
-            forcedDocumentary={forcedDocumentary}
-            reviewState={imageReviewState}
+            initialDocumentary={initialDocumentary}
             motionController={motionController}
           />
 

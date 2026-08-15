@@ -16,16 +16,12 @@ import {
 import { HERO_BOUNDARY_REVEAL } from "@/lib/v2/hero-depth";
 
 type HeroDepthOptions = {
-  holdEnabled: boolean;
   reduceMotion: boolean;
 };
 
 const clampUnit = (value: number) => Math.min(1, Math.max(-1, value));
 
-export function useHeroDepth({
-  holdEnabled,
-  reduceMotion,
-}: HeroDepthOptions) {
+export function useHeroDepth({ reduceMotion }: HeroDepthOptions) {
   const holdRef = useRef<HTMLElement>(null);
   const [finePointer, setFinePointer] = useState(false);
   const [compactLayout, setCompactLayout] = useState(false);
@@ -45,7 +41,7 @@ export function useHeroDepth({
     target: holdRef,
     offset: ["start start", "end end"],
   });
-  const scrollActive = holdEnabled && !reduceMotion;
+  const scrollActive = !reduceMotion;
   const pointerActive = finePointer && !reduceMotion;
 
   useEffect(() => {

@@ -14,7 +14,6 @@ import {
   resolveContactResponseStatus,
   resolveInitialContactStatus,
   type ContactFormStatus,
-  type ContactReviewState,
 } from "@/lib/v2/contact-form";
 import { V2_CONTACT_DESTINATIONS } from "@/lib/v2/contact-conversion";
 import styles from "./contact-form.module.css";
@@ -53,33 +52,20 @@ export type ContactFormCopy = {
 type ContactFormProps = {
   copy: ContactFormCopy;
   deliveryEnabled: boolean;
-  reviewState: ContactReviewState | null;
 };
-
-function buildForcedValidationErrors(copy: ContactFormCopy): FieldErrors {
-  return {
-    name: copy.errors.name,
-    email: copy.errors.email,
-    message: copy.errors.message,
-  };
-}
 
 export function ContactForm({
   copy,
   deliveryEnabled,
-  reviewState,
 }: ContactFormProps) {
   const [hydrated, setHydrated] = useState(false);
   const [liveStatus, setLiveStatus] = useState<ContactFormStatus>(() =>
-    resolveInitialContactStatus({ deliveryEnabled, reviewState: null }),
+    resolveInitialContactStatus(deliveryEnabled),
   );
   const [errors, setErrors] = useState<FieldErrors>({});
   const submissionIdRef = useRef<string | null>(null);
-  const status = reviewState ?? liveStatus;
-  const visibleErrors =
-    status === "validation" && reviewState
-      ? buildForcedValidationErrors(copy)
-      : errors;
+  const status = liveStatus;
+  const visibleErrors = errors;
   const fieldsLocked = contactStatusLocksFields(status);
   const buttonDisabled = !hydrated || fieldsLocked;
   const retryable = ["rate-limit", "error", "offline"].includes(status);
@@ -114,7 +100,7 @@ export function ContactForm({
       };
 
       setErrors(nextErrors);
-      if (!reviewState) setLiveStatus("validation");
+      setLiveStatus("validation");
 
       const firstInvalid = FIELD_ORDER.find((field) => nextErrors[field]);
       if (firstInvalid) {
@@ -126,9 +112,6 @@ export function ContactForm({
     }
 
     setErrors({});
-
-    // Forced review URLs are visual fixtures. They never contact the endpoint.
-    if (reviewState) return;
 
     setLiveStatus("sending");
     const submissionId = submissionIdRef.current ?? crypto.randomUUID();
@@ -153,7 +136,6 @@ export function ContactForm({
   }
 
   function handleChange() {
-    if (reviewState) return;
     submissionIdRef.current = null;
     setErrors({});
     setLiveStatus(deliveryEnabled ? "ready" : "unavailable");
@@ -165,7 +147,6 @@ export function ContactForm({
       aria-labelledby="v2-contact-form-title"
       data-contact-form
       data-contact-state={status}
-      data-contact-review={reviewState ?? undefined}
     >
       <div className={styles.formIntroduction}>
         <p className={styles.formLabel}>{copy.label}</p>
@@ -317,14 +298,12 @@ function ContactFormStatusMessage({
     error: copy.error,
     offline: copy.offline,
     unavailable: copy.unavailable,
-    static: copy.staticFallback,
   }[status];
   const showEmailFallback = [
     "rate-limit",
     "error",
     "offline",
     "unavailable",
-    "static",
   ].includes(status);
   const role = contactStatusIsError(status) ? "alert" : "status";
 

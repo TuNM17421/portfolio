@@ -13,8 +13,6 @@ import {
 } from "@/lib/v2/supporting-work";
 
 type FinancialArchiveMotionOptions = {
-  focusArchive: boolean;
-  forceStatic: boolean;
   reduceMotion: boolean;
 };
 
@@ -22,7 +20,6 @@ export type FinancialArchiveMotionController = {
   sectionRef: React.RefObject<HTMLElement | null>;
   topologyRef: React.RefObject<HTMLElement | null>;
   enabled: boolean;
-  focusArchive: boolean;
   styles: {
     hub: MotionStyle;
     ledgerLeft: MotionStyle;
@@ -56,8 +53,6 @@ function useNodeArrival(
 }
 
 export function useFinancialArchiveMotion({
-  focusArchive,
-  forceStatic,
   reduceMotion,
 }: FinancialArchiveMotionOptions): FinancialArchiveMotionController {
   const sectionRef = useRef<HTMLElement>(null);
@@ -75,49 +70,6 @@ export function useFinancialArchiveMotion({
   });
 
   useEffect(() => setHydrated(true), []);
-
-  useEffect(() => {
-    if (!focusArchive || !hydrated) return;
-
-    const root = document.documentElement;
-    const previousScrollBehavior = root.style.scrollBehavior;
-    let cancelled = false;
-    root.style.scrollBehavior = "auto";
-
-    const alignArchive = () => {
-      const target = sectionRef.current;
-      if (!target || cancelled) return;
-
-      const rootStyle = window.getComputedStyle(root);
-      const targetStyle = window.getComputedStyle(target);
-      const scrollPadding = Number.parseFloat(rootStyle.scrollPaddingTop) || 0;
-      const scrollMargin = Number.parseFloat(targetStyle.scrollMarginTop) || 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY;
-
-      window.scrollTo({
-        top: Math.max(targetTop - scrollPadding - scrollMargin, 0),
-        behavior: "auto",
-      });
-    };
-
-    const frame = window.requestAnimationFrame(alignArchive);
-    const layoutRetry = window.setTimeout(alignArchive, 160);
-    const fontRetry = window.setTimeout(alignArchive, 480);
-    const restore = window.setTimeout(() => {
-      if (!cancelled) root.style.scrollBehavior = previousScrollBehavior;
-    }, 520);
-
-    void document.fonts.ready.then(alignArchive);
-
-    return () => {
-      cancelled = true;
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(layoutRetry);
-      window.clearTimeout(fontRetry);
-      window.clearTimeout(restore);
-      root.style.scrollBehavior = previousScrollBehavior;
-    };
-  }, [focusArchive, hydrated]);
 
   const { hub, ledger, drops, contacts } = FINANCIAL_TOPOLOGY_TIMELINE;
   const hubArrival = useNodeArrival(progress, hub.start, hub.end);
@@ -138,8 +90,7 @@ export function useFinancialArchiveMotion({
   return {
     sectionRef,
     topologyRef,
-    enabled: hydrated && !reduceMotion && !forceStatic && !focusArchive,
-    focusArchive,
+    enabled: hydrated && !reduceMotion,
     styles: {
       hub: hubArrival,
       ledgerLeft,

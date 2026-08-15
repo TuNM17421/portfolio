@@ -23,8 +23,6 @@ const DESKTOP_WORK_QUERY = "(min-width: 1024px)";
 
 type SupportingWorkStoryOptions = {
   reduceMotion: boolean;
-  forceStatic: boolean;
-  forcedStage: ScholarAIEvidenceKey | null;
 };
 
 export type SupportingWorkStoryController = {
@@ -107,15 +105,12 @@ function useEvidenceMotion(
 
 export function useSupportingWorkStory({
   reduceMotion,
-  forceStatic,
-  forcedStage,
 }: SupportingWorkStoryOptions): SupportingWorkStoryController {
   const stageRef = useRef<HTMLDivElement>(null);
   const [hydrated, setHydrated] = useState(false);
   const [desktop, setDesktop] = useState(false);
-  const [activeStage, setActiveStage] = useState<ScholarAIEvidenceKey>(
-    forcedStage ?? "retrieve",
-  );
+  const [activeStage, setActiveStage] =
+    useState<ScholarAIEvidenceKey>("retrieve");
   const { scrollYProgress } = useScroll({
     target: stageRef,
     offset: ["start start", "end end"],
@@ -143,22 +138,15 @@ export function useSupportingWorkStory({
   const mode = resolveSupportingWorkStoryMode({
     desktop,
     reduceMotion,
-    forceStatic,
-    forcedStage,
   });
   const compactEnhanced =
-    hydrated && !desktop && !reduceMotion && !forceStatic && !forcedStage;
+    hydrated && !desktop && !reduceMotion;
 
   useEffect(() => {
-    if (forcedStage) {
-      setActiveStage(forcedStage);
-      return;
-    }
-
     if (mode === "active") {
       setActiveStage(resolveScholarAIEvidenceStage(progress.get()));
     }
-  }, [forcedStage, mode, progress]);
+  }, [mode, progress]);
 
   useMotionValueEvent(progress, "change", (latest) => {
     if (mode !== "active") return;
