@@ -354,6 +354,24 @@
           "linkLabel": "Open the full report"
         }
       },
+      "evidenceArchive": {
+        "screenCount": "SCREEN {index} / {count}",
+        "labels": {
+          "direct": "TU / DIRECT-SCOPE RELATED",
+          "context": "PRODUCT CONTEXT"
+        },
+        "inspect": "View full screen",
+        "loading": "Loading original image",
+        "unavailable": "Image unavailable",
+        "viewer": {
+          "label": "VCareer evidence viewer",
+          "close": "Close viewer",
+          "previous": "Previous image",
+          "next": "Next image",
+          "openOriginal": "Open original image",
+          "keyboardHint": "← → change image · Esc close"
+        }
+      },
       "chapters": {
         "signal": "Evidence",
         "problem": "Problem",

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import en from "../../messages/en.json";
 import vi from "../../messages/vi.json";
 import { VCAREER_PROJECT } from "@/data/projects";
+import { VCAREER_SHOWCASE_STAGES } from "@/lib/v2/vcareer-showcase";
 
 const verifiedContent = [en, vi].map((messages) =>
   JSON.stringify({
@@ -120,6 +121,36 @@ describe("VCareer public evidence", () => {
         "progress",
         "jobs",
       ]);
+    }
+  });
+
+  it("keeps all six 08D evidence records in canonical source order", () => {
+    expect(VCAREER_SHOWCASE_STAGES.map((stage) => stage.key)).toEqual([
+      "landing",
+      "cvBuilder",
+      "match",
+      "interviewDemo",
+      "interviewReview",
+      "dashboard",
+    ]);
+    expect(VCAREER_SHOWCASE_STAGES.map((stage) => stage.evidence)).toEqual([
+      "context",
+      "direct",
+      "direct",
+      "direct",
+      "context",
+      "context",
+    ]);
+
+    for (const messages of [vi, en]) {
+      const archive = messages.vcareerCaseStudy.v2.evidenceArchive;
+      expect(archive.labels.direct).toBeTruthy();
+      expect(archive.labels.context).toBeTruthy();
+      expect(archive.viewer.close).toBeTruthy();
+      expect(archive.viewer.previous).toBeTruthy();
+      expect(archive.viewer.next).toBeTruthy();
+      expect(archive.viewer.openOriginal).toBeTruthy();
+      expect(archive.loading).not.toBe(archive.unavailable);
     }
   });
 });

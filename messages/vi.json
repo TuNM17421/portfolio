@@ -354,6 +354,24 @@
           "linkLabel": "Mở báo cáo đầy đủ"
         }
       },
+      "evidenceArchive": {
+        "screenCount": "MÀN HÌNH {index} / {count}",
+        "labels": {
+          "direct": "TÚ / LIÊN QUAN PHẠM VI TRỰC TIẾP",
+          "context": "BỐI CẢNH SẢN PHẨM"
+        },
+        "inspect": "Xem toàn màn hình",
+        "loading": "Đang tải ảnh gốc",
+        "unavailable": "Không thể tải ảnh",
+        "viewer": {
+          "label": "Trình xem bằng chứng VCareer",
+          "close": "Đóng trình xem",
+          "previous": "Ảnh trước",
+          "next": "Ảnh sau",
+          "openOriginal": "Mở ảnh gốc",
+          "keyboardHint": "← → đổi ảnh · Esc đóng"
+        }
+      },
       "chapters": {
         "signal": "Bằng chứng",
         "problem": "Bài toán",

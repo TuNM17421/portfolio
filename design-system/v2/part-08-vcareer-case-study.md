@@ -1,11 +1,11 @@
 # Part 08 — VCareer case file and route continuity
 
-> **Status:** 08A–08B approved; 08C implemented for owner review; 08D–08F remain planned
+> **Status:** 08A–08D approved; 08E–08F remain planned
 >
 > **Branch:** `redesign/portfolio-v2`
 >
 > **Implementation status:** 08A committed at `744da4f`; 08B committed at
-> `88312aa`; 08C remains uncommitted pending approval
+> `88312aa`; 08C committed at `38ad0ba`; 08D is the current approved checkpoint
 >
 > **Planned review routes:** `/vi/projects/vcareer`,
 > `/en/projects/vcareer`, `/vi/v2?intro=0#vcareer`, and reduced-motion / no-JS
@@ -529,6 +529,33 @@ before the next begins.
 - viewer close cannot leave stale focus or body state;
 - non-cover images stay lazy and image errors retain useful captions/actions.
 
+**Implemented review behavior**
+
+- the six approved originals remain in canonical source order as one editorial
+  contact sheet: a dominant opening record, paired records, a full-width live
+  interview record, and an asymmetric closing pair rather than six equal cards;
+- every record keeps a localized `01 / 06` index, caption, and an explicit
+  `DIRECT-SCOPE RELATED` or `PRODUCT CONTEXT` line. The direct label describes
+  relationship to Tu's verified scope and does not claim ownership of the
+  screenshot UI;
+- each server-rendered image is also an ordinary link to its original file.
+  JavaScript enhances that link into a full-resolution product-plane viewer
+  without removing the no-JS destination;
+- the viewer supplies visible close, previous, next, counter, caption, and
+  original-file actions. Left/Right keys stop at `01 / 06` and `06 / 06`; Tab
+  stays inside the dialog; Escape, the close button, and the backdrop restore
+  the exact invoking link, page inertness, and body scroll state;
+- archive images remain lazy with intrinsic dimensions. Opening the viewer
+  preloads only adjacent originals; the initial route still requests only the
+  eager cover screenshot;
+- compact layouts become one column and retain 48px viewer controls. No-JS
+  keeps all six figures visible, while reduced motion replaces clipping and
+  translation with a short opacity-only transition;
+- forced review states are available at
+  `/vi/projects/vcareer?evidence=loading#case-screens` and
+  `/vi/projects/vcareer?evidence=image-error#case-screens` without modifying
+  any original asset.
+
 ### 08E — Homepage/case-study matched route handoff
 
 **Implementation**
@@ -599,6 +626,5 @@ No new factual input or image asset is required for 08A. The current verified
 content, six approved screenshots, live URL, architecture URL, and accepted V2
 design system are sufficient.
 
-The owner approved checkpoints **08A–08B**. Checkpoint **08C** is implemented
-and awaiting owner review. Later checkpoints remain behind their own preview
-and approval gates.
+The owner approved checkpoints **08A–08D**. Later checkpoints remain behind
+their own preview and approval gates.

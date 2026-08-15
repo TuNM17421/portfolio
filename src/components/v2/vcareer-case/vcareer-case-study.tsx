@@ -3,7 +3,9 @@ import { getTranslations } from "next-intl/server";
 import { VCAREER_PROJECT } from "@/data/projects";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
+import { VCAREER_SHOWCASE_STAGES } from "@/lib/v2/vcareer-showcase";
 import { ArchitectureTrace } from "./architecture-trace";
+import { EvidenceArchive } from "./evidence-archive";
 import { NarrativeMotionSection } from "./narrative-motion-section";
 import styles from "./vcareer-case-study.module.css";
 
@@ -41,12 +43,26 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
     throw new Error("VCareer interview evidence is missing");
   }
 
-  const evidenceImages = VCAREER_PROJECT.images.filter(
-    (image) => image.shot !== heroImage.shot,
-  );
+  const evidenceImages = VCAREER_SHOWCASE_STAGES.map((image, index) => ({
+    alt: projectT(`shots.${image.key}`),
+    caption: projectT(`shots.${image.key}`),
+    evidence: image.evidence,
+    height: image.height,
+    indexLabel: t("v2.evidenceArchive.screenCount", {
+      index: String(index + 1).padStart(2, "0"),
+      count: String(VCAREER_SHOWCASE_STAGES.length).padStart(2, "0"),
+    }),
+    scopeLabel:
+      image.evidence === "direct"
+        ? t("v2.evidenceArchive.labels.direct")
+        : t("v2.evidenceArchive.labels.context"),
+    shot: image.key,
+    src: image.src,
+    width: image.width,
+  }));
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-vcareer-case-root>
       <a className={styles.skipLink} href="#case-signal">
         {t("v2.skipToContent")}
       </a>
@@ -434,26 +450,20 @@ export async function VCareerCaseStudy({ locale }: VCareerCaseStudyProps) {
                 title={t("evidence.title")}
                 description={t("evidence.description")}
               />
-              <div className={styles.evidenceGrid}>
-                {evidenceImages.map((image, index) => (
-                  <figure className={styles.evidenceFigure} key={image.src}>
-                    <Image
-                      src={image.src}
-                      alt={projectT(`shots.${image.shot}`)}
-                      width={image.width ?? 1920}
-                      height={image.height ?? 914}
-                      sizes="(max-width: 767px) 92vw, (max-width: 1199px) 78vw, 52vw"
-                      className={styles.evidenceImage}
-                    />
-                    <figcaption>
-                      <span aria-hidden>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span>{projectT(`shots.${image.shot}`)}</span>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
+              <EvidenceArchive
+                images={evidenceImages}
+                copy={{
+                  close: t("v2.evidenceArchive.viewer.close"),
+                  inspect: t("v2.evidenceArchive.inspect"),
+                  keyboardHint: t("v2.evidenceArchive.viewer.keyboardHint"),
+                  loading: t("v2.evidenceArchive.loading"),
+                  next: t("v2.evidenceArchive.viewer.next"),
+                  openOriginal: t("v2.evidenceArchive.viewer.openOriginal"),
+                  previous: t("v2.evidenceArchive.viewer.previous"),
+                  unavailable: t("v2.evidenceArchive.unavailable"),
+                  viewerLabel: t("v2.evidenceArchive.viewer.label"),
+                }}
+              />
             </section>
 
             <NarrativeMotionSection
