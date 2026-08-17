@@ -16,7 +16,10 @@ export function SiteHeader() {
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-transparent bg-background/70 backdrop-blur-xl transition-colors">
+    <header
+      data-site-shell="v1"
+      className="sticky top-0 z-50 border-b border-transparent bg-background/70 backdrop-blur-xl transition-colors"
+    >
       <div className="relative mx-auto flex h-[68px] max-w-6xl items-center justify-between px-6">
         <Link
           href="/"

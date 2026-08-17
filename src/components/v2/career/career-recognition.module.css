@@ -1,0 +1,671 @@
+.career {
+  --career-sheet: #edf4f5;
+  --career-night: #071219;
+  --career-deep: #0b2738;
+  --career-cyan: #176f6b;
+  --career-signal: #0060f0;
+  --career-trace: #4b7188;
+  --career-rule: rgba(11, 39, 56, 0.24);
+  --career-signal-x: max(
+    calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px)),
+    calc((100vw - 1600px) / 2 + 96px)
+  );
+  position: relative;
+  z-index: 11;
+  overflow: clip;
+  color: var(--career-night);
+  background: var(--career-sheet);
+  scroll-margin-top: 0;
+}
+
+.career::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(90deg, rgba(75, 113, 136, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(75, 113, 136, 0.035) 1px, transparent 1px);
+  background-position: clamp(22px, 4.6vw, 72px) 0;
+  background-size: clamp(76px, 8vw, 122px) clamp(76px, 8vw, 122px);
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 18%,
+    transparent 78%,
+    black
+  );
+  content: "";
+}
+
+.handoff {
+  position: relative;
+  z-index: 1;
+  height: clamp(92px, 9vw, 138px);
+  overflow: hidden;
+}
+
+.handoffStem,
+.handoffNode,
+.handoffTrack {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.handoffStem {
+  top: 0;
+  left: var(--career-signal-x);
+  width: 1px;
+  height: 52%;
+  background: linear-gradient(
+    to bottom,
+    var(--career-cyan),
+    var(--career-signal)
+  );
+  transform-origin: top center;
+}
+
+.handoffNode {
+  z-index: 2;
+  top: calc(52% - 5px);
+  left: calc(var(--career-signal-x) - 5px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-signal);
+  box-shadow: 0 0 0 1px var(--career-signal);
+  transform-origin: center;
+}
+
+.handoffTrack {
+  top: 52%;
+  right: 0;
+  left: var(--career-signal-x);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--career-signal),
+    rgba(0, 96, 240, 0.16)
+  );
+  transform-origin: left center;
+}
+
+.sheet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(22px, 4.6vw, 72px) clamp(108px, 12vw, 184px);
+}
+
+.sectionRail,
+.timelineHeader,
+.recordTime,
+.recordIdentity > span,
+.responsibilities > p,
+.technology {
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.6rem, 0.7vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.sectionRail,
+.timelineHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--career-rule);
+}
+
+.sectionRail p,
+.introduction h2,
+.introduction p,
+.timelineHeader h3,
+.recordTime span,
+.recordTime strong,
+.recordIdentity h4,
+.recordIdentity p,
+.recordIdentity > span,
+.recordDescription,
+.responsibilities p,
+.technology {
+  margin: 0;
+}
+
+.sectionRail p:first-child,
+.timelineHeader h3 {
+  color: var(--career-cyan);
+}
+
+.sectionRail p:last-child {
+  color: rgba(11, 39, 56, 0.62);
+  text-align: right;
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 96px);
+  align-items: end;
+  padding: clamp(58px, 6.5vw, 102px) 0 clamp(68px, 7.5vw, 118px);
+}
+
+.introduction h2 {
+  max-width: 8ch;
+  grid-column: 1 / 9;
+  padding: 0.08em 0 0.04em;
+  color: var(--career-night);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(4.4rem, 8.3vw, 8.4rem);
+  font-variation-settings: "wdth" 82;
+  font-weight: 545;
+  letter-spacing: calc(-0.075em + 3px);
+  line-height: 0.82;
+}
+
+.introduction > p {
+  max-width: 35ch;
+  grid-column: 9 / -1;
+  padding-bottom: 0.45em;
+  color: rgba(11, 39, 56, 0.72);
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+  line-height: 1.72;
+}
+
+.timeline {
+  border-top: 2px solid var(--career-night);
+}
+
+.timelineHeader {
+  min-height: 104px;
+  padding: 24px 0;
+}
+
+.timelineHeader h3 {
+  margin: 0;
+  font-size: inherit;
+}
+
+.yearAxis {
+  position: relative;
+  display: grid;
+  width: min(56%, 760px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  color: rgba(11, 39, 56, 0.64);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+.yearAxis::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  height: 1px;
+  background: rgba(23, 111, 107, 0.44);
+  content: "";
+}
+
+.yearAxisProgress,
+.yearAxisCursor {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  display: block;
+  pointer-events: none;
+}
+
+.yearAxisProgress {
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--career-signal);
+  transform-origin: left center;
+}
+
+.yearAxisCursor {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-signal);
+  box-shadow:
+    0 0 0 1px var(--career-signal),
+    0 0 18px 3px rgba(0, 96, 240, 0.2);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.yearLabel {
+  position: relative;
+  z-index: 2;
+  width: max-content;
+  padding: 6px 10px;
+  background: var(--career-sheet);
+}
+
+.yearLabel[data-year-position="middle"] {
+  justify-self: center;
+}
+
+.yearLabel[data-year-position="end"] {
+  justify-self: end;
+}
+
+.careerRecords,
+.responsibilities ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.careerRecords {
+  border-bottom: 1px solid var(--career-rule);
+}
+
+.careerRecordsShell {
+  position: relative;
+}
+
+.careerTraceRail {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 18%;
+  width: 1px;
+  pointer-events: none;
+  background: rgba(75, 113, 136, 0.32);
+}
+
+.careerTraceProgress,
+.careerTraceCursor {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.careerTraceProgress {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--career-cyan),
+    var(--career-signal) 46%,
+    var(--career-cyan)
+  );
+  transform-origin: top center;
+}
+
+.careerTraceCursor {
+  left: 1px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-signal);
+  box-shadow:
+    0 0 0 1px var(--career-signal),
+    0 0 20px 4px rgba(0, 96, 240, 0.24);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.careerRecord {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(136px, 0.18fr) minmax(260px, 0.32fr) minmax(
+      0,
+      0.5fr
+    );
+  gap: clamp(34px, 5vw, 80px);
+  padding: clamp(32px, 3.8vw, 58px) 0;
+  border-top: 1px solid var(--career-rule);
+}
+
+.recordNode {
+  position: absolute;
+  z-index: 3;
+  top: -5px;
+  left: calc(18% - 5px);
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--career-sheet);
+  background: var(--career-cyan);
+  box-shadow: 0 0 0 1px var(--career-cyan);
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.careerRecord[data-emphasis="primary"] {
+  padding-top: clamp(46px, 5vw, 76px);
+  padding-bottom: clamp(52px, 5.8vw, 88px);
+  border-top: 2px solid var(--career-signal);
+}
+
+.careerRecord[data-emphasis="primary"] .recordNode {
+  top: -7px;
+  width: 13px;
+  height: 13px;
+  background: var(--career-signal);
+  box-shadow:
+    0 0 0 1px var(--career-signal),
+    0 0 18px rgba(0, 96, 240, 0.2);
+}
+
+.career[data-career-motion="active"]
+  :is(
+    .handoffStem,
+    .handoffNode,
+    .handoffTrack,
+    .yearAxisProgress,
+    .yearAxisCursor,
+    .careerTraceProgress,
+    .careerTraceCursor,
+    .careerRecord,
+    .recordNode
+  ) {
+  will-change: transform, opacity, background-color, box-shadow;
+}
+
+.career[data-career-motion="active"]
+  .careerRecord[data-active="true"]
+  .recordTime
+  strong {
+  color: var(--career-signal);
+}
+
+.recordTime {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+}
+
+.recordTime span {
+  color: var(--career-cyan);
+}
+
+.recordTime strong {
+  color: rgba(11, 39, 56, 0.72);
+  font-size: clamp(0.68rem, 0.82vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.recordIdentity {
+  align-self: start;
+}
+
+.recordIdentity h4 {
+  max-width: 16ch;
+  color: var(--career-night);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(2rem, 3.2vw, 3.25rem);
+  font-variation-settings: "wdth" 90;
+  font-weight: 540;
+  letter-spacing: calc(-0.055em + 1px);
+  line-height: 0.98;
+}
+
+.careerRecord[data-emphasis="primary"] .recordIdentity h4 {
+  font-size: clamp(3rem, 5vw, 5.1rem);
+  letter-spacing: calc(-0.065em + 2px);
+  line-height: 0.88;
+}
+
+.recordIdentity > p {
+  margin-top: 18px;
+  color: var(--career-cyan);
+  font-size: clamp(0.94rem, 1.08vw, 1.08rem);
+  font-weight: 600;
+}
+
+.recordIdentity > span {
+  display: block;
+  margin-top: 28px;
+  color: rgba(11, 39, 56, 0.62);
+  font-size: 0.62rem;
+}
+
+.recordEvidence {
+  min-width: 0;
+}
+
+.recordDescription {
+  max-width: 52ch;
+  color: rgba(11, 39, 56, 0.76);
+  font-size: clamp(0.94rem, 1.08vw, 1.08rem);
+  line-height: 1.72;
+}
+
+.responsibilities {
+  margin-top: clamp(28px, 3vw, 42px);
+  padding-top: 18px;
+  border-top: 1px solid var(--career-rule);
+}
+
+.responsibilities > p,
+.technology > span {
+  color: var(--career-cyan);
+}
+
+.responsibilities ol {
+  margin-top: 18px;
+}
+
+.responsibilities li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 16px;
+  padding: 13px 0;
+  border-top: 1px solid rgba(11, 39, 56, 0.14);
+}
+
+.responsibilities li:first-child {
+  border-top: 0;
+}
+
+.responsibilities li > span {
+  color: var(--career-signal);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.responsibilities li > p {
+  max-width: 54ch;
+  color: rgba(11, 39, 56, 0.72);
+  font-size: clamp(0.86rem, 0.96vw, 0.96rem);
+  line-height: 1.64;
+}
+
+.technology {
+  display: grid;
+  grid-template-columns: minmax(128px, 0.28fr) minmax(0, 0.72fr);
+  gap: 24px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--career-rule);
+}
+
+.technology strong {
+  color: rgba(11, 39, 56, 0.72);
+  font-family: var(--font-v2-body), sans-serif;
+  font-size: clamp(0.82rem, 0.92vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.7;
+  text-transform: none;
+}
+
+@media (max-width: 1023px) {
+  .introduction {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .introduction h2,
+  .introduction > p {
+    grid-column: auto;
+  }
+
+  .introduction > p {
+    max-width: 45ch;
+    padding: 0;
+  }
+
+  .careerRecord {
+    grid-template-columns: minmax(130px, 0.22fr) minmax(220px, 0.34fr) minmax(
+        0,
+        0.44fr
+      );
+    gap: clamp(24px, 4vw, 48px);
+  }
+}
+
+@media (max-width: 767px) {
+  .career {
+    --career-signal-x: 26.5px;
+  }
+
+  .career::before {
+    opacity: 0.24;
+    background-position: 20px 0;
+    background-size: 68px 68px;
+  }
+
+  .handoff {
+    height: 76px;
+  }
+
+  .sheet {
+    padding: 0 20px 104px;
+  }
+
+  .sectionRail {
+    align-items: flex-start;
+    gap: 18px;
+    font-size: 0.56rem;
+  }
+
+  .sectionRail p:last-child {
+    max-width: 14ch;
+  }
+
+  .introduction {
+    gap: 24px;
+    padding: 44px 0 58px;
+  }
+
+  .introduction h2 {
+    max-width: 7ch;
+    font-size: clamp(3.45rem, 16.5vw, 5.3rem);
+    letter-spacing: calc(-0.065em + 2px);
+    line-height: 0.84;
+  }
+
+  .introduction > p {
+    font-size: 0.96rem;
+  }
+
+  .timelineHeader {
+    display: grid;
+    min-height: 92px;
+    gap: 22px;
+    padding: 20px 0;
+  }
+
+  .yearAxis {
+    width: 100%;
+  }
+
+  .careerRecord,
+  .careerRecord[data-emphasis="primary"] {
+    display: block;
+    padding: 28px 0 34px;
+  }
+
+  .careerRecord[data-emphasis="primary"] {
+    padding-top: 36px;
+    padding-bottom: 44px;
+  }
+
+  .recordNode {
+    left: 0;
+  }
+
+  .careerTraceRail {
+    left: 4px;
+  }
+
+  .recordTime {
+    display: flex;
+    min-height: 28px;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-left: 18px;
+  }
+
+  .recordTime strong {
+    font-size: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .recordIdentity h4,
+  .careerRecord[data-emphasis="primary"] .recordIdentity h4 {
+    max-width: 13ch;
+    margin-top: 24px;
+    font-size: clamp(2.15rem, 10.5vw, 3.2rem);
+    line-height: 0.94;
+  }
+
+  .recordIdentity > p {
+    margin-top: 14px;
+  }
+
+  .recordIdentity > span {
+    margin-top: 18px;
+  }
+
+  .recordEvidence {
+    margin-top: 24px;
+  }
+
+  .responsibilities {
+    margin-top: 26px;
+  }
+
+  .technology {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 359px) {
+  .sectionRail {
+    display: grid;
+  }
+
+  .sectionRail p:last-child {
+    max-width: none;
+    text-align: left;
+  }
+
+  .introduction h2 {
+    font-size: 3.4rem;
+  }
+
+  .recordTime {
+    padding-left: 16px;
+  }
+}

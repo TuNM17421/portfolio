@@ -81,23 +81,48 @@
   --color-destructive: var(--destructive);
   --color-ring: var(--ring);
   --color-online: #22c55e;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code",
     "Cascadia Code", monospace;
 }
 
 body {
-  background: var(--background);
+  overflow-x: clip;
+  background: #071219;
   color: var(--foreground);
   font-family: var(--font-sans);
+  scrollbar-width: none;
   -webkit-font-smoothing: antialiased;
 }
 
 html {
-  scroll-behavior: smooth;
-  /* Keep anchored sections clear of the sticky 68px header. */
-  scroll-padding-top: 5.5rem;
+  scroll-behavior: auto;
+  scroll-padding-top: 0;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body > main {
+  min-height: 100svh;
+}
+
+html[data-intro="pending"],
+html[data-intro="running"],
+html[data-intro="exiting"] {
+  overflow: hidden;
+}
+
+html[data-intro="pending"] body,
+html[data-intro="running"] body,
+html[data-intro="exiting"] body {
+  overflow: hidden;
 }
 
 ::selection {

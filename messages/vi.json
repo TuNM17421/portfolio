@@ -44,9 +44,9 @@
       "period": "05/2024 — 03/2026",
       "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL — tăng 20% hiệu suất hệ thống.",
+        "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL.",
         "Cloud Infrastructure: Xây dựng batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack để tối ưu phát triển, kiểm thử local.",
-        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code — tăng 30% năng suất nhóm khi team lead vắng mặt."
+        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code."
       ]
     },
     "course": {
@@ -205,12 +205,12 @@
       "title": "Từ discovery đến pilot với học viên thật",
       "items": {
         "discovery": {
-          "label": "Discovery",
+          "label": "Khảo sát",
           "title": "Lên ý tưởng và phỏng vấn Product Owner",
           "body": "Chu kỳ phát triển sáu tuần của team bắt đầu từ 05/2026 với việc định hình bài toán cùng phòng Hướng nghiệp VinUni."
         },
         "build": {
-          "label": "Build",
+          "label": "Xây dựng",
           "title": "Sáu tuần từ ý tưởng đến sản phẩm",
           "body": "Team bốn người phát triển sản phẩm từ giai đoạn discovery ban đầu đến phiên bản sẵn sàng cho pilot."
         },
@@ -220,7 +220,7 @@
           "body": "VCareer tham gia sự kiện tại Hà Nội ngày 27/06/2026 với tư cách sản phẩm đã live, đúng yêu cầu của Track 4. VCareer không được build từ đầu trong hackathon và nhận $5,000 OpenAI API credits."
         },
         "pilot": {
-          "label": "Pilot",
+          "label": "Thử nghiệm",
           "title": "150+ học viên thật đã trải nghiệm",
           "body": "Survey ghi nhận phản hồi về cảm giác tự tin hơn. Hệ thống đánh giá và chấm điểm CV được Product Owner của phòng Hướng nghiệp VinUni review."
         }
@@ -284,6 +284,120 @@
       "eyebrow": "Trạng thái liên kết",
       "repoTitle": "Source code ở chế độ private",
       "repoBody": "Repository không thể chia sẻ do source code thuộc sở hữu theo hợp đồng với nhà trường. Sản phẩm live và báo cáo kiến trúc công khai có thể truy cập ở phía trên."
+    },
+    "v2": {
+      "skipToContent": "Bỏ qua đến nội dung case study",
+      "portfolioHome": "Trang portfolio V2",
+      "caseIndex": "HỒ SƠ 01 / 01",
+      "localeLabel": "Chọn ngôn ngữ",
+      "switchToEnglish": "Chuyển sang tiếng Anh",
+      "switchToVietnamese": "Chuyển sang tiếng Việt",
+      "returnLabel": "Trở lại VCareer",
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "caseNavigation": "Mục lục case study",
+      "technologyLabel": "Công nghệ trong hệ thống VCareer",
+      "cover": {
+        "caseLabel": "HỒ SƠ KỸ THUẬT / SẢN PHẨM AI",
+        "timeline": "05/2026 — HIỆN TẠI",
+        "statusLabel": "ĐANG LIVE / CHỜ FUNDING",
+        "screenLabel": "MÀN HÌNH 04 / 06",
+        "screenContext": "PHỎNG VẤN AI REALTIME · TALKINGHEAD"
+      },
+      "signal": {
+        "eyebrow": "01 / BẰNG CHỨNG",
+        "title": "Ba tín hiệu từ pilot thực tế.",
+        "description": "Một con số sử dụng thật, một tín hiệu định tính từ khảo sát và một vòng đánh giá chuyên môn — không biến số minh họa trong sản phẩm thành kết quả của hồ sơ này."
+      },
+      "problemFlow": {
+        "label": "Luồng chuẩn bị nghề nghiệp mà team kết nối",
+        "cv": "CV",
+        "criteria": "Tiêu chí JD",
+        "interview": "Phỏng vấn AI trực tiếp"
+      },
+      "scopeLabels": {
+        "direct": "TÚ / TRỰC TIẾP",
+        "context": "BỐI CẢNH TEAM / SẢN PHẨM RỘNG HƠN"
+      },
+      "deliveryTrace": {
+        "buildWindow": "06 TUẦN / TỪ KHẢO SÁT ĐẾN THỬ NGHIỆM",
+        "recognitionBoundary": "SAU KHI SẢN PHẨM ĐÃ HOẠT ĐỘNG"
+      },
+      "architectureTrace": {
+        "pathLabel": "CHÚ GIẢI PHẠM VI + TRẠNG THÁI",
+        "labels": {
+          "context": "BỐI CẢNH SẢN PHẨM",
+          "direct": "TÚ / TRỰC TIẾP",
+          "current": "MÔI TRƯỜNG HIỆN TẠI",
+          "pending": "ĐÍCH ĐẾN / CHƯA CHUYỂN NGƯỜI DÙNG"
+        },
+        "browser": {
+          "title": "Trình duyệt + TalkingHead",
+          "body": "TalkingHead vẫn được dùng trong trải nghiệm phỏng vấn trực tiếp; đây là thành phần thuộc bối cảnh sản phẩm rộng hơn."
+        },
+        "workflows": {
+          "title": "Luồng phân tích và cấu trúc CV/JD"
+        },
+        "deployment": {
+          "title": "HAI NHÁNH TRIỂN KHAI",
+          "current": {
+            "title": "Vercel / môi trường hiện tại",
+            "body": "Người dùng thật hiện truy cập phiên bản đang hoạt động trên Vercel."
+          },
+          "pending": {
+            "title": "AWS Singapore / đích đến đã kiểm chứng",
+            "body": "Kiến trúc đích đã được dựng và kiểm tra; việc chuyển người dùng thật vẫn đang chờ."
+          }
+        },
+        "report": {
+          "label": "BÁO CÁO KIẾN TRÚC / BỐI CẢNH TOÀN HỆ THỐNG",
+          "body": "Báo cáo công khai mô tả kiến trúc rộng hơn của nhóm và sản phẩm; nó không mở rộng phạm vi Tú trực tiếp phụ trách.",
+          "linkLabel": "Mở báo cáo đầy đủ"
+        }
+      },
+      "evidenceArchive": {
+        "screenCount": "MÀN HÌNH {index} / {count}",
+        "labels": {
+          "direct": "TÚ / LIÊN QUAN PHẠM VI TRỰC TIẾP",
+          "context": "BỐI CẢNH SẢN PHẨM"
+        },
+        "inspect": "Xem toàn màn hình",
+        "loading": "Đang tải ảnh gốc",
+        "unavailable": "Không thể tải ảnh",
+        "viewer": {
+          "label": "Trình xem bằng chứng VCareer",
+          "close": "Đóng trình xem",
+          "previous": "Ảnh trước",
+          "next": "Ảnh sau",
+          "openOriginal": "Mở ảnh gốc",
+          "keyboardHint": "← → đổi ảnh · Esc đóng"
+        }
+      },
+      "chapters": {
+        "signal": "Bằng chứng",
+        "problem": "Bài toán",
+        "delivery": "Triển khai",
+        "system": "Hệ thống",
+        "screens": "Màn hình",
+        "state": "Trạng thái"
+      },
+      "sectionCodes": {
+        "problem": "02 / BÀI TOÁN + PHẠM VI",
+        "delivery": "03 / TRIỂN KHAI",
+        "system": "04 / HỆ THỐNG",
+        "screens": "05 / MÀN HÌNH",
+        "state": "06 / TRẠNG THÁI"
+      },
+      "stateLabels": {
+        "shipped": "SẢN PHẨM HIỆN TẠI",
+        "roadmap": "LỘ TRÌNH / CHỜ FUNDING"
+      },
+      "stateBoundary": {
+        "rootLabel": "RANH GIỚI TRẠNG THÁI SẢN PHẨM"
+      },
+      "footer": {
+        "caseLabel": "VCareer / HỒ SƠ 01",
+        "return": "Trở lại portfolio"
+      }
     }
   },
   "skills": {
@@ -321,9 +435,9 @@
         "vinuniCeremony": "Được tuyên dương là Dự án nổi bật tại Lễ bế giảng VinUniversity",
         "vinuniFaculty": "Chụp ảnh cùng giảng viên tại VinUniversity",
         "aiInAction": "Cùng học viên tại Lễ bế giảng chương trình \"AI in Action\" của Vingroup",
-        "codex": "Thuyết trình tại Codex Community Hackathon 2026",
-        "stakeholder": "Ban tổ chức chúc mừng nhóm",
-      "teamDetail": "Đội ngũ tại VinUniversity"
+        "codex": "Cùng đội và ban tổ chức tại Codex Community Hackathon 2026",
+        "stakeholder": "Cùng đội ngũ phòng Hướng nghiệp VinUniversity",
+        "teamDetail": "Đội ngũ tại VinUniversity"
       }
     }
   },
@@ -351,6 +465,390 @@
       "errorUnavailable": "Hệ thống gửi tin đang tạm thời gián đoạn. Vui lòng email trực tiếp cho mình.",
       "unavailable": "Form gửi tin hiện chưa khả dụng. Vui lòng dùng liên kết email phía trên.",
       "sending": "Đang gửi…"
+    }
+  },
+  "v2": {
+    "intro": {
+      "metaTitle": "Nguyen Manh Tu — Systems in Focus",
+      "metaDescription": "Portfolio giàu chuyển động của Nguyen Manh Tu, Software Engineer và AI Engineer.",
+      "introLabel": "Hoạt cảnh mở đầu trang hồ sơ",
+      "portfolio": "Portfolio",
+      "wordmark": "Nguyen Manh Tu",
+      "specialties": {
+        "backend": "Backend",
+        "realtime": "Realtime",
+        "ai": "AI"
+      },
+      "skip": "Bỏ qua mở đầu",
+      "preparing": "Đang hoàn thiện cảnh chính",
+      "ready": "Đã khóa tiêu điểm",
+      "fallbackReady": "Tín hiệu được giữ · vào trang an toàn",
+      "portraitFallback": "Không tải được chân dung · đã bật nền thay thế"
+    },
+    "hero": {
+      "homeLabel": "Về đầu portfolio",
+      "navigationLabel": "Điều hướng portfolio",
+      "workNav": "Dự án",
+      "workProof": "03 dự án · 04 kho mã nguồn",
+      "careerNav": "Kinh nghiệm",
+      "careerProof": "FPT Software · VinUniversity",
+      "contact": "Liên hệ",
+      "localeLabel": "Chọn ngôn ngữ",
+      "openMenu": "Mở điều hướng",
+      "closeMenu": "Đóng điều hướng",
+      "role": "Software Engineer · AI Engineer",
+      "positioning": "Xây dựng backend và sản phẩm AI realtime.",
+      "location": "Hà Nội, Việt Nam",
+      "primaryAction": "VCareer / Xem case study",
+      "proof": "150+ học viên pilot",
+      "portraitAlt": "Chân dung Nguyen Manh Tu"
+    },
+    "about": {
+      "eyebrow": "ABOUT / CÁCH MÌNH XÂY HỆ THỐNG",
+      "foundationLabel": "Nền tảng",
+      "foundationPrefix": "Từ",
+      "foundationAnchor": "Backend",
+      "foundationSuffix": ".",
+      "extension": "AI là bước phát triển tiếp theo.",
+      "foundationBody": "Hơn hai năm làm Backend cho mình nền tảng về API, dữ liệu, business logic và cách hệ thống production vận hành. Mình mang nền tảng đó vào LLM, RAG, recommendation và AI Agent để xây những hệ thống AI thực tế.",
+      "principleLabel": "Nguyên tắc vận hành",
+      "principle": "Hãy bắt đầu từ bài toán thực tế, thay vì xuất phát từ công nghệ.",
+      "principleBody": "Mình làm rõ vấn đề của người dùng và tiêu chí thành công trước, sau đó xây giải pháp đơn giản nhất để kiểm chứng. Chỉ khi có dữ liệu sử dụng thực tế, mình mới mở rộng architecture, performance hoặc mức độ phức tạp của AI.",
+      "processLabel": "Cách mình ra quyết định",
+      "process": {
+        "problem": "Hiểu vấn đề",
+        "proof": "Kiểm chứng đơn giản nhất",
+        "usage": "Quan sát cách dùng thật",
+        "scale": "Mở rộng khi có bằng chứng"
+      },
+      "closingLabel": "Định nghĩa kỹ thuật tốt",
+      "closing": "Kỹ thuật tốt không phải là hệ thống dùng nhiều công nghệ nhất. Nó đủ đơn giản để bảo trì, nhưng đủ tốt để giải quyết đúng vấn đề."
+    },
+    "vcareer": {
+      "eyebrow": "04 / BẰNG CHỨNG CHỦ LỰC",
+      "status": "Sản phẩm đang hoạt động · phát triển tiếp đang chờ kinh phí từ nhà trường",
+      "title": "VCareer",
+      "subtitle": "Nền tảng phát triển sự nghiệp ứng dụng AI",
+      "proposition": "Kết nối CV, tiêu chí tuyển dụng và phỏng vấn AI theo thời gian thực trong một luồng luyện tập có thể hành động.",
+      "pilotValue": "150+",
+      "pilotLabel": "học viên thật trong đợt thử nghiệm tại VinUni",
+      "scopeLabel": "Phần mình trực tiếp phụ trách",
+      "scope": {
+        "livekit": "Hạ tầng LiveKit + WebRTC cơ bản",
+        "matching": "Phân tích CV và khớp CV–JD",
+        "jdBuilder": "JD Builder"
+      },
+      "workflowLabel": "LUỒNG SẢN PHẨM / 06 MÀN HÌNH",
+      "workflowTitle": "Từ hồ sơ đến phản hồi.",
+      "architectureLabel": "ĐƯỜNG TRUYỀN REALTIME",
+      "architectureSource": "TRÌNH DUYỆT",
+      "architectureTarget": "LIVEKIT / WEBRTC",
+      "screenshotDisclaimer": "Ảnh giao diện sản phẩm · số liệu hiển thị bên trong không được dùng làm bằng chứng định lượng.",
+      "screenLabel": "MÀN HÌNH",
+      "labels": {
+        "direct": "PHẠM VI TRỰC TIẾP",
+        "context": "BỐI CẢNH SẢN PHẨM",
+        "analysis": "LỚP PHÂN TÍCH",
+        "baseline": "HẠ TẦNG CƠ BẢN"
+      },
+      "stages": {
+        "landing": {
+          "name": "Trang giới thiệu",
+          "caption": "Điểm vào của hành trình VCareer. Các con số xuất hiện trong giao diện chỉ là dữ liệu minh họa của sản phẩm.",
+          "alt": "Trang giới thiệu của nền tảng VCareer"
+        },
+        "cvBuilder": {
+          "name": "Trình tạo CV",
+          "caption": "Lớp phân tích và chấm điểm CV được thể hiện bên trong trình tạo CV.",
+          "alt": "Giao diện trình tạo và phân tích CV của VCareer"
+        },
+        "match": {
+          "name": "Khớp CV với việc làm",
+          "caption": "Đối chiếu CV với JD để làm rõ mức độ phù hợp, khoảng trống và các đề xuất có thể hành động.",
+          "alt": "Giao diện đối chiếu CV với mô tả công việc của VCareer"
+        },
+        "interviewDemo": {
+          "name": "Phỏng vấn trực tiếp",
+          "caption": "Hạ tầng LiveKit/WebRTC cơ bản tạo đường truyền cho phiên phỏng vấn AI theo thời gian thực; trải nghiệm hoàn chỉnh là sản phẩm của cả đội.",
+          "alt": "Giao diện phiên phỏng vấn AI trực tiếp của VCareer"
+        },
+        "interviewReview": {
+          "name": "Đánh giá phỏng vấn",
+          "caption": "Vòng phản hồi dành cho học viên sau phiên phỏng vấn, được trình bày như bối cảnh của sản phẩm chung.",
+          "alt": "Giao diện đánh giá và phản hồi sau phỏng vấn của VCareer"
+        },
+        "dashboard": {
+          "name": "Bảng điều khiển",
+          "caption": "Tổng quan hành trình học viên và các luồng chức năng trong hệ thống thử nghiệm của VCareer.",
+          "alt": "Bảng điều khiển người dùng của VCareer"
+        }
+      },
+      "outcomesCode": "XÁC MINH / 03",
+      "outcomesLabel": "Bằng chứng đã xác minh",
+      "outcomes": {
+        "confidence": "Khảo sát ghi nhận phản hồi tự tin hơn",
+        "review": "Hệ thống chấm điểm CV được Product Owner phòng Hướng nghiệp VinUni thẩm định",
+        "award": "Á quân Track 4 · 5.000 USD tín dụng API OpenAI"
+      },
+      "repositoryState": "Mã nguồn riêng tư · thuộc sở hữu theo hợp đồng với nhà trường",
+      "primaryAction": "Xem chi tiết dự án",
+      "liveAction": "Mở sản phẩm",
+      "architectureAction": "Đọc báo cáo kiến trúc",
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "imageLoading": "Đang tải ảnh giao diện",
+      "imageUnavailable": "Không tải được ảnh giao diện"
+    },
+    "work": {
+      "eyebrow": "05 / HỆ THỐNG & BẰNG CHỨNG",
+      "scholar": {
+        "kicker": "AI RESEARCH SYSTEM",
+        "status": "DỰ ÁN SOLO · PHỤ TRÁCH TOÀN BỘ KỸ THUẬT",
+        "title": "ScholarAI",
+        "subtitle": "Công cụ khám phá và đọc tài liệu học thuật có AI hỗ trợ",
+        "thesis": "Từ tìm đúng paper đến câu trả lời có thể truy nguồn: retrieval, đọc PDF, ghi chú, RAG có trích dẫn và đánh giá được nối trong một workspace.",
+        "scopeLabel": "Một codebase. Toàn bộ vòng lặp.",
+        "scope": {
+          "search": "Dense + BM25 được hợp nhất bằng Qdrant RRF.",
+          "grounding": "Hierarchical RAG, phản hồi SSE và citation dẫn lại đúng trang PDF.",
+          "evaluation": "Bộ kiểm thử LangSmith cho QA, retrieval, faithfulness và refusal."
+        },
+        "evidenceLabel": "BẰNG CHỨNG KỸ THUẬT / 03",
+        "screenLabel": "TÍN HIỆU",
+        "evidence": {
+          "retrieve": {
+            "label": "TRUY XUẤT",
+            "title": "Tìm theo nghĩa lẫn từ khóa.",
+            "caption": "Dense embedding và BM25 cùng đi qua Qdrant RRF, giữ được cả ngữ nghĩa, acronym, tên tác giả và truy vấn khớp chính xác.",
+            "alt": "Giao diện tìm kiếm học thuật kết hợp semantic search và bộ lọc của ScholarAI"
+          },
+          "ground": {
+            "label": "KIỂM CHỨNG",
+            "title": "Câu trả lời quay về nguồn.",
+            "caption": "Hierarchical RAG lấy ngữ cảnh từ PDF, stream câu trả lời và gắn citation có thể mở lại đúng vị trí tài liệu.",
+            "alt": "Giao diện đọc PDF và trò chuyện có trích dẫn của ScholarAI"
+          },
+          "evaluate": {
+            "label": "ĐÁNH GIÁ",
+            "title": "Đo lường thay vì phỏng đoán.",
+            "caption": "Hai bộ chạy LangSmith ghi lại QA và refusal. Số liệu được giữ nguyên như output thí nghiệm, không được chuyển thành tuyên bố cải thiện.",
+            "qaLabel": "QA / RETRIEVAL",
+            "qaCaption": "Theo dõi answer presence, citation accuracy, correctness, faithfulness, retrieval hit rate và latency.",
+            "qaAlt": "Kết quả benchmark QA và retrieval của ScholarAI trên LangSmith",
+            "refusalLabel": "REFUSAL / GUARDRAIL",
+            "refusalCaption": "Kiểm tra khả năng từ chối câu hỏi ngoài phạm vi cùng latency và error rate của từng lần chạy.",
+            "refusalAlt": "Kết quả benchmark refusal guardrail của ScholarAI trên LangSmith"
+          }
+        },
+        "technology": "FastAPI · Qdrant RRF · PostgreSQL · OpenAI · LangSmith",
+        "testingContext": "Đã cho các học viên khác dùng thử trực tiếp · không công bố metric vì không lưu dataset phản hồi.",
+        "sourceState": "Mã nguồn công khai · Không có bản chạy trực tiếp",
+        "sourceAction": "Xem mã nguồn ScholarAI"
+      },
+      "financial": {
+        "eyebrow": "LƯU TRỮ NỀN TẢNG BACKEND",
+        "status": "ĐỒ ÁN TỐT NGHIỆP · TRƯỞNG NHÓM BACKEND · XÂY TRƯỚC THỜI AI HỖ TRỢ LẬP TRÌNH",
+        "title": "Financial Planning",
+        "subtitle": "Hệ thống lập kế hoạch, phê duyệt chi phí và báo cáo tài chính nội bộ",
+        "description": "Mình dẫn dắt backend cho luồng tài chính nhiều vai trò: xác thực, phân quyền, kỳ lập kế hoạch, chi phí, báo cáo và các tác vụ định kỳ.",
+        "topologyLabel": "BA RANH GIỚI TRIỂN KHAI",
+        "domainLabel": "MIỀN NGHIỆP VỤ TÀI CHÍNH CHUNG",
+        "topology": {
+          "api": {
+            "label": "API",
+            "title": "Spring Boot · SQL Server",
+            "description": "REST API, nghiệp vụ tài chính và Redis cho OTP, token, user detail cùng authority state.",
+            "action": "Mở source API"
+          },
+          "web": {
+            "label": "WEB",
+            "title": "React · Vite",
+            "description": "Giao diện cho kế hoạch, phê duyệt, master data và báo cáo theo vai trò.",
+            "action": "Mở source Web"
+          },
+          "worker": {
+            "label": "WORKER",
+            "title": "Spring scheduled jobs",
+            "description": "Tách tác vụ định kỳ cho trạng thái kỳ và tổng hợp báo cáo năm.",
+            "action": "Mở source Worker"
+          }
+        },
+        "mediaLabel": "GIAO DIỆN LƯU TRỮ / 02",
+        "media": {
+          "dashboard": {
+            "label": "BẢNG ĐIỀU KHIỂN",
+            "caption": "Tổng quan kỳ, phòng ban và phân bổ chi phí trong dữ liệu demo cũ.",
+            "alt": "Bảng điều khiển lưu trữ của hệ thống Financial Planning"
+          },
+          "report": {
+            "label": "BÁO CÁO TÀI CHÍNH",
+            "caption": "Bề mặt báo cáo nối số liệu kế hoạch với luồng phê duyệt.",
+            "alt": "Giao diện báo cáo lưu trữ của hệ thống Financial Planning"
+          }
+        },
+        "sourceState": "KHO MÃ NGUỒN LƯU TRỮ · KHÔNG CÓ BẢN CHẠY TRỰC TIẾP HOẶC DỮ LIỆU VẬN HÀNH"
+      },
+      "opensNewWindow": "Mở trong cửa sổ mới",
+      "imageLoading": "Đang tải ảnh bằng chứng",
+      "imageUnavailable": "Không tải được ảnh bằng chứng"
+    },
+    "career": {
+      "eyebrow": "06 / KINH NGHIỆM & GHI NHẬN",
+      "axis": "2019 → 2026",
+      "title": "Chặng đường sự nghiệp.",
+      "summary": "Từ nền tảng Công nghệ Thông tin, qua backend production, đến chương trình AI thực chiến.",
+      "timelineLabel": "TRỤC PHÁT TRIỂN / 03 MỐC",
+      "responsibilitiesLabel": "PHẠM VI CÔNG VIỆC",
+      "technologyLabel": "HỆ THỐNG & CÔNG CỤ",
+      "records": {
+        "education": {
+          "index": "01 / NỀN TẢNG",
+          "period": "2019 — 2024",
+          "title": "Cử nhân Công nghệ Thông tin",
+          "organization": "Đại học FPT",
+          "meta": "Hòa Lạc, Hà Nội",
+          "description": "Chương trình cử nhân Công nghệ Thông tin tại cơ sở Hòa Lạc, Hà Nội."
+        },
+        "fpt": {
+          "index": "02 / KINH NGHIỆM CHÍNH",
+          "period": "05/2024 — 03/2026",
+          "title": "Software Engineer",
+          "organization": "FPT Software",
+          "meta": "Backend systems · Sub-team 4–5 người",
+          "description": "Phát triển backend cho hệ thống nhân sự và phối hợp vận hành một sub-team backend.",
+          "responsibilities": [
+            "Xây dựng API và business logic bằng Java, Spring Boot và PostgreSQL.",
+            "Triển khai batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack cho phát triển và kiểm thử local.",
+            "Điều phối công việc và review code cho sub-team backend 4–5 người."
+          ],
+          "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
+        },
+        "aiProgram": {
+          "index": "03 / BƯỚC PHÁT TRIỂN AI",
+          "period": "04/2026 — 07/2026",
+          "title": "Chương trình Nhân tài AI Thực chiến — Khóa Cơ bản",
+          "organization": "VinUniversity × Vingroup",
+          "meta": "12 tuần · Khung năng lực SFIA",
+          "description": "Chương trình thực hành tập trung vào tư duy AI, đạo đức AI, trợ lý AI và giải quyết vấn đề dưới sự hướng dẫn của giảng viên VinUni."
+        }
+      },
+      "recognition": {
+        "eyebrow": "CHỈ MỤC GHI NHẬN / 03",
+        "title": "Kết quả được ghi nhận.",
+        "documentarySelectorLabel": "SỔ TƯ LIỆU / CHỌN THỦ CÔNG",
+        "documentaries": {
+          "ceremony": {
+            "index": "01",
+            "label": "LỄ BẾ GIẢNG VINUNIVERSITY",
+            "caption": "Màn hình tại lễ bế giảng VinUniversity tuyên dương đội VCareer và ghi lại hai kết quả tại Codex Community Hackathon Hanoi 2026.",
+            "alt": "Sân khấu lễ bế giảng VinUniversity hiển thị Team VCareer là dự án nổi bật cùng kết quả giải của VCareer và WonderLens."
+          },
+          "hackathon": {
+            "index": "02",
+            "label": "CÙNG BAN TỔ CHỨC HACKATHON",
+            "caption": "Khoảnh khắc tại Codex Community Hackathon Hanoi cùng ban tổ chức sự kiện, nơi VCareer tham gia Track 4 và WonderLens tham gia Track 1.",
+            "alt": "Ảnh nhóm của Nguyễn Mạnh Tú cùng các thành viên và ban tổ chức tại Codex Community Hackathon Hanoi."
+          },
+          "careerServices": {
+            "index": "03",
+            "label": "ĐỘI NGŨ HƯỚNG NGHIỆP VINUNIVERSITY",
+            "caption": "Khoảnh khắc cùng đội ngũ hướng nghiệp VinUniversity — đơn vị đồng hành trực tiếp trong quá trình xây dựng và thử nghiệm VCareer.",
+            "alt": "Nguyễn Mạnh Tú cùng các thành viên VCareer và đội ngũ hướng nghiệp VinUniversity tại khu vực Graduate Destination."
+          }
+        },
+        "imageLoading": "ĐANG TẢI ẢNH TƯ LIỆU",
+        "imageUnavailable": "ẢNH TƯ LIỆU KHÔNG KHẢ DỤNG",
+        "supportingLabel": "GHI NHẬN LIÊN QUAN / 02",
+        "records": {
+          "vcareer": {
+            "index": "01 / CHỦ LỰC",
+            "project": "VCareer",
+            "result": "Giải Nhì · Track 4: Transform with Codex",
+            "context": "$5,000 OpenAI API credits · Codex Community Hackathon — Hanoi",
+            "date": "27/06/2026"
+          },
+          "wonderlens": {
+            "index": "02 / HACKATHON",
+            "project": "WonderLens",
+            "result": "Giải Nhất · Track 1: Market Scale",
+            "context": "Codex Community Hackathon — Hanoi",
+            "date": "27/06/2026"
+          },
+          "vinuni": {
+            "index": "03 / VINUNIVERSITY",
+            "project": "VCareer",
+            "result": "Dự án nổi bật",
+            "context": "Lễ bế giảng tại VinUniversity",
+            "date": "2026"
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "eyebrow": "07 / NĂNG LỰC & LIÊN HỆ",
+      "title": "Năng lực được neo vào bằng chứng.",
+      "summary": "Mỗi nhóm năng lực dẫn ngược về dự án hoặc vai trò đã chứng minh nó.",
+      "technologyLabel": "CÔNG NGHỆ & PHƯƠNG PHÁP",
+      "evidenceLabel": "BẰNG CHỨNG LIÊN QUAN",
+      "proofAction": "Đi tới phần bằng chứng",
+      "items": {
+        "backend": {
+          "index": "01 / NỀN TẢNG CHÍNH",
+          "title": "Hệ thống backend",
+          "description": "API, business logic, dữ liệu quan hệ, xử lý bất đồng bộ và tác vụ định kỳ."
+        },
+        "realtime": {
+          "index": "02 / PHẠM VI TRỰC TIẾP",
+          "title": "Trải nghiệm AI realtime",
+          "description": "Nền tảng phiên realtime cho trải nghiệm phỏng vấn trực tiếp với AI."
+        },
+        "retrieval": {
+          "index": "03 / HỆ THỐNG SOLO",
+          "title": "Truy xuất & đánh giá",
+          "description": "Truy xuất hybrid, citation quay về nguồn và vòng lặp đánh giá có thể kiểm chứng."
+        },
+        "delivery": {
+          "index": "04 / NĂNG LỰC TRIỂN KHAI",
+          "title": "Phát triển sản phẩm end-to-end",
+          "description": "Nối workflow sản phẩm, frontend, backend và một đường triển khai có thể sử dụng."
+        }
+      },
+      "proofs": {
+        "career": "FPT Software · kinh nghiệm production",
+        "financial": "Financial Planning · backend lead",
+        "vcareer": "VCareer · phạm vi trực tiếp",
+        "scholar": "ScholarAI · dự án solo",
+        "scholarDelivery": "ScholarAI · solo end-to-end",
+        "vcareerDelivery": "VCareer · team phát triển 6 tuần"
+      }
+    },
+    "contact": {
+      "eyebrow": "MỞ KÊNH TRAO ĐỔI",
+      "axis": "BẰNG CHỨNG ĐÃ HỘI TỤ → EMAIL",
+      "title": "Có một hệ thống đáng để cùng xây?",
+      "body": "Mình quan tâm tới backend, sản phẩm AI realtime và những bài toán cần biến mô hình thành trải nghiệm thật.",
+      "primaryLabel": "KÊNH TRỰC TIẾP / EMAIL",
+      "emailAction": "Gửi email tới Nguyen Manh Tu",
+      "secondaryLabel": "CÁC KÊNH KHÁC",
+      "downloadCv": "Tải CV",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "Mở trong tab mới",
+      "footer": {
+        "backToTop": "Về đầu trang",
+        "copyright": "© 2026 Nguyen Manh Tu"
+      }
+    },
+    "notFound": {
+      "metaTitle": "Không tìm thấy trang — Nguyen Manh Tu",
+      "eyebrow": "TUYẾN KHÔNG XÁC ĐỊNH / 404",
+      "status": "ROUTE NOT MAPPED",
+      "title": "Tín hiệu kết thúc tại đây.",
+      "body": "Đường dẫn này không nối tới một phần đang hoạt động trong portfolio. Bạn có thể quay về hệ thống chính hoặc đi thẳng tới case study VCareer.",
+      "navigationLabel": "Điều hướng từ trang không tìm thấy",
+      "home": "Về trang giới thiệu",
+      "caseStudy": "Mở case study VCareer",
+      "switchLocale": "View in English",
+      "systemLabel": "SYSTEMS IN FOCUS"
     }
   },
   "footer": {

@@ -1,0 +1,433 @@
+.page {
+  --not-found-night: #071219;
+  --not-found-deep: #0b2738;
+  --not-found-focus: #6bd7d0;
+  --not-found-white: #edf4f5;
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(22px, 3vw, 44px) clamp(20px, 4.8vw, 76px);
+  color: var(--not-found-white);
+  background: var(--not-found-night);
+  font-family: var(--font-v2-body), sans-serif;
+}
+
+.page,
+.page * {
+  box-sizing: border-box;
+}
+
+.grid,
+.ambient {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grid {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(107, 215, 208, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 215, 208, 0.08) 1px, transparent 1px);
+  background-size: clamp(48px, 6vw, 96px) clamp(48px, 6vw, 96px);
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.ambient {
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(75, 113, 136, 0.28), transparent 34%),
+    linear-gradient(126deg, transparent 48%, rgba(11, 39, 56, 0.72) 48.1%, rgba(11, 39, 56, 0.18) 78%, transparent 78.1%);
+}
+
+.header,
+.footer,
+.meta,
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: clamp(18px, 2vw, 30px);
+  border-bottom: 1px solid rgba(107, 215, 208, 0.22);
+}
+
+.header > p,
+.footer,
+.meta,
+.codeBlock > span {
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.6rem, 0.7vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.header > p,
+.footer p,
+.meta p,
+.meta span {
+  margin: 0;
+}
+
+.header > p {
+  color: rgba(237, 244, 245, 0.56);
+}
+
+.wordmark,
+.localeLink,
+.primaryAction,
+.secondaryAction {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wordmark {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(1.04rem, 1.5vw, 1.42rem);
+  font-variation-settings: "wdth" 116;
+  font-weight: 580;
+  letter-spacing: -0.035em;
+}
+
+.localeLink {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: var(--not-found-focus);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.routeSignal {
+  position: absolute;
+  top: clamp(112px, 14vh, 154px);
+  right: clamp(20px, 4.8vw, 76px);
+  left: clamp(20px, 4.8vw, 76px);
+  height: 18px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.routeLine,
+.routeBreak,
+.routeOrigin {
+  position: absolute;
+  top: 8px;
+  height: 1px;
+}
+
+.routeLine {
+  right: 12%;
+  left: 0;
+  background: linear-gradient(90deg, var(--not-found-focus), #3989ff 72%, transparent);
+  transform-origin: left center;
+  animation: signal-route 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.routeOrigin {
+  z-index: 2;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--not-found-focus);
+  transform: translateY(-4px) rotate(45deg);
+}
+
+.routeBreak {
+  right: 8%;
+  width: 7%;
+  background: var(--not-found-focus);
+  opacity: 0;
+  transform: translateX(-40%);
+  animation: signal-break 0.48s 1.04s ease-out forwards;
+}
+
+.composition {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.72fr);
+  gap: clamp(42px, 8vw, 140px);
+  align-items: center;
+  padding: clamp(94px, 15vh, 170px) 0 clamp(70px, 9vh, 110px);
+}
+
+.codeBlock {
+  position: relative;
+  align-self: stretch;
+  min-height: 320px;
+}
+
+.codeBlock > span {
+  position: absolute;
+  top: 11%;
+  left: 0;
+  color: var(--not-found-focus);
+}
+
+.codeBlock strong {
+  position: absolute;
+  bottom: -0.08em;
+  left: -0.04em;
+  color: transparent;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(12rem, 28vw, 34rem);
+  font-variation-settings: "wdth" 78;
+  font-weight: 560;
+  letter-spacing: -0.075em;
+  line-height: 0.72;
+  -webkit-text-stroke: 1px rgba(107, 215, 208, 0.34);
+  user-select: none;
+}
+
+.copy {
+  max-width: 650px;
+}
+
+.meta {
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: clamp(18px, 2vw, 28px);
+  border-bottom: 1px solid rgba(107, 215, 208, 0.3);
+}
+
+.meta p {
+  color: var(--not-found-focus);
+}
+
+.meta span {
+  color: rgba(237, 244, 245, 0.5);
+}
+
+.copy h1 {
+  max-width: 8ch;
+  margin: clamp(34px, 4vw, 58px) 0 0;
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(4rem, 7.4vw, 8.6rem);
+  font-variation-settings: "wdth" 86;
+  font-weight: 540;
+  letter-spacing: calc(-0.056em + 2px);
+  line-height: 0.88;
+}
+
+.body {
+  max-width: 48ch;
+  margin: clamp(30px, 3vw, 46px) 0 0;
+  color: rgba(237, 244, 245, 0.68);
+  font-size: clamp(0.92rem, 1.08vw, 1.08rem);
+  line-height: 1.72;
+}
+
+.actions {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(34px, 4vw, 58px);
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-width: min(100%, 250px);
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 17px;
+  border: 1px solid var(--not-found-focus);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.primaryAction {
+  color: var(--not-found-night);
+  background: var(--not-found-focus);
+}
+
+.secondaryAction {
+  color: var(--not-found-white);
+  background: rgba(11, 39, 56, 0.48);
+}
+
+.primaryAction:is(:hover, :focus-visible) {
+  color: var(--not-found-white);
+  background: transparent;
+}
+
+.secondaryAction:is(:hover, :focus-visible) {
+  color: var(--not-found-night);
+  background: var(--not-found-focus);
+}
+
+.wordmark:focus-visible,
+.localeLink:focus-visible,
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  border-radius: 0;
+  outline: 2px solid var(--not-found-focus);
+  outline-offset: 5px;
+}
+
+.footer {
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: clamp(18px, 2vw, 28px);
+  border-top: 1px solid rgba(107, 215, 208, 0.18);
+  color: rgba(237, 244, 245, 0.46);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes signal-route {
+  from {
+    opacity: 0.16;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes signal-break {
+  to {
+    opacity: 0.86;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 899px) {
+  .header > p {
+    display: none;
+  }
+
+  .composition {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+    align-content: center;
+    padding-top: 110px;
+  }
+
+  .codeBlock {
+    min-height: 130px;
+  }
+
+  .codeBlock > span {
+    top: 0;
+  }
+
+  .codeBlock strong {
+    right: 0;
+    bottom: -0.02em;
+    left: auto;
+    font-size: clamp(9rem, 40vw, 15rem);
+  }
+
+  .copy h1 {
+    font-size: clamp(4rem, 14vw, 7rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .page {
+    min-height: 100dvh;
+  }
+
+  .routeSignal {
+    top: 100px;
+  }
+
+  .composition {
+    padding: 86px 0 54px;
+  }
+
+  .codeBlock {
+    min-height: 112px;
+  }
+
+  .meta {
+    display: grid;
+    gap: 6px;
+  }
+
+  .copy h1 {
+    max-width: 7ch;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footer p:first-child {
+    max-width: 20ch;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .page {
+    min-height: 720px;
+  }
+
+  .composition {
+    grid-template-columns: minmax(0, 0.62fr) minmax(360px, 1fr);
+    padding: 94px 0 58px;
+  }
+
+  .codeBlock {
+    min-height: 230px;
+  }
+
+  .copy h1 {
+    font-size: clamp(3.6rem, 8vw, 5.8rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeLine,
+  .routeBreak {
+    animation: none;
+  }
+
+  .routeBreak {
+    opacity: 0.86;
+    transform: none;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    transition-duration: 0ms;
+  }
+}

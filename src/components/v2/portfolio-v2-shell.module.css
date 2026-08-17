@@ -1,0 +1,38 @@
+.root {
+  --v2-night: #071219;
+  --v2-deep: #0b2738;
+  --v2-ceremony: #4b7188;
+  --v2-focus: #6bd7d0;
+  --v2-white: #edf4f5;
+  --v2-warm: #d3a58f;
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+  isolation: isolate;
+  color: var(--v2-white);
+  background: var(--v2-night);
+  font-family: var(--font-v2-body), sans-serif;
+}
+
+.root,
+.root * {
+  box-sizing: border-box;
+}
+
+.scene {
+  position: relative;
+  min-height: 100svh;
+}
+
+.root[data-intro-phase="boot"] .scene,
+.root[data-intro-phase="identify"] .scene,
+.root[data-intro-phase="prepare"] .scene,
+.root[data-intro-phase="ready"] .scene {
+  pointer-events: none;
+  user-select: none;
+}
+
+.root ::selection {
+  color: var(--v2-night);
+  background: var(--v2-focus);
+}

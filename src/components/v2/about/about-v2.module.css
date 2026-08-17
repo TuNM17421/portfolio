@@ -1,0 +1,726 @@
+.about {
+  --about-sheet: #edf4f5;
+  --about-night: #071219;
+  --about-deep: #0b2738;
+  --about-focus-ink: #176f6b;
+  --about-signal: #6bd7d0;
+  --about-trace: #4b7188;
+  position: relative;
+  z-index: 8;
+  overflow: clip;
+  color: var(--about-night);
+  background: var(--about-sheet);
+  scroll-margin-top: 76px;
+}
+
+.about::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background:
+    linear-gradient(90deg, rgba(75, 113, 136, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(75, 113, 136, 0.04) 1px, transparent 1px);
+  background-position: clamp(22px, 4.6vw, 72px) 0;
+  background-size: clamp(76px, 8vw, 122px) clamp(76px, 8vw, 122px);
+  mask-image: linear-gradient(to bottom, black, transparent 37%);
+  content: "";
+}
+
+.about::after {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: max(
+    calc(clamp(22px, 4.6vw, 72px) + clamp(13px, 1.6vw, 24px)),
+    calc((100vw - 1600px) / 2 + 96px)
+  );
+  width: 1px;
+  height: clamp(96px, 12vw, 184px);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 111, 107, 0.26),
+    rgba(168, 240, 60, 0.92)
+  );
+  box-shadow: 0 14px 22px rgba(168, 240, 60, 0.16);
+  content: "";
+}
+
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: clamp(84px, 10vw, 150px) clamp(22px, 4.6vw, 72px)
+    clamp(96px, 12vw, 184px);
+}
+
+.sectionRail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(11, 39, 56, 0.24);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.62rem, 0.7vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.sectionRail p,
+.metaLabel,
+.foundationHeading,
+.foundationBody,
+.principleHeading,
+.principleBody,
+.closingStatement {
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--about-focus-ink);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: clamp(26px, 3.2vw, 48px) minmax(0, 1fr);
+  gap: clamp(20px, 3.8vw, 60px);
+}
+
+.signalSpine {
+  position: relative;
+  min-height: 100%;
+}
+
+.signalLine,
+.signalCursor,
+.signalOrigin,
+.signalNodeOne,
+.signalNodeTwo,
+.signalTerminal {
+  position: absolute;
+  left: 50%;
+  display: block;
+  transform: translateX(-50%);
+}
+
+.signalLine {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--about-signal),
+    rgba(23, 111, 107, 0.58) 34%,
+    rgba(75, 113, 136, 0.24) 78%,
+    rgba(168, 240, 60, 0.36)
+  );
+  transform-origin: top center;
+}
+
+.signalCursor {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  display: none;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--about-sheet);
+  border-radius: 50%;
+  background: var(--about-focus-ink);
+  box-shadow:
+    0 0 0 1px var(--about-focus-ink),
+    0 0 22px 5px rgba(107, 215, 208, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.signalOrigin,
+.signalNodeOne,
+.signalNodeTwo,
+.signalTerminal {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--about-focus-ink);
+  border-radius: 50%;
+  background: var(--about-sheet);
+}
+
+.signalOrigin {
+  top: -5px;
+  background: var(--about-focus-ink);
+  box-shadow: 0 0 0 5px rgba(107, 215, 208, 0.16);
+}
+
+.signalNodeOne {
+  top: 43%;
+}
+
+.signalNodeTwo {
+  top: 69%;
+}
+
+.signalTerminal {
+  bottom: 3.5%;
+  border-color: #7faf36;
+  border-radius: 0;
+  background: #a8f03c;
+  box-shadow: 0 0 0 4px rgba(168, 240, 60, 0.12);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.story {
+  min-width: 0;
+}
+
+.foundationBlock {
+  display: grid;
+  min-height: min(940px, 104svh);
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 0.42fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: clamp(42px, 6vw, 110px);
+  padding: clamp(68px, 9vw, 136px) 0 clamp(88px, 10vw, 150px);
+}
+
+.metaLabel {
+  color: var(--about-focus-ink);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: clamp(0.59rem, 0.66vw, 0.68rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.foundationBlock > .metaLabel {
+  grid-column: 1 / -1;
+}
+
+.foundationHeading {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  grid-column: 1 / -1;
+  justify-content: center;
+  padding: clamp(54px, 7vw, 106px) 0;
+  color: var(--about-night);
+  font-family: var(--font-v2-display), sans-serif;
+  font-variation-settings: "wdth" 86;
+  font-weight: 540;
+  letter-spacing: -0.075em;
+  line-height: 0.82;
+}
+
+.foundationClaim,
+.extensionClaim {
+  display: block;
+}
+
+.foundationClaim {
+  font-size: clamp(4.15rem, 8.7vw, 8.6rem);
+}
+
+.foundationPrefix {
+  display: inline-block;
+  margin-inline-end: 0.08em;
+}
+
+.backendAnchor {
+  position: relative;
+  color: var(--about-focus-ink);
+  white-space: nowrap;
+}
+
+.backendAnchor::after {
+  position: absolute;
+  right: 0.03em;
+  bottom: 0.03em;
+  left: 0.03em;
+  height: 0.035em;
+  background: var(--about-signal);
+  content: "";
+}
+
+.extensionClaim {
+  max-width: 11.7em;
+  align-self: flex-end;
+  margin-top: 0.18em;
+  color: var(--about-deep);
+  font-size: clamp(3.1rem, 6.25vw, 6.25rem);
+  font-variation-settings: "wdth" 92;
+  text-align: right;
+}
+
+.foundationBody {
+  grid-column: 2;
+  max-width: 45ch;
+  color: rgba(11, 39, 56, 0.78);
+  font-size: clamp(0.98rem, 1.18vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.principleBlock {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(300px, 0.78fr);
+  align-items: end;
+  gap: clamp(54px, 8vw, 132px);
+  padding: clamp(100px, 12vw, 184px) 0;
+  border-top: 1px solid rgba(11, 39, 56, 0.24);
+}
+
+.principleHeadingGroup {
+  display: grid;
+  gap: clamp(34px, 4vw, 62px);
+}
+
+.principleHeading {
+  max-width: 12ch;
+  color: var(--about-night);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(3.4rem, 6.7vw, 6.75rem);
+  font-variation-settings: "wdth" 88;
+  font-weight: 540;
+  letter-spacing: -0.07em;
+  line-height: 0.88;
+}
+
+.principleBody {
+  max-width: 43ch;
+  color: rgba(11, 39, 56, 0.78);
+  font-size: clamp(0.98rem, 1.18vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.processBlock {
+  padding: clamp(76px, 8vw, 126px) 0;
+  border-top: 1px solid rgba(11, 39, 56, 0.24);
+}
+
+.processList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: clamp(46px, 5vw, 76px) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: process;
+}
+
+.processList li {
+  position: relative;
+  display: grid;
+  min-height: 154px;
+  align-content: space-between;
+  gap: 30px;
+  padding: 18px clamp(20px, 2.2vw, 36px) 20px;
+  border-top: 1px solid var(--about-deep);
+  border-right: 1px solid rgba(11, 39, 56, 0.2);
+  color: var(--about-deep);
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.processList li:first-child {
+  padding-left: 0;
+}
+
+.processList li:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.processList li::before {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--about-focus-ink);
+  box-shadow: 0 0 0 4px var(--about-sheet);
+  content: "";
+}
+
+.processIndex {
+  color: rgba(11, 39, 56, 0.66);
+  font-family: var(--font-v2-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+}
+
+.closingBlock {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.26fr) minmax(0, 1fr);
+  gap: clamp(50px, 8vw, 132px);
+  margin: 0;
+  padding: clamp(104px, 13vw, 198px) 0 0;
+  border-top: 1px solid rgba(11, 39, 56, 0.24);
+}
+
+.closingStatement {
+  max-width: 21ch;
+  color: var(--about-night);
+  font-family: var(--font-v2-display), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5.2rem);
+  font-variation-settings: "wdth" 96;
+  font-weight: 530;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+/*
+ * `motion` keeps the last resolved inline values when the story changes from
+ * the desktop scrub to normal flow during a live resize. The mode attribute is
+ * the source of truth for every fallback, so explicitly restore the readable
+ * state here instead of depending on a remount.
+ */
+.about[data-about-story="static"] .foundationBlock,
+.about[data-about-story="static"] .foundationClaim,
+.about[data-about-story="static"] .extensionClaim,
+.about[data-about-story="static"] .foundationBody,
+.about[data-about-story="static"] .principleBlock,
+.about[data-about-story="static"] .principleHeading,
+.about[data-about-story="static"] .principleBody,
+.about[data-about-story="static"] .processBlock,
+.about[data-about-story="static"] .closingBlock {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.about[data-about-story="static"] .foundationClaim,
+.about[data-about-story="static"] .principleHeading {
+  clip-path: none !important;
+}
+
+.about[data-about-story="static"] .signalLine {
+  transform: translateX(-50%) scaleY(1) !important;
+}
+
+.about[data-about-story="static"] .signalNodeOne,
+.about[data-about-story="static"] .signalNodeTwo,
+.about[data-about-story="static"] .signalTerminal {
+  opacity: 1 !important;
+}
+
+@media (min-width: 900px) {
+  .about[data-about-story="static"] .sheet {
+    padding-top: clamp(92px, 8.5vw, 124px);
+    padding-bottom: clamp(112px, 9vw, 144px);
+  }
+
+  .about[data-about-story="static"] .foundationBlock {
+    min-height: 0;
+    padding: clamp(72px, 7vw, 104px) 0 clamp(92px, 8.5vw, 128px);
+  }
+
+  .about[data-about-story="static"] .foundationHeading {
+    padding: clamp(48px, 5vw, 76px) 0;
+  }
+
+  .about[data-about-story="static"] .foundationClaim {
+    font-size: clamp(3.9rem, 7.7vw, 7.7rem);
+  }
+
+  .about[data-about-story="static"] .extensionClaim {
+    max-width: 13.5em;
+    font-size: clamp(2.9rem, 5.45vw, 5.5rem);
+  }
+
+  .about[data-about-story="static"] .principleBlock {
+    padding: clamp(92px, 8vw, 124px) 0;
+  }
+
+  .about[data-about-story="static"] .principleHeadingGroup {
+    gap: clamp(28px, 3.2vw, 46px);
+  }
+
+  .about[data-about-story="static"] .principleHeading {
+    font-size: clamp(3.25rem, 5.8vw, 5.85rem);
+  }
+
+  .about[data-about-story="static"] .processBlock {
+    padding: clamp(68px, 6.2vw, 94px) 0;
+  }
+
+  .about[data-about-story="static"] .processList {
+    margin-top: clamp(34px, 3.5vw, 52px);
+  }
+
+  .about[data-about-story="static"] .processList li {
+    min-height: 132px;
+  }
+
+  .about[data-about-story="static"] .closingBlock {
+    padding-top: clamp(82px, 7.5vw, 112px);
+  }
+
+  .about[data-about-story="static"] .closingStatement {
+    font-size: clamp(2.4rem, 4.4vw, 4.5rem);
+  }
+
+  .about[data-about-story="active"] {
+    min-height: max(180svh, 1260px);
+    overflow: visible;
+  }
+
+  .about[data-about-story="active"]::before {
+    z-index: 0;
+    opacity: 0.32;
+  }
+
+  .about[data-about-story="active"] .sheet {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    height: 100svh;
+    min-height: 700px;
+    overflow: clip;
+    padding-top: clamp(82px, 10vh, 104px);
+    padding-bottom: clamp(34px, 4.6vh, 52px);
+  }
+
+  .about[data-about-story="active"] .storyGrid {
+    height: calc(100% - 38px);
+  }
+
+  .about[data-about-story="active"] .signalSpine,
+  .about[data-about-story="active"] .story {
+    height: 100%;
+  }
+
+  .about[data-about-story="active"] .signalLine {
+    bottom: 3.5%;
+  }
+
+  .about[data-about-story="active"] .signalCursor {
+    display: block;
+  }
+
+  .about[data-about-story="active"] .signalNodeOne,
+  .about[data-about-story="active"] .signalNodeTwo,
+  .about[data-about-story="active"] .signalTerminal {
+    opacity: 0;
+  }
+
+  .about[data-about-story="active"] .story {
+    position: relative;
+    overflow: clip;
+  }
+
+  .about[data-about-story="active"] .foundationBlock,
+  .about[data-about-story="active"] .principleBlock,
+  .about[data-about-story="active"] .processBlock,
+  .about[data-about-story="active"] .closingBlock {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  .about[data-about-story="active"] .foundationBlock {
+    inset: 0;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    padding: clamp(34px, 5.2vh, 52px) 0 clamp(22px, 3.4vh, 34px);
+  }
+
+  .about[data-about-story="active"] .foundationHeading {
+    padding: clamp(24px, 3.8vh, 42px) 0;
+  }
+
+  .about[data-about-story="active"] .foundationClaim {
+    font-size: clamp(3.45rem, 6.85vw, 6.9rem);
+  }
+
+  .about[data-about-story="active"] .extensionClaim {
+    max-width: 13.5em;
+    font-size: clamp(2.75rem, 5.1vw, 5.15rem);
+  }
+
+  .about[data-about-story="active"] .foundationBody,
+  .about[data-about-story="active"] .principleBody {
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    line-height: 1.66;
+  }
+
+  .about[data-about-story="active"] .principleBlock {
+    inset: 0;
+    align-items: center;
+    padding: clamp(42px, 6.8vh, 72px) 0 clamp(30px, 4.6vh, 50px);
+    border-top: 0;
+  }
+
+  .about[data-about-story="active"] .principleHeadingGroup {
+    gap: clamp(28px, 4.5vh, 46px);
+  }
+
+  .about[data-about-story="active"] .principleHeading {
+    font-size: clamp(3.4rem, 6.2vw, 6.25rem);
+  }
+
+  .about[data-about-story="active"] .processBlock {
+    top: clamp(52px, 7vh, 72px);
+    padding: 0;
+    border-top: 0;
+  }
+
+  .about[data-about-story="active"] .processList {
+    margin-top: clamp(28px, 4.2vh, 44px);
+  }
+
+  .about[data-about-story="active"] .processList li {
+    min-height: clamp(104px, 14vh, 126px);
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .about[data-about-story="active"] .closingBlock {
+    bottom: clamp(18px, 3.2vh, 34px);
+    grid-template-columns: minmax(150px, 0.22fr) minmax(0, 1fr);
+    padding-top: clamp(28px, 4.4vh, 46px);
+  }
+
+  .about[data-about-story="active"] .closingStatement {
+    max-width: 22ch;
+    font-size: clamp(2.2rem, 3.8vw, 3.85rem);
+  }
+}
+
+@media (max-width: 899px) {
+  .about {
+    scroll-margin-top: 68px;
+  }
+
+  .about::before {
+    opacity: 0.28;
+    background-position: 20px 0;
+    background-size: 68px 68px;
+  }
+
+  .about::after {
+    left: 26.5px;
+    height: 92px;
+  }
+
+  .sheet {
+    padding: 82px 20px 92px;
+  }
+
+  .sectionRail {
+    align-items: flex-start;
+    padding-bottom: 15px;
+    font-size: 0.58rem;
+  }
+
+  .axis {
+    text-align: right;
+  }
+
+  .storyGrid {
+    grid-template-columns: 13px minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .signalOrigin,
+  .signalNodeOne,
+  .signalNodeTwo,
+  .signalTerminal {
+    width: 7px;
+    height: 7px;
+  }
+
+  .foundationBlock {
+    display: block;
+    min-height: 0;
+    padding: 62px 0 84px;
+  }
+
+  .foundationHeading {
+    gap: 16px;
+    padding: 42px 0 36px;
+    line-height: 0.86;
+  }
+
+  .foundationClaim {
+    font-size: clamp(3.05rem, 14.2vw, 5.3rem);
+  }
+
+  .extensionClaim {
+    max-width: 9.5em;
+    align-self: flex-start;
+    margin-top: 0;
+    font-size: clamp(2.55rem, 11.6vw, 4.3rem);
+    text-align: left;
+  }
+
+  .foundationBody,
+  .principleBody {
+    max-width: 37ch;
+    font-size: 0.94rem;
+    line-height: 1.72;
+  }
+
+  .principleBlock {
+    display: block;
+    padding: 78px 0 88px;
+  }
+
+  .principleHeadingGroup {
+    gap: 32px;
+  }
+
+  .principleHeading {
+    max-width: 10ch;
+    font-size: clamp(3rem, 13vw, 4.9rem);
+  }
+
+  .principleBody {
+    margin-top: 42px;
+  }
+
+  .processBlock {
+    padding: 68px 0 80px;
+  }
+
+  .processList {
+    display: block;
+    margin-top: 38px;
+  }
+
+  .processList li,
+  .processList li:first-child,
+  .processList li:last-child {
+    min-height: 0;
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 14px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(11, 39, 56, 0.24);
+    border-right: 0;
+  }
+
+  .processList li::before {
+    top: -4px;
+  }
+
+  .closingBlock {
+    display: block;
+    padding-top: 74px;
+  }
+
+  .closingStatement {
+    margin-top: 38px;
+    font-size: clamp(2.35rem, 10.6vw, 4rem);
+    line-height: 1;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 760px) {
+  .foundationBlock {
+    min-height: 860px;
+  }
+}

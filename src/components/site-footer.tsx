@@ -5,7 +5,7 @@ export function SiteFooter() {
   const year = 2026;
 
   return (
-    <footer className="border-t border-border">
+    <footer data-site-shell="v1" className="border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-sm text-faint sm:flex-row">
         <p>
           © {year} Nguyen Manh Tu. {t("rights")}

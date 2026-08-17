@@ -1,0 +1,27 @@
+.layer {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--v2-white);
+}
+
+.word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  margin: 0;
+  font-family: var(--font-v2-display), sans-serif;
+  text-shadow: 0 2px 24px rgba(7, 18, 25, 0.38);
+  transform-origin: top left;
+  white-space: nowrap;
+  will-change: transform, font-size, letter-spacing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    display: none;
+  }
+}

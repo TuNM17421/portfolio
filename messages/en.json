@@ -44,9 +44,9 @@
       "period": "May 2024 — Mar 2026",
       "stack": "Java · Spring Boot · PostgreSQL · AWS · Docker · GraphQL · Testing",
       "bullets": [
-        "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL — improving system efficiency by 20%.",
+        "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL.",
         "Cloud Infrastructure: Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack to optimize local development and testing.",
-        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews — boosting team productivity by 30% during the lead's absence."
+        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews."
       ]
     },
     "course": {
@@ -284,6 +284,120 @@
       "eyebrow": "Link state",
       "repoTitle": "Private source repository",
       "repoBody": "The repository cannot be shared because the source code is owned under the university contract. The live product and public architecture report are available above."
+    },
+    "v2": {
+      "skipToContent": "Skip to case-study content",
+      "portfolioHome": "V2 portfolio home",
+      "caseIndex": "CASE 01 / 01",
+      "localeLabel": "Choose language",
+      "switchToEnglish": "Switch to English",
+      "switchToVietnamese": "Switch to Vietnamese",
+      "returnLabel": "Return to VCareer",
+      "opensNewWindow": "Opens in a new window",
+      "caseNavigation": "Case-study contents",
+      "technologyLabel": "Technology in the VCareer system",
+      "cover": {
+        "caseLabel": "TECHNICAL CASE FILE / AI PRODUCT",
+        "timeline": "05/2026 — PRESENT",
+        "statusLabel": "LIVE / DEVELOPMENT PENDING",
+        "screenLabel": "SCREEN 04 / 06",
+        "screenContext": "REALTIME AI INTERVIEW · TALKINGHEAD"
+      },
+      "signal": {
+        "eyebrow": "01 / EVIDENCE",
+        "title": "Three signals from the real pilot.",
+        "description": "One real-use count, one qualitative survey signal, and one expert review loop — without turning product placeholders into portfolio outcomes."
+      },
+      "problemFlow": {
+        "label": "The career-preparation path the team connected",
+        "cv": "CV",
+        "criteria": "JD criteria",
+        "interview": "Live AI interview"
+      },
+      "scopeLabels": {
+        "direct": "TU / DIRECT",
+        "context": "TEAM CONTEXT / WIDER PRODUCT"
+      },
+      "deliveryTrace": {
+        "buildWindow": "06 WEEKS / DISCOVERY TO PILOT",
+        "recognitionBoundary": "AFTER THE PRODUCT WAS ALREADY LIVE"
+      },
+      "architectureTrace": {
+        "pathLabel": "SCOPE + STATE LEGEND",
+        "labels": {
+          "context": "PRODUCT CONTEXT",
+          "direct": "TU / DIRECT",
+          "current": "CURRENT ENVIRONMENT",
+          "pending": "TARGET / USER CUTOVER PENDING"
+        },
+        "browser": {
+          "title": "Browser + TalkingHead",
+          "body": "TalkingHead remains part of the live interview experience; it belongs to the wider product context."
+        },
+        "workflows": {
+          "title": "CV/JD analysis and structuring workflows"
+        },
+        "deployment": {
+          "title": "TWO DEPLOYMENT BRANCHES",
+          "current": {
+            "title": "Vercel / current environment",
+            "body": "Real users currently access the production version running on Vercel."
+          },
+          "pending": {
+            "title": "AWS Singapore / verified target",
+            "body": "The target architecture has been built and verified; real-user cutover remains pending."
+          }
+        },
+        "report": {
+          "label": "ARCHITECTURE REPORT / WIDER SYSTEM CONTEXT",
+          "body": "The public report describes the wider team and product architecture; it does not expand Tu's direct ownership.",
+          "linkLabel": "Open the full report"
+        }
+      },
+      "evidenceArchive": {
+        "screenCount": "SCREEN {index} / {count}",
+        "labels": {
+          "direct": "TU / DIRECT-SCOPE RELATED",
+          "context": "PRODUCT CONTEXT"
+        },
+        "inspect": "View full screen",
+        "loading": "Loading original image",
+        "unavailable": "Image unavailable",
+        "viewer": {
+          "label": "VCareer evidence viewer",
+          "close": "Close viewer",
+          "previous": "Previous image",
+          "next": "Next image",
+          "openOriginal": "Open original image",
+          "keyboardHint": "← → change image · Esc close"
+        }
+      },
+      "chapters": {
+        "signal": "Evidence",
+        "problem": "Problem",
+        "delivery": "Delivery",
+        "system": "System",
+        "screens": "Screens",
+        "state": "State"
+      },
+      "sectionCodes": {
+        "problem": "02 / PROBLEM + SCOPE",
+        "delivery": "03 / DELIVERY",
+        "system": "04 / SYSTEM",
+        "screens": "05 / SCREENS",
+        "state": "06 / STATE"
+      },
+      "stateLabels": {
+        "shipped": "SHIPPED / CURRENT",
+        "roadmap": "PENDING FUNDING"
+      },
+      "stateBoundary": {
+        "rootLabel": "PRODUCT STATE BOUNDARY"
+      },
+      "footer": {
+        "caseLabel": "VCareer / CASE 01",
+        "return": "Return to portfolio"
+      }
     }
   },
   "skills": {
@@ -321,9 +435,9 @@
         "vinuniCeremony": "Honored as a featured project at VinUniversity's graduation ceremony",
         "vinuniFaculty": "With the faculty at VinUniversity",
         "aiInAction": "With the cohort at the closing ceremony of Vingroup's \"AI in Action\" talent program",
-        "codex": "Presenting at Codex Community Hackathon 2026",
-        "stakeholder": "Congratulated by the organizers",
-      "teamDetail": "The team at VinUniversity"
+        "codex": "With the team and organizers at Codex Community Hackathon 2026",
+        "stakeholder": "With the VinUniversity Career Services team",
+        "teamDetail": "The team at VinUniversity"
       }
     }
   },
@@ -351,6 +465,390 @@
       "errorUnavailable": "Message delivery is temporarily unavailable. Please email me directly.",
       "unavailable": "The message form is currently unavailable. Please use the email link above.",
       "sending": "Sending…"
+    }
+  },
+  "v2": {
+    "intro": {
+      "metaTitle": "Nguyen Manh Tu — Systems in Focus",
+      "metaDescription": "The motion-forward portfolio of Nguyen Manh Tu, Software Engineer and AI Engineer.",
+      "introLabel": "Portfolio opening sequence",
+      "portfolio": "Portfolio",
+      "wordmark": "Nguyen Manh Tu",
+      "specialties": {
+        "backend": "Backend",
+        "realtime": "Realtime",
+        "ai": "AI"
+      },
+      "skip": "Skip intro",
+      "preparing": "Resolving critical scene",
+      "ready": "Focus locked",
+      "fallbackReady": "Signal preserved · entering safely",
+      "portraitFallback": "Portrait signal unavailable · gradient fallback active"
+    },
+    "hero": {
+      "homeLabel": "Return to the portfolio opening",
+      "navigationLabel": "Portfolio navigation",
+      "workNav": "Work",
+      "workProof": "03 projects · 04 source repositories",
+      "careerNav": "Career",
+      "careerProof": "FPT Software · VinUniversity",
+      "contact": "Contact",
+      "localeLabel": "Choose language",
+      "openMenu": "Open navigation",
+      "closeMenu": "Close navigation",
+      "role": "Software Engineer · AI Engineer",
+      "positioning": "Building reliable backends and realtime AI experiences.",
+      "location": "Hanoi, Vietnam",
+      "primaryAction": "VCareer / View case study",
+      "proof": "150+ pilot learners",
+      "portraitAlt": "Portrait of Nguyen Manh Tu"
+    },
+    "about": {
+      "eyebrow": "ABOUT / HOW I BUILD SYSTEMS",
+      "foundationLabel": "Foundation",
+      "foundationPrefix": "From",
+      "foundationAnchor": "Backend",
+      "foundationSuffix": ".",
+      "extension": "AI is the next step forward.",
+      "foundationBody": "More than two years in Backend gave me a foundation in APIs, data, business logic, and how production systems behave. I bring that foundation into LLMs, RAG, recommendation systems, and AI Agents to build AI systems that work in practice.",
+      "principleLabel": "Operating principle",
+      "principle": "Start with the real problem rather than the technology.",
+      "principleBody": "I first clarify the user's problem and what success looks like, then build the simplest solution that can test the idea. Architecture, performance, and AI complexity evolve only after real usage provides evidence.",
+      "processLabel": "How I make decisions",
+      "process": {
+        "problem": "Understand the problem",
+        "proof": "Prove the simplest version",
+        "usage": "Observe real usage",
+        "scale": "Scale with evidence"
+      },
+      "closingLabel": "What good engineering means",
+      "closing": "Good engineering is not the system with the most technology. It is simple enough to maintain and strong enough to solve the right problem."
+    },
+    "vcareer": {
+      "eyebrow": "04 / FLAGSHIP PROOF",
+      "status": "Product live · further development pending university funding",
+      "title": "VCareer",
+      "subtitle": "AI Career Development Platform",
+      "proposition": "Connecting CV preparation, job criteria, and realtime AI interviews in one actionable practice workflow.",
+      "pilotValue": "150+",
+      "pilotLabel": "real learners in the VinUni pilot",
+      "scopeLabel": "What I directly owned",
+      "scope": {
+        "livekit": "LiveKit + WebRTC baseline",
+        "matching": "CV analysis and CV-to-JD matching",
+        "jdBuilder": "JD Builder"
+      },
+      "workflowLabel": "PRODUCT WORKFLOW / 06 SCREENS",
+      "workflowTitle": "From profile to feedback.",
+      "architectureLabel": "REALTIME PATH",
+      "architectureSource": "BROWSER",
+      "architectureTarget": "LIVEKIT / WEBRTC",
+      "screenshotDisclaimer": "Product interface snapshots · values shown inside are not used as portfolio metrics.",
+      "screenLabel": "SCREEN",
+      "labels": {
+        "direct": "DIRECT SCOPE",
+        "context": "PRODUCT CONTEXT",
+        "analysis": "ANALYSIS LAYER",
+        "baseline": "BASELINE"
+      },
+      "stages": {
+        "landing": {
+          "name": "Landing",
+          "caption": "The entry point to VCareer's journey. Numbers shown in the interface are product demo data only.",
+          "alt": "VCareer platform landing page"
+        },
+        "cvBuilder": {
+          "name": "CV Builder",
+          "caption": "The CV analysis and scoring layer is shown inside the builder.",
+          "alt": "VCareer CV building and analysis interface"
+        },
+        "match": {
+          "name": "CV / job matching",
+          "caption": "CV-to-JD comparison makes fit, gaps, and actionable recommendations visible.",
+          "alt": "VCareer CV and job description matching interface"
+        },
+        "interviewDemo": {
+          "name": "Live interview",
+          "caption": "The LiveKit/WebRTC baseline carries the realtime AI interview session; the complete experience is team product context.",
+          "alt": "VCareer live AI interview interface"
+        },
+        "interviewReview": {
+          "name": "Interview review",
+          "caption": "The learner feedback loop after an interview, presented as context for the wider team product.",
+          "alt": "VCareer post-interview review and feedback interface"
+        },
+        "dashboard": {
+          "name": "Dashboard",
+          "caption": "An overview of the learner journey and functional paths in the VCareer pilot system.",
+          "alt": "VCareer learner dashboard"
+        }
+      },
+      "outcomesCode": "VERIFIED / 03",
+      "outcomesLabel": "Verified evidence",
+      "outcomes": {
+        "confidence": "Survey feedback reported higher confidence",
+        "review": "CV scoring reviewed by VinUni Career Services' Product Owner",
+        "award": "Track 4 2nd Prize · $5,000 in OpenAI API credits"
+      },
+      "repositoryState": "Private source · university-owned under contract",
+      "primaryAction": "View the full case study",
+      "liveAction": "Open live product",
+      "architectureAction": "Read architecture report",
+      "opensNewWindow": "Opens in a new window",
+      "imageLoading": "Resolving product image",
+      "imageUnavailable": "Product image unavailable"
+    },
+    "work": {
+      "eyebrow": "05 / SYSTEMS & EVIDENCE",
+      "scholar": {
+        "kicker": "AI RESEARCH SYSTEM",
+        "status": "SOLO PROJECT · END-TO-END ENGINEERING",
+        "title": "ScholarAI",
+        "subtitle": "AI-augmented literature discovery and reading workspace",
+        "thesis": "From finding the right paper to tracing an answer back to source: retrieval, PDF reading, notes, citation-aware RAG, and evaluation share one workspace.",
+        "scopeLabel": "One codebase. The complete loop.",
+        "scope": {
+          "search": "Dense + BM25 retrieval fused through Qdrant RRF.",
+          "grounding": "Hierarchical RAG, SSE responses, and citations linked back to PDF pages.",
+          "evaluation": "A LangSmith harness for QA, retrieval, faithfulness, and refusal."
+        },
+        "evidenceLabel": "ENGINEERING EVIDENCE / 03",
+        "screenLabel": "SIGNAL",
+        "evidence": {
+          "retrieve": {
+            "label": "RETRIEVE",
+            "title": "Search by meaning and exact terms.",
+            "caption": "Dense embeddings and BM25 meet in Qdrant RRF, preserving semantic relevance alongside acronyms, author names, and exact-match queries.",
+            "alt": "ScholarAI academic search interface with semantic retrieval and filters"
+          },
+          "ground": {
+            "label": "GROUND",
+            "title": "Answers return to source.",
+            "caption": "Hierarchical RAG retrieves PDF context, streams the response, and attaches citations that reopen the relevant document location.",
+            "alt": "ScholarAI PDF reader and citation-aware chat interface"
+          },
+          "evaluate": {
+            "label": "EVALUATE",
+            "title": "Measure instead of assume.",
+            "caption": "Two LangSmith runs record QA and refusal behavior. Values remain visible as experiment output, not repackaged as an improvement claim.",
+            "qaLabel": "QA / RETRIEVAL",
+            "qaCaption": "Tracks answer presence, citation accuracy, correctness, faithfulness, retrieval hit rate, and latency.",
+            "qaAlt": "ScholarAI QA and retrieval benchmark results in LangSmith",
+            "refusalLabel": "REFUSAL / GUARDRAIL",
+            "refusalCaption": "Tests out-of-scope refusal behavior alongside latency and error rate for each run.",
+            "refusalAlt": "ScholarAI refusal guardrail benchmark results in LangSmith"
+          }
+        },
+        "technology": "FastAPI · Qdrant RRF · PostgreSQL · OpenAI · LangSmith",
+        "testingContext": "Tried hands-on by fellow learners · no metric published because the feedback dataset was not retained.",
+        "sourceState": "Public source · No live demo",
+        "sourceAction": "View ScholarAI source"
+      },
+      "financial": {
+        "eyebrow": "BACKEND FOUNDATION ARCHIVE",
+        "status": "CAPSTONE · BACKEND LEAD · BUILT BEFORE AI-ASSISTED CODING",
+        "title": "Financial Planning",
+        "subtitle": "Internal planning, expense approval, and financial reporting system",
+        "description": "I led the backend for a role-aware financial workflow spanning authentication, authorization, planning terms, expenses, reports, and scheduled processing.",
+        "topologyLabel": "THREE DEPLOYMENT BOUNDARIES",
+        "domainLabel": "SHARED FINANCIAL DOMAIN",
+        "topology": {
+          "api": {
+            "label": "API",
+            "title": "Spring Boot · SQL Server",
+            "description": "REST APIs, financial rules, and Redis-backed OTP, token, user-detail, and authority state.",
+            "action": "Open API source"
+          },
+          "web": {
+            "label": "WEB",
+            "title": "React · Vite",
+            "description": "Role-aware interfaces for plans, approvals, master data, and reporting.",
+            "action": "Open Web source"
+          },
+          "worker": {
+            "label": "WORKER",
+            "title": "Spring scheduled jobs",
+            "description": "Separate recurring jobs for term state and annual-report aggregation.",
+            "action": "Open Worker source"
+          }
+        },
+        "mediaLabel": "ARCHIVE INTERFACE / 02",
+        "media": {
+          "dashboard": {
+            "label": "DASHBOARD",
+            "caption": "A snapshot of planning terms, departments, and demo expense allocation.",
+            "alt": "Archived Financial Planning dashboard interface"
+          },
+          "report": {
+            "label": "FINANCIAL REPORT",
+            "caption": "The reporting surface connecting planned values to the approval workflow.",
+            "alt": "Archived Financial Planning report interface"
+          }
+        },
+        "sourceState": "Source archive · No live demo or preserved runtime dataset"
+      },
+      "opensNewWindow": "Opens in a new window",
+      "imageLoading": "Resolving evidence image",
+      "imageUnavailable": "Evidence image unavailable"
+    },
+    "career": {
+      "eyebrow": "06 / EXPERIENCE & RECOGNITION",
+      "axis": "2019 → 2026",
+      "title": "Career journey.",
+      "summary": "From an Information Technology foundation, through production backend work, to practical AI training.",
+      "timelineLabel": "DEVELOPMENT TRACE / 03 RECORDS",
+      "responsibilitiesLabel": "WORK SCOPE",
+      "technologyLabel": "SYSTEMS & TOOLS",
+      "records": {
+        "education": {
+          "index": "01 / FOUNDATION",
+          "period": "2019 — 2024",
+          "title": "Bachelor of Information Technology",
+          "organization": "FPT University",
+          "meta": "Hoa Lac, Hanoi",
+          "description": "Bachelor's program in Information Technology at the Hoa Lac campus in Hanoi."
+        },
+        "fpt": {
+          "index": "02 / PRIMARY EXPERIENCE",
+          "period": "MAY 2024 — MAR 2026",
+          "title": "Software Engineer",
+          "organization": "FPT Software",
+          "meta": "Backend systems · 4–5 person sub-team",
+          "description": "Developed backend services for an HR system and helped coordinate a backend sub-team.",
+          "responsibilities": [
+            "Built APIs and business logic with Java, Spring Boot, and PostgreSQL.",
+            "Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack for local development and testing.",
+            "Coordinated work and reviewed code for a 4–5 person backend sub-team."
+          ],
+          "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
+        },
+        "aiProgram": {
+          "index": "03 / AI DEVELOPMENT",
+          "period": "APR 2026 — JUL 2026",
+          "title": "Practical AI Talent Program — Foundation",
+          "organization": "VinUniversity × Vingroup",
+          "meta": "12 weeks · SFIA skills framework",
+          "description": "A hands-on program focused on AI thinking, AI ethics, AI assistants, and problem-solving under VinUni faculty."
+        }
+      },
+      "recognition": {
+        "eyebrow": "RECOGNITION INDEX / 03",
+        "title": "Recognised outcomes.",
+        "documentarySelectorLabel": "DOCUMENT REGISTER / MANUAL SELECT",
+        "documentaries": {
+          "ceremony": {
+            "index": "01",
+            "label": "VINUNIVERSITY CLOSING CEREMONY",
+            "caption": "The VinUniversity closing-ceremony screen recognised Team VCareer and recorded both Codex Community Hackathon Hanoi 2026 results.",
+            "alt": "VinUniversity closing-ceremony stage showing Team VCareer as a featured project alongside the VCareer and WonderLens award results."
+          },
+          "hackathon": {
+            "index": "02",
+            "label": "WITH THE HACKATHON ORGANISERS",
+            "caption": "A moment at Codex Community Hackathon Hanoi with the event organisers, where VCareer entered Track 4 and WonderLens entered Track 1.",
+            "alt": "Group photograph of Nguyen Manh Tu with team members and event organisers at Codex Community Hackathon Hanoi."
+          },
+          "careerServices": {
+            "index": "03",
+            "label": "VINUNIVERSITY CAREER SERVICES",
+            "caption": "A moment with the VinUniversity career-services team — VCareer's stakeholder during product development and user testing.",
+            "alt": "Nguyen Manh Tu with VCareer members and the VinUniversity career-services team at the Graduate Destination area."
+          }
+        },
+        "imageLoading": "LOADING DOCUMENTARY IMAGE",
+        "imageUnavailable": "DOCUMENTARY IMAGE UNAVAILABLE",
+        "supportingLabel": "RELATED RECOGNITION / 02",
+        "records": {
+          "vcareer": {
+            "index": "01 / FLAGSHIP",
+            "project": "VCareer",
+            "result": "2nd Prize · Track 4: Transform with Codex",
+            "context": "$5,000 in OpenAI API credits · Codex Community Hackathon — Hanoi",
+            "date": "JUN 27, 2026"
+          },
+          "wonderlens": {
+            "index": "02 / HACKATHON",
+            "project": "WonderLens",
+            "result": "1st Prize · Track 1: Market Scale",
+            "context": "Codex Community Hackathon — Hanoi",
+            "date": "JUN 27, 2026"
+          },
+          "vinuni": {
+            "index": "03 / VINUNIVERSITY",
+            "project": "VCareer",
+            "result": "Featured project",
+            "context": "Closing ceremony at VinUniversity",
+            "date": "2026"
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "eyebrow": "07 / CAPABILITIES & CONTACT",
+      "title": "Capabilities anchored in evidence.",
+      "summary": "Each capability routes back to the project or role that demonstrates it.",
+      "technologyLabel": "TECHNOLOGIES & METHODS",
+      "evidenceLabel": "RELATED EVIDENCE",
+      "proofAction": "Go to evidence",
+      "items": {
+        "backend": {
+          "index": "01 / PRIMARY FOUNDATION",
+          "title": "Backend systems",
+          "description": "APIs, business logic, relational data, asynchronous processing, and scheduled work."
+        },
+        "realtime": {
+          "index": "02 / DIRECT SCOPE",
+          "title": "Realtime AI experiences",
+          "description": "Realtime session foundations for a live AI interview experience."
+        },
+        "retrieval": {
+          "index": "03 / SOLO SYSTEM",
+          "title": "Retrieval & evaluation",
+          "description": "Hybrid retrieval, source-linked citations, and verifiable evaluation loops."
+        },
+        "delivery": {
+          "index": "04 / DELIVERY CAPABILITY",
+          "title": "End-to-end product delivery",
+          "description": "Connecting product workflow, frontend, backend, and a usable delivery path."
+        }
+      },
+      "proofs": {
+        "career": "FPT Software · production role",
+        "financial": "Financial Planning · backend lead",
+        "vcareer": "VCareer · direct scope",
+        "scholar": "ScholarAI · solo project",
+        "scholarDelivery": "ScholarAI · solo end-to-end",
+        "vcareerDelivery": "VCareer · six-week team delivery"
+      }
+    },
+    "contact": {
+      "eyebrow": "OPEN A CHANNEL",
+      "axis": "EVIDENCE CONVERGED → EMAIL",
+      "title": "Have a system worth building?",
+      "body": "I’m interested in reliable backends, realtime AI products, and problems that turn models into real experiences.",
+      "primaryLabel": "DIRECT CHANNEL / EMAIL",
+      "emailAction": "Email Nguyen Manh Tu",
+      "secondaryLabel": "OTHER ROUTES",
+      "downloadCv": "Download CV",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "Opens in a new tab",
+      "footer": {
+        "backToTop": "Back to top",
+        "copyright": "© 2026 Nguyen Manh Tu"
+      }
+    },
+    "notFound": {
+      "metaTitle": "Page not found — Nguyen Manh Tu",
+      "eyebrow": "UNRESOLVED ROUTE / 404",
+      "status": "ROUTE NOT MAPPED",
+      "title": "The signal ends here.",
+      "body": "This path does not connect to an active part of the portfolio. Return to the main system or move directly into the VCareer case study.",
+      "navigationLabel": "Navigation from the not-found page",
+      "home": "Return to the portfolio",
+      "caseStudy": "Open the VCareer case study",
+      "switchLocale": "Xem bằng tiếng Việt",
+      "systemLabel": "SYSTEMS IN FOCUS"
     }
   },
   "footer": {
