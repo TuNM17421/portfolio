@@ -6,7 +6,6 @@ import styles from "./about-v2.module.css";
 
 export type AboutV2Copy = {
   eyebrow: string;
-  axis: string;
   foundationLabel: string;
   foundationPrefix: string;
   foundationAnchor: string;
@@ -47,7 +46,6 @@ export function AboutV2({ copy, navigationOpen, story }: AboutV2Props) {
       <div className={styles.sheet}>
         <header className={styles.sectionRail}>
           <p className={styles.eyebrow}>{copy.eyebrow}</p>
-          <p className={styles.axis}>{copy.axis}</p>
         </header>
 
         <div className={styles.storyGrid}>
@@ -90,7 +88,10 @@ export function AboutV2({ copy, navigationOpen, story }: AboutV2Props) {
                   style={motionStyle("foundationClaim")}
                   data-about-foundation-claim
                 >
-                  <span>{copy.foundationPrefix} </span>
+                  <span className={styles.foundationPrefix}>
+                    {copy.foundationPrefix}
+                  </span>
+                  {" "}
                   <span className={styles.backendAnchor} data-about-backend>
                     {copy.foundationAnchor}
                   </span>

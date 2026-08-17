@@ -46,7 +46,7 @@
       "bullets": [
         "Backend Development: Built backend APIs for HR systems using Java, Spring Boot and PostgreSQL.",
         "Cloud Infrastructure: Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack to optimize local development and testing.",
-        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews during the lead's absence."
+        "Leadership: Led a 4–5 member backend sub-team, coordinating tasks and running code reviews."
       ]
     },
     "course": {
@@ -504,16 +504,15 @@
       "portraitAlt": "Portrait of Nguyen Manh Tu"
     },
     "about": {
-      "eyebrow": "ABOUT / HOW I BUILD",
-      "axis": "BACKEND → AI",
+      "eyebrow": "ABOUT / HOW I BUILD SYSTEMS",
       "foundationLabel": "Foundation",
-      "foundationPrefix": "I'm not leaving",
+      "foundationPrefix": "From",
       "foundationAnchor": "Backend",
-      "foundationSuffix": " behind.",
+      "foundationSuffix": ".",
       "extension": "AI is the next step forward.",
-      "foundationBody": "More than two years in Backend gave me a foundation in APIs, data, business logic, and how production systems behave. I bring that foundation into LLMs, RAG, recommendation systems, and AI Agents to build AI systems that work in practice — not just wrappers around a model API.",
+      "foundationBody": "More than two years in Backend gave me a foundation in APIs, data, business logic, and how production systems behave. I bring that foundation into LLMs, RAG, recommendation systems, and AI Agents to build AI systems that work in practice.",
       "principleLabel": "Operating principle",
-      "principle": "Start with the problem. Not the technology.",
+      "principle": "Start with the real problem rather than the technology.",
       "principleBody": "I first clarify the user's problem and what success looks like, then build the simplest solution that can test the idea. Architecture, performance, and AI complexity evolve only after real usage provides evidence.",
       "processLabel": "How I make decisions",
       "process": {
@@ -560,7 +559,7 @@
         },
         "cvBuilder": {
           "name": "CV Builder",
-          "caption": "The CV analysis and scoring layer shown inside the builder; it does not imply ownership of the entire interface.",
+          "caption": "The CV analysis and scoring layer is shown inside the builder.",
           "alt": "VCareer CV building and analysis interface"
         },
         "match": {
@@ -601,7 +600,6 @@
     },
     "work": {
       "eyebrow": "05 / SYSTEMS & EVIDENCE",
-      "axis": "CURRENT AI → BACKEND FOUNDATION",
       "scholar": {
         "kicker": "AI RESEARCH SYSTEM",
         "status": "SOLO PROJECT · END-TO-END ENGINEERING",
@@ -696,7 +694,7 @@
     "career": {
       "eyebrow": "06 / EXPERIENCE & RECOGNITION",
       "axis": "2019 → 2026",
-      "title": "Career trace.",
+      "title": "Career journey.",
       "summary": "From an Information Technology foundation, through production backend work, to practical AI training.",
       "timelineLabel": "DEVELOPMENT TRACE / 03 RECORDS",
       "responsibilitiesLabel": "WORK SCOPE",
@@ -720,7 +718,7 @@
           "responsibilities": [
             "Built APIs and business logic with Java, Spring Boot, and PostgreSQL.",
             "Implemented batch jobs and asynchronous processing with AWS SQS; used Docker and LocalStack for local development and testing.",
-            "Coordinated work and reviewed code for a 4–5 person backend sub-team while the team lead was absent."
+            "Coordinated work and reviewed code for a 4–5 person backend sub-team."
           ],
           "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
         },
@@ -787,7 +785,6 @@
     },
     "capabilities": {
       "eyebrow": "07 / CAPABILITIES & CONTACT",
-      "axis": "SHIPPED SYSTEMS → OPEN CHANNEL",
       "title": "Capabilities anchored in evidence.",
       "summary": "Each capability routes back to the project or role that demonstrates it.",
       "technologyLabel": "TECHNOLOGIES & METHODS",
@@ -836,44 +833,6 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "opensNewTab": "Opens in a new tab",
-      "form": {
-        "label": "OR SEND IT HERE",
-        "title": "A short message is enough.",
-        "body": "This form uses the same email channel above. It reports success only after the delivery service accepts the message.",
-        "required": "Required",
-        "name": "Full name",
-        "namePlaceholder": "Your name",
-        "email": "Email",
-        "emailPlaceholder": "email@example.com",
-        "message": "Message",
-        "messagePlaceholder": "What would you like to discuss?",
-        "submit": "Send message",
-        "retry": "Try again",
-        "sending": "Sending…",
-        "directEmail": "Email directly",
-        "validationSummary": "Check the marked fields.",
-        "success": "Your message was accepted for email delivery.",
-        "rateLimit": "This channel is rate-limited. Please try again later.",
-        "error": "The delivery service did not accept the message. Please retry.",
-        "offline": "The delivery service could not be reached. Check your connection.",
-        "unavailable": "The message form is currently unavailable.",
-        "staticFallback": "The form requires JavaScript to send safely.",
-        "errors": {
-          "name": "Enter a name (100 characters max).",
-          "email": "Enter a valid email.",
-          "message": "Use 10–5,000 characters."
-        },
-        "stateLabels": {
-          "ready": "READY",
-          "validation": "CHECK FIELDS",
-          "sending": "SENDING",
-          "success": "ACCEPTED / 202",
-          "rateLimit": "RATE LIMITED / 429",
-          "error": "NOT DELIVERED / 502",
-          "offline": "CONNECTION LOST",
-          "unavailable": "SECONDARY CHANNEL PAUSED / 503"
-        }
-      },
       "footer": {
         "backToTop": "Back to top",
         "copyright": "© 2026 Nguyen Manh Tu"

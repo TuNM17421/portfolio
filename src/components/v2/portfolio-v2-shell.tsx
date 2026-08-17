@@ -63,7 +63,6 @@ type PortfolioV2ShellProps = {
   careerCopy: CareerRecognitionCopy;
   capabilitiesCopy: CapabilityLedgerCopy;
   contactCopy: ContactConversionCopy;
-  contactDeliveryEnabled: boolean;
 };
 
 export function PortfolioV2Shell({
@@ -79,7 +78,6 @@ export function PortfolioV2Shell({
   careerCopy,
   capabilitiesCopy,
   contactCopy,
-  contactDeliveryEnabled,
 }: PortfolioV2ShellProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const reduceMotion = Boolean(prefersReducedMotion);
@@ -196,7 +194,6 @@ export function PortfolioV2Shell({
           copy={contactCopy}
           navigationOpen={mobileNavigationOpen}
           reduceMotion={reduceMotion}
-          deliveryEnabled={contactDeliveryEnabled}
           motionController={contactMotion}
         />
       </div>

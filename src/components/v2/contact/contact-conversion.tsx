@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { V2_CONTACT_DESTINATIONS } from "@/lib/v2/contact-conversion";
 import type { ContactConversionMotionController } from "./contact-conversion-motion";
 import { ContactFooter, type ContactFooterCopy } from "./contact-footer";
-import { ContactForm, type ContactFormCopy } from "./contact-form";
 import styles from "./contact-conversion.module.css";
 
 export type ContactConversionCopy = {
@@ -19,7 +18,6 @@ export type ContactConversionCopy = {
   github: string;
   linkedin: string;
   opensNewTab: string;
-  form: ContactFormCopy;
   footer: ContactFooterCopy;
 };
 
@@ -27,7 +25,6 @@ type ContactConversionProps = {
   copy: ContactConversionCopy;
   navigationOpen: boolean;
   reduceMotion: boolean;
-  deliveryEnabled: boolean;
   motionController: ContactConversionMotionController;
 };
 
@@ -35,7 +32,6 @@ export function ContactConversion({
   copy,
   navigationOpen,
   reduceMotion,
-  deliveryEnabled,
   motionController,
 }: ContactConversionProps) {
   const destinations = V2_CONTACT_DESTINATIONS;
@@ -129,11 +125,6 @@ export function ContactConversion({
               </a>
             </nav>
           </div>
-
-          <ContactForm
-            copy={copy.form}
-            deliveryEnabled={deliveryEnabled}
-          />
 
           <ContactFooter copy={copy.footer} reduceMotion={reduceMotion} />
         </div>

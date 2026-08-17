@@ -7,6 +7,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  useMotionValueEvent,
 } from "motion/react";
 import {
   resolveVCareerShowcaseMode,
@@ -17,6 +18,7 @@ import {
 } from "@/lib/v2/vcareer-showcase";
 
 const DESKTOP_RELAY_QUERY = "(min-width: 1024px)";
+const OUTCOMES_INTERACTION_START = 0.9;
 
 type VCareerEvidenceRelayOptions = {
   sectionRef: RefObject<HTMLElement | null>;
@@ -32,6 +34,7 @@ type StageMotion = {
 export type VCareerEvidenceRelayController = {
   mode: VCareerShowcaseMode;
   enabled: boolean;
+  outcomesInteractive: boolean;
   progress: MotionValue<number>;
   styles: {
     intro: MotionStyle;
@@ -127,6 +130,7 @@ export function useVCareerEvidenceRelay({
   reduceMotion,
 }: VCareerEvidenceRelayOptions): VCareerEvidenceRelayController {
   const [desktop, setDesktop] = useState(false);
+  const [outcomesReached, setOutcomesReached] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -136,6 +140,11 @@ export function useVCareerEvidenceRelay({
     damping: 28,
     mass: 0.26,
     restDelta: 0.001,
+  });
+
+  useMotionValueEvent(progress, "change", (latest) => {
+    const next = latest >= OUTCOMES_INTERACTION_START;
+    setOutcomesReached((current) => (current === next ? current : next));
   });
 
   useEffect(() => {
@@ -236,6 +245,7 @@ export function useVCareerEvidenceRelay({
   return {
     mode,
     enabled: mode === "active",
+    outcomesInteractive: mode === "static" || outcomesReached,
     progress,
     styles: {
       intro: { opacity: introOpacity, y: introY },

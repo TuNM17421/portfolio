@@ -234,11 +234,6 @@
   color: var(--work-cyan);
 }
 
-.sectionRail p:last-child {
-  color: rgba(11, 39, 56, 0.64);
-  text-align: right;
-}
-
 .scholar {
   padding-top: clamp(52px, 6vw, 92px);
   scroll-margin-top: 76px;
@@ -1707,10 +1702,6 @@
     font-size: 0.56rem;
   }
 
-  .sectionRail p:last-child {
-    max-width: 22ch;
-  }
-
   .scholar {
     padding-top: 44px;
   }
@@ -1960,11 +1951,6 @@
 @media (max-width: 359px) {
   .sectionRail {
     display: grid;
-  }
-
-  .sectionRail p:last-child {
-    max-width: none;
-    text-align: left;
   }
 
   .scholarIdentity h3 {

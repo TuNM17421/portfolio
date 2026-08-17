@@ -3,15 +3,15 @@ import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
 
 describe("portfolio v2 About content", () => {
-  it("keeps Backend as the foundation instead of describing a career reset", () => {
+  it("frames Backend as the foundation for the next step", () => {
     expect(
       `${vi.v2.about.foundationPrefix} ${vi.v2.about.foundationAnchor}${vi.v2.about.foundationSuffix}`,
-    ).toBe("Không rời Backend.");
+    ).toBe("Từ Backend.");
     expect(vi.v2.about.extension).toBe("AI là bước phát triển tiếp theo.");
 
     expect(
       `${en.v2.about.foundationPrefix} ${en.v2.about.foundationAnchor}${en.v2.about.foundationSuffix}`,
-    ).toBe("I'm not leaving Backend behind.");
+    ).toBe("From Backend.");
     expect(en.v2.about.extension).toBe("AI is the next step forward.");
   });
 
@@ -25,10 +25,10 @@ describe("portfolio v2 About content", () => {
     }
 
     expect(vi.v2.about.principle).toBe(
-      "Bắt đầu từ bài toán. Không bắt đầu từ công nghệ.",
+      "Hãy bắt đầu từ bài toán thực tế, thay vì xuất phát từ công nghệ.",
     );
     expect(en.v2.about.principle).toBe(
-      "Start with the problem. Not the technology.",
+      "Start with the real problem rather than the technology.",
     );
   });
 

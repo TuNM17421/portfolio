@@ -41,7 +41,6 @@ type FinancialMediaCopy = {
 
 export type SupportingWorkCopy = {
   eyebrow: string;
-  axis: string;
   scholar: {
     kicker: string;
     status: string;
@@ -340,7 +339,6 @@ export function SupportingWork({
       <div ref={handoff.surfaceRef} className={styles.sheet} data-work-surface>
         <header className={styles.sectionRail}>
           <p>{copy.eyebrow}</p>
-          <p>{copy.axis}</p>
         </header>
 
         <h2 id="v2-work-title" className={styles.visuallyHidden}>

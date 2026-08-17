@@ -86,11 +86,6 @@
   color: var(--capability-cyan);
 }
 
-.sectionRail p:last-child {
-  color: rgba(11, 39, 56, 0.62);
-  text-align: right;
-}
-
 .introduction {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -533,10 +528,6 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 8px;
     padding-bottom: 16px;
-  }
-
-  .sectionRail p:last-child {
-    text-align: left;
   }
 
   .introduction {

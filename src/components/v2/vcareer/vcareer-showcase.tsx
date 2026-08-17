@@ -188,6 +188,7 @@ export function VCareerShowcase({
   const relayStyle = <T extends keyof VCareerEvidenceRelayController["styles"]>(
     key: T,
   ) => (relay.enabled ? relay.styles[key] : STATIC_RELAY_STYLES[key]);
+  const outcomesInteractive = !relay.enabled || relay.outcomesInteractive;
 
   return (
     <section
@@ -413,6 +414,11 @@ export function VCareerShowcase({
         <motion.footer
           className={styles.outcomes}
           style={relayStyle("outcomes")}
+          data-vcareer-outcomes-interactive={
+            outcomesInteractive ? "true" : "false"
+          }
+          aria-hidden={outcomesInteractive ? undefined : true}
+          inert={!outcomesInteractive}
         >
           <div className={styles.outcomeHeading}>
             <p className={styles.ledgerCode} aria-hidden>

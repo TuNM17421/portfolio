@@ -100,8 +100,8 @@
 }
 
 .introduction h2 {
-  max-width: 8.5ch;
-  grid-column: 1 / 7;
+  max-width: 13ch;
+  grid-column: 1 / 8;
   padding: 0.08em 0 0.14em;
   color: var(--contact-mineral);
   font-family: var(--font-v2-display), sans-serif;
@@ -219,7 +219,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(28px, 4vw, 64px);
-  padding: clamp(72px, 7vw, 112px) 0 clamp(68px, 7vw, 108px);
+  padding: clamp(72px, 7vw, 112px) 0 0;
 }
 
 .secondaryLabel {
@@ -354,7 +354,7 @@
 
   .secondaryRoutes {
     display: block;
-    padding: 72px 0 68px;
+    padding: 72px 0 0;
   }
 
   .secondaryLabel {

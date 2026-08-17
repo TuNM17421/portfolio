@@ -85,10 +85,6 @@
   color: var(--about-focus-ink);
 }
 
-.axis {
-  color: rgba(11, 39, 56, 0.66);
-}
-
 .storyGrid {
   display: grid;
   grid-template-columns: clamp(26px, 3.2vw, 48px) minmax(0, 1fr);
@@ -225,6 +221,11 @@
 
 .foundationClaim {
   font-size: clamp(4.15rem, 8.7vw, 8.6rem);
+}
+
+.foundationPrefix {
+  display: inline-block;
+  margin-inline-end: 0.08em;
 }
 
 .backendAnchor {

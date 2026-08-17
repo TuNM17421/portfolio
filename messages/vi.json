@@ -46,7 +46,7 @@
       "bullets": [
         "Backend Development: Phát triển backend API cho hệ thống nhân sự bằng Java, Spring Boot và PostgreSQL.",
         "Cloud Infrastructure: Xây dựng batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack để tối ưu phát triển, kiểm thử local.",
-        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code khi team lead vắng mặt."
+        "Leadership: Dẫn dắt sub-team backend 4–5 người, điều phối công việc và review code."
       ]
     },
     "course": {
@@ -504,16 +504,15 @@
       "portraitAlt": "Chân dung Nguyen Manh Tu"
     },
     "about": {
-      "eyebrow": "ABOUT / CÁCH MÌNH XÂY",
-      "axis": "BACKEND → AI",
+      "eyebrow": "ABOUT / CÁCH MÌNH XÂY HỆ THỐNG",
       "foundationLabel": "Nền tảng",
-      "foundationPrefix": "Không rời",
+      "foundationPrefix": "Từ",
       "foundationAnchor": "Backend",
       "foundationSuffix": ".",
       "extension": "AI là bước phát triển tiếp theo.",
-      "foundationBody": "Hơn hai năm làm Backend cho mình nền tảng về API, dữ liệu, business logic và cách hệ thống production vận hành. Mình mang nền tảng đó vào LLM, RAG, recommendation và AI Agent để xây những hệ thống AI thực tế — không chỉ dừng ở việc gọi model API.",
+      "foundationBody": "Hơn hai năm làm Backend cho mình nền tảng về API, dữ liệu, business logic và cách hệ thống production vận hành. Mình mang nền tảng đó vào LLM, RAG, recommendation và AI Agent để xây những hệ thống AI thực tế.",
       "principleLabel": "Nguyên tắc vận hành",
-      "principle": "Bắt đầu từ bài toán. Không bắt đầu từ công nghệ.",
+      "principle": "Hãy bắt đầu từ bài toán thực tế, thay vì xuất phát từ công nghệ.",
       "principleBody": "Mình làm rõ vấn đề của người dùng và tiêu chí thành công trước, sau đó xây giải pháp đơn giản nhất để kiểm chứng. Chỉ khi có dữ liệu sử dụng thực tế, mình mới mở rộng architecture, performance hoặc mức độ phức tạp của AI.",
       "processLabel": "Cách mình ra quyết định",
       "process": {
@@ -560,7 +559,7 @@
         },
         "cvBuilder": {
           "name": "Trình tạo CV",
-          "caption": "Lớp phân tích và chấm điểm CV được thể hiện bên trong trình tạo CV; không đồng nghĩa mình phụ trách toàn bộ giao diện.",
+          "caption": "Lớp phân tích và chấm điểm CV được thể hiện bên trong trình tạo CV.",
           "alt": "Giao diện trình tạo và phân tích CV của VCareer"
         },
         "match": {
@@ -601,7 +600,6 @@
     },
     "work": {
       "eyebrow": "05 / HỆ THỐNG & BẰNG CHỨNG",
-      "axis": "AI HIỆN TẠI → NỀN TẢNG BACKEND",
       "scholar": {
         "kicker": "AI RESEARCH SYSTEM",
         "status": "DỰ ÁN SOLO · PHỤ TRÁCH TOÀN BỘ KỸ THUẬT",
@@ -696,7 +694,7 @@
     "career": {
       "eyebrow": "06 / KINH NGHIỆM & GHI NHẬN",
       "axis": "2019 → 2026",
-      "title": "Dấu vết nghề nghiệp.",
+      "title": "Chặng đường sự nghiệp.",
       "summary": "Từ nền tảng Công nghệ Thông tin, qua backend production, đến chương trình AI thực chiến.",
       "timelineLabel": "TRỤC PHÁT TRIỂN / 03 MỐC",
       "responsibilitiesLabel": "PHẠM VI CÔNG VIỆC",
@@ -720,7 +718,7 @@
           "responsibilities": [
             "Xây dựng API và business logic bằng Java, Spring Boot và PostgreSQL.",
             "Triển khai batch job và xử lý bất đồng bộ với AWS SQS; dùng Docker và LocalStack cho phát triển và kiểm thử local.",
-            "Điều phối công việc và review code cho sub-team backend 4–5 người khi team lead vắng mặt."
+            "Điều phối công việc và review code cho sub-team backend 4–5 người."
           ],
           "technology": "Java · Spring Boot · PostgreSQL · AWS SQS · Docker · LocalStack · GraphQL · Testing"
         },
@@ -787,7 +785,6 @@
     },
     "capabilities": {
       "eyebrow": "07 / NĂNG LỰC & LIÊN HỆ",
-      "axis": "HỆ THỐNG ĐÃ SHIP → KÊNH TRAO ĐỔI",
       "title": "Năng lực được neo vào bằng chứng.",
       "summary": "Mỗi nhóm năng lực dẫn ngược về dự án hoặc vai trò đã chứng minh nó.",
       "technologyLabel": "CÔNG NGHỆ & PHƯƠNG PHÁP",
@@ -836,44 +833,6 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "opensNewTab": "Mở trong tab mới",
-      "form": {
-        "label": "HOẶC GỬI TẠI ĐÂY",
-        "title": "Một lời nhắn ngắn là đủ.",
-        "body": "Form này dùng cùng kênh email phía trên. Nội dung chỉ được báo thành công khi dịch vụ gửi tin đã tiếp nhận.",
-        "required": "Bắt buộc",
-        "name": "Họ tên",
-        "namePlaceholder": "Tên của bạn",
-        "email": "Email",
-        "emailPlaceholder": "email@example.com",
-        "message": "Nội dung",
-        "messagePlaceholder": "Bạn muốn trao đổi điều gì?",
-        "submit": "Gửi lời nhắn",
-        "retry": "Thử gửi lại",
-        "sending": "Đang gửi…",
-        "directEmail": "Email trực tiếp",
-        "validationSummary": "Kiểm tra các trường được đánh dấu.",
-        "success": "Tin nhắn đã được tiếp nhận để gửi tới email của mình.",
-        "rateLimit": "Kênh gửi tin đang giới hạn tần suất. Vui lòng thử lại sau.",
-        "error": "Dịch vụ chưa tiếp nhận lời nhắn. Bạn có thể thử lại.",
-        "offline": "Không thể kết nối dịch vụ. Kiểm tra mạng rồi thử lại.",
-        "unavailable": "Form gửi tin hiện chưa khả dụng.",
-        "staticFallback": "Form cần JavaScript để gửi an toàn.",
-        "errors": {
-          "name": "Nhập họ tên (tối đa 100 ký tự).",
-          "email": "Nhập email hợp lệ.",
-          "message": "Nhập từ 10 đến 5.000 ký tự."
-        },
-        "stateLabels": {
-          "ready": "SẴN SÀNG",
-          "validation": "CẦN KIỂM TRA",
-          "sending": "ĐANG GỬI",
-          "success": "ĐÃ TIẾP NHẬN / 202",
-          "rateLimit": "TẠM GIỚI HẠN / 429",
-          "error": "CHƯA GỬI ĐƯỢC / 502",
-          "offline": "MẤT KẾT NỐI",
-          "unavailable": "KÊNH PHỤ TẠM DỪNG / 503"
-        }
-      },
       "footer": {
         "backToTop": "Về đầu trang",
         "copyright": "© 2026 Nguyen Manh Tu"

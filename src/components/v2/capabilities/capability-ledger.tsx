@@ -15,7 +15,6 @@ type CapabilityItemCopy = {
 
 export type CapabilityLedgerCopy = {
   eyebrow: string;
-  axis: string;
   title: string;
   summary: string;
   technologyLabel: string;
@@ -53,7 +52,6 @@ export function CapabilityLedger({
         <div className={styles.inner}>
           <header className={styles.sectionRail}>
             <p>{copy.eyebrow}</p>
-            <p>{copy.axis}</p>
           </header>
 
           <div className={styles.introduction}>

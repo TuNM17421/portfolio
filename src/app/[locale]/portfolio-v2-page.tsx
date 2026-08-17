@@ -3,7 +3,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PortfolioV2Shell } from "@/components/v2/portfolio-v2-shell";
 import { isSupportedLocale } from "@/i18n/routing";
-import { isContactDeliveryConfigured } from "@/lib/contact-delivery-config";
 import {
   localizedAlternates,
   localizedPath,
@@ -80,7 +79,6 @@ export default async function PortfolioV2Page({
   const skipIntro = shouldSkipIntro(introValue);
   const initialRecognitionDocumentary =
     parseRecognitionDocumentary(recognitionValue);
-  const contactDeliveryEnabled = isContactDeliveryConfigured();
   const introT = await getTranslations({ locale, namespace: "v2.intro" });
   const heroT = await getTranslations({ locale, namespace: "v2.hero" });
   const aboutT = await getTranslations({ locale, namespace: "v2.about" });
@@ -107,7 +105,6 @@ export default async function PortfolioV2Page({
           locale={locale}
           skipIntro={skipIntro}
           initialRecognitionDocumentary={initialRecognitionDocumentary}
-          contactDeliveryEnabled={contactDeliveryEnabled}
           introCopy={{
             introLabel: introT("introLabel"),
             portfolio: introT("portfolio"),
@@ -147,7 +144,6 @@ export default async function PortfolioV2Page({
           }}
           aboutCopy={{
             eyebrow: aboutT("eyebrow"),
-            axis: aboutT("axis"),
             foundationLabel: aboutT("foundationLabel"),
             foundationPrefix: aboutT("foundationPrefix"),
             foundationAnchor: aboutT("foundationAnchor"),
@@ -243,7 +239,6 @@ export default async function PortfolioV2Page({
           }}
           workCopy={{
             eyebrow: workT("eyebrow"),
-            axis: workT("axis"),
             scholar: {
               kicker: workT("scholar.kicker"),
               status: workT("scholar.status"),
@@ -441,7 +436,6 @@ export default async function PortfolioV2Page({
           }}
           capabilitiesCopy={{
             eyebrow: capabilitiesT("eyebrow"),
-            axis: capabilitiesT("axis"),
             title: capabilitiesT("title"),
             summary: capabilitiesT("summary"),
             technologyLabel: capabilitiesT("technologyLabel"),
@@ -490,44 +484,6 @@ export default async function PortfolioV2Page({
             github: contactT("github"),
             linkedin: contactT("linkedin"),
             opensNewTab: contactT("opensNewTab"),
-            form: {
-              label: contactT("form.label"),
-              title: contactT("form.title"),
-              body: contactT("form.body"),
-              required: contactT("form.required"),
-              name: contactT("form.name"),
-              namePlaceholder: contactT("form.namePlaceholder"),
-              email: contactT("form.email"),
-              emailPlaceholder: contactT("form.emailPlaceholder"),
-              message: contactT("form.message"),
-              messagePlaceholder: contactT("form.messagePlaceholder"),
-              submit: contactT("form.submit"),
-              retry: contactT("form.retry"),
-              sending: contactT("form.sending"),
-              directEmail: contactT("form.directEmail"),
-              validationSummary: contactT("form.validationSummary"),
-              success: contactT("form.success"),
-              rateLimit: contactT("form.rateLimit"),
-              error: contactT("form.error"),
-              offline: contactT("form.offline"),
-              unavailable: contactT("form.unavailable"),
-              staticFallback: contactT("form.staticFallback"),
-              errors: {
-                name: contactT("form.errors.name"),
-                email: contactT("form.errors.email"),
-                message: contactT("form.errors.message"),
-              },
-              stateLabels: {
-                ready: contactT("form.stateLabels.ready"),
-                validation: contactT("form.stateLabels.validation"),
-                sending: contactT("form.stateLabels.sending"),
-                success: contactT("form.stateLabels.success"),
-                "rate-limit": contactT("form.stateLabels.rateLimit"),
-                error: contactT("form.stateLabels.error"),
-                offline: contactT("form.stateLabels.offline"),
-                unavailable: contactT("form.stateLabels.unavailable"),
-              },
-            },
             footer: {
               backToTop: contactT("footer.backToTop"),
               copyright: contactT("footer.copyright"),

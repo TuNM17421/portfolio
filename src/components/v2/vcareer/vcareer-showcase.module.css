@@ -1230,6 +1230,11 @@
     will-change: transform, opacity;
   }
 
+  .showcase[data-vcareer-story="active"]
+    .outcomes[data-vcareer-outcomes-interactive="false"] {
+    pointer-events: none;
+  }
+
   .showcase[data-vcareer-story="active"] .outcomeHeading {
     min-height: 160px;
   }

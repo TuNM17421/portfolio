@@ -168,7 +168,7 @@
 
 .rollViewport {
   display: block;
-  height: 1.2em;
+  height: 1.5em;
   overflow: hidden;
   background: transparent;
   text-shadow: none;
@@ -177,7 +177,7 @@
 .rollTrack {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.5;
   transform: translateY(0);
   transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
